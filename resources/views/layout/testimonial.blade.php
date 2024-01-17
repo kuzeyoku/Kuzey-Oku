@@ -17,7 +17,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="images/resource/testi-1.jpg"
+                                    <figure class="image"><img src="{{ asset("assets/images/resource/testi-1.jpg") }}"
                                             alt=""></figure>
                                     <div class="info-box">
                                         <h4 class="name">Donald hardson</h4>
@@ -36,7 +36,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="images/resource/testi-1.jpg"
+                                    <figure class="image"><img src="{{ asset("assets/images/resource/testi-1.jpg") }}"
                                             alt=""></figure>
                                     <div class="info-box">
                                         <h4 class="name">Donald hardson</h4>
@@ -55,7 +55,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="images/resource/testi-1.jpg"
+                                    <figure class="image"><img src="{{ asset("assets/images/resource/testi-1.jpg") }}"
                                             alt=""></figure>
                                     <div class="info-box">
                                         <h4 class="name">Donald hardson</h4>
@@ -74,7 +74,7 @@
                         <div class="testimonial-block">
                             <div class="inner-box">
                                 <div class="image-box">
-                                    <figure class="image"><img src="images/resource/testi-1.jpg"
+                                    <figure class="image"><img src="{{ asset("assets/images/resource/testi-1.jpg") }}"
                                             alt=""></figure>
                                     <div class="info-box">
                                         <h4 class="name">Donald hardson</h4>

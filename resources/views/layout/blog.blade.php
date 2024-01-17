@@ -11,7 +11,7 @@
                 <div class="inner-box">
                     <div class="image-box">
                         <figure class="image"><a href="news-details.html.htm"><img
-                                    src="images/resource/news-1.jpg" alt=""></a></figure>
+                                    src="{{ asset('assets/images/resource/news-1.jpg') }}" alt=""></a></figure>
                     </div>
                     <div class="content-box">
                         <span class="date">20 Dec, 2022</span>
@@ -19,8 +19,8 @@
                         <h5 class="title"><a href="news-details.html.htm">Over ride the digital divide with
                                 additional</a></h5>
                         <div class="text">Lorem ipsum dolor sit amet, coned sectetur notte elit sed do.</div>
-                        <a href="news-details.html.htm" class="read-more"><i
-                                class="fa fa-long-arrow-alt-right"></i> Read More</a>
+                        <a href="news-details.html.htm" class="read-more"><i class="fa fa-long-arrow-alt-right"></i>
+                            Read More</a>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="inner-box">
                     <div class="image-box">
                         <figure class="image"><a href="news-details.html.htm"><img
-                                    src="images/resource/news-2.jpg" alt=""></a></figure>
+                                    src="{{ asset('assets/images/resource/news-2.jpg') }}" alt=""></a></figure>
                     </div>
                     <div class="content-box">
                         <span class="date">20 Dec, 2022</span>
@@ -37,8 +37,8 @@
                         <h5 class="title"><a href="news-details.html.htm">Over ride the digital divide with
                                 additional</a></h5>
                         <div class="text">Lorem ipsum dolor sit amet, coned sectetur notte elit sed do.</div>
-                        <a href="news-details.html.htm" class="read-more"><i
-                                class="fa fa-long-arrow-alt-right"></i> Read More</a>
+                        <a href="news-details.html.htm" class="read-more"><i class="fa fa-long-arrow-alt-right"></i>
+                            Read More</a>
                     </div>
                 </div>
             </div>
@@ -47,7 +47,7 @@
                 <div class="inner-box">
                     <div class="image-box">
                         <figure class="image"><a href="news-details.html.htm"><img
-                                    src="images/resource/news-3.jpg" alt=""></a></figure>
+                                    src="{{ asset('assets/images/resource/news-3.jpg') }}" alt=""></a></figure>
                     </div>
                     <div class="content-box">
                         <span class="date">20 Dec, 2022</span>
@@ -55,8 +55,8 @@
                         <h5 class="title"><a href="news-details.html.htm">Over ride the digital divide with
                                 additional</a></h5>
                         <div class="text">Lorem ipsum dolor sit amet, coned sectetur notte elit sed do.</div>
-                        <a href="news-details.html.htm" class="read-more"><i
-                                class="fa fa-long-arrow-alt-right"></i> Read More</a>
+                        <a href="news-details.html.htm" class="read-more"><i class="fa fa-long-arrow-alt-right"></i>
+                            Read More</a>
                     </div>
                 </div>
             </div>

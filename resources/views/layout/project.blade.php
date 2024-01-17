@@ -1,5 +1,5 @@
 <section class="projects-section-two p-0">
-    <div class="bg-image" style="background-image: url(images/background/2.jpg)"></div>
+    <div class="bg-image" style="background-image: url({{ asset('assets/images/background/2.jpg') }})"></div>
     <div class="auto-container">
         <div class="upper-box">
             <div class="counter-column">

@@ -56,27 +56,27 @@
                         <div class="widget-content">
                             <div class="outer clearfix">
                                 <figure class="image">
-                                    <a href="#"><img src="images/resource/project-thumb-1.jpg"
+                                    <a href="#"><img src="{{ asset("assets/images/resource/project-thumb-1.jpg") }}"
                                             alt=""></a>
                                 </figure>
                                 <figure class="image">
-                                    <a href="#"><img src="images/resource/project-thumb-2.jpg"
+                                    <a href="#"><img src="{{ asset("assets/images/resource/project-thumb-2.jpg") }}"
                                             alt=""></a>
                                 </figure>
                                 <figure class="image">
-                                    <a href="#"><img src="images/resource/project-thumb-3.jpg"
+                                    <a href="#"><img src="{{ asset("assets/images/resource/project-thumb-3.jpg") }}"
                                             alt=""></a>
                                 </figure>
                                 <figure class="image">
-                                    <a href="#"><img src="images/resource/project-thumb-4.jpg"
+                                    <a href="#"><img src="{{ asset("assets/images/resource/project-thumb-4.jpg") }}"
                                             alt=""></a>
                                 </figure>
                                 <figure class="image">
-                                    <a href="#"><img src="images/resource/project-thumb-5.jpg"
+                                    <a href="#"><img src="{{ asset("assets/images/resource/project-thumb-5.jpg") }}"
                                             alt=""></a>
                                 </figure>
                                 <figure class="image">
-                                    <a href="#"><img src="images/resource/project-thumb-6.jpg"
+                                    <a href="#"><img src="{{ asset("assets/images/resource/project-thumb-6.jpg") }}"
                                             alt=""></a>
                                 </figure>
                             </div>

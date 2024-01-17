@@ -56,16 +56,16 @@
             <div class="image-column col-lg-6 col-md-12 col-sm-12">
                 <div class="inner-column">
                     <div class="image-box">
-                        <figure class="image overlay-anim"><img src="images/resource/faq.jpg" alt="">
+                        <figure class="image overlay-anim"><img src="{{ asset('assets/images/resource/faq.jpg') }}"
+                                alt="">
                         </figure>
                     </div>
                     <div class="graph-box">
 
                         <div class="pie-graph">
                             <div class="graph-outer">
-                                <input type="text" class="dial" data-fgcolor="#ff3838"
-                                    data-bgcolor="#f9f9f9" data-width="125" data-height="125"
-                                    data-linecap="normal" value="90">
+                                <input type="text" class="dial" data-fgcolor="#ff3838" data-bgcolor="#f9f9f9"
+                                    data-width="125" data-height="125" data-linecap="normal" value="90">
                                 <div class="inner-text count-box"><span class="count-text txt" data-stop="90"
                                         data-speed="2000"></span>%</div>
                             </div>
@@ -74,9 +74,8 @@
 
                         <div class="pie-graph">
                             <div class="graph-outer">
-                                <input type="text" class="dial" data-fgcolor="#ff3838"
-                                    data-bgcolor="#f9f9f9" data-width="125" data-height="125"
-                                    data-linecap="normal" value="50">
+                                <input type="text" class="dial" data-fgcolor="#ff3838" data-bgcolor="#f9f9f9"
+                                    data-width="125" data-height="125" data-linecap="normal" value="50">
                                 <div class="inner-text count-box"><span class="count-text txt" data-stop="50"
                                         data-speed="2000"></span>%</div>
                             </div>

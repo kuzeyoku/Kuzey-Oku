@@ -39,88 +39,17 @@
                 <div class="nav-outer">
                     <nav class="nav main-menu">
                         <ul class="navigation">
-                            <li class="current dropdown"><a href="index.html.htm">Home</a>
-                                <ul>
-                                    <li><a href="index.html.htm">Home page 01</a></li>
-                                    <li><a href="index-2.html.htm">Home page 02</a></li>
-                                    <li><a href="index-3.html.htm">Home page 03</a></li>
-                                    <li class="dropdown"><a href="#">Single</a>
-                                        <ul>
-                                            <li><a href="index-1-single.html.htm">Home Single 1</a></li>
-                                            <li><a href="index-2-single.html.htm">Home Single 2</a></li>
-                                            <li><a href="index-3-single.html.htm">Home Single 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Dark</a>
-                                        <ul>
-                                            <li><a href="index-1-dark.html.htm">Home Dark 1</a></li>
-                                            <li><a href="index-2-dark.html.htm">Home Dark 2</a></li>
-                                            <li><a href="index-3-dark.html.htm">Home Dark 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Boxed</a>
-                                        <ul>
-                                            <li><a href="index-1-boxed.html.htm">Home Boxed 1</a></li>
-                                            <li><a href="index-2-boxed.html.htm">Home Boxed 2</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">RTL</a>
-                                        <ul>
-                                            <li><a href="index-1-rtl.html.htm">Home RTL 1</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Header Styles</a>
-                                        <ul>
-                                            <li><a href="index.html.htm">Header Style One</a></li>
-                                            <li><a href="index-2.html.htm">Header Style Two</a></li>
-                                            <li><a href="index-3.html.htm">Header Style three</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Pages</a>
-                                <ul>
-                                    <li><a href="page-about.html.htm">About</a></li>
-                                    <li class="dropdown"><a href="#">Projects</a>
-                                        <ul>
-                                            <li><a href="page-projects.html.htm">Projects List</a></li>
-                                            <li><a href="page-project-details.html.htm">Project Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="dropdown"><a href="#">Team</a>
-                                        <ul>
-                                            <li><a href="page-team.html.htm">Team List</a></li>
-                                            <li><a href="page-team-details.html.htm">Team Details</a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="page-testimonial.html.htm">Testimonial</a></li>
-                                    <li><a href="page-pricing.html.htm">Pricing</a></li>
-                                    <li><a href="page-faq.html.htm">FAQ</a></li>
-                                    <li><a href="page-404.html.htm">Page 404</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Services</a>
-                                <ul>
-                                    <li><a href="page-services.html.htm">Services List</a></li>
-                                    <li><a href="page-service-details.html.htm">Service Details</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">Shop</a>
-                                <ul>
-                                    <li><a href="shop-products.html.htm">Products</a></li>
-                                    <li><a href="shop-products-sidebar.html.htm">Products with Sidebar</a></li>
-                                    <li><a href="shop-product-details.html.htm">Product Details</a></li>
-                                    <li><a href="shop-cart.html.htm">Cart</a></li>
-                                    <li><a href="shop-checkout.html.htm">Checkout</a></li>
-                                </ul>
-                            </li>
-                            <li class="dropdown"><a href="#">News</a>
-                                <ul>
-                                    <li><a href="news-grid.html.htm">News Grid</a></li>
-                                    <li><a href="news-details.html.htm">News Details</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="page-contact.html.htm">Get in Touch</a></li>
+                            @foreach ($headerMenu as $menu)
+                                @if ($menu->parent_id === 0)
+                                    @if ($menu->subMenu->count() > 0)
+                                        @include('layout.menu', ['menu' => $menu])
+                                    @else
+                                        <li class="{{ $menu->subMenu->count() > 0 ? 'dropdown' : '' }}">
+                                            <a href="{{ $menu->url }}">{{ $menu->title }}</a>
+                                        </li>
+                                    @endif
+                                @endif
+                            @endforeach
                         </ul>
                     </nav>
 
@@ -197,8 +126,7 @@
         <div class="search-inner">
             <form method="post" action="blog-showcase.html">
                 <div class="form-group">
-                    <input type="search" name="search-field" value="" placeholder="Search..."
-                        required="">
+                    <input type="search" name="search-field" value="" placeholder="Search..." required="">
                     <button type="submit"><i class="fa fa-search"></i></button>
                 </div>
             </form>

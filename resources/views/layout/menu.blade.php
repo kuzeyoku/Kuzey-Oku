@@ -1,4 +1,4 @@
-<li class="{{ $menu->subMenu->count() > 0 ? 'menu-item-has-children' : 'menu-item' }}">
+<li class="{{ $menu->subMenu->count() > 0 ? 'dropdown' : '' }}">
     <a href="{{ $menu->url ?? '#' }}">{{ $menu->title }}</a>
     <ul class="sub-menu">
         @foreach ($menu->subMenu as $subMenu)

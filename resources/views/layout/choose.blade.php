@@ -15,8 +15,8 @@
                     <blockquote class="blockquote-one">Lorem ipsum dolor sit amet, consectetur notted
                         adipisicing elit sed do eiusmod</blockquote>
                     <div class="btn-box">
-                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4"
-                            class="play-now-two lightbox-image"><i class="icon fa fa-play"></i> Watch our
+                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now-two lightbox-image"><i
+                                class="icon fa fa-play"></i> Watch our
                             <br>few minautes video</a>
                         <a href="page-service-details.html.htm" class="theme-btn btn-style-one"><span
                                 class="btn-title">Explore now</span></a>
@@ -29,12 +29,13 @@
                     <div class="image-box">
                         <span class="bg-shape"></span>
                         <figure class="image-1 overlay-anim wow fadeInUp"><img
-                                src="images/resource/benefit-1.jpg" alt=""></figure>
+                                src="{{ asset('assets/images/resource/benefit-1.jpg') }}" alt=""></figure>
                         <figure class="image-2 overlay-anim wow fadeInRight"><img
-                                src="images/resource/benefit-2.jpg" alt=""></figure>
+                                src="{{ asset('assets/images/resource/benefit-2.jpg') }}" alt=""></figure>
                         <figure class="image-3 overlay-anim wow fadeInRight"><img
-                                src="images/resource/benefit-3.jpg" alt=""></figure>
-                        <figure class="logo"><img src="images/resource/fav-icon.png" alt="">
+                                src="{{ asset('assets/images/resource/benefit-3.jpg') }}" alt=""></figure>
+                        <figure class="logo"><img src="{{ asset('assets/images/resource/fav-icon.png') }}"
+                                alt="">
                         </figure>
                     </div>
                 </div>
