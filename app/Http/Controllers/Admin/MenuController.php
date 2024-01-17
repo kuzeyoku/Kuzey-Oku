@@ -55,7 +55,7 @@ class MenuController extends Controller
     {
         try {
             $this->service->create((object)$request->all());
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.$request->type")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
@@ -71,7 +71,7 @@ class MenuController extends Controller
     {
         try {
             $this->service->update((object)$request->all(), $menu);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $menu->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.$request->type")
                 ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
@@ -86,8 +86,8 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $menu->title]));
             $this->service->delete($menu);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $menu->title[app()->getLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.$menu->type")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));

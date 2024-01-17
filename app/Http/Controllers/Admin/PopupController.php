@@ -37,7 +37,7 @@ class PopupController extends Controller
     {
         try {
             $this->service->create((object)$request->validated());
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
@@ -58,7 +58,7 @@ class PopupController extends Controller
     {
         try {
             $this->service->update((object)$request->validated(), $popup);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $popup->title]));
             if ($request->has("saveAndContinue"))
                 return back()
                     ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
@@ -76,8 +76,8 @@ class PopupController extends Controller
     public function destroy(Popup $popup)
     {
         try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $popup->title]));
             $this->service->delete($popup);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $popup->title[app()->getLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));

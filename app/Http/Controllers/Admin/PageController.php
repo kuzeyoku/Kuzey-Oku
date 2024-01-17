@@ -37,7 +37,7 @@ class PageController extends Controller
     {
         try {
             $this->service->create((object)$request->validated());
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
@@ -58,7 +58,7 @@ class PageController extends Controller
     {
         try {
             $this->service->update((object)$request->validated(), $page);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $page->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
@@ -73,8 +73,8 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $page->title]));
             $this->service->delete($page);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $page->title[app()->getLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));

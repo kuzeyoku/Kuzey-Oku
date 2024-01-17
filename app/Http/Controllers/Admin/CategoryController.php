@@ -42,7 +42,7 @@ class CategoryController extends Controller
     {
         try {
             $this->service->create((object)$request->validated());
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
@@ -63,7 +63,7 @@ class CategoryController extends Controller
     {
         try {
             $this->service->update((object)$request->validated(), $category);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $category->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
@@ -78,8 +78,8 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $category->title]));
             $this->service->delete($category);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $category->title[app()->getLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));

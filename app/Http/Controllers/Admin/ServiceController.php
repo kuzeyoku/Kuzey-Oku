@@ -39,11 +39,12 @@ class ServiceController extends Controller
     {
         try {
             $this->service->create((object)$request->validated());
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
         } catch (Throwable $e) {
+            dd($e->getMessage());
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
@@ -60,7 +61,7 @@ class ServiceController extends Controller
     {
         try {
             $this->service->update((object)$request->validated(), $service);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $service->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
@@ -75,8 +76,8 @@ class ServiceController extends Controller
     public function destroy(Service $service)
     {
         try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $service->title]));
             $this->service->delete($service);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $service->title[app()->getLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));

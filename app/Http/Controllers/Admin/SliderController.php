@@ -37,7 +37,7 @@ class SliderController extends Controller
     {
         try {
             $this->service->create((object)$request->validated());
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
@@ -58,7 +58,7 @@ class SliderController extends Controller
     {
         try {
             $this->service->update((object)$request->validated(), $slider);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $slider->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
@@ -74,7 +74,7 @@ class SliderController extends Controller
     {
         try {
             $this->service->delete($slider);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $slider->title[app()->getLocale()]]));
+            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $slider->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
