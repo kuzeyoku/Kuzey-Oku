@@ -73,8 +73,8 @@ class SliderController extends Controller
     public function destroy(Slider $slider)
     {
         try {
-            $this->service->delete($slider);
             LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $slider->title]));
+            $this->service->delete($slider);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
