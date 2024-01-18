@@ -4,8 +4,8 @@
         <div class="upper-box">
             <div class="counter-column">
                 <div class="count-box">
-                    <span class="title">Work Completed</span>
-                    <div class="numbers">86900+</div>
+                    <span class="title">Tamamlanmış Uçuş (ha)</span>
+                    <div class="numbers">5000+</div>
                 </div>
             </div>
             <div class="text-column">
@@ -14,79 +14,28 @@
             </div>
         </div>
         <div class="sec-title text-center light">
-            <span class="sub-title">Recent Work</span>
-            <h2>Work showcase</h2>
+            <span class="sub-title">Neler Yaptık ?</span>
+            <h2>Tamamlanmış Projelerimiz</h2>
         </div>
         <div class="carousel-outer">
             <div class="projects-carousel owl-carousel owl-theme">
-
-                <div class="project-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="{{ asset('assets/images/resource/project-1.jpg') }}" alt=""></a>
-                            </figure>
-                            <div class="info-box">
-                                <a href="page-project-details.html.htm" class="read-more"><i
-                                        class="fa fa-long-arrow-alt-right"></i></a>
-                                <span class="cat">Graphics</span>
-                                <h6 class="title"><a href="page-project-details.html.htm">Digital marketing
-                                        web</a></h6>
+                @foreach ($project as $project)
+                    <div class="project-block">
+                        <div class="inner-box">
+                            <div class="image-box">
+                                <figure class="image"><a href="{{ $project->url }}"><img
+                                            src="{{ $project->image_url }}" alt=""></a>
+                                </figure>
+                                <div class="info-box">
+                                    <a href="{{ $project->url }}" class="read-more"><i
+                                            class="fa fa-long-arrow-alt-right"></i></a>
+                                    {{-- <span class="cat">Graphics</span> --}}
+                                    <h6 class="title"><a href="{{ $project->url }}">{{ $project->title }}</a></h6>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-
-                <div class="project-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="{{ asset('assets/images/resource/project-2.jpg') }}" alt=""></a>
-                            </figure>
-                            <div class="info-box">
-                                <a href="page-project-details.html.htm" class="read-more"><i
-                                        class="fa fa-long-arrow-alt-right"></i></a>
-                                <span class="cat">Graphics</span>
-                                <h6 class="title"><a href="page-project-details.html.htm">Digital marketing
-                                        web</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="{{ asset('assets/images/resource/project-3.jpg') }}" alt=""></a>
-                            </figure>
-                            <div class="info-box">
-                                <a href="page-project-details.html.htm" class="read-more"><i
-                                        class="fa fa-long-arrow-alt-right"></i></a>
-                                <span class="cat">Graphics</span>
-                                <h6 class="title"><a href="page-project-details.html.htm">Digital marketing
-                                        web</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="project-block">
-                    <div class="inner-box">
-                        <div class="image-box">
-                            <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="{{ asset('assets/images/resource/project-4.jpg') }}" alt=""></a>
-                            </figure>
-                            <div class="info-box">
-                                <a href="page-project-details.html.htm" class="read-more"><i
-                                        class="fa fa-long-arrow-alt-right"></i></a>
-                                <span class="cat">Graphics</span>
-                                <h6 class="title"><a href="page-project-details.html.htm">Digital marketing
-                                        web</a></h6>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>

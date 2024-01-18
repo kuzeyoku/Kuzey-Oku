@@ -3664,6 +3664,7 @@ li {
     transition: all 300ms ease;
     padding: 40px 50px;
     border-radius: 50%;
+    background-size: 240px;
 }
 .service-block .icon-box .icon {
     color: var(--theme-color2);

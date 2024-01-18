@@ -20,7 +20,5 @@
 
     @include('layout.blog')
 
-    @include('layout.contact')
-
     @include('layout.call')
 @endsection

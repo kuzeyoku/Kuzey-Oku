@@ -5,26 +5,24 @@
                 data-wow-delay="600ms">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <span class="sub-title">Get to Know</span>
-                        <h2>We provide best design solution in town</h2>
+                        <span class="sub-title">Biz Kimiz</span>
+                        <h2>Kuzey Oku - Harita ve Madencilik</h2>
                         <div class="text">Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed
                             do eiusmod tempor incididunt ut labore et simply free text dolore magna aliqua lonm
                             andhn.</div>
                     </div>
                     <ul class="list-style-two">
-                        <li><i class="fa fa-check-circle"></i> Refresing to get such a personal touch.</li>
-                        <li><i class="fa fa-check-circle"></i> Duis aute irure dolor in reprehenderit in
-                            voluptate.</li>
-                        <li><i class="fa fa-check-circle"></i> Velit esse cillum dolore eu fugiat nulla
-                            pariatur.</li>
+                        <li><i class="fa fa-check-circle"></i> Alanında Uzman Mühendis Kadrosu</li>
+                        <li><i class="fa fa-check-circle"></i> Maliyet Odaklı Çözümler</li>
+                        <li><i class="fa fa-check-circle"></i> Son Teknoloji Ekipmanlar</li>
                     </ul>
                     <div class="btn-box">
                         <a href="tel:+92(8800)9806" class="info-btn">
                             <i class="icon fa fa-phone"></i>
-                            <small>Call Anytime</small> + 9999 5555 333
+                            <small>İletişime Geç</small> {{ config('setting.contact.phone') }}
                         </a>
-                        <a href="page-about.html.htm" class="theme-btn btn-style-one"><span class="btn-title">Explore
-                                now</span></a>
+                        <a href="{{ route('contact.index') }}" class="theme-btn btn-style-one"><span
+                                class="btn-title">İletişim</span></a>
                     </div>
                 </div>
             </div>
@@ -38,7 +36,7 @@
                     <div class="experience bounce-y">
                         <div class="inner">
                             <i class="icon flaticon-discuss"></i>
-                            <div class="text"><strong>30+</strong> Years of <br>experience</div>
+                            <div class="text"><strong>30+</strong> Mutlu <br>Müşteri</div>
                         </div>
                     </div>
                 </div>

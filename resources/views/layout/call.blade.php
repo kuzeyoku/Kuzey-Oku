@@ -6,8 +6,8 @@
                 <h2 class="title">Looking for the best web design <br>solutions?</h2>
             </div>
             <div class="btn-box">
-                <a href="page-contact.html.htm" class="theme-btn btn-style-one light"><span
-                        class="btn-title">Contact Us</span></a>
+                <a href="{{ route('contact.index') }}" class="theme-btn btn-style-one light"><span
+                        class="btn-title">İletişim</span></a>
             </div>
         </div>
     </div>
