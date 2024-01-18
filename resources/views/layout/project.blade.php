@@ -24,7 +24,7 @@
                     <div class="inner-box">
                         <div class="image-box">
                             <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="images/resource/project-1.jpg" alt=""></a>
+                                        src="{{ asset('assets/images/resource/project-1.jpg') }}" alt=""></a>
                             </figure>
                             <div class="info-box">
                                 <a href="page-project-details.html.htm" class="read-more"><i
@@ -41,7 +41,7 @@
                     <div class="inner-box">
                         <div class="image-box">
                             <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="images/resource/project-2.jpg" alt=""></a>
+                                        src="{{ asset('assets/images/resource/project-2.jpg') }}" alt=""></a>
                             </figure>
                             <div class="info-box">
                                 <a href="page-project-details.html.htm" class="read-more"><i
@@ -58,7 +58,7 @@
                     <div class="inner-box">
                         <div class="image-box">
                             <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="images/resource/project-3.jpg" alt=""></a>
+                                        src="{{ asset('assets/images/resource/project-3.jpg') }}" alt=""></a>
                             </figure>
                             <div class="info-box">
                                 <a href="page-project-details.html.htm" class="read-more"><i
@@ -75,7 +75,7 @@
                     <div class="inner-box">
                         <div class="image-box">
                             <figure class="image"><a href="page-project-details.html.htm"><img
-                                        src="images/resource/project-4.jpg" alt=""></a>
+                                        src="{{ asset('assets/images/resource/project-4.jpg') }}" alt=""></a>
                             </figure>
                             <div class="info-box">
                                 <a href="page-project-details.html.htm" class="read-more"><i
