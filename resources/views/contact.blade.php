@@ -91,9 +91,11 @@
                     <div class="form-group mb-3">
                         {{ Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => 'Mesajınız']) }}
                     </div>
-                    <button type="submit" class="theme-btn btn-style-one g-recaptcha" class=""
-                        data-sitekey="reCAPTCHA_site_key" data-callback='onSubmit' data-action='submit'><span
-                            class="btn-title">Gönder</span></button>
+                    <button type="submit" class="theme-btn btn-style-one g-recaptcha"
+                        data-sitekey="{{ config('setting.recaptcha.site_key') }}" data-callback='contact-form'
+                        data-action='submit'>
+                        <span class="btn-title">Gönder</span>
+                    </button>
                     <button type="reset" class="theme-btn btn-style-one"><span class="btn-title">Temizle</span></button>
                     {{ Form::close() }}
                 </div>
