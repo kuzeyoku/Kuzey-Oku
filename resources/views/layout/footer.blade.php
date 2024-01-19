@@ -29,7 +29,7 @@
                         </div>
                         <div class="text">{{ config('setting.general.description') }}</div>
                         <ul class="social-icon-two">
-                            @foreach (config('setting.social') as $key => $value)
+                            @foreach (config('setting.social', []) as $key => $value)
                                 @if ($value)
                                     <li><a href="{{ $value }}"><i class="fab fa-{{ $key }}"></i></a>
                                     </li>
@@ -117,8 +117,8 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-container">
-                <div class="copyright-text">&copy; Copyright reserved by <a
-                        href="{{ route('home') }}">Babazan Software</a>
+                <div class="copyright-text">&copy; Copyright reserved by <a href="{{ route('home') }}">Babazan
+                        Software</a>
                 </div>
             </div>
         </div>
