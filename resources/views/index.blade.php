@@ -2,7 +2,7 @@
 @section('content')
     @include('layout.slider')
 
-    @include('layout.about')
+    @include('layout.choose')
 
     @include('layout.service')
 
