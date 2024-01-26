@@ -1,3 +1,22 @@
+@push('style')
+    <link href="{{ asset('assets/css/slider/settings.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/slider/layers.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/slider/navigation.css') }}" rel="stylesheet" type="text/css">
+@endpush
+@push('script')
+    <script src="{{ asset('assets/js/slider/jquery.themepunch.revolution.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/jquery.themepunch.tools.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.actions.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.kenburn.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.layeranimation.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.migration.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.navigation.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.parallax.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.slideanims.min.js') }}"></script>
+    <script src="{{ asset('assets/js/slider/extensions/revolution.extension.video.min.js') }}"></script>
+    <script src="{{ asset('assets/js/main-slider-script.js') }}"></script>
+@endpush
 <section class="main-slider">
     <div class="rev_slider_wrapper fullwidthbanner-container" id="rev_slider_one_wrapper" data-source="gallery">
         <div class="rev_slider fullwidthabanner" id="rev_slider_one" data-version="5.4.1">

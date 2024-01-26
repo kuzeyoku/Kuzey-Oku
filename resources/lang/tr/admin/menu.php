@@ -6,6 +6,7 @@ return [
     "content" => "Menü İçeriği",
     "header_title" => "Header Menü",
     "footer_title" => "Footer Menü",
+    "alert" => "Menüye eleman eklendikten sonra önbelleği temizlemeyi unutmayın.",
     "create_success" => "Menü başarıyla eklendi.",
     "create_error" => "Menü eklenirken bir hata oluştu.",
     "create_log" => "Bir Menü Oluşturuldu - :title",

@@ -9155,3 +9155,8 @@ td label {
     margin-left: 6px;
     color: #fff;
 }
+
+.alert svg {
+    width: 20px;
+    margin-right: 10px;
+}

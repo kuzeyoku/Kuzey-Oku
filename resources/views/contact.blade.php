@@ -8,8 +8,8 @@
                 <div class="col-xl-5 col-lg-6 mb-md-60">
                     <div class="contact-details__right">
                         <div class="sec-title">
-                            <span class="sub-title">Need any help?</span>
-                            <h2>Get in touch with us</h2>
+                            <span class="sub-title">Nasıl Yardımcı Olabiliriz ?</span>
+                            <h2>Bizimle İletişime Geçin</h2>
                             <div class="text">Lorem ipsum is simply free text available dolor sit amet, consectetur
                                 notted adipisicing elit sed do eiusmod tempor incididunt simply free ut labore et
                                 dolore magna aliqua.</div>

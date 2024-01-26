@@ -1,6 +1,7 @@
 @extends('admin.layout.main')
 @section('pageTitle', __("admin/{$folder}.title"));
 @section('content')
+    <div class="alert alert-info">@svg('fas-info-circle'){{ __('admin/menu.alert') }}</div>
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
@@ -52,7 +53,7 @@
                                     @endif
                                 @endif
                             @empty
-                                <div class="alert alert-info">{{ __("admin/general.empty_table") }}</div>
+                                <div class="alert alert-info">{{ __('admin/general.empty_table') }}</div>
                             @endforelse
                         </ul>
                     </div>

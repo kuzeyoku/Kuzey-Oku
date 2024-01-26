@@ -109,13 +109,15 @@ trait AuthorizesRequests
     protected function resourceAbilityMap()
     {
         return [
-            'index' => 'viewAny',
-            'show' => 'view',
+            'index' => 'index',
+            'show' => 'show',
             'create' => 'create',
-            'store' => 'create',
-            'edit' => 'update',
+            'store' => 'store',
+            'edit' => 'edit',
             'update' => 'update',
-            'destroy' => 'delete',
+            'destroy' => 'destroy',
+            "destroy" => "imageDelete",
+            "destroy" => "imageAllDelete",
         ];
     }
 

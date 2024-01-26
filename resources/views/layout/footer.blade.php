@@ -30,7 +30,7 @@
                         <div class="text">{{ config('setting.general.description') }}</div>
                         <ul class="social-icon-two">
                             @foreach (config('setting.social', []) as $key => $value)
-                                @if ($value)
+                                @if ($value)    
                                     <li><a href="{{ $value }}"><i class="fab fa-{{ $key }}"></i></a>
                                     </li>
                                 @endif

@@ -1,4 +1,4 @@
-<section class="page-title" style="background-image: url({{ asset('assets/images/background/page-title.jpg') }});">
+<section class="page-title" style="background-image: url({{ asset('assets/images/page-title.jpg') }});">
     <div class="auto-container">
         <div class="title-outer">
             <h1 class="title">@yield('title')</h1>

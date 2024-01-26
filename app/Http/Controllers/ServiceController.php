@@ -14,6 +14,7 @@ class ServiceController extends Controller
 
     public function show(Service $service)
     {
-        return view("service.show", compact("service"));
+        $otherServices = Service::whereNotIn("id", [$service->id])->get();
+        return view("service.show", compact("service", "otherServices"));
     }
 }

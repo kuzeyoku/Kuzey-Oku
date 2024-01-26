@@ -1,5 +1,5 @@
 @extends('admin.layout.main')
-@section('pageTitle', __("admin/{$folder}.images") . ' - ' . $project->title[app()->getLocale()])
+@section('pageTitle', __("admin/{$folder}.images") . ' - ' . $project->titles[config('app.fallback_locale')])
 @section('button')
     {!! Form::open([
         'url' => route("admin.{$route}.imageAllDelete", $project),

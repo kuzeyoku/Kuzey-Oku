@@ -1,7 +1,7 @@
 <section class="news-section">
-    <div class="bg bg-pattern-6"></div>
+    <div class="bg bg-pattern-5"></div>
     <div class="auto-container">
-        <div class="sec-title text-center">
+        <div class="sec-title text-center light">
             <span class="sub-title">Blog & Haberler</span>
             <h2>Blog Yazılarımız</h2>
         </div>
@@ -16,7 +16,7 @@
                                 </a>
                             </figure>
                         </div>
-                        <div class="content-box">
+                        <div class="content-box border">
                             <span class="date">{{ $post->created_at->translatedFormat('d M, Y') }}</span>
                             <span class="post-info"><i class="fa fa-user-circle"></i>{{ $post->user->name }}</span>
                             <h5 class="title"><a href="{{ $post->url }}">{{ $post->title }}</a></h5>

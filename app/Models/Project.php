@@ -55,6 +55,16 @@ class Project extends Model
         return $this->hasMany(ProjectImage::class);
     }
 
+    public function getPreviousAttribute()
+    {
+        return $this->where("id", ">", $this->id)->orderBy("id", "ASC")->first();
+    }
+
+    public function getNextAttribute()
+    {
+        return $this->where("id", "<", $this->id)->orderBy("id", "ASC")->first();
+    }
+
     public function getTitlesAttribute()
     {
         return $this->translate->pluck("title", "lang")->all();

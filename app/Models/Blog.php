@@ -61,6 +61,16 @@ class Blog extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getPreviousAttribute()
+    {
+        return $this->where("id", ">", $this->id)->orderBy("id", "ASC")->first();
+    }
+
+    public function getNextAttribute()
+    {
+        return $this->where("id", "<", $this->id)->orderBy("id", "ASC")->first();
+    }
+
     public function getTitleAttribute()
     {
         return $this->translate->where("lang", $this->locale)->pluck('title')->first();

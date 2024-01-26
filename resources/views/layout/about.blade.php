@@ -1,43 +1,41 @@
-<section class="about-section">
+<section class="why-choose-us">
+    <div class="bg bg-pattern-2"></div>
     <div class="auto-container">
         <div class="row">
             <div class="content-column col-xl-6 col-lg-7 col-md-12 col-sm-12 order-2 wow fadeInRight"
                 data-wow-delay="600ms">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <span class="sub-title">Biz Kimiz</span>
-                        <h2>Kuzey Oku - Harita ve Madencilik</h2>
-                        <div class="text">Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed
-                            do eiusmod tempor incididunt ut labore et simply free text dolore magna aliqua lonm
-                            andhn.</div>
+                        <span class="sub-title">Biz Kimiz ?</span>
+                        <h2>Kuzey Oku | Harita ve Madencilik</h2>
+                        <div class="text">There are many variations of passages of available but the majority
+                            have suffered. Alteration in some form, lipsum is simply free text by injected humou
+                            or randomised words even believable.</div>
                     </div>
-                    <ul class="list-style-two">
-                        <li><i class="fa fa-check-circle"></i> Alanında Uzman Mühendis Kadrosu</li>
-                        <li><i class="fa fa-check-circle"></i> Maliyet Odaklı Çözümler</li>
-                        <li><i class="fa fa-check-circle"></i> Son Teknoloji Ekipmanlar</li>
-                    </ul>
+                    <blockquote class="blockquote-one">Lorem ipsum dolor sit amet, consectetur notted
+                        adipisicing elit sed do eiusmod</blockquote>
                     <div class="btn-box">
-                        <a href="tel:+92(8800)9806" class="info-btn">
-                            <i class="icon fa fa-phone"></i>
-                            <small>İletişime Geç</small> {{ config('setting.contact.phone') }}
-                        </a>
-                        <a href="{{ route('contact.index') }}" class="theme-btn btn-style-one"><span
-                                class="btn-title">İletişim</span></a>
+                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now-two lightbox-image"><i
+                                class="icon fa fa-play"></i> Tanıtım Videomuzu <br> İzlediniz mi ?</a>
+                        <a href="page-service-details.html.htm" class="theme-btn btn-style-one"><span
+                                class="btn-title">Hakkımızda</span></a>
                     </div>
                 </div>
             </div>
 
             <div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
                 <div class="inner-column wow fadeInLeft">
-                    <figure class="image-1 overlay-anim wow fadeInUp"><img
-                            src="{{ asset('assets/images/resource/about-1.jpg') }}" alt=""></figure>
-                    <figure class="image-2 overlay-anim wow fadeInRight"><img
-                            src="{{ asset('assets/images/resource/about-2.jpg') }}" alt=""></figure>
-                    <div class="experience bounce-y">
-                        <div class="inner">
-                            <i class="icon flaticon-discuss"></i>
-                            <div class="text"><strong>30+</strong> Mutlu <br>Müşteri</div>
-                        </div>
+                    <div class="image-box">
+                        <span class="bg-shape"></span>
+                        <figure class="image-1 overlay-anim wow fadeInUp"><img
+                                src="{{ asset('assets/images/about-1.jpg') }}" alt=""></figure>
+                        <figure class="image-2 overlay-anim wow fadeInRight"><img
+                                src="{{ asset('assets/images/about-2.jpg') }}" alt=""></figure>
+                        <figure class="image-3 overlay-anim wow fadeInRight"><img
+                                src="{{ asset('assets/images/about-3.jpg') }}" alt=""></figure>
+                        <figure class="logo"><img src="{{ asset('assets/images/resource/fav-icon.png') }}"
+                                alt="">
+                        </figure>
                     </div>
                 </div>
             </div>

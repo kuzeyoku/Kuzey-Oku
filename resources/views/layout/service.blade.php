@@ -2,7 +2,7 @@
     <div class="auto-container">
         <div class="sec-title text-center">
             <span class="sub-title">Neler Yapıyoruz ?</span>
-            <h2>Uzman kadromuz tarafından <br> sunulan hizmetler</h2>
+            <h2>Hizmetlerimiz</h2>
         </div>
         <div class="row">
             @foreach ($service as $service)
