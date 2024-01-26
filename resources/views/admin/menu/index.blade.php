@@ -1,7 +1,7 @@
 @extends('admin.layout.main')
 @section('pageTitle', __("admin/{$folder}.title"));
 @section('content')
-    <div class="alert alert-info">@svg('fas-info-circle'){{ __('admin/menu.alert') }}</div>
+    <div class="alert alert-info">@svg('fas-info-circle'){{ __("admin/{$folder}.alert") }}</div>
     <div class="row">
         <div class="col-lg-6">
             <div class="card">
