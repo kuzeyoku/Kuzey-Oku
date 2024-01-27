@@ -1,6 +1,6 @@
 <footer class="main-footer">
     <div class="bg bg-pattern-9"></div>
-    <div class="auto-container">
+    {{-- <div class="auto-container">
         <div class="subscribe-form">
             <div class="title-column">
                 <h5 class="title"><i class="icon flaticon-open-envelope"></i> Subscribe now to get <br>latest
@@ -16,7 +16,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
     <div class="widgets-section">
         <div class="auto-container">
@@ -30,7 +30,7 @@
                         <div class="text">{{ config('setting.general.description') }}</div>
                         <ul class="social-icon-two">
                             @foreach (config('setting.social', []) as $key => $value)
-                                @if ($value)    
+                                @if ($value)
                                     <li><a href="{{ $value }}"><i class="fab fa-{{ $key }}"></i></a>
                                     </li>
                                 @endif
@@ -52,7 +52,7 @@
 
                 <div class="footer-column col-xl-3 col-lg-4 col-md-4 col-sm-8">
                     <div class="footer-widget gallery-widget">
-                        <h6 class="widget-title">Portfolio</h6>
+                        <h6 class="widget-title">Hizmetlerimiz</h6>
                         <div class="widget-content">
                             <div class="outer clearfix">
                                 <figure class="image">
