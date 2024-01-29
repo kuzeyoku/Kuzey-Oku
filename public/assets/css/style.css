@@ -10591,12 +10591,6 @@ table.tbl-shopping-cart > tfoot > tr > th {
     margin-left: 30px;
 }
 
-.pagination{
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
-}
-
 .pagination .page-item {
     padding: 0.600rem 1.2rem;
     background-color: var(--bg-theme-color2);
