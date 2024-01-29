@@ -20,7 +20,7 @@
 
                     <div class="feature-block-six">
                         <div class="inner-box">
-                            <span class="icon"><i class="flaticon-user-interface"></i></span>
+                            <span class="icon"><i class="flaticon-trophy"></i></span>
                             <h5 class="title">Misyonumuz</h5>
                             <div class="text">Tincidunt elit magnis nulla facilisis sags maecenas. sapien nunc
                                 amet ultrices</div>
@@ -29,7 +29,7 @@
 
                     <div class="feature-block-six">
                         <div class="inner-box">
-                            <span class="icon"><i class="flaticon-front-end"></i></span>
+                            <span class="icon"><i class="flaticon-lamp-1"></i></span>
                             <h5 class="title">Vizyonumuz</h5>
                             <div class="text">Tincidunt elit magnis nulla facilisis sags maecenas. sapien nunc
                                 amet ultrices</div>
@@ -38,7 +38,7 @@
 
                     <div class="feature-block-six">
                         <div class="inner-box">
-                            <span class="icon"><i class="flaticon-design"></i></span>
+                            <span class="icon"><i class="flaticon-help"></i></span>
                             <h5 class="title">Değerlerimiz</h5>
                             <div class="text">Tincidunt elit magnis nulla facilisis sags maecenas. sapien nunc
                                 amet ultrices</div>

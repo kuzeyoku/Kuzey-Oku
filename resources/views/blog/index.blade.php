@@ -25,6 +25,7 @@
                     </div>
                 @endforeach
             </div>
+            {{ $posts->render('pagination::default') }}
         </div>
     </section>
 @endsection

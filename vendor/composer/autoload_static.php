@@ -757,6 +757,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Mail\\Contact' => __DIR__ . '/../..' . '/app/Mail/Contact.php',
         'App\\Mail\\Interview' => __DIR__ . '/../..' . '/app/Mail/Interview.php',
         'App\\Models\\Blog' => __DIR__ . '/../..' . '/app/Models/Blog.php',
+        'App\\Models\\BlogComment' => __DIR__ . '/../..' . '/app/Models/BlogComment.php',
         'App\\Models\\BlogTranslate' => __DIR__ . '/../..' . '/app/Models/BlogTranslate.php',
         'App\\Models\\Brand' => __DIR__ . '/../..' . '/app/Models/Brand.php',
         'App\\Models\\Category' => __DIR__ . '/../..' . '/app/Models/Category.php',

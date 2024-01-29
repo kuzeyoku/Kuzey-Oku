@@ -110,6 +110,7 @@ trait AuthorizesRequests
     {
         return [
             'index' => 'index',
+            "index" => "comments",
             'show' => 'show',
             'create' => 'create',
             'store' => 'store',

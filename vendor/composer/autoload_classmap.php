@@ -99,6 +99,7 @@ return array(
     'App\\Mail\\Contact' => $baseDir . '/app/Mail/Contact.php',
     'App\\Mail\\Interview' => $baseDir . '/app/Mail/Interview.php',
     'App\\Models\\Blog' => $baseDir . '/app/Models/Blog.php',
+    'App\\Models\\BlogComment' => $baseDir . '/app/Models/BlogComment.php',
     'App\\Models\\BlogTranslate' => $baseDir . '/app/Models/BlogTranslate.php',
     'App\\Models\\Brand' => $baseDir . '/app/Models/Brand.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',

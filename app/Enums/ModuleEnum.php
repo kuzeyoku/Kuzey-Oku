@@ -182,6 +182,7 @@ enum ModuleEnum: string
             self::Blog => [
                 "create" => __("admin/$this->value.create"),
                 "index" => __("admin/$this->value.list"),
+                "comments" => __("admin/$this->value.comments"),
             ],
             self::Category => [
                 "create" => __("admin/$this->value.create"),

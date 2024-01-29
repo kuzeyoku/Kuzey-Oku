@@ -22,6 +22,7 @@ if (ModuleEnum::Blog->status()) {
         Route::get("/", "index")->name("blog.index");
         Route::get("/{post}/{slug}", "show")->name("blog.show");
         Route::get("/category/{category}/{slug}", "category")->name("blog.category");
+        Route::post("/{post}/comment/store", "comment_store")->name("blog.comment_store");
     });
 }
 

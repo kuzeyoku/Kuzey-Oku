@@ -10590,6 +10590,26 @@ table.tbl-shopping-cart > tfoot > tr > th {
 .blog-details__pagenation li + li {
     margin-left: 30px;
 }
+
+.pagination .page-item {
+    padding: 0.600rem 1.2rem;
+    background-color: var(--bg-theme-color2);
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.pagination .page-item:hover {
+    background-color: var(--bg-theme-color4);
+}
+
+.pagination .page-item a, .pagination .page-item span {
+    color: var(--bg-theme-color3);
+}
+
+.pagination .page-item.active {
+    background-color: var(--bg-theme-color1);
+}
+
 .nav-links {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -11058,8 +11078,8 @@ table.tbl-shopping-cart > tfoot > tr > th {
     display: -ms-flexbox;
     display: flex;
     border-bottom: 1px solid #ece9e0;
-    padding-bottom: 60px;
-    margin-bottom: 60px;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
     -webkit-box-align: top;
     -ms-flex-align: top;
     align-items: top;

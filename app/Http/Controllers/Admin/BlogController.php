@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Blog;
+use App\Models\BlogComment;
 use App\Services\Admin\BlogService;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
@@ -84,5 +85,11 @@ class BlogController extends Controller
             return back()
                 ->withError(__("admin/{$this->service->folder()}.delete_error"));
         }
+    }
+
+    public function comments()
+    {
+        $items = BlogComment::all();
+        return view("admin/{$this->service->folder()}.comment", compact("items"));
     }
 }

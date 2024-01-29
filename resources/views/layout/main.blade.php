@@ -52,8 +52,9 @@
     <script src="{{ asset('assets/js/select2.min.js') }}"></script>
     <script src="{{ asset('assets/js/owl.js') }}"></script>
     <script src="{{ asset('assets/js/script.js') }}"></script>
+    <script src="{{ asset('assets/js/sweetalert2.all.min.js') }}"></script>
+    @include('layout.alert')
     @stack('script')
-
 </body>
 
 </html>

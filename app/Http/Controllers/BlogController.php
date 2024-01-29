@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Enums\ModuleEnum;
+use App\Enums\StatusEnum;
+use App\Models\BlogComment;
+use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 
@@ -65,5 +68,23 @@ class BlogController extends Controller
             ];
         }
         return view("$this->folder.show", $data);
+    }
+
+    public function comment_store(Request $request, Blog $post)
+    {
+        try {
+            BlogComment::create([
+                "post_id" => $post->id,
+                "name" => $request->name,
+                "email" => $request->email,
+                "comment" => $request->comment,
+                "ip" => $request->ip(),
+                "status" => StatusEnum::Pending->value,
+            ]);
+            return back()->withSuccess("Yorum Başarıyla Eklendi Moderatör Onayı Sonrası Yayınlanacaktır.");
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+            return back()->withInput()->withError("Yorum Eklenirken Bir Hata Meydana Geldi");
+        }
     }
 }

@@ -28,6 +28,11 @@ class BasePolicy
         return in_array("index", $this->permissions, true);
     }
 
+    public function comments(): bool
+    {
+        return in_array("comments", $this->permissions, true);
+    }
+
     public function show(): bool
     {
         return in_array("show", $this->permissions, true);
