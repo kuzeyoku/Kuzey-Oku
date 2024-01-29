@@ -54,46 +54,50 @@
                                 </div>
                             @endif
                         </div>
+                        <div class="comment-form mb-80">
+                            <h4 class="comment-form__title">Yorumunuzu Yazın</h4>
+                            {{ Form::open(['url' => route('blog.comment_store', $post)]) }}
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ad Soyad']) }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="mb-3">
+                                        {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'E-Mail']) }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                {{ Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Yorumunuz', 'rows' => 5]) }}
+                            </div>
+                            <div class="mb-3">
+                                <button class="theme-btn btn-style-one" type="submit"
+                                    class="theme-btn btn-style-one g-recaptcha"
+                                    data-sitekey="{{ config('setting.recaptcha.site_key') }}" data-callback='comment-form'
+                                    data-action='submit'>Gönder</button>
+                            </div>
+                            {{ Form::close() }}
+                        </div>
                         <div class="comment-one">
-                            <h3 class="comment-one__title">{{ $post->comment->count() }} Comments</h3>
-                            @foreach ($post->comment as $comment)
+                            <h3 class="comment-one__title">{{ $post->comments->count() }} Comments</h3>
+                            @foreach ($comments as $comment)
                                 <div class="comment-one__single">
-                                    <div class="comment-one__image"> <img src="{{ $comment->gravatar_url }}"
-                                            alt="">
+                                    <div class="comment-one__image">
+                                        <img src="{{ $comment->gravatar_url }}" alt="">
                                     </div>
                                     <div class="comment-one__content">
-                                        <h3>{{ $comment->name }}</h3>
+                                        <div class="d-flex justify-content-between">
+                                            <h3>{{ $comment->name }}</h3>
+                                            <span>{{ $comment->created_at->diffForHumans() }}</span>
+                                        </div>
                                         <p>{{ $comment->comment }} </p>
                                     </div>
                                 </div>
                             @endforeach
-                            <div class="comment-form">
-                                <h4 class="comment-form__title">Yorumunuzu Yazın</h4>
-                                {{ Form::open(['url' => route('blog.comment_store', $post)]) }}
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <div class="mb-3">
-                                            {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => 'Ad Soyad']) }}
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <div class="mb-3">
-                                            {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'E-Mail']) }}
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="mb-3">
-                                    {{ Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => 'Yorumunuz', 'rows' => 5]) }}
-                                </div>
-                                <div class="mb-3">
-                                    <button class="theme-btn btn-style-one" type="submit"
-                                        class="theme-btn btn-style-one g-recaptcha"
-                                        data-sitekey="{{ config('setting.recaptcha.site_key') }}"
-                                        data-callback='comment-form' data-action='submit'>Gönder</button>
-                                </div>
-                                {{ Form::close() }}
-                            </div>
                         </div>
+                        {{ $comments->onEachSide(1)->links("pagination::default") }}
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5">

@@ -24,7 +24,7 @@ class Blog extends Model
 
     protected $locale;
 
-    protected $with = ["category", "translate", "user", "comment"];
+    protected $with = ["category", "translate", "user", "comments"];
 
     public function __construct()
     {
@@ -52,9 +52,9 @@ class Blog extends Model
         return $this->hasMany(BlogTranslate::class, 'post_id', 'id');
     }
 
-    public function comment()
+    public function comments()
     {
-        return $this->hasMany(BlogComment::class, "post_id", "id")->whereStatus(StatusEnum::Active->value);
+        return $this->hasMany(BlogComment::class, "post_id", "id")->orderBy("id", "DESC")->whereStatus(StatusEnum::Active->value);
     }
 
     public function category()

@@ -58,6 +58,7 @@ class BlogController extends Controller
                     "post" => $post,
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
+                    "comments" => $post->comments()->paginate(2),
                 ];
             });
         } else {
@@ -65,6 +66,7 @@ class BlogController extends Controller
                 "post" => $post,
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
+                "comments" => $post->comments()->paginate(2),
             ];
         }
         return view("$this->folder.show", $data);
@@ -91,7 +93,7 @@ class BlogController extends Controller
     {
         $data = BlogComment::whereIp($request->ip())->orderBy("created_at", "DESC")->first();
         if ($data) {
-            if ($data->created_at->diffInMinutes(\Carbon\Carbon::now()) < 15)
+            if ($data->created_at->diffInMinutes(\Carbon\Carbon::now()) < 3)
                 return back()->withError(__("front/blog.comment_ip_block"));
         }
     }

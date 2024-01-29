@@ -10591,6 +10591,12 @@ table.tbl-shopping-cart > tfoot > tr > th {
     margin-left: 30px;
 }
 
+.pagination{
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
 .pagination .page-item {
     padding: 0.600rem 1.2rem;
     background-color: var(--bg-theme-color2);
@@ -11095,11 +11101,13 @@ table.tbl-shopping-cart > tfoot > tr > th {
 .comment-one .comment-one__content {
     position: relative;
     margin-left: 45px;
+    width: 100%;
 }
 @media only screen and (max-width: 767px) {
     .comment-one .comment-one__content {
         margin-top: 20px;
         margin-left: 0;
+        width: 100%;
     }
 }
 .comment-one .comment-one__content h3 {
