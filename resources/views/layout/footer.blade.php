@@ -76,7 +76,7 @@
                                             alt=""></a>
                                 </figure>
                                 <figure class="image">
-                                    <a href="#"><img
+                                    <a href="#"><imgw
                                             src="{{ asset('assets/images/resource/project-thumb-5.jpg') }}"
                                             alt=""></a>
                                 </figure>

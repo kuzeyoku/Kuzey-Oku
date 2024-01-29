@@ -1,5 +1,5 @@
 <section class="why-choose-us">
-    <div class="bg bg-pattern-2"></div>
+    <div class="bg bg-pattern-13"></div>
     <div class="auto-container">
         <div class="row">
             <div class="content-column col-xl-6 col-lg-7 col-md-12 col-sm-12 order-2 wow fadeInRight"

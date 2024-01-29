@@ -1,5 +1,5 @@
 <section class="news-section">
-    <div class="bg bg-pattern-5"></div>
+    <div class="bg bg-pattern-19"></div>
     <div class="auto-container">
         <div class="sec-title text-center light">
             <span class="sub-title">Blog & Haberler</span>

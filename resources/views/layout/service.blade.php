@@ -1,4 +1,4 @@
-<section class="services-section pt-0">
+<section class="services-section">
     <div class="auto-container">
         <div class="sec-title text-center">
             <span class="sub-title">Neler Yapıyoruz ?</span>
@@ -20,10 +20,10 @@
             @endforeach
         </div>
         <div class="bottom-box">
-            <div class="text">Diğer Hizmetlerimizi İncelemek İstermisiniz ?
-            </div>
-            <a href="{{ route('service.index') }}" class="theme-btn btn-style-one"><span
-                    class="btn-title">Hizmetlerimiz</span></a>
+            <div class="text">Diğer Hizmetlerimizi İncelemek İstermisiniz ?</div>
+            <a href="{{ route('service.index') }}" class="theme-btn btn-style-one">
+                <span class="btn-title">Hizmetlerimiz</span>
+            </a>
         </div>
     </div>
 </section>

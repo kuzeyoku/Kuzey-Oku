@@ -1,19 +1,12 @@
-<section class="clients-section">
+<section class="clients-section style-two">
     <div class="auto-container">
-
         <div class="sponsors-outer">
-
             <ul class="clients-carousel owl-carousel owl-theme">
-                <li class="slide-item"> <a href="#"><img src="{{ asset("assets/images/resource/client.png") }}"
-                            alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="{{ asset("assets/images/resource/client.png") }}"
-                            alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="{{ asset("assets/images/resource/client.png") }}"
-                            alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="{{ asset("assets/images/resource/client.png") }}"
-                            alt=""></a> </li>
-                <li class="slide-item"> <a href="#"><img src="{{ asset("assets/images/resource/client.png") }}"
-                            alt=""></a> </li>
+                @foreach ($reference as $reference)
+                    <li class="slide-item">
+                        <a href="{{ $reference->url }}"><img src="{{ $reference->image_url }}" alt=""></a>
+                    </li>
+                @endforeach
             </ul>
         </div>
     </div>
