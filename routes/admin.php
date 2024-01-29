@@ -40,11 +40,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
                 Route::get('/footer', 'footer')->name('menu.footer');
             });
 
-        foreach (App\Enums\ModuleEnum::cases() as $module) {
-            if ($module->status())
-                Route::resource($module->route(), $module->controller())->names($module->route());
-        }
-
         if (ModuleEnum::Message->status())
             Route::controller(App\Http\Controllers\Admin\MessageController::class)->prefix("message")->group(function () {
                 Route::get("/", "index")->name(ModuleEnum::Message->route() . ".index");
@@ -73,6 +68,13 @@ Route::prefix('admin')->name('admin.')->group(function () {
         if (ModuleEnum::Blog->status())
             Route::controller(App\Http\Controllers\Admin\BlogController::class)->prefix("blog")->group(function () {
                 Route::get("/comments", "comments")->name(ModuleEnum::Blog->route() . ".comments");
+                Route::put("/comment/{comment}/approve", "comment_approve")->name(ModuleEnum::Blog->route() . ".comment_approve");
+                Route::delete("/comment/{comment}/delete", "comment_delete")->name(ModuleEnum::Blog->route() . ".comment_delete");
             });
+
+        foreach (App\Enums\ModuleEnum::cases() as $module) {
+            if ($module->status())
+                Route::resource($module->route(), $module->controller())->names($module->route());
+        }
     });
 });

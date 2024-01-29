@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Blog;
+use App\Enums\StatusEnum;
 use App\Models\BlogComment;
 use App\Services\Admin\BlogService;
 use App\Http\Requests\Blog\StoreBlogRequest;
@@ -89,7 +90,32 @@ class BlogController extends Controller
 
     public function comments()
     {
-        $items = BlogComment::all();
+        $items = BlogComment::orderBy("id", "DESC")->paginate(10);
         return view("admin/{$this->service->folder()}.comment", compact("items"));
+    }
+
+    public function comment_approve(BlogComment $comment)
+    {
+        try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.comment_approve_log"));
+            $comment->status = StatusEnum::Active->value;
+            $comment->save();
+            return back()->withSuccess(__("admin/{$this->service->folder()}.comment_approve_success"));
+        } catch (\Exception $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()->withError(__("admin/{$this->service->folder()}.comment_approve_error"));
+        }
+    }
+
+    public function comment_delete(BlogComment $comment)
+    {
+        try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.comment_delete_log"));
+            $comment->delete();
+            return back()->withSuccess(__("admin/{$this->service->folder()}.comment_delete_success"));
+        } catch (\Exception $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()->withError(__("admin/{$this->service->folder()}.comment_delete_error"));
+        }
     }
 }

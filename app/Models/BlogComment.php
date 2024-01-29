@@ -19,6 +19,16 @@ class BlogComment extends Model
         "status"
     ];
 
+    public function post()
+    {
+        return $this->belongsTo(Blog::class, 'post_id');
+    }
+
+    public function scopePending($query)
+    {
+        return $query->whereStatus(StatusEnum::Pending->value);
+    }
+
     public function getGravatarUrlAttribute()
     {
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email)));

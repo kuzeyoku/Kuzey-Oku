@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Message;
+use App\Models\BlogComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
@@ -29,7 +30,8 @@ class HomeController extends Controller
             $infoLogs = [];
         }
         $messages = Message::unread()->count();
-        return view('admin.index', compact('messages', 'errorLogs', 'infoLogs'));
+        $comments = BlogComment::pending()->count();
+        return view('admin.index', compact('messages', "comments", 'errorLogs', 'infoLogs'));
     }
 
     public function cacheClear()

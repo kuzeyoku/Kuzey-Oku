@@ -73,6 +73,7 @@ class BlogController extends Controller
     public function comment_store(Request $request, Blog $post)
     {
         try {
+            $this->ipControl($request);
             BlogComment::create([
                 "post_id" => $post->id,
                 "name" => $request->name,
@@ -81,10 +82,17 @@ class BlogController extends Controller
                 "ip" => $request->ip(),
                 "status" => StatusEnum::Pending->value,
             ]);
-            return back()->withSuccess("Yorum Başarıyla Eklendi Moderatör Onayı Sonrası Yayınlanacaktır.");
+            return back()->withSuccess(__("front/blog.comment_success"));
         } catch (\Exception $e) {
-            dd($e->getMessage());
-            return back()->withInput()->withError("Yorum Eklenirken Bir Hata Meydana Geldi");
+            return back()->withInput()->withError(__("front/blog.comment_error"));
+        }
+    }
+    protected function ipControl(Request $request)
+    {
+        $data = BlogComment::whereIp($request->ip())->orderBy("created_at", "DESC")->first();
+        if ($data) {
+            if ($data->created_at->diffInMinutes(\Carbon\Carbon::now()) < 15)
+                return back()->withError(__("front/blog.comment_ip_block"));
         }
     }
 }

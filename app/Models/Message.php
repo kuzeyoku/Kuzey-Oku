@@ -24,6 +24,6 @@ class Message extends Model
 
     public function scopeUnread($query)
     {
-        return $query->where('status', StatusEnum::Unread);
+        return $query->whereStatus(StatusEnum::Unread);
     }
 }

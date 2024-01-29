@@ -9036,21 +9036,12 @@ td label {
     color: #fff;
 }
 
-.btn-edit svg {
-    width: 20px;
-    color: #fff;
-}
-
 .btn-delete {
     padding: 5px;
     background-color: #ea5455;
     color: #fff;
 }
 
-.btn-delete svg {
-    width: 20px;
-    color: #fff;
-}
 
 .btn-image {
     padding: 5px;
@@ -9058,10 +9049,6 @@ td label {
     color: #fff;
 }
 
-.btn-image svg {
-    width: 20px;
-    color: #fff;
-}
 
 .btn-show {
     padding: 5px;
@@ -9069,10 +9056,6 @@ td label {
     color: #fff;
 }
 
-.btn-show svg {
-    width: 20px;
-    color: #fff;
-}
 
 .table td .table_image {
     max-width: 60px;
@@ -9085,7 +9068,7 @@ td label {
 }
 
 .btn svg {
-    width: 20px;
+    width: 12px;
     color: #fff;
 }
 
@@ -9143,14 +9126,12 @@ td label {
 }
 
 .btn-edit svg {
-    width: 14px;
     margin-right: 5px;
     margin-left: 5px;
     color: #fff;
 }
 
 .btn-delete svg {
-    width: 10px;
     margin-right: 6px;
     margin-left: 6px;
     color: #fff;
