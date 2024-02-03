@@ -18,10 +18,10 @@ class ContactController extends Controller
 
     public function send(ContactRequest $request)
     {
-        if (!$this->recaptcha($request)) {
+        if (!recaptcha($request)) {
             return back()
                 ->withInput()
-                ->withError(__("front/contact.recaptcha_error"));
+                ->withError(__("front/general.recaptcha_error"));
         }
 
         try {
@@ -45,20 +45,5 @@ class ContactController extends Controller
                 ->withInput()
                 ->withError(__("front/contact.send_error"));
         }
-    }
-
-    private function recaptcha($request)
-    {
-        if (config("setting.recaptcha.status") === StatusEnum::Active->value) {
-            $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . config("setting.recaptcha.secret_key") . '&response=' . $request->{"g-recaptcha-response"});
-
-            if (($recaptcha = json_decode($response)) && $recaptcha->success && $recaptcha->score >= 0.5) {
-                return true;
-            }
-
-            return false;
-        }
-
-        return true;
     }
 }

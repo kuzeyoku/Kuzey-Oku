@@ -21,7 +21,4 @@ return [
     "txt19" => "Gönder",
     "send_success" => "Mesajınız Başarıyla Gönderildi",
     "send_error" => "Mesajınız gönderilirken bir hata oluştu",
-    "recaptcha_error" => "Robot Doğrulaması Başarısız",
-    "newsletter_success" => "Bülten Aboneliği Kaydınız Alındı",
-    "newsletter_error" => "İşlem sırasında bir hata oluştu",
 ];

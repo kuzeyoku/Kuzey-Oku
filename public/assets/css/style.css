@@ -10591,18 +10591,32 @@ table.tbl-shopping-cart > tfoot > tr > th {
     margin-left: 30px;
 }
 
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
 .pagination .page-item {
-    padding: 0.600rem 1.2rem;
+    padding: 0.6rem 1.2rem;
     background-color: var(--bg-theme-color2);
     margin-right: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
+}
+
+@media only screen and (max-width: 767px) {
+    .pagination .page-item {
+        padding: 0.3rem 0.8rem;
+    }
 }
 
 .pagination .page-item:hover {
     background-color: var(--bg-theme-color4);
 }
 
-.pagination .page-item a, .pagination .page-item span {
+.pagination .page-item a,
+.pagination .page-item span {
     color: var(--bg-theme-color3);
 }
 

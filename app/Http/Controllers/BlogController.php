@@ -25,7 +25,7 @@ class BlogController extends Controller
     {
 
         $currentpage = Paginator::resolveCurrentPage() ?: 1;
-        $pagination = config("setting.pagination.front", 10);
+        $pagination = config("setting.pagination.front", 9);
 
         $cacheKey = ModuleEnum::Blog->value . "_" . $currentpage . "_" . app()->getLocale();
 
@@ -39,7 +39,7 @@ class BlogController extends Controller
             });
         } else {
             $data = [
-                "posts" => Blog::active()->order()->paginate($pagination),
+                "posts" => Blog::active()->order()->paginate($pagination)->onEachSide(1),
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
             ];
@@ -58,7 +58,7 @@ class BlogController extends Controller
                     "post" => $post,
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
-                    "comments" => $post->comments()->paginate(2),
+                    "comments" => $post->comments()->paginate(5),
                 ];
             });
         } else {
@@ -66,7 +66,7 @@ class BlogController extends Controller
                 "post" => $post,
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
-                "comments" => $post->comments()->paginate(2),
+                "comments" => $post->comments()->paginate(5),
             ];
         }
         return view("$this->folder.show", $data);
@@ -74,6 +74,8 @@ class BlogController extends Controller
 
     public function comment_store(Request $request, Blog $post)
     {
+        if (!recaptcha($request))
+            return back()->withError(__("front/general.recaptcha_error"));
         try {
             $this->ipControl($request);
             BlogComment::create([
@@ -89,11 +91,12 @@ class BlogController extends Controller
             return back()->withInput()->withError(__("front/blog.comment_error"));
         }
     }
-    protected function ipControl(Request $request)
+
+    private function ipControl(Request $request)
     {
         $data = BlogComment::whereIp($request->ip())->orderBy("created_at", "DESC")->first();
         if ($data) {
-            if ($data->created_at->diffInMinutes(\Carbon\Carbon::now()) < 3)
+            if ($data->created_at->diffInMinutes(\Carbon\Carbon::now()) < 15)
                 return back()->withError(__("front/blog.comment_ip_block"));
         }
     }

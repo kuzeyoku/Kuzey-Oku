@@ -25,7 +25,7 @@
                     </div>
                 @endforeach
             </div>
-            {{ $posts->eachOnSide(1)->links('pagination::default') }}
+            {!! $posts->onEachSide(1)->links('blog.pagination') !!}
         </div>
     </section>
 @endsection

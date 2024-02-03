@@ -1,10 +1,11 @@
 <?php
 
+use App\Enums\StatusEnum;
 use Illuminate\Support\Facades\Cache;
 
 function statusView(string $status)
 {
-    $statusEnum = \App\Enums\StatusEnum::getStatus($status);
+    $statusEnum = StatusEnum::getStatus($status);
     echo $statusEnum->badge();
 }
 
@@ -18,7 +19,7 @@ function languageList()
 function statusList()
 {
     return Cache::remember('statusList', 3600, function () {
-        return \App\Enums\StatusEnum::toSelectArray();
+        return StatusEnum::toSelectArray();
     });
 }
 
@@ -34,7 +35,17 @@ function formInfo($text)
     </span>';
 }
 
-function uploadFolder($folder, $file)
+function recaptcha($request)
 {
-    return asset("storage/" . config("setting.image.upload_folder", "image") . "/" . $folder . "/" . $file);
+    if (config("setting.recaptcha.status") === StatusEnum::Active->value) {
+        $response = file_get_contents('https://www.google.com/recaptcha/api/siteverify?secret=' . config("setting.recaptcha.secret_key") . '&response=' . $request->{"g-recaptcha-response"});
+
+        if (($recaptcha = json_decode($response)) && $recaptcha->success && $recaptcha->score >= 0.5) {
+            return true;
+        }
+
+        return false;
+    }
+
+    return true;
 }

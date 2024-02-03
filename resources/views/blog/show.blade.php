@@ -97,7 +97,7 @@
                                 </div>
                             @endforeach
                         </div>
-                        {{ $comments->onEachSide(1)->links("pagination::simple-bootstrap-5") }}
+                        {{ $comments->onEachSide(1)->links("blog.pagination") }}
                     </div>
                 </div>
                 <div class="col-xl-4 col-lg-5">

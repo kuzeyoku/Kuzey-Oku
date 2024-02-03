@@ -10,4 +10,5 @@ return [
     "comment_success" => "Yorum Başarıyla Eklendi Moderatör Onayı Sonrası Yayınlanacaktır.",
     "comment_error" => "Yorum Eklenirken Bir Hata Meydana Geldi. Lütfen Daha Sonra Tekrar Deneyiniz.",
     "comment_ip_block" => "Yeni Bir Yorum Göndermeden Önce 15 Dakika Beklemelisiniz.",
+    "recaptcha_error" => "Robot Doğrulaması Başarısız",
 ];
