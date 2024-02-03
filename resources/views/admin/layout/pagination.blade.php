@@ -32,7 +32,7 @@
                 <p class="small text-muted">
                     {!! __('Toplam') !!}
                     <span class="fw-semibold">{{ $paginator->total() }}</span>
-                    {!! __('Kayıyttan') !!}
+                    {!! __('Kayıttan') !!}
                     <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
                     {!! __('İle') !!}
                     <span class="fw-semibold">{{ $paginator->lastItem() }}</span>

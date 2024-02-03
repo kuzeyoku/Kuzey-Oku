@@ -15,17 +15,16 @@
                                             src="{{ $project->image_url }}" alt=""></a>
                                 </figure>
                                 <div class="info-box">
-                                    <a href="page-project-details.htmlpage-project-details.html" class="read-more"><i
+                                    <a href="{{ $project->url }}" class="read-more"><i
                                             class="fa fa-long-arrow-alt-right"></i></a>
-                                    <span class="cat">Graphics</span>
-                                    <h6 class="title"><a href="page-project-details.html.htm">Digital marketing
-                                            web</a></h6>
+                                    {{-- <span class="cat">Graphics</span> --}}
+                                    <h6 class="title"><a href="{{ $project->url }}">{{ $project->title }}</a>
+                                    </h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 @endforeach
-
             </div>
         </div>
     </div>
