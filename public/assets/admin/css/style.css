@@ -3264,27 +3264,6 @@ table.dataTable > thead .sorting_desc_disabled:before {
     background: url(../img/icons/dropdown.svg) no-repeat 95% 50%;
 }
 
-.pagination li {
-    margin: 0 5px;
-}
-
-.pagination li a {
-    border-radius: 5px;
-    background: #637381;
-    color: #fff;
-}
-
-.pagination li a:hover {
-    background: #ff9f43;
-    color: #fff;
-}
-
-.pagination li.active a.page-link {
-    background: #ff9f43;
-    border-color: #ff9f43;
-    border-radius: 5px;
-}
-
 .dataTables_length,
 .dataTables_paginate {
     margin-top: 15px !important;
@@ -5001,7 +4980,7 @@ span.select2-container.select2-container--default.select2-container--open {
     transition: all 0.2s ease;
 }
 
-.sidebar .sidebar-menu > ul > li > a .menu-arrow svg{
+.sidebar .sidebar-menu > ul > li > a .menu-arrow svg {
     width: 10px;
     color: #637381;
 }
@@ -9042,13 +9021,11 @@ td label {
     color: #fff;
 }
 
-
 .btn-image {
     padding: 5px;
     background-color: #0dcaf0;
     color: #fff;
 }
-
 
 .btn-show {
     padding: 5px;
@@ -9056,15 +9033,22 @@ td label {
     color: #fff;
 }
 
-
 .table td .table_image {
     max-width: 60px;
 }
 
+.page-link {
+    color: #212b36;
+}
+
+.page-link:hover {
+    color: #000;
+}
+
 .page-item.active .page-link {
-    background-color: #ff9f43;
-    border-color: #ff9f43;
-    border-radius: 5px;
+    background-color: var(--bs-light);
+    border-color: #e9ecef;
+    color: #495057;
 }
 
 .btn svg {

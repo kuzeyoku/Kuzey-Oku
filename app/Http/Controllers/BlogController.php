@@ -76,8 +76,9 @@ class BlogController extends Controller
     {
         if (!recaptcha($request))
             return back()->withError(__("front/general.recaptcha_error"));
+        if (!$this->ipControl($request))
+            return back()->withError(__("front/blog.comment_ip_block"));
         try {
-            $this->ipControl($request);
             BlogComment::create([
                 "post_id" => $post->id,
                 "name" => $request->name,
@@ -97,7 +98,8 @@ class BlogController extends Controller
         $data = BlogComment::whereIp($request->ip())->orderBy("created_at", "DESC")->first();
         if ($data) {
             if ($data->created_at->diffInMinutes(\Carbon\Carbon::now()) < 15)
-                return back()->withError(__("front/blog.comment_ip_block"));
+                return false;
         }
+        return true;
     }
 }

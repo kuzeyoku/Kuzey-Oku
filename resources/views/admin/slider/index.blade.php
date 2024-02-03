@@ -33,5 +33,5 @@
             </tbody>
         </table>
     </div>
-    {{ $items->render('pagination::bootstrap-5') }}
+    {{ $items->render('admin.layout.pagination') }}
 @endsection

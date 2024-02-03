@@ -2,8 +2,8 @@
     <div class="bg bg-pattern-19"></div>
     <div class="auto-container">
         <div class="sec-title text-center light">
-            <span class="sub-title">Blog & Haberler</span>
-            <h2>Blog Yazılarımız</h2>
+            <span class="sub-title">@lang('front/blog.txt1')</span>
+            <h2>@lang('front/blog.txt2')</h2>
         </div>
         <div class="row">
             @foreach ($blog as $post)
@@ -22,7 +22,7 @@
                             <h5 class="title"><a href="{{ $post->url }}">{{ $post->title }}</a></h5>
                             <div class="text">{{ $post->short_description }}</div>
                             <a href="{{ $post->url }}" class="read-more"><i class="fa fa-long-arrow-alt-right"></i>
-                                Devamı</a>
+                                @lang('front/blog.txt3')</a>
                         </div>
                     </div>
                 </div>
