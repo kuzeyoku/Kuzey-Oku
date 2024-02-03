@@ -50,5 +50,5 @@
             </tbody>
         </table>
     </div>
-    {{ $items->render('pagination::tailwind') }}
+    {{ $items->render('pagination::bootstrap-5') }}
 @endsection
