@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('title', $project->title)
 @section('parent_url', route('project.index'))
-@section('parent_title', 'Projelerimiz')
+@section('parent_title', __('front/project.txt1'))
 @section('content')
     @include('layout.breadcrumb')
     <section class="project-details">
@@ -87,8 +87,8 @@
     <section class="projects-section-two pt-0">
         <div class="auto-container">
             <div class="sec-title text-center">
-                <span class="sub-title">Projelerimiz</span>
-                <h2>Diğer Projelerimizi İncelediniz mi ?</h2>
+                <span class="sub-title">@lang('front/project.txt1')</span>
+                <h2>@lang('front/project.txt3')</h2>
             </div>
             <div class="carousel-outer">
                 <div class="projects-carousel owl-carousel owl-theme">

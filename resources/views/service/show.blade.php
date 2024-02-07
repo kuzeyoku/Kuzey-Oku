@@ -1,7 +1,7 @@
 @extends('layout.main')
 @section('title', $service->title)
 @section('parent_url', route('service.index'))
-@section('parent_title', 'Hizmetlerimiz')
+@section('parent_title', __('front/service.txt2'))
 @section('content')
     @include('layout.breadcrumb')
     <section class="services-details">
@@ -25,12 +25,12 @@
                             <div class="service-details-help">
                                 <div class="help-shape-1"></div>
                                 <div class="help-shape-2"></div>
-                                <h2 class="help-title">Daha fazla detay için iletişime geçin</h2>
+                                <h2 class="help-title">@lang('front/service.txt6')</h2>
                                 <div class="help-icon">
                                     <span class=" lnr-icon-phone-handset"></span>
                                 </div>
                                 <div class="help-contact">
-                                    <p>Hızlı İletişim</p>
+                                    <p>@lang('front/service.txt7')</p>
                                     <a
                                         href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
                                 </div>

@@ -6,19 +6,16 @@
                 data-wow-delay="600ms">
                 <div class="inner-column">
                     <div class="sec-title">
-                        <span class="sub-title">Biz Kimiz ?</span>
-                        <h2>Kuzey Oku | Harita ve Madencilik</h2>
-                        <div class="text">There are many variations of passages of available but the majority
-                            have suffered. Alteration in some form, lipsum is simply free text by injected humou
-                            or randomised words even believable.</div>
+                        <span class="sub-title">@lang('front/about.txt1')</span>
+                        <h2>@lang('front/about.txt2')</h2>
+                        <div class="text">@lang('front/about.txt3')</div>
                     </div>
-                    <blockquote class="blockquote-one">Lorem ipsum dolor sit amet, consectetur notted
-                        adipisicing elit sed do eiusmod</blockquote>
+                    <blockquote class="blockquote-one">@lang('front/about.txt4')</blockquote>
                     <div class="btn-box">
                         <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now-two lightbox-image"><i
-                                class="icon fa fa-play"></i> Tanıtım Videomuzu <br> İzlediniz mi ?</a>
+                                class="icon fa fa-play"></i>@lang('front/about.txt5')</a>
                         <a href="page-service-details.html.htm" class="theme-btn btn-style-one"><span
-                                class="btn-title">Hakkımızda</span></a>
+                                class="btn-title">@lang('front/about.txt6')</span></a>
                     </div>
                 </div>
             </div>

@@ -2,8 +2,8 @@
     <div class="bg bg-pattern-10 lign"></div>
     <div class="auto-container">
         <div class="sec-title light">
-            <span class="sub-title">Projelerimiz</span>
-            <h2>Tamamlanan Projelerimiz</h2>
+            <span class="sub-title">@lang('front/project.txt1')</span>
+            <h2>@lang('front/project.txt2')</h2>
         </div>
         <div class="carousel-outer">
             <div class="projects-carousel-two owl-carousel owl-theme">
