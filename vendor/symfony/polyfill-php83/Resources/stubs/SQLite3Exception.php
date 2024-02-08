@@ -9,14 +9,8 @@
  * file that was distributed with this source code.
  */
 
-namespace Symfony\Component\Uid\Factory;
-
-use Symfony\Component\Uid\Ulid;
-
-class UlidFactory
-{
-    public function create(?\DateTimeInterface $time = null): Ulid
+if (\PHP_VERSION_ID < 80300) {
+    class SQLite3Exception extends Exception
     {
-        return new Ulid(null === $time ? null : Ulid::generate($time));
     }
 }

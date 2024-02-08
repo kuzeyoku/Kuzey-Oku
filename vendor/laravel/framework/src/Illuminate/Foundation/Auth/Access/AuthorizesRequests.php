@@ -49,7 +49,7 @@ trait AuthorizesRequests
      */
     protected function parseAbilityAndArguments($ability, $arguments)
     {
-        if (is_string($ability) && ! str_contains($ability, '\\')) {
+        if (is_string($ability) && !str_contains($ability, '\\')) {
             return [$ability, $arguments];
         }
 
@@ -110,7 +110,6 @@ trait AuthorizesRequests
     {
         return [
             'index' => 'index',
-            "index" => "comments",
             'show' => 'show',
             'create' => 'create',
             'store' => 'store',
