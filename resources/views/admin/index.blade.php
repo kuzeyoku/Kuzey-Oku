@@ -50,8 +50,53 @@
         <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das3">
                 <div class="dash-counts">
-                    <h4>105</h4>
-                    <h5>Toplam Ziyaretçi</h5>
+                    <h4>{{ \App\Models\Visitor::getOnlineUsers() }}</h4>
+                    <h5>Son 15 Dakikada Aktif Olan Ziyaretçi</h5>
+                </div>
+                <div class="dash-imgs">
+                    @svg('fas-users')
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count bg-secondary">
+                <div class="dash-counts">
+                    <h4>{{ \App\Models\Visitor::getOnlineUsers() }}</h4>
+                    <h5>Bugün Toplam Ziyaretçi</h5>
+                </div>
+                <div class="dash-imgs">
+                    @svg('fas-users')
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count bg-secondary">
+                <div class="dash-counts">
+                    <h4>Tekil : {{ \App\Models\Visitor::getOnlineUsers() }} |
+                        Çoğul : 15</h4>
+                    <h5>Bu Hafta Toplam Ziyaretçi</h5>
+                </div>
+                <div class="dash-imgs">
+                    @svg('fas-users')
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count bg-secondary">
+                <div class="dash-counts">
+                    <h4>{{ \App\Models\Visitor::getOnlineUsers() }}</h4>
+                    <h5>Bu Ay Toplam Ziyaretçi</h5>
+                </div>
+                <div class="dash-imgs">
+                    @svg('fas-users')
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+            <div class="dash-count bg-secondary">
+                <div class="dash-counts">
+                    <h4>{{ \App\Models\Visitor::getOnlineUsers() }}</h4>
+                    <h5>Tüm Zamanlar Toplam Ziyaretçi</h5>
                 </div>
                 <div class="dash-imgs">
                     @svg('fas-users')
@@ -59,7 +104,6 @@
             </div>
         </div>
     </div>
-
 @endsection
 @section('card')
     <div class="row">
