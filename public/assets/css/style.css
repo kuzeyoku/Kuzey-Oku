@@ -2735,6 +2735,14 @@ li {
     white-space: nowrap;
     min-width: 200px !important;
 }
+
+.main-slider ul li p{
+    color: var(--bg-theme-color3);
+    font-weight: 400px;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
 .tp-dottedoverlay {
     background-image: url(../images/main-slider/bg-pattern.jpg);
     background-repeat: no-repeat;
