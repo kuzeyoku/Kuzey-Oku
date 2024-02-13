@@ -2718,13 +2718,13 @@ li {
     position: relative;
     display: block;
     font-size: 90px;
-    line-height: 1em;
+    line-height: 2em;
     color: #fff;
-    font-weight: 700;
+    font-weight: 600;
 }
 .main-slider .text {
-    font-size: 18px;
-    line-height: 36px;
+    font-size: 16px;
+    line-height: 40px;
     color: rgba(255, 255, 255, 0.5);
 }
 .main-slider .btn-box {
