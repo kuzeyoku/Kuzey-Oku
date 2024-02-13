@@ -26,7 +26,7 @@
                         <img src="{{ $slider->image_url }}" alt="" class="rev-slidebg">
                         <div class="tp-caption" data-paddingbottom="[15,15,15,15]" data-paddingleft="[15,15,15,15]"
                             data-paddingright="[15,15,15,15]" data-paddingtop="[0,0,0,0]" data-responsive_offset="on"
-                            data-type="text" data-height="none" data-width="['750','750','750','650']"
+                            data-type="text" data-height="none" data-width="['1000','1000','1000','650']"
                             data-whitespace="normal" data-hoffset="['0','0','0','0']" data-voffset="['20','20','0','0']"
                             data-x="['left','left','left','left']" data-y="['middle','middle','middle','middle']"
                             data-textalign="['top','top','top','top']"
