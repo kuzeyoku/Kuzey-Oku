@@ -33,9 +33,7 @@ class ImageService
             ->fitToWidth($width)
             ->crop(0, 0, $width, $height)
             ->toFile($file->getPathname());
-        if (Storage::putFileAs($path, $file, $fileName)) {
-
-            chmod("storage/app/" . $path, 0755);
+        if (Storage::putFileAs($path, $file, $fileName, 0755)) {
             return $fileName;
         }
         return null;
