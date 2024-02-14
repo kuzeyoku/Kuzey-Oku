@@ -50,18 +50,19 @@
         <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count das3">
                 <div class="dash-counts">
-                    <h4>{{ \App\Models\Visitor::getOnlineUsers() }}</h4>
-                    <h5>Son 15 Dakikada Aktif Olan Ziyaretçi</h5>
+                    <h4>{{ $visits->where('updated_at', '>=', now()->subMinutes(5))->count('ip_address') }}</h4>
+                    <h5>Son 5 Dakikada Aktif Olan Ziyaretçi</h5>
                 </div>
                 <div class="dash-imgs">
                     @svg('fas-users')
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-sm-6 col-12 d-flex">
+        {{-- <div class="col-lg-3 col-sm-6 col-12 d-flex">
             <div class="dash-count bg-secondary">
                 <div class="dash-counts">
-                    <h4>{{ \App\Models\Visitor::getOnlineUsers() }}</h4>
+                    <h4>Tekil : {{ $visits->where('updated_at', '>=', now()->startOfDay())->count('ip_address') }} |
+                        Çoğul : {{ $visits->where('updated_at', '>=', now()->startOfDay())->sum('visit_count') }}</h4>
                     <h5>Bugün Toplam Ziyaretçi</h5>
                 </div>
                 <div class="dash-imgs">
@@ -102,12 +103,65 @@
                     @svg('fas-users')
                 </div>
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection
 @section('card')
     <div class="row">
-        <div class="col-lg-6">
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header d-flex flex-row justify-content-between">
+                    <h3 class="card-title">{{ __('admin/home.visitor_records') }}</h3>
+                    <div class="btn-group" role="group">
+                        <a href="{{ route('admin.updatevisitorcounter') }}"
+                            class="btn btn-success btn-sm">{{ __('admin/home.update') }}</a>
+                        {!! Form::open(['url' => route('admin.clearvisitorcounter')], ['method' => 'post']) !!}
+                        <button type="button" class="btn btn-danger btn-sm logclean">{{ __('admin/home.clear') }}</button>
+                        {!! Form::close() !!}
+                    </div>
+                </div>
+
+
+                <div class="card-body">
+                    <ul class="overflow-auto visit-log-list">
+                        <li>
+                            Bugün toplam <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfDay())->count('ip_address') }}</strong>
+                            tekil, <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfDay())->sum('visit_count') }}</strong>
+                            çoğul ziyaret gerçekleşti.
+                        </li>
+                        <li>
+                            Bu hafta toplam <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfWeek())->count() }}</strong>
+                            tekil, <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfWeek())->sum('visit_count') }}</strong>
+                            çoğul ziyaret gerçekleşti.
+                        </li>
+                        <li>
+                            Bu ay toplam <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfMonth())->count() }}</strong>
+                            tekil, <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfMonth())->sum('visit_count') }}</strong>
+                            çoğul ziyaret gerçekleşti.
+                        </li>
+                        <li>
+                            Bu yıl toplam <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfYear())->count() }}</strong>
+                            tekil, <strong
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfYear())->sum('visit_count') }}</strong>
+                            çoğul ziyaret gerçekleşti.
+                        </li>
+                        <li>
+                            Tüm zamanlar toplam <strong class="text-black">{{ $visits->count() }}</strong>
+                            tekil, <strong class="text-black">{{ $visits->sum('visit_count') }}</strong>
+                            çoğul ziyaret gerçekleşti.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between">
                     <h3 class="card-title">{{ __('admin/home.transaction_records') }}</h3>
@@ -127,7 +181,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-lg-6">
+        <div class="col-lg-4">
             <div class="card">
                 <div class="card-header d-flex flex-row justify-content-between">
                     <h3 class="card-title">{{ __('admin/home.error_logs') }}</h3>
