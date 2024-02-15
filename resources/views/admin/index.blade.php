@@ -126,30 +126,30 @@
                     <ul class="overflow-auto visit-log-list">
                         <li>
                             Bugün toplam <strong
-                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfDay())->count('ip_address') }}</strong>
+                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfDay())->count() }}</strong>
                             tekil, <strong
-                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfDay())->sum('visit_count') }}</strong>
+                                class="text-black">{{ $visits->where('updated', '>=', now()->startOfDay())->sum('visit_count') }}</strong>
                             çoğul ziyaret gerçekleşti.
                         </li>
                         <li>
                             Bu hafta toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfWeek())->count() }}</strong>
                             tekil, <strong
-                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfWeek())->sum('visit_count') }}</strong>
+                                class="text-black">{{ $visits->where('created_at', '>=', now()->startOfWeek())->sum('visit_count') }}</strong>
                             çoğul ziyaret gerçekleşti.
                         </li>
                         <li>
                             Bu ay toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfMonth())->count() }}</strong>
                             tekil, <strong
-                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfMonth())->sum('visit_count') }}</strong>
+                                class="text-black">{{ $visits->where('created_at', '>=', now()->startOfMonth())->sum('visit_count') }}</strong>
                             çoğul ziyaret gerçekleşti.
                         </li>
                         <li>
                             Bu yıl toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfYear())->count() }}</strong>
                             tekil, <strong
-                                class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfYear())->sum('visit_count') }}</strong>
+                                class="text-black">{{ $visits->where('created_at', '>=', now()->startOfYear())->sum('visit_count') }}</strong>
                             çoğul ziyaret gerçekleşti.
                         </li>
                         <li>
