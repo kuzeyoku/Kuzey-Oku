@@ -6,7 +6,8 @@
             <div class="dash-count">
                 <div class="dash-counts">
                     <h4>{{ Auth::user()->name }}</h4>
-                    <h5>{{ __('admin/home.welcome', ['ip' => request()->ip()]) }}</h5>
+                    <h5>{{ __('admin/home.welcome', ['ip' => $userData->ip ?? null, 'location' => $userData->city ?? null, 'country' => $userData->country ?? null]) }}
+                    </h5>
                 </div>
                 <div class="dash-imgs">
                     @svg('fas-user')
@@ -127,35 +128,26 @@
                         <li>
                             Bugün toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfDay())->count() }}</strong>
-                            tekil, <strong
-                                class="text-black">{{ $visits->where('updated', '>=', now()->startOfDay())->sum('visit_count') }}</strong>
-                            çoğul ziyaret gerçekleşti.
+                            ziyaretçi sitenizi ziyaret etti.
                         </li>
                         <li>
                             Bu hafta toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfWeek())->count() }}</strong>
-                            tekil, <strong
-                                class="text-black">{{ $visits->where('created_at', '>=', now()->startOfWeek())->sum('visit_count') }}</strong>
-                            çoğul ziyaret gerçekleşti.
+                            ziyaretçi sitenizi ziyaret etti.
                         </li>
                         <li>
                             Bu ay toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfMonth())->count() }}</strong>
-                            tekil, <strong
-                                class="text-black">{{ $visits->where('created_at', '>=', now()->startOfMonth())->sum('visit_count') }}</strong>
-                            çoğul ziyaret gerçekleşti.
+                            ziyaretçi sitenizi ziyaret etti.
                         </li>
                         <li>
                             Bu yıl toplam <strong
                                 class="text-black">{{ $visits->where('updated_at', '>=', now()->startOfYear())->count() }}</strong>
-                            tekil, <strong
-                                class="text-black">{{ $visits->where('created_at', '>=', now()->startOfYear())->sum('visit_count') }}</strong>
-                            çoğul ziyaret gerçekleşti.
+                            ziyaretçi sitenizi ziyaret etti.
                         </li>
                         <li>
                             Tüm zamanlar toplam <strong class="text-black">{{ $visits->count() }}</strong>
-                            tekil, <strong class="text-black">{{ $visits->sum('visit_count') }}</strong>
-                            çoğul ziyaret gerçekleşti.
+                            ziyaretçi sitenizi ziyaret etti.
                         </li>
                     </ul>
                 </div>

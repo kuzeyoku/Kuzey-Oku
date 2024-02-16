@@ -1,7 +1,7 @@
 <?php
 return [
     "title" => "Yönetim Paneli",
-    "welcome" => "Hoşgeldiniz - IP : :ip",
+    "welcome" => "Hoşgeldiniz - IP : :ip (:location - :country)",
     "unread_messages" => "Okunmamış Mesajlarınız Var",
     "no_unread_messages" => "Okunmamış Mesajınız Yok",
     "go_messages" => "Mesajlara Git",
