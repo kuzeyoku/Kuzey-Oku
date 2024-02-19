@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use Exception;
+use GuzzleHttp\Client;
 use App\Models\Message;
+use App\Models\Visitor;
 use App\Models\BlogComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -13,6 +16,9 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $client = new Client();
+        $response = $client->get("ipinfo.io/193.243.196.2?token=1a17407b2ccf6f");
+        $userData = json_decode($response->getBody());
         $errorLogsFile = storage_path('logs/custom_errors.log');
         $infoLogsFile = storage_path('logs/custom_info.log');
         if (File::exists($errorLogsFile)) {
@@ -31,7 +37,10 @@ class HomeController extends Controller
         }
         $messages = Message::unread()->count();
         $comments = BlogComment::pending()->count();
-        return view('admin.index', compact('messages', "comments", 'errorLogs', 'infoLogs'));
+        $visits = Cache::remember("visits", 300, function () {
+            return Visitor::all();
+        });
+        return view('admin.index', compact('messages', "comments", 'errorLogs', 'infoLogs', "visits", "userData"));
     }
 
     public function cacheClear()
@@ -49,6 +58,17 @@ class HomeController extends Controller
             return redirect()->back()->with('success', __('admin/general.log_clean_success', ['file' => $request->file]));
         } else {
             return redirect()->back()->with('error', __('admin/general.log_clean_error', ['file' => $request->file]));
+        }
+    }
+
+    public function clearVisitorCounter()
+    {
+        try {
+            Cache::forget("visits");
+            Visitor::truncate();
+            return back()->withSuccess("Tüm Ziyaretçi Kayıtları Başarıyla Temizlendi");
+        } catch (Exception $e) {
+            return back()->withError("Bir Hata Oluştu");
         }
     }
 }

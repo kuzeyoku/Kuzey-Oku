@@ -34,6 +34,7 @@ class ImageService
             ->crop(0, 0, $width, $height)
             ->toFile($file->getPathname());
         if (Storage::putFileAs($path, $file, $fileName)) {
+            Storage::setVisibility($path, 'public');
             return $fileName;
         }
         return null;

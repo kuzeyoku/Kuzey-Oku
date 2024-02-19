@@ -2718,13 +2718,13 @@ li {
     position: relative;
     display: block;
     font-size: 90px;
-    line-height: 1em;
+    line-height: 1.2em;
     color: #fff;
     font-weight: 700;
 }
 .main-slider .text {
-    font-size: 18px;
-    line-height: 36px;
+    font-size: 16px;
+    line-height: 40px;
     color: rgba(255, 255, 255, 0.5);
 }
 .main-slider .btn-box {
@@ -2735,6 +2735,14 @@ li {
     white-space: nowrap;
     min-width: 200px !important;
 }
+
+.main-slider ul li p{
+    color: var(--bg-theme-color3);
+    font-weight: 400px;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
 .tp-dottedoverlay {
     background-image: url(../images/main-slider/bg-pattern.jpg);
     background-repeat: no-repeat;

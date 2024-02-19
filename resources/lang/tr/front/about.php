@@ -1,13 +1,9 @@
 <?php
 return [
-'txt1' => '30',
-'txt2' => 'Yıllık Sektör Tecrübesi',
-'txt3' => 'Hakkımızda',
-'txt4' => 'Albayrak Harita Mühendislik, 1987\'den günümüze en güncel teknoloji ve yöntemleri kullanarak müşterilerine en doğru sonuçları sunmayı amaçlamış bir haritacılık ve mühendislik şirketidir.',
-'txt5' => 'Hakkımızda',
-'txt6' => 'Yüksek Hassasiyet',
-'txt7' => 'Zamanında Teslimat',
-'txt8' => 'Hesaplı Çözümler',
-'txt9' => '150',
-'txt10' => 'Tamamlanmış Proje'
+    'txt1' => 'Biz Kimiz ?',
+    'txt2' => 'Kuzey Oku | Harita ve Madencilik',
+    'txt3' => 'There are many variations of passages of available but the majority have suffered. Alteration in some form, lipsum is simply free text by injected humou or randomised words even believable.',
+    'txt4' => 'Lorem ipsum dolor sit amet, consectetur notted adipisicing elit sed do eiusmod',
+    'txt5' => 'Tanıtım Videomuzu <br> İzlediniz mi ?',
+    'txt6' => 'Hakkımızda',
 ];

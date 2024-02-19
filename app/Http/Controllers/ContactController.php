@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Mail\Contact;
 use App\Models\Message;
 use App\Enums\StatusEnum;
-use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactRequest;
+use App\Jobs\SendMessage;
 
 class ContactController extends Controller
 {
@@ -25,8 +24,7 @@ class ContactController extends Controller
         }
 
         try {
-            Mail::to(config("setting.contact.email"))
-                ->send(new Contact($request));
+            $this->dispact(new SendMessage($request));
             Message::create([
                 "name" => $request->name,
                 "phone" => $request->phone,

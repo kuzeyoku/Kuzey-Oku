@@ -3,13 +3,11 @@
         <div class="sec-title">
             <div class="row">
                 <div class="col-lg-6">
-                    <span class="sub-title">Company Benefits</span>
-                    <h2>See why you should<br> choose agency</h2>
+                    <span class="sub-title">@lang('front/feature.txt1')</span>
+                    <h2>@lang('front/feature.txt2')</h2>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-end">
-                    <div class="text">There are many variations of passages of available but the majority have
-                        suffered. Alteration in some form, lipsum is simply free text by injected humou or
-                        randomised words even believable.</div>
+                    <div class="text">@lang('front/feature.txt3')</div>
                 </div>
             </div>
         </div>
@@ -21,27 +19,24 @@
                     <div class="feature-block-six">
                         <div class="inner-box">
                             <span class="icon"><i class="flaticon-trophy"></i></span>
-                            <h5 class="title">Misyonumuz</h5>
-                            <div class="text">Tincidunt elit magnis nulla facilisis sags maecenas. sapien nunc
-                                amet ultrices</div>
+                            <h5 class="title">@lang('front/feature.txt4')</h5>
+                            <div class="text">@lang('front/feature.txt5')</div>
                         </div>
                     </div>
 
                     <div class="feature-block-six">
                         <div class="inner-box">
                             <span class="icon"><i class="flaticon-lamp-1"></i></span>
-                            <h5 class="title">Vizyonumuz</h5>
-                            <div class="text">Tincidunt elit magnis nulla facilisis sags maecenas. sapien nunc
-                                amet ultrices</div>
+                            <h5 class="title">@lang('front/feature.txt6')</h5>
+                            <div class="text">@lang('front/feature.txt7')</div>
                         </div>
                     </div>
 
                     <div class="feature-block-six">
                         <div class="inner-box">
                             <span class="icon"><i class="flaticon-help"></i></span>
-                            <h5 class="title">Değerlerimiz</h5>
-                            <div class="text">Tincidunt elit magnis nulla facilisis sags maecenas. sapien nunc
-                                amet ultrices</div>
+                            <h5 class="title">@lang('front/feature.txt8')</h5>
+                            <div class="text">@lang('front/feature.txt9')</div>
                         </div>
                     </div>
                 </div>

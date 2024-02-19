@@ -9057,11 +9057,13 @@ td label {
 }
 
 .error-log-list,
-.info-log-list {
+.info-log-list,
+.visit-log-list {
     max-height: 440px;
 }
 .error-log-list li,
-.info-log-list li {
+.info-log-list li,
+.visit-log-list li {
     margin: 0.5rem;
     padding: 0.7rem;
     border-radius: 5px;
@@ -9073,6 +9075,10 @@ td label {
 .info-log-list li {
     background-color: #0dcaf0;
     color: #fff;
+}
+
+.visit-log-list li {
+    border: 1px solid #212529;
 }
 
 .sitemap-changefreq {

@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Hizmetlerimiz')
+@section('title', __('front/service.txt2'))
 @section('content')
     @include('layout.breadcrumb')
     <section class="">
@@ -14,7 +14,7 @@
                             </h5>
                             <div class="text">{{ $service->short_description }}</div>
                             <a href="{{ $service->url }}" class="read-more"><i
-                                    class="fa fa-long-arrow-alt-right"></i>Detaylar</a>
+                                    class="fa fa-long-arrow-alt-right"></i>@lang('front/service.txt3')</a>
                         </div>
                     </div>
                 @endforeach

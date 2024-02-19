@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Enums\ModuleEnum;
+use App\Models\Visitor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -38,7 +39,6 @@ class HomeController extends Controller
                 return Page::findOrFail(config("setting.information.about_page"));
             });
         }
-
         return view("index", $data);
     }
 

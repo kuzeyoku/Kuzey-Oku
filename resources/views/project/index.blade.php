@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', 'Projelerimiz')
+@section('title', __('front/project.txt1'))
 @section('content')
     @include('layout.breadcrumb')
     <section class="">
@@ -21,7 +21,8 @@
                                             <i class="fa fa-long-arrow-alt-right"></i>
                                         </a>
                                         <h6 class="title">
-                                            <a href="{{ route('project.show', [$project->id, $project->slug]) }}">{{ $project->title }}</a>
+                                            <a
+                                                href="{{ route('project.show', [$project->id, $project->slug]) }}">{{ $project->title }}</a>
                                         </h6>
                                     </div>
                                 </div>

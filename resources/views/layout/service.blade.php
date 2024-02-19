@@ -1,8 +1,8 @@
 <section class="services-section">
     <div class="auto-container">
         <div class="sec-title text-center">
-            <span class="sub-title">Neler Yapıyoruz ?</span>
-            <h2>Hizmetlerimiz</h2>
+            <span class="sub-title">@lang('front/service.txt1')</span>
+            <h2>@lang('front/service.txt2')</h2>
         </div>
         <div class="row">
             @foreach ($service as $service)
@@ -14,15 +14,15 @@
                         </h5>
                         <div class="text">{{ $service->short_description }}</div>
                         <a href="{{ $service->url }}" class="read-more"><i
-                                class="fa fa-long-arrow-alt-right"></i>Detaylar</a>
+                                class="fa fa-long-arrow-alt-right"></i>@lang('front/service.txt3')</a>
                     </div>
                 </div>
             @endforeach
         </div>
         <div class="bottom-box">
-            <div class="text">Diğer Hizmetlerimizi İncelemek İstermisiniz ?</div>
+            <div class="text">@lang('front/service.txt4')</div>
             <a href="{{ route('service.index') }}" class="theme-btn btn-style-one">
-                <span class="btn-title">Hizmetlerimiz</span>
+                <span class="btn-title">@lang('front/service.txt5')</span>
             </a>
         </div>
     </div>

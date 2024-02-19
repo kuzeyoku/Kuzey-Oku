@@ -27,6 +27,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post("editor/upload", [App\Http\Controllers\Admin\EditorController::class, "store"])->name("editor.upload");
         Route::get("cache-clear", [App\Http\Controllers\Admin\HomeController::class, "cacheClear"])->name("cache-clear");
         Route::post("log-clean", [App\Http\Controllers\Admin\HomeController::class, "logClean"])->name("logclean");
+        Route::post("clear-visitor-counter", [App\Http\Controllers\Admin\HomeController::class, "clearVisitorCounter"])->name("clearvisitorcounter");
+        Route::get("update-visitor-counter", function () {
+            \Illuminate\Support\Facades\Cache::forget("visits");
+            return back()->withSuccess("Ziyaretçi Kayıtları Güncellendi");
+        })->name("updatevisitorcounter");
 
         Route::controller(App\Http\Controllers\Admin\LanguageController::class)->prefix("language")->group(function () {
             Route::match(["get", "post"], "/{language}/files", "files")->name("language.files");
