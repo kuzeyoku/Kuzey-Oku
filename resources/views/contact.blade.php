@@ -91,9 +91,10 @@
                     <button type="submit" class="theme-btn btn-style-one g-recaptcha"
                         data-sitekey="{{ config('setting.recaptcha.site_key') }}" data-callback='contact-form'
                         data-action='submit'>
-                        <span class="btn-title">@lang("front/contact.txt15")</span>
+                        <span class="btn-title">@lang('front/contact.txt15')</span>
                     </button>
-                    <button type="reset" class="theme-btn btn-style-one"><span class="btn-title">@lang("front/contact.txt16")</span></button>
+                    <button type="reset" class="theme-btn btn-style-one"><span
+                            class="btn-title">@lang('front/contact.txt16')</span></button>
                     {{ Form::close() }}
                 </div>
             </div>
