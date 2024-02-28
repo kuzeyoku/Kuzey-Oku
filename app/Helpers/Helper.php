@@ -49,3 +49,13 @@ function recaptcha($request)
 
     return true;
 }
+
+function includeTheme($folder, $file)
+{
+    return config("{$folder}.view") . "." . $file;
+}
+
+function themeAsset($folder, $file)
+{
+    return config("{$folder}.asset") . "/" . $file;
+}

@@ -18,36 +18,36 @@ class HomeController extends Controller
     {
         $client = new Client();
         $response = $client->get("ipinfo.io/193.243.196.2?token=1a17407b2ccf6f");
-        $userData = json_decode($response->getBody());
+        $data["userData"] = json_decode($response->getBody());
         $errorLogsFile = storage_path('logs/custom_errors.log');
         $infoLogsFile = storage_path('logs/custom_info.log');
         if (File::exists($errorLogsFile)) {
-            $errorLogs = array_filter(explode("\n", File::get($errorLogsFile)), function ($line) {
+            $data["errorLogs"] = array_filter(explode("\n", File::get($errorLogsFile)), function ($line) {
                 return !empty($line);
             });
         } else {
-            $errorLogs = [];
+            $data["errorLogs"] = [];
         }
         if (File::exists($infoLogsFile)) {
-            $infoLogs = array_filter(explode("\n", File::get($infoLogsFile)), function ($line) {
+            $data["infoLogs"] = array_filter(explode("\n", File::get($infoLogsFile)), function ($line) {
                 return !empty($line);
             });
         } else {
-            $infoLogs = [];
+            $data["infoLogs"] = [];
         }
-        $messages = Message::unread()->count();
-        $comments = BlogComment::pending()->count();
-        $visits = Cache::remember("visits", 300, function () {
+        $data["messages"] = Message::unread()->count();
+        $data["comments"] = BlogComment::pending()->count();
+        $data["visits"] = Cache::remember("visits", 300, function () {
             return Visitor::all();
         });
-        return view('admin.index', compact('messages', "comments", 'errorLogs', 'infoLogs', "visits", "userData"));
+        return view(config("template.admin.view") . ".index", $data);
     }
 
     public function cacheClear()
     {
         Cache::flush();
         LogController::logger('info', __('admin/general.cache_clear_log'));
-        return redirect()->back()->with('success', __('admin/general.cache_clear_success'));
+        return redirect()->back()->withSuccess(__('admin/general.cache_clear_success'));
     }
 
     public function logclean(Request $request)
@@ -55,9 +55,9 @@ class HomeController extends Controller
         $file = storage_path('logs/custom_' . $request->file . '.log');
         if (File::exists($file)) {
             File::delete($file);
-            return redirect()->back()->with('success', __('admin/general.log_clean_success', ['file' => $request->file]));
+            return redirect()->back()->withSuccess(__('admin/general.log_clean_success', ['file' => $request->file]));
         } else {
-            return redirect()->back()->with('error', __('admin/general.log_clean_error', ['file' => $request->file]));
+            return redirect()->back()->withError(__('admin/general.log_clean_error', ['file' => $request->file]));
         }
     }
 
