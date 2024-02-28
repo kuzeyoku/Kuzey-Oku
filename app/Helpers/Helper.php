@@ -50,12 +50,12 @@ function recaptcha($request)
     return true;
 }
 
-function includeTheme($folder, $file)
+function themeView($folder, $file)
 {
-    return config("{$folder}.view") . "." . $file;
+    return config("template.{$folder}.view") . "." . $file;
 }
 
 function themeAsset($folder, $file)
 {
-    return config("{$folder}.asset") . "/" . $file;
+    return asset("assets/" . config("template.{$folder}.asset") . "/" . $file);
 }

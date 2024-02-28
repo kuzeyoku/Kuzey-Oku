@@ -27,7 +27,7 @@ class SettingController extends Controller
     {
         $this->authorize("index", Setting::class);
         $pagelist = Page::toSelectArray();
-        return view("admin.{$this->service->folder()}.index", compact("pagelist"));
+        return view(themeView("admin", $this->service->folder() . ".index"), compact("pagelist"));
     }
 
     public function update(Request $request)
