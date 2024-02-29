@@ -36,10 +36,9 @@
     <script src="{{ themeAsset('admin', 'js/feather.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'plugins/apexchart/apexcharts.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'plugins/apexchart/chart-data.js') }}"></script>
     <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalerts.min.js') }}"></script>
+    @include(themeView('admin', 'layout.alert'))
     @stack('script')
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
 </body>

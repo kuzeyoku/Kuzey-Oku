@@ -12,7 +12,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
     // })->name("storage-link");
 
     Route::get('login', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('auth.login');
+    Route::get("forgot-password", [App\Http\Controllers\Admin\AuthController::class, "forgot_password_view"])->name("auth.forgot_password_view");
+    Route::post('forgot-password', [App\Http\Controllers\Admin\AuthController::class, "forgot_password"])->name("auth.forgot_password");
+    Route::get('reset-password/{token}', [App\Http\Controllers\Admin\AuthController::class, "reset_password_view"])->name("auth.reset_password_view");
+    Route::post("reset-password", [App\Http\Controllers\Admin\AuthController::class, "reset_password"])->name("auth.reset_password");
     Route::post('authenticate', [App\Http\Controllers\Admin\AuthController::class, 'authenticate'])->name('auth.authenticate');
+
     Route::middleware(['auth'])->group(function () {
 
         Route::get('logout', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('auth.logout');
