@@ -35,5 +35,15 @@ class SettingProvider extends ServiceProvider
             return $config;
         });
         config($settingsConfig);
+        config([
+            "mail.mailers.smtp.host" => config("setting.smtp.host"),
+            "mail.mailers.smtp.port" => config("setting.smtp.port"),
+            "mail.mailers.smtp.encryption" => config("setting.smtp.encryption"),
+            "mail.mailers.smtp.username" => config("setting.smtp.username"),
+            "mail.mailers.smtp.password" => config("setting.smtp.password"),
+            "mail.from.address" => config("setting.smtp.username"),
+            "mail.from.name" => config("setting.general.title"),
+            "mail.reply_to.address" => config("setting.smtp.reply_address"),
+        ]);
     }
 }

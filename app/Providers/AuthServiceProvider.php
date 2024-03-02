@@ -15,7 +15,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array<class-string, class-string>
      */
     protected $policies = [
-        \App\Models\Blog::class => \App\Policies\BlogPolicy::class
+
     ];
 
     /**
@@ -24,7 +24,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         ResetPassword::createUrlUsing(function ($user, string $token) {
-            return route("admin.auth.reset_password_view", [$user, $token]);
+            return route("admin.auth.reset_password_view", $token);
         });
     }
 }

@@ -31,7 +31,6 @@
         @include(themeview('admin', 'layout.header'))
         @include(themeView('admin', 'layout.sidebar'))
 
-
         <div class="page-wrapper">
             <div class="content">
                 <div class="row">

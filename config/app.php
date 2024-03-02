@@ -174,7 +174,6 @@ return [
         App\Providers\MenuProvider::class,
         App\Providers\PopupProvider::class,
         App\Providers\CookieProvider::class,
-
     ])->toArray(),
 
     /*

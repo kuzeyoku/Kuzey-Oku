@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\StatusEnum;
-use App\Http\Requests\Auth\ForgotPasswordRequest;
-use Illuminate\Http\Request;
-use App\Http\Requests\Auth\LoginRequest;
 use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Auth\Passwords\PasswordBroker;
+use App\Enums\StatusEnum;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Auth\Events\PasswordReset;
+use App\Http\Requests\Auth\ForgotPasswordRequest;
 
 class AuthController extends Controller
 {
@@ -22,6 +24,10 @@ class AuthController extends Controller
     {
         $this->route = "auth";
         $this->folder = "auth";
+        view()->share([
+            "route" => $this->route,
+            "folder" => $this->folder
+        ]);
     }
 
     public function login()
@@ -76,12 +82,35 @@ class AuthController extends Controller
 
     public function reset_password_view()
     {
-        return view(themeView("admin", "{$this->folder}.reset_password"));
+        $token = request()->route("token");
+        return view(themeView("admin", "{$this->folder}.reset_password"), compact("token"));
     }
 
     public function reset_password(Request $request)
     {
+        $tokenData = DB::table("password_reset_tokens")->get();
+        $email = null;
+        foreach ($tokenData as $token) {
+            if (Hash::check($request->token, $token->token)) {
+                $email = $token->email;
+                break;
+            }
+        }
 
+        $status = Password::reset(
+            array_merge($request->only("email", "password", "password_confirmation", "token"), ["email" => $email]),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    "password" => Hash::make($password)
+                ])->save();
+                $user->setRememberToken(Str::random(60));
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+            ? redirect()->route("admin.{$this->route}.login")->withSuccess(__($status))
+            : back()->withInput()->withError(__($status));
     }
 
     public function logout(Request $request)

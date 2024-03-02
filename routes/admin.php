@@ -4,7 +4,7 @@ use App\Enums\ModuleEnum;
 use Illuminate\Support\Facades\Route;
 //use Illuminate\Support\Facades\Artisan;
 
-Route::prefix('admin')->name('admin.')->group(function () {
+Route::prefix(config("template.admin.route"))->name('admin.')->group(function () {
 
     // Route::get("/storage-link", function () {
     //     Artisan::call("storage:link");

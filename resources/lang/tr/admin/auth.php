@@ -1,6 +1,8 @@
 <?php
 return [
-    'title' => 'Yönetim Paneli | Giriş',
+    'login_title' => 'Yönetim Paneli | Giriş',
+    "forgot_password_title" => "Yönetim Paneli | Şifremi Unuttum",
+    "reset_password_title" => "Yönetim Paneli | Şifre Sıfırlama",
     'welcome' => 'Hoşgeldiniz',
     'please_login' => 'Yönetim paneline erişmek için lütfen giriş yapınız.',
     'email' => 'E-posta Adresiniz',
@@ -16,6 +18,7 @@ return [
     "new_password" => "Yeni Şifreniz",
     "new_password_confirmation" => "Yeni Şifreniz Tekrar",
     "confirm" => "Onayla",
+    "or" => "Yada",
     'login' => 'Giriş Yap',
     'login_success_title' => 'Hoşgeldiniz :name',
     'login_success_message' => 'Başarıyla Giriş Yaptınız.',
