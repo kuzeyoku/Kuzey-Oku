@@ -22,24 +22,6 @@
         <div class="row">
             <div class="col-xl-12">
                 <div class="settings-wrapper d-flex">
-                    <div class="sidebars settings-sidebar">
-                        <div class="sidebar-inner slimscroll">
-                            <div id="sidebar-menu5" class="sidebar-menu">
-                                <ul>
-                                    @foreach (App\Enums\SettingCategoryEnum::cases() as $setting)
-                                        <li class="submenu-open mb-0">
-                                            <ul>
-                                                <li class="submenu">
-                                                    <a href="javascript:void(0);"
-                                                        class="active subdrop">@svg($setting->icon())<span>{{ $setting->title() }}</span></a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                     <div class="settings-page-wrap">
                         @yield('setting_form')
                     </div>

@@ -25,7 +25,7 @@ Route::prefix(config("template.admin.route"))->name('admin.')->group(function ()
         Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('index');
 
         Route::controller(App\Http\Controllers\Admin\SettingController::class)->prefix('setting')->group(function () {
-            Route::get('/', 'index')->name('setting');
+            Route::get('/{category}', 'index')->name('setting');
             Route::put('/update', 'update')->name('setting.update');
         });
 

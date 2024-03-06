@@ -7,10 +7,13 @@
                     <ul>
                         <li class="submenu">
                             <a href="javascript:void(0);" class="subdrop active"><i
-                                    data-feather="grid"></i><span>Dashboard</span><span class="menu-arrow"></span></a>
+                                    data-feather="grid"></i><span>Ayarlar</span><span class="menu-arrow"></span></a>
                             <ul>
-                                <li><a href="index.html.htm" class="active">Admin Dashboard</a></li>
-                                <li><a href="sales-dashboard.html.htm">Sales Dashboard</a></li>
+                                @foreach (App\Enums\SettingCategoryEnum::cases() as $setting)
+                                    <li>
+                                        <a href="{{ route('admin.setting', ['category' => $setting->value]) }}">{{ $setting->title() }}</a>
+                                    </li>
+                                @endforeach
                             </ul>
                         </li>
                         <li class="submenu">
