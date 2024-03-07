@@ -26,8 +26,11 @@ class SettingController extends Controller
     public function index()
     {
         $this->authorize("index", Setting::class);
-        $pagelist = Page::toSelectArray();
-        return view(themeView("admin", "setting." . request()->category), compact("pagelist"));
+        if (SettingCategoryEnum::has(request()->category)) {
+            return view(themeView("admin", "setting." . request()->category));
+        } else {
+            abort("404");
+        }
     }
 
     public function update(Request $request)

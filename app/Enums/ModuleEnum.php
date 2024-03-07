@@ -54,21 +54,21 @@ enum ModuleEnum: string
     public function icon(): string
     {
         return match ($this) {
-            self::User => "fas-user",
-            self::Message => "fas-envelope-open-text",
-            self::Menu => "fas-bars",
-            self::Page => 'fas-pager',
-            self::Language => 'fas-language',
-            self::Blog => "fas-blog",
-            self::Category => "fas-list-ul",
-            self::Service => "fas-tools",
-            self::Brand => "fas-tags",
-            self::Reference => "fas-clipboard-list",
-            self::Product => "fas-shopping-cart",
-            self::Project => "fas-project-diagram",
-            self::Slider => "fas-sliders-h",
-            self::Testimonial => "fas-comment-dots",
-            self::Popup => "fas-window-maximize",
+            self::User => "users",
+            self::Message => "mail",
+            self::Menu => "menu",
+            self::Page => 'layout',
+            self::Language => 'globe',
+            self::Blog => "edit-3",
+            self::Category => "list",
+            self::Service => "bookmark",
+            self::Brand => "tag",
+            self::Reference => "refresh-cw",
+            self::Product => "shopping-cart",
+            self::Project => "briefcase",
+            self::Slider => "image",
+            self::Testimonial => "smile",
+            self::Popup => "maximize-2",
         };
     }
 

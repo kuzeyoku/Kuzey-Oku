@@ -12,7 +12,6 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\RateLimiter;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
 
 class AuthController extends Controller
@@ -55,11 +54,6 @@ class AuthController extends Controller
             return redirect()
                 ->intended('admin')
                 ->withSuccess($message);
-        } else {
-            RateLimiter::hit('login', (string) $request->ip());
-            if (RateLimiter::tooManyAttempts('login', $request->ip(), 5)) {
-                return back()->withError('Çok fazla giriş denemesi. Lütfen daha sonra tekrar deneyin.');
-            }
         }
         LogController::logger("error", "Başarısız Giriş Denemesi - IP: " . $request->ip() . " - Email: " . $request->email);
         return back()

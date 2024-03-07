@@ -6654,6 +6654,15 @@ fieldset:disabled .btn {
     width: 2.5rem
 }
 
+.form-check-xl .form-check-input {
+    width: 2rem;
+    height: 2rem
+}
+
+.form-check-xl.form-switch .form-check-input {
+    width: 4rem
+}
+
 .form-check-lg label {
     margin-inline-start: .5rem;
     font-size: 1rem;
@@ -17941,7 +17950,7 @@ div#global-loader .whirly-loader:not(:required) {
 
 .sidebar .sidebar-menu,
 .sidebars .sidebar-menu {
-    padding: 24px
+    padding: 10px
 }
 
 .sidebar .sidebar-menu>ul>li,
@@ -17962,8 +17971,8 @@ div#global-loader .whirly-loader:not(:required) {
 .sidebar .sidebar-menu>ul>li svg,
 .sidebars .sidebar-menu>ul>li svg {
     min-width: 16px;
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     margin-right: 10px
 }
 
@@ -29273,12 +29282,6 @@ span.unlimited-text {
     width: 15px;
     color: #ff9f43;
     margin-right: 5px
-}
-
-#phone,
-#phone2,
-#phone3 {
-    padding-left: 50px
 }
 
 .total-employees {

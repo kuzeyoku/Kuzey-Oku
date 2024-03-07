@@ -14,7 +14,7 @@ enum SettingCategoryEnum: string
     case Maintenance = "maintenance";
     case Image = "image";
     case Sitemap = "sitemap";
-    case Recaptcha = "recaptcha";
+    case Integration = "integration";
     case Logo = "logo";
 
     public function title(): string
@@ -35,7 +35,7 @@ enum SettingCategoryEnum: string
             self::Maintenance => false,
             self::Image => true,
             self::Sitemap => true,
-            self::Recaptcha => true,
+            self::Integration => true,
             self::Logo => false,
         };
     }
@@ -53,11 +53,15 @@ enum SettingCategoryEnum: string
             self::Maintenance => "fas-tools",
             self::Image => "fas-image",
             self::Sitemap => "fas-sitemap",
-            self::Recaptcha => "fas-shield-alt",
+            self::Integration => "fas-shield-alt",
             self::Logo => "fas-image",
         };
     }
 
+    public static function has($value): bool
+    {
+        return in_array($value, self::getValues());
+    }
 
     public static function getValues(): array
     {
