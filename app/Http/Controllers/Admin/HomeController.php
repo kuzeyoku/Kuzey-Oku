@@ -40,7 +40,7 @@ class HomeController extends Controller
         $data["visits"] = Cache::remember("visits", 300, function () {
             return Visitor::all();
         });
-        return view(themeView("admin", "index"), $data);
+        return view(themeView("admin", "index"), $data  );
     }
 
     public function cacheClear()
