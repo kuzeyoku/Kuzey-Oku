@@ -1,10 +1,11 @@
 <?php
 
 use App\Enums\ModuleEnum;
-use App\Http\Middleware\CountVisitors;
+use App\Http\Middleware\Maintenance;
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\CountVisitors;
 
-Route::middleware(CountVisitors::class)->group(function () {
+Route::middleware(CountVisitors::class, Maintenance::class)->group(function () {
     Route::get("/", [App\Http\Controllers\HomeController::class, "index"])->name("home");
 
     Route::post("/setlocale", [App\Http\Controllers\HomeController::class, "setLocale"])->name("locale.set");
@@ -52,6 +53,8 @@ Route::middleware(CountVisitors::class)->group(function () {
         });
     }
 });
+
+Route::get("maintenance", [App\Http\Controllers\MaintenanceController::class, "index"])->name("maintenance");
 
 // Route::get("/reference", [App\Http\Controllers\ReferenceController::class, "index"])->name("reference.index");
 
