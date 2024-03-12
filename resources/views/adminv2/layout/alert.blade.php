@@ -48,3 +48,22 @@
         </script>
     @endif
 @endif
+<script>
+    $('.destroy-btn').on('click', function() {
+        alert();
+        Swal.fire({
+            title: "{{ __('admin/general.are_you_sure') }}",
+            text: "{{ __('admin/general.you_wont_be_able_to_revert_this') }}",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "{{ __('admin/general.yes_delete_it') }}",
+            cancelButtonText: "{{ __('admin/general.cancel') }}",
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $(this).closest('form').submit();
+            }
+        });
+    });
+</script>
