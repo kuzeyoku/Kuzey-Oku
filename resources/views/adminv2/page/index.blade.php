@@ -14,7 +14,6 @@
                         class="me-2"></i>@lang("admin/{$folder}.create")</a>
             </div>
         </div>
-
         <div class="card">
             <div class="card-body">
                 <div class="table-responsive">
@@ -22,31 +21,21 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Başlık</th>
-                                <th>Durum</th>
-                                <th>Oluşturuldu</th>
-                                <th>Güncellendi</th>
-                                <th class="no-sort">İşlemler</th>
+                                <th>@lang("admin/{$folder}.table_title")</th>
+                                <th>@lang('admin/general.status')</th>
+                                <th>@lang('admin/general.table_created_at')</th>
+                                <th>@lang('admin/general.table_updated_at')</th>
+                                <th style="width:200px">@lang('admin/general.table_action')</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach ($items as $item)
                                 <tr>
-                                    <td>
-                                        {{ $item->id }}
-                                    </td>
-                                    <td>
-                                        {{ $item->title }}
-                                    </td>
-                                    <td>
-                                        {{ statusView($item->status) }}
-                                    </td>
-                                    <td>
-                                        {{ $item->created_at->diffForHumans() }}
-                                    </td>
-                                    <td>
-                                        {{ $item->updated_at->diffForHumans() }}
-                                    </td>
+                                    <td>{{ $item->id }}</td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ statusView($item->status) }}</td>
+                                    <td>{{ $item->created_at->diffForHumans() }}</td>
+                                    <td>{{ $item->updated_at->diffForHumans() }}</td>
                                     @include('adminv2.layout.action')
                                 </tr>
                             @endforeach

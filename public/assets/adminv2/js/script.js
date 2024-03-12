@@ -2062,3 +2062,26 @@ $(document).ready(function () {
     });
     /* card with close button */
 });
+
+if ($("textarea.editor").length > 0) {
+    const protocol = window.location.protocol + "//";
+    const currentDomain = window.location.hostname + "/admin/editor/upload";
+    tinymce.init({
+        selector: "textarea.editor",
+        plugins:
+            "print preview code importcss searchreplace autolink directionality visualblocks visualchars fullscreen image link media codesample table charmap hr pagebreak nonbreaking anchor toc insertdatetime advlist lists wordcount imagetools textpattern noneditable charmap quickbars emoticons",
+        menubar: "file edit view insert format tools table tc",
+        toolbar:
+            "bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist insertfile image media link anchor | code ltr rtl",
+        language: "tr",
+        height: 400,
+        file_picker_types: "image",
+        images_upload_url: protocol + currentDomain,
+        relative_urls: false,
+        remove_script_host: true,
+        document_base_url: "/",
+        convert_urls: true,
+        media_filter_html: false,
+        entity_encoding: "raw",
+    });
+}

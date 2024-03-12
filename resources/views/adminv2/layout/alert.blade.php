@@ -50,10 +50,9 @@
 @endif
 <script>
     $('.destroy-btn').on('click', function() {
-        alert();
         Swal.fire({
             title: "{{ __('admin/general.are_you_sure') }}",
-            text: "{{ __('admin/general.you_wont_be_able_to_revert_this') }}",
+            text: "{{ __('admin/general.this_action_cannot_be_undone') }}",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonText: "{{ __('admin/general.yes_delete_it') }}",
