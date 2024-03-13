@@ -25,12 +25,12 @@ class TestimonialController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact("items"));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
     }
 
     public function create()
     {
-        return view("admin.{$this->service->folder()}.create");
+        return view(themeView("admin","{$this->service->folder()}.create"));
     }
 
     public function store(StoreTestimonialRequest $request)
@@ -51,7 +51,7 @@ class TestimonialController extends Controller
 
     public function edit(Testimonial $testimonial)
     {
-        return view("admin.{$this->service->folder()}.edit", compact("testimonial"));
+        return view(themeView("admin","{$this->service->folder()}.edit"), compact("testimonial"));
     }
 
     public function update(UpdateTestimonialRequest $request, Testimonial $testimonial)

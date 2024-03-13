@@ -25,7 +25,7 @@ class MessageController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact("items"));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
     }
 
     public function show(Message $message)

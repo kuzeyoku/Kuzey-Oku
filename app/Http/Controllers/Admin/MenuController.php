@@ -38,7 +38,7 @@ class MenuController extends Controller
         $menus = Menu::whereType($type)->order()->get();
         $parentList = Menu::toSelectArray($type);
         $urlList = $this->service->getUrlList();
-        return view("admin.{$this->service->folder()}.index", compact('menus', 'type', "parentList", "urlList", "menu"));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact('menus', 'type', "parentList", "urlList", "menu"));
     }
 
     public function edit(Menu $menu)

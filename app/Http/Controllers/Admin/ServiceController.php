@@ -27,12 +27,12 @@ class ServiceController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact('items'));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact('items'));
     }
 
     public function create()
     {
-        return view("admin.{$this->service->folder()}.create");
+        return view(themeView("admin","{$this->service->folder()}.create"));
     }
 
     public function store(StoreServiceRequest $request)
@@ -54,7 +54,7 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        return view("admin.{$this->service->folder()}.edit", compact('service'));
+        return view(themeView("admin","{$this->service->folder()}.edit"), compact('service'));
     }
 
     public function update(UpdateServiceRequest $request, Service $service)

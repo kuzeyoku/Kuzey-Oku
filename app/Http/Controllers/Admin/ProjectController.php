@@ -28,7 +28,7 @@ class ProjectController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact("items"));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
     }
 
     public function image(Project $project)
@@ -77,7 +77,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view("admin.{$this->service->folder()}.create");
+        return view(themeView("admin","{$this->service->folder()}.create"));
     }
 
     public function store(StoreProjectRequest $request)

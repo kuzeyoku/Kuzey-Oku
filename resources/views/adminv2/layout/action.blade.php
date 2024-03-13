@@ -1,6 +1,5 @@
-<td class="action-table-data">
     <div class="edit-delete-action">
-        <a class="me-2 edit-icon  p-2" href="{{ $item->url }}">
+        <a class="me-2 edit-icon p-2" target="_blank" href="{{ $item->url }}">
             <i data-feather="eye" class="feather-eye"></i>
         </a>
         <a class="me-2 p-2" href="{{ route("admin.{$folder}.edit", $item) }}">
@@ -16,4 +15,3 @@
         </a>
         {!! Form::close() !!}
     </div>
-</td>

@@ -26,12 +26,12 @@ class LanguageController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact('items'));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact('items'));
     }
 
     public function create()
     {
-        return view("admin.{$this->service->folder()}.create");
+        return view(themeView("admin","{$this->service->folder()}.create"));
     }
 
     public function store(StoreLanguageRequest $request)
@@ -52,7 +52,7 @@ class LanguageController extends Controller
 
     public function edit(Language $language)
     {
-        return view("admin.{$this->service->folder()}.edit", compact('language'));
+        return view(themeView("admin","{$this->service->folder()}.edit"), compact('language'));
     }
 
     public function files(Language $language)

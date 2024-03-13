@@ -8,9 +8,9 @@
     <title>@lang('admin/home.title')</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ themeAsset('admin', 'img/favicon.png') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap-datetimepicker.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap-datetimepicker.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/animate.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/select2/css/select2.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/select2/css/select2.min.css') }}"> --}}
     <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/fontawesome.min.css') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/all.min.css') }}">
     @stack('style')
@@ -32,9 +32,7 @@
     <script src="{{ themeAsset('admin', 'js/feather.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/jquery.slimscroll.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalerts.min.js') }}"></script>
     @include(themeView('admin', 'layout.alert'))
     @stack('script')
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>

@@ -28,12 +28,12 @@ class BlogController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact("items"));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
     }
 
     public function create()
     {
-        return view("admin.{$this->service->folder()}.create");
+        return view(themeView("admin","{$this->service->folder()}.create"));
     }
 
     public function store(StoreBlogRequest $request)
@@ -54,7 +54,7 @@ class BlogController extends Controller
 
     public function edit(Blog $blog)
     {
-        return view("admin.{$this->service->folder()}.edit", compact("blog"));
+        return view(themeView("admin","{$this->service->folder()}.edit"), compact("blog"));
     }
 
     public function update(UpdateBlogRequest $request, Blog $blog)

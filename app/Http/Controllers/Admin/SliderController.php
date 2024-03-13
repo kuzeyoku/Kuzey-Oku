@@ -25,12 +25,12 @@ class SliderController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->folder()}.index", compact("items"));
+        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
     }
 
     public function create()
     {
-        return view("admin.{$this->service->folder()}.create");
+        return view(themeView("admin","{$this->service->folder()}.create"));
     }
 
     public function store(StoreSliderRequest $request)
@@ -51,7 +51,7 @@ class SliderController extends Controller
 
     public function edit(Slider $slider)
     {
-        return view("admin.{$this->service->folder()}.edit", compact("slider"));
+        return view(themeView("admin","{$this->service->folder()}.edit"), compact("slider"));
     }
 
     public function update(UpdateSliderRequest $request, Slider $slider)

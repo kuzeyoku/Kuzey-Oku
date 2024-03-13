@@ -2085,3 +2085,24 @@ if ($("textarea.editor").length > 0) {
         entity_encoding: "raw",
     });
 }
+
+if ($(".dropify").length > 0) {
+    $(".dropify").dropify({
+        messages: {
+            default: "",
+            replace: "",
+            remove: "Kaldır",
+        },
+    });
+}
+
+$(".dropify-clear").one("click", function () {
+    var input = $(this).prev("input.dropify");
+    var inputName = input.attr("name") + "Delete";
+    const deleteInput = $(
+        '<input type="hidden" name="' + inputName + '" value="true">'
+    );
+    const form = $(this).closest("form");
+    form.append(deleteInput);
+    $(this).prop("disabled", true);
+});
