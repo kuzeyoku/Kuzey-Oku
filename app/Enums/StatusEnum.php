@@ -24,10 +24,10 @@ enum StatusEnum: string
     public function color(): string
     {
         return match ($this) {
-            self::Active => "lightgreen",
-            self::Passive => "lightred",
-            self::Draft => "lightgrey",
-            self::Pending => "lightyellow",
+            self::Active => "success",
+            self::Passive => "error",
+            self::Draft => "secondary",
+            self::Pending => "info",
             self::Read => "lightgreen",
             self::Unread => "lightyellow",
             self::Answered => "lightgrey",
@@ -46,7 +46,7 @@ enum StatusEnum: string
 
     public function badge(): string
     {
-        return sprintf('<span class="badges bg-%s">%s</span>', $this->color(), $this->title());
+        return sprintf('<span class="badge bg-%s">%s</span>', $this->color(), $this->title());
     }
 
     public static function getValues()

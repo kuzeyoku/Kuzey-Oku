@@ -17,7 +17,7 @@
         <div class="card">
             <div class="card-body">
                 @include(themeView('admin', 'layout.langtab'))
-                {!! Form::open(['url' => route("admin.{$folder}.update", $item), 'method' => 'post', 'files' => true]) !!}
+                {!! Form::open(['url' => route("admin.{$folder}.update", $item), 'method' => 'PUT', 'files' => true]) !!}
                 <div class="tab-content">
                     @yield('form')
                     {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}

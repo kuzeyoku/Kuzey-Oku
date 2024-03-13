@@ -16,7 +16,7 @@
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->title }}</td>
-                    <td>{{ statusView($item->status) }}</td>
+                    <td>{!! $item->status_view !!}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
                     <td class="action-table-data">@include('adminv2.layout.action')</td>

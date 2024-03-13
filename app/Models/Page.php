@@ -65,4 +65,10 @@ class Page extends Model
     {
         return self::active()->get()->pluck("title", "id")->all();
     }
+
+    public function getStatusViewAttribute()
+    {
+        $status = StatusEnum::getStatus($this->status);
+        return $status->badge();
+    }
 }

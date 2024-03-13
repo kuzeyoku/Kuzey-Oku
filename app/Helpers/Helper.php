@@ -3,12 +3,6 @@
 use App\Enums\StatusEnum;
 use Illuminate\Support\Facades\Cache;
 
-function statusView(string $status)
-{
-    $statusEnum = StatusEnum::getStatus($status);
-    echo $statusEnum->badge();
-}
-
 function languageList()
 {
     return Cache::remember('languageList', 3600, function () {
