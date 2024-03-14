@@ -1,6 +1,9 @@
     <div class="edit-delete-action">
-        <a class="me-2 edit-icon p-2" target="_blank" href="{{ $item->url }}">
+        <a class="me-2 p-2" target="_blank" href="{{ $item->url }}">
             <i data-feather="eye" class="feather-eye"></i>
+        </a>
+        <a class="me-2 p-2" href="{{ route("admin.{$route}.image", $item) }}" class="btn btn-image">
+            <i data-feather="image" class="feather-image"></i>
         </a>
         <a class="me-2 p-2" href="{{ route("admin.{$folder}.edit", $item) }}">
             <i data-feather="edit" class="feather-edit"></i>

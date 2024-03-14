@@ -25,12 +25,12 @@ class PopupController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view("admin.{$this->service->route()}.index", compact("items"));
+        return view(themeView("admin", "{$this->service->route()}.index"), compact("items"));
     }
 
     public function create()
     {
-        return view(themeView("admin","{$this->service->folder()}.create"));
+        return view(themeView("admin", "{$this->service->folder()}.create"));
     }
 
     public function store(StorePopupRequest $request)
@@ -51,7 +51,7 @@ class PopupController extends Controller
 
     public function edit(Popup $popup)
     {
-        return view(themeView("admin","{$this->service->folder()}.edit"), compact("popup"));
+        return view(themeView("admin", "{$this->service->folder()}.edit"), compact("popup"));
     }
 
     public function update(UpdatePopupRequest $request, Popup $popup)
