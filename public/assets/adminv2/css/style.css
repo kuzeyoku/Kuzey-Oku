@@ -38301,3 +38301,11 @@ label span {
 .text-default {
     color: #5b6670
 }
+
+.tox-tinymce {
+    margin-bottom: 20px;
+}
+
+.table-image {
+    max-height: 50px;
+}

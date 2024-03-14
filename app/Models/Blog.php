@@ -128,7 +128,7 @@ class Blog extends Model
         return route(ModuleEnum::Blog->route() . ".category", [$this->category->id, $this->category->slug]);
     }
 
-    public function status_view()
+    public function getStatusViewAttribute()
     {
         $status = StatusEnum::getStatus($this->status);
         return $status->badge();

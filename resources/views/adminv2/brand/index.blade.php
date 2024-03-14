@@ -4,26 +4,26 @@
         <thead>
             <tr>
                 <th>#ID</th>
-                <th>@lang("admin/{$folder}.table_title")</th>
-                <th>@lang('admin/general.table_created_at')</th>
-                <th>@lang('admin/general.table_updated_at')</th>
-                <th>@lang('admin/general.status')</th>
-                <th style="width:200px">@lang('admin/general.table_action')</th>
+                <th>{{ __("admin/{$folder}.table_image") }}</th>
+                <th>{{ __('admin/general.table_created_at') }}</th>
+                <th>{{ __('admin/general.table_updated_at') }}</th>
+                <th>{{ __('admin/general.table_status') }}</th>
+                <th>{{ __('admin/general.table_action') }}</th>
             </tr>
         </thead>
         <tbody>
             @forelse ($items as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td>{{ $item->titles[config('app.fallback_locale')] }}</td>
+                    <td><img class="table-image" src="{{ $item->image_url }}"></td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
                     <td>{!! $item->status_view !!}</td>
-                    <td class="action-table-data">@include('adminv2.layout.action')</td>
+                    <td class="action-table-data">@include(themeView('admin', 'layout.action'))</td>
                 </tr>
             @empty
                 <tr>
-                    <td colspan="6" class="text-center">@lang('admin/general.table_no_data')</td>
+                    <td colspan="6" class="text-center">{{ __('admin/general.table_no_data') }}</td>
                 </tr>
             @endforelse
         </tbody>

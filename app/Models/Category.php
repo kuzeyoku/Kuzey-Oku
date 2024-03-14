@@ -94,4 +94,10 @@ class Category extends Model
             $category->blogs()->update(["category_id" => 0]);
         });
     }
+
+    public function getStatusViewAttribute()
+    {
+        $status = StatusEnum::getStatus($this->status);
+        return $status->badge();
+    }
 }

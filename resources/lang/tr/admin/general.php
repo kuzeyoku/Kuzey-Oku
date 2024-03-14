@@ -8,6 +8,7 @@ return [
     "saveAndContinue" => "Kaydet ve Devam Et",
     "add" => "Ekle",
     "edit" => "Düzenle",
+    "approve" => "Onayla",
     "delete" => "Sil",
     "order" => "Sıra",
     "status" => "Durum",

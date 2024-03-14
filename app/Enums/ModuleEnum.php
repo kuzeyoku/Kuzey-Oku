@@ -31,12 +31,12 @@ enum ModuleEnum: string
             self::Blog => true,
             self::Category => true,
             self::Service => true,
-            self::Brand => false,
+            self::Brand => true,
             self::Reference => true,
             self::Product => true,
             self::Project => true,
             self::Slider => true,
-            self::Testimonial => false,
+            self::Testimonial => true,
             self::Popup => true,
         };
     }

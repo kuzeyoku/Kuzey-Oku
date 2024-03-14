@@ -92,4 +92,10 @@ class Service extends Model
     {
         return Service::active()->where("id", "!=", $this->id)->limit(5)->get();
     }
+
+    public function getStatusViewAttribute()
+    {
+        $status = StatusEnum::getStatus($this->status);
+        return $status->badge();
+    }
 }

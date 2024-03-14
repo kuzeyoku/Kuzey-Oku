@@ -5,8 +5,8 @@
         'data-default-file' => $service->image_url,
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
-    @foreach (LanguageList() as $key => $lang)
-        <div id="{{ $lang->code }}" class="tab-pane mb-3 @if ($loop->first) active show @endif">
+    @foreach (LanguageList() as $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {{ Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) }} <span class="manitory">*</span>
             {{ Form::text("title[$lang->code]", $service->titles[$lang->code] ?? null, [
                 'class' => 'form-control',
