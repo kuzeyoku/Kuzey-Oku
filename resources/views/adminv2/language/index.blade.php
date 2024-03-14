@@ -22,7 +22,7 @@
                     <td class="action-table-data">
                         <div class="edit-delete-action">
                             <a class="me-2 p-2" href="{{ route("admin.{$route}.files", $item) }}">
-                                <i data-feather="globe" class="feather-globe"></i>
+                                <i data-feather="repeat" class="feather-translate"></i>
                             </a>
                             <a class="me-2 p-2" href="{{ route("admin.{$route}.edit", $item) }}">
                                 <i data-feather="edit" class="feather-edit"></i>
