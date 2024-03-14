@@ -27,7 +27,7 @@ class ContactRequest extends FormRequest
             "email" => "required|email:filter",
             "subject" => "required|string|min:3|max:50",
             "message" => "required|string|min:3|max:500",
-            "terms" => "required|accepted",
+            //"terms" => "required|accepted",
             "g-recaptcha-response" => "",
         ];
     }
@@ -40,7 +40,7 @@ class ContactRequest extends FormRequest
             "email" => __("front/contact.txt15"),
             "subject" => __("front/contact.txt16"),
             "message" => __("front/contact.txt17"),
-            "terms" => __("front/contact.txt18"),
+            //"terms" => __("front/contact.txt18"),
             "g-recaptcha-response" => __("front/contact.form_recaptcha"),
         ];
     }

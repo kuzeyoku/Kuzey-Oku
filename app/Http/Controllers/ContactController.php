@@ -22,9 +22,8 @@ class ContactController extends Controller
                 ->withInput()
                 ->withError(__("front/general.recaptcha_error"));
         }
-
         try {
-            $this->dispact(new SendMessage($request));
+           // $this->dispact(new SendMessage($request));
             Message::create([
                 "name" => $request->name,
                 "phone" => $request->phone,
@@ -34,7 +33,7 @@ class ContactController extends Controller
                 "status" => StatusEnum::Unread->value,
                 "ip" => $request->ip(),
                 "user_agent" => $request->userAgent(),
-                "consent" => $request->terms
+                //"consent" => $request->terms
             ]);
             return back()
                 ->withSuccess(__("front/contact.send_success"));

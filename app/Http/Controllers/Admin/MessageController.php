@@ -25,26 +25,26 @@ class MessageController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact("items"));
     }
 
     public function show(Message $message)
     {
         $this->service->statusUpdate($message);
-        return view("admin.{$this->service->folder()}.show", compact("message"));
+        return view(themeView("admin", "{$this->service->folder()}.show"), compact("message"));
     }
 
     public function reply(Message $message)
     {
         $this->authorize(Message::class, "reply");
-        return view("admin.{$this->service->folder()}.reply", compact("message"));
+        return view(themeView("admin", "{$this->service->folder()}.reply"), compact("message"));
     }
 
     public function sendReply(ReplyMessageRequest $request, Message $message)
     {
         $this->authorize(Message::class, "reply");
         try {
-            $this->service->sendReply($request,$message);
+            $this->service->sendReply($request, $message);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.send_success"));

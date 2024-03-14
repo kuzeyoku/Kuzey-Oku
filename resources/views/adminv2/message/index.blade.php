@@ -23,7 +23,7 @@
                     <td>{{ $item->status_view }}</td>
                     <td class="action-table-data">
                         <div class="edit-delete-action">
-                            <a class="me-2 edit-icon p-2" target="_blank" href="{{ route("admin.{$route}.show", $item) }}">
+                            <a class="me-2 edit-icon p-2" href="{{ route("admin.{$route}.show", $item) }}">
                                 <i data-feather="eye" class="feather-eye"></i>
                             </a>
                             {!! Form::open([
