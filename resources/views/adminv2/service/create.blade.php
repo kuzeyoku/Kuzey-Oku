@@ -14,7 +14,7 @@
     @endforeach
     <div class="row">
         <div class="col-lg-4">
-            {{ Form::label('category', __("admin/{$folder}.form_category")) }}
+            {{ Form::label('category_id', __("admin/{$folder}.form_category")) }}
             {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
         </div>
         <div class="col-lg-4">

@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view(themeView("admin","{$this->service->folder()}.index"), compact('items'));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact('items'));
     }
 
     public function show(Product $product)
@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view(themeView("admin","{$this->service->folder()}.create"));
+        return view(themeView("admin", "{$this->service->folder()}.create"));
     }
 
     public function store(StoreProductRequest $request)
@@ -59,12 +59,12 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        return view(themeView("admin","{$this->service->folder()}.edit"), compact("product"));
+        return view(themeView("admin", "{$this->service->folder()}.edit"), compact("product"));
     }
 
     public function image(Product $product)
     {
-        return view("admin.{$this->service->folder()}.image", compact("product"));
+        return view(themeView("admin", "{$this->service->folder()}.image"), compact("product"));
     }
 
     public function imageStore(ImageProductRequest $request): object

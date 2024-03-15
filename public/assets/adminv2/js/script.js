@@ -2106,3 +2106,16 @@ $(".dropify-clear").one("click", function () {
     form.append(deleteInput);
     $(this).prop("disabled", true);
 });
+
+if ($(".dropzone").length > 0) {
+    new Dropzone(".dropzone", {
+        success: function (file, response) {
+            location.reload();
+            showAlert("success", response.message);
+        },
+        error: function (file, response) {
+            showAlert("error", response.message);
+            this.removeFile(file);
+        },
+    });
+}

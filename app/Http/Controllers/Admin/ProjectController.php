@@ -28,12 +28,12 @@ class ProjectController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact("items"));
     }
 
     public function image(Project $project)
     {
-        return view("admin.{$this->service->folder()}.image", compact("project"));
+        return view(themeView("admin", "{$this->service->folder()}.image"), compact("project"));
     }
 
     public function imageStore(ImageProjectRequest $request): object
@@ -77,7 +77,7 @@ class ProjectController extends Controller
 
     public function create()
     {
-        return view(themeView("admin","{$this->service->folder()}.create"));
+        return view(themeView("admin", "{$this->service->folder()}.create"));
     }
 
     public function store(StoreProjectRequest $request)
@@ -98,7 +98,7 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view("admin/{$this->service->folder()}/edit", compact("project"));
+        return view(themeView("admin", "{$this->service->folder()}/edit"), compact("project"));
     }
 
     public function update(UpdateProjectRequest $request, Project $project)
