@@ -21,13 +21,16 @@
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
                     <td>{{ $item->status_view }}</td>
-                    <td class="action-table-data">
-                        @include(themeView('admin', 'layout.action'))
-                    </td>
+                    @include(themeView('admin', 'layout.action'), [
+                        'show' => '',
+                        'image' => '',
+                        'edit' => '',
+                        'delete' => '',
+                    ])
                 </tr>
             @empty
                 <tr>
-                    <td colspan="8" class="text-center">{{ __('admin/general.table_no_data') }}</td>
+                    <td colspan="7" class="text-center">{{ __('admin/general.table_no_data') }}</td>
                 </tr>
             @endforelse
         </tbody>

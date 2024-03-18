@@ -29,7 +29,7 @@ class UserController extends Controller
     public function index()
     {
         $items = $this->service->all();
-        return view('admin.user.index', compact('items'));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact('items'));
     }
 
     public function create()

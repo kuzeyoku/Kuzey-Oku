@@ -77,6 +77,7 @@ Route::prefix(config("template.admin.route"))->name('admin.')->group(function ()
 
         if (ModuleEnum::Blog->status())
             Route::controller(App\Http\Controllers\Admin\BlogController::class)->prefix("blog")->group(function () {
+                Route::get("/{blog}/comment", "comment")->name(ModuleEnum::Blog->route() . ".comment");
                 Route::get("/comments", "comments")->name(ModuleEnum::Blog->route() . ".comments");
                 Route::put("/comment/{comment}/approve", "comment_approve")->name(ModuleEnum::Blog->route() . ".comment_approve");
                 Route::delete("/comment/{comment}/delete", "comment_delete")->name(ModuleEnum::Blog->route() . ".comment_delete");

@@ -1,12 +1,11 @@
 @extends(themeView('admin', 'layout.list'))
-@section('pageTitle', __("admin/{$folder}.list"))
 @section('table')
     <table class="table">
         <thead>
             <tr>
                 <th>#ID</th>
-                <th>{{ __("admin/{$folder}.table_image") }}</th>
-                <th>{{ __("admin/{$folder}.table_title") }}</th>
+                <th>{{ __("admin/{$folder}.table_name") }}</th>
+                <th>{{ __("admin/{$folder}.table_company") }}</th>
                 <th>{{ __('admin/general.table_created_at') }}</th>
                 <th>{{ __('admin/general.table_updated_at') }}</th>
                 <th>{{ __('admin/general.table_status') }}</th>
@@ -17,11 +16,11 @@
             @forelse ($items as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td><img class="table_image" src="{{ $item->image_url }}"></td>
-                    <td>{{ $item->titles[config('app.fallback_locale')] ?? null }}</td>
+                    <td>{{ $item->name }}</td>
+                    <td>{{ $item->company }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{{ $item->status_view }}</td>
+                    <td>{!! $item->status_view !!}</td>
                     @include(themeView('admin', 'layout.action'), ['edit' => '', 'delete' => ''])
                 </tr>
             @empty

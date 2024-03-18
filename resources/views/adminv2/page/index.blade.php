@@ -19,7 +19,11 @@
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
                     <td>{!! $item->status_view !!}</td>
-                    <td class="action-table-data">@include('adminv2.layout.action')</td>
+                    @include(themeView('admin', 'layout.action'), [
+                        'show' => '',
+                        'edit' => '',
+                        'delete' => '',
+                    ])
                 </tr>
             @empty
                 <tr>

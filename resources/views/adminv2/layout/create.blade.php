@@ -16,12 +16,18 @@
         </div>
         <div class="card">
             <div class="card-body">
-                @include(themeView('admin', 'layout.langtab'))
+                @if ($tab)
+                    @include(themeView('admin', 'layout.langtab'))
+                @endif
                 {!! Form::open(['route' => "admin.{$route}.store", 'method' => 'post', 'files' => true]) !!}
-                <div class="tab-content">
+                @if ($tab)
+                    <div class="tab-content">
+                        @yield('form')
+                    </div>
+                @else
                     @yield('form')
-                    {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-                </div>
+                @endif
+                {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
                 {!! Form::close() !!}
             </div>
         </div>

@@ -88,6 +88,12 @@ class BlogController extends Controller
         }
     }
 
+    public function comment(Blog $blog)
+    {
+        $items = $blog->comments();
+        return view(themeView("admin", "{$this->service->folder()}.comment"), compact("items"));
+    }
+
     public function comments()
     {
         $items = BlogComment::orderBy("id", "DESC")->paginate(10);
