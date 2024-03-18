@@ -22,16 +22,16 @@ class HomeController extends Controller
         $errorLogsFile = storage_path('logs/custom_errors.log');
         $infoLogsFile = storage_path('logs/custom_info.log');
         if (File::exists($errorLogsFile)) {
-            $data["errorLogs"] = array_filter(explode("\n", File::get($errorLogsFile)), function ($line) {
+            $data["errorLogs"] = array_reverse(array_filter(explode("\n", File::get($errorLogsFile)), function ($line) {
                 return !empty($line);
-            });
+            }));
         } else {
             $data["errorLogs"] = [];
         }
         if (File::exists($infoLogsFile)) {
-            $data["infoLogs"] = array_filter(explode("\n", File::get($infoLogsFile)), function ($line) {
+            $data["infoLogs"] = array_reverse(array_filter(explode("\n", File::get($infoLogsFile)), function ($line) {
                 return !empty($line);
-            });
+            }));
         } else {
             $data["infoLogs"] = [];
         }
@@ -40,7 +40,7 @@ class HomeController extends Controller
         $data["visits"] = Cache::remember("visits", 300, function () {
             return Visitor::all();
         });
-        return view(themeView("admin", "index"), $data  );
+        return view(themeView("admin", "index"), $data);
     }
 
     public function cacheClear()

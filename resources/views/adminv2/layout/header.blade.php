@@ -1,13 +1,13 @@
 <div class="header">
 
     <div class="header-left active">
-        <a href="index.html.htm" class="logo logo-normal">
+        <a href="{{ route("admin.index") }}" class="logo logo-normal">
             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="">
         </a>
-        <a href="index.html.htm" class="logo logo-white">
+        <a href="{{ route("admin.index") }}" class="logo logo-white">
             <img src="{{ themeAsset('admin', 'img/logo-white.png') }}" alt="">
         </a>
-        <a href="index.html.htm" class="logo-small">
+        <a href="{{ route("admin.index") }}" class="logo-small">
             <img src="{{ themeAsset('admin', 'img/logo-small.png') }}" alt="">
         </a>
         <a id="toggle_btn" href="javascript:void(0);">
@@ -24,13 +24,8 @@
     </a>
 
     <ul class="nav user-menu">
-
         <li class="nav-item nav-searchinputs">
-
         </li>
-
-
-
         <li class="nav-item nav-item-box">
             <a href="javascript:void(0);" id="btnFullscreen">
                 <i data-feather="maximize"></i>
@@ -42,7 +37,6 @@
                 <span class="badge rounded-pill">1</span>
             </a>
         </li>
-
         <li class="nav-item dropdown nav-item-box">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <i data-feather="bell"></i><span class="badge rounded-pill">2</span>

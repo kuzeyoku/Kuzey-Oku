@@ -1,18 +1,16 @@
-@extends(themeView('admin', 'layout.create'))
+@extends(themeView('admin', 'layout.create'), ['tab' => true])
 @section('form')
-    <div class="tab-content">
-        @foreach (LanguageList() as $lang)
-            <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
-                {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
-                {!! Form::text("title[$lang->code]", null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-                ]) !!}
-                {!! Form::label('description', __("admin/{$folder}.form_description")) !!}
-                {!! Form::textarea("description[$lang->code]", null, ['class' => 'editor']) !!}
-            </div>
-        @endforeach
-    </div>
+    @foreach (LanguageList() as $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+            {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
+            {!! Form::text("title[$lang->code]", null, [
+                'class' => 'form-control',
+                'placeholder' => __("admin/{$folder}.form_title_placeholder"),
+            ]) !!}
+            {!! Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) !!}
+            {!! Form::textarea("description[$lang->code]", null, ['class' => 'editor']) !!}
+        </div>
+    @endforeach
     <div class="row">
         <div class="col-lg-6">
             {!! Form::label('module', __("admin/{$folder}.form_module")) !!} <span class="manitory">*</span>

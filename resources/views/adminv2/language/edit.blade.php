@@ -1,4 +1,4 @@
-@extends(themeView('admin', 'layout.main'))
+@extends(themeView('admin', 'layout.main'), ['tab' => false, 'item' => $language])
 @section('content')
     <div class="content">
         <div class="page-header">

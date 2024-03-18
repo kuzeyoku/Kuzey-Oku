@@ -1,4 +1,4 @@
-@extends(themeView('admin', 'layout.edit'), ['item' => $popup])
+@extends(themeView('admin', 'layout.edit'), ['tab' => true, 'item' => $popup])
 @push('style')
     <link rel="stylesheet" href="{{ asset('assets/admin/css/izimodal.min.css') }}">
 @endpush
@@ -22,21 +22,19 @@
             'accept' => '.png, .jpg, .jpeg, .gif',
         ]) !!}
     </div>
-    <div class="tab-content">
-        @foreach (languageList() as $key => $lang)
-            <div id="{{ $lang->code }}" class="tab-pane fade @if ($loop->first) active show @endif">
-                {!! Form::label('title', __("admin/{$folder}.form_title")) !!}
-                {!! Form::text("title[$lang->code]", $popup->titles[$lang->code] ?? null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-                ]) !!}
-                <div id="text" style="display: none">
-                    {!! Form::label('description', __("admin/{$folder}.form_description")) !!}
-                    {!! Form::textarea("description[$lang->code]", $popup->descriptions[$lang->code] ?? null, ['class' => 'editor']) !!}
-                </div>
+    @foreach (languageList() as $key => $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+            {!! Form::label('title', __("admin/{$folder}.form_title")) !!}
+            {!! Form::text("title[$lang->code]", $popup->titles[$lang->code] ?? null, [
+                'class' => 'form-control',
+                'placeholder' => __("admin/{$folder}.form_title_placeholder"),
+            ]) !!}
+            <div id="text" style="display: none">
+                {!! Form::label('description', __("admin/{$folder}.form_description")) !!}
+                {!! Form::textarea("description[$lang->code]", $popup->descriptions[$lang->code] ?? null, ['class' => 'editor']) !!}
             </div>
-        @endforeach
-    </div>
+        </div>
+    @endforeach
     <div id="video" style="display: none">
         {!! Form::label('video', __("admin/{$folder}.form_video")) !!}
         {!! Form::url('video', $popup->video, [

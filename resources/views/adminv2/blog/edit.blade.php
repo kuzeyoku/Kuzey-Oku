@@ -1,4 +1,4 @@
-@extends(themeView('admin', 'layout.edit'), ['item' => $blog])
+@extends(themeView('admin', 'layout.edit'), ['tab' => true, 'item' => $blog])
 @section('form')
     {!! Form::file('image', [
         'class' => 'dropify',

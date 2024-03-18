@@ -1,23 +1,21 @@
 @extends(themeView('admin', 'layout.create'))
 @section('form')
     {!! Form::file('image', ['class' => 'dropify', 'accept' => '.png, .jpg, .jpeg, .gif']) !!}
-    <div class="tab-content">
-        @foreach (languageList() as $lang)
-            <div id="{{ $lang->code }}" class="tab-pane fade @if ($loop->first) active show @endif">
-                {!! Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) !!}
-                {!! Form::text("title[$lang->code]", null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-                ]) !!}
-                {!! Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) !!}
-                {!! Form::textarea("description[$lang->code]", null, [
-                    'rows' => 3,
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_description_placeholder"),
-                ]) !!}
-            </div>
-        @endforeach
-    </div>
+    @foreach (languageList() as $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+            {!! Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) !!}
+            {!! Form::text("title[$lang->code]", null, [
+                'class' => 'form-control',
+                'placeholder' => __("admin/{$folder}.form_title_placeholder"),
+            ]) !!}
+            {!! Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) !!}
+            {!! Form::textarea("description[$lang->code]", null, [
+                'rows' => 3,
+                'class' => 'form-control',
+                'placeholder' => __("admin/{$folder}.form_description_placeholder"),
+            ]) !!}
+        </div>
+    @endforeach
     <div class="row">
         <div class="col-lg-6">
             {!! Form::label('button', __("admin/{$folder}.form_button")) !!}

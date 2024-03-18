@@ -10,6 +10,11 @@
                 <i data-feather="image" class="feather-image"></i>
             </a>
         @endisset
+        @isset($comment)
+            <a class="me-2 p-2" href="{{ route("admin.{$route}.comment", $item) }}" class="btn btn-image">
+                <i data-feather="message-square" class="feather-comment"></i>
+            </a>
+        @endisset
         @isset($edit)
             <a class="me-2 p-2" href="{{ route("admin.{$folder}.edit", $item) }}">
                 <i data-feather="edit" class="feather-edit"></i>

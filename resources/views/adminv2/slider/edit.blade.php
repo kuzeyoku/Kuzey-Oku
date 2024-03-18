@@ -5,22 +5,20 @@
         'data-default-file' => $slider->image_url,
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
-    <div class="tab-content">
-        @foreach (languageList() as $lang)
-            <div id="{{ $lang->code }}" class="tab-pane fade @if ($loop->first) active show @endif">
-                {!! Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) !!}
-                {!! Form::text("title[$lang->code]", $slider->titles[$lang->code] ?? null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_title_description"),
-                ]) !!}
-                {!! Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) !!}
-                {!! Form::textarea("description[$lang->code]", $slider->descriptions[$lang->code] ?? null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_description_placeholder"),
-                ]) !!}
-            </div>
-        @endforeach
-    </div>
+    @foreach (languageList() as $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+            {!! Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) !!}
+            {!! Form::text("title[$lang->code]", $slider->titles[$lang->code] ?? null, [
+                'class' => 'form-control',
+                'placeholder' => __("admin/{$folder}.form_title_description"),
+            ]) !!}
+            {!! Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) !!}
+            {!! Form::textarea("description[$lang->code]", $slider->descriptions[$lang->code] ?? null, [
+                'class' => 'form-control',
+                'placeholder' => __("admin/{$folder}.form_description_placeholder"),
+            ]) !!}
+        </div>
+    @endforeach
     <div class="row">
         <div class="col-lg-6">
             {!! Form::label('button', __("admin/{$folder}.form_button")) !!}

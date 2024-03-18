@@ -1,15 +1,13 @@
 {!! Form::open(['route' => "admin.{$route}.store", 'method' => 'post']) !!}
-<div class="tab-content">
-    @foreach (languageList() as $key => $lang)
-        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
-            {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
-            {!! Form::text("title[$lang->code]", null, [
-                'class' => 'form-control',
-                'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-            ]) !!}
-        </div>
-    @endforeach
-</div>
+@foreach (languageList() as $key => $lang)
+    <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+        {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
+        {!! Form::text("title[$lang->code]", null, [
+            'class' => 'form-control',
+            'placeholder' => __("admin/{$folder}.form_title_placeholder"),
+        ]) !!}
+    </div>
+@endforeach
 {!! Form::label('urlSelect', __("admin/{$folder}.form_urlSelect")) !!}
 {!! Form::select('urlSelect', $urlList, null, [
     'class' => 'form-control',

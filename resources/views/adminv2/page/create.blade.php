@@ -1,4 +1,4 @@
-@extends(themeView('admin', 'layout.create'))
+@extends(themeView('admin', 'layout.create'), ['tab' => true])
 @section('form')
     @foreach (LanguageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">

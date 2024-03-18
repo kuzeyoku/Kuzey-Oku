@@ -28838,6 +28838,12 @@ table tbody td.action-table-data a .feather-translate {
     height: 14px
 }
 
+table tbody td.action-table-data a .feather-comment {
+    color: #ff9f43;
+    width: 14px;
+    height: 14px
+}
+
 table tbody td.action-table-data a .feather-image {
     color: #db8400;
     width: 14px;
@@ -38333,4 +38339,10 @@ label span {
 
 .menu .submenu {
     margin-left: 30px;
+}
+
+.log-card {
+    max-height: 540px;
+    overflow-y: auto;
+
 }
