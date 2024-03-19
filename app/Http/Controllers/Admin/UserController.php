@@ -34,7 +34,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('admin.user.create');
+        return view(themeView("admin", "{$this->service->folder()}.create"));
     }
 
     public function store(UserStoreRequest $request)
@@ -55,7 +55,7 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
-        return view('admin.user.edit', compact('user'));
+        return view(themeView("admin", "{$this->service->folder()}.edit"), compact('user'));
     }
 
     public function update(UserUpdateRequest $request, User $user)

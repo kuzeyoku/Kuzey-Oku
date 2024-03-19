@@ -1,7 +1,5 @@
-@extends('admin.layout.main')
-@section('pageTitle', __("admin/{$folder}.create"))
-@section('content')
-    {!! Form::open(['route' => "admin.{$route}.store", 'method' => 'post']) !!}
+@extends(themeView('admin', 'layout.create'), ['tab' => false])
+@section('form')
     {!! Form::label('name', __("admin/{$folder}.form_name")) !!}
     {!! Form::text('name', null, [
         'class' => 'form-control',
@@ -24,6 +22,4 @@
     ]) !!}
     {!! Form::label('role', __("admin/{$folder}.form_role")) !!}
     {!! Form::select('role', $roles, 'default', ['class' => 'form-control']) !!}
-    {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
 @endsection

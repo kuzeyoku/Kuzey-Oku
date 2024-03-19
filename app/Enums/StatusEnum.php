@@ -28,8 +28,8 @@ enum StatusEnum: string
             self::Passive => "error",
             self::Draft => "secondary",
             self::Pending => "info",
-            self::Read => "lightgreen",
-            self::Unread => "lightyellow",
+            self::Read => "secondary",
+            self::Unread => "warning",
             self::Answered => "lightgrey",
         };
     }

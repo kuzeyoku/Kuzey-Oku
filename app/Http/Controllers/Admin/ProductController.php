@@ -33,7 +33,7 @@ class ProductController extends Controller
 
     public function show(Product $product)
     {
-        return view("admin.{$this->service->folder()}.show", compact('product'));
+        return view(themeView("admin", "{$this->service->folder()}.show"), compact('product'));
     }
 
     public function create()

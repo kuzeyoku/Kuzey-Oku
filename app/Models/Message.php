@@ -26,4 +26,10 @@ class Message extends Model
     {
         return $query->whereStatus(StatusEnum::Unread);
     }
+
+    public function getStatusViewAttribute()
+    {
+        $status = StatusEnum::getStatus($this->status);
+        return $status->badge();
+    }
 }

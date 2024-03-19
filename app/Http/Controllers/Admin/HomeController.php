@@ -35,8 +35,6 @@ class HomeController extends Controller
         } else {
             $data["infoLogs"] = [];
         }
-        $data["messages"] = Message::unread()->count();
-        $data["comments"] = BlogComment::pending()->count();
         $data["visits"] = Cache::remember("visits", 300, function () {
             return Visitor::all();
         });

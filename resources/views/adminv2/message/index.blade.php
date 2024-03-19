@@ -20,7 +20,7 @@
                     <td>{{ $item->subject }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{{ $item->status_view }}</td>
+                    <td>{!! $item->status_view !!}</td>
                     <td class="action-table-data">
                         <div class="edit-delete-action">
                             <a class="me-2 edit-icon p-2" href="{{ route("admin.{$route}.show", $item) }}">

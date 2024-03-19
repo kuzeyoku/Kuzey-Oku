@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\ModuleEnum;
+use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 //use Illuminate\Support\Facades\Artisan;
 
@@ -18,7 +19,7 @@ Route::prefix(config("template.admin.route"))->name('admin.')->group(function ()
     Route::post("reset-password", [App\Http\Controllers\Admin\AuthController::class, "reset_password"])->name("auth.reset_password");
     Route::post('authenticate', [App\Http\Controllers\Admin\AuthController::class, 'authenticate'])->name('auth.authenticate');
 
-    Route::middleware(['auth'])->group(function () {
+    Route::middleware(['auth', Admin::class])->group(function () {
 
         Route::get('logout', [App\Http\Controllers\Admin\AuthController::class, 'logout'])->name('auth.logout');
 

@@ -8,12 +8,10 @@ return [
     "ip" => "IP:",
     "phone" => "Tel:",
     "reply" => "Yanıtla",
-    //alert
     "send_success" => "Mesajınız başarıyla gönderildi.",
     "send_error" => "Mesajınız gönderilirken bir hata oluştu.",
     "delete_success" => "Mesaj başarıyla silindi.",
     "delete_error" => "Mesaj silinirken bir hata oluştu.",
-    //form
     "form_send" => "Gönder",
     "form_customer" => "Alıcı",
     "form_subject" => "Konu",

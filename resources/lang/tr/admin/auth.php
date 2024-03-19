@@ -20,6 +20,7 @@ return [
     "confirm" => "Onayla",
     "or" => "Yada",
     'login' => 'Giriş Yap',
+    "logout" => "Çıkış Yap",
     'login_success_title' => 'Hoşgeldiniz :name',
     'login_success_message' => 'Başarıyla Giriş Yaptınız.',
     'login_error' => 'Kullanıcı bilgileri hatalı',
