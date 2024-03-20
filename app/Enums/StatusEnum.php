@@ -24,7 +24,7 @@ enum StatusEnum: string
     public function color(): string
     {
         return match ($this) {
-            self::Active => "success",
+            self::Active => "linesuccess",
             self::Passive => "error",
             self::Draft => "secondary",
             self::Pending => "info",
@@ -46,7 +46,7 @@ enum StatusEnum: string
 
     public function badge(): string
     {
-        return sprintf('<span class="badge bg-%s">%s</span>', $this->color(), $this->title());
+        return sprintf('<span class="badge badge-%s">%s</span>', $this->color(), $this->title());
     }
 
     public static function getValues()
