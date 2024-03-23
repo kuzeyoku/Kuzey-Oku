@@ -37,24 +37,63 @@
                                     <td>{{ $item->email }}</td>
                                     <td>{{ Str::limit($item->comment, 50) }}</td>
                                     <td>{{ $item->created_at }}</td>
-                                    <td>
-                                        @if ($item->status != App\Enums\StatusEnum::Active->value)
-                                            {{ Form::open([
-                                                'url' => route("admin.{$route}.comment_approve", $item),
-                                                'method' => 'PUT',
+                                    <td class="table-action">
+                                        <div class="data-action-button">
+                                            @if ($item->status != App\Enums\StatusEnum::Active->value)
+                                                {{ Form::open([
+                                                    'url' => route("admin.{$route}.comment_approve", $item),
+                                                    'method' => 'PUT',
+                                                    'class' => 'd-inline',
+                                                ]) }}
+                                                <button class="me-2 p-2" type="submit"><i data-feather="check-circle"
+                                                        class="feather-icon text-success"></i></button>
+                                                {{ Form::close() }}
+                                            @endif
+                                            <a class="me-2 p-2" data-bs-toggle="modal" href="javascript:void(0);"
+                                                data-bs-target="#{{ 'comment-' . $item->id }}">
+                                                <i data-feather="eye" class="feather-icon"></i>
+                                            </a>
+
+                                            <div class="modal fade" id="comment-{{ $item->id }}" aria-hidden="true">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header border-0 custom-modal-header">
+                                                            <div class="page-title">
+                                                                <h4>Yorum Detayları</h4>
+                                                            </div>
+                                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">×</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <ul>
+                                                                <li class="p-2 border mb-2">
+                                                                    <b>Yorumu Yapan : </b>{{ $item->name }}
+                                                                    ({{ $item->email }})
+                                                                </li>
+                                                                <li class="p-2 border mb-2">
+                                                                    <b>Yorum : </b>{{ $item->comment }}
+                                                                </li>
+                                                            </ul>
+                                                            <div class="modal-footer-btn">
+                                                                <button type="button" class="btn btn-cancel me-2"
+                                                                    data-bs-dismiss="modal">Kapat</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            {!! Form::open([
+                                                'url' => route("admin.{$route}.comment_delete", $item),
+                                                'method' => 'delete',
                                                 'class' => 'd-inline',
-                                            ]) }}
-                                            <button type="submit" class="btn btn-success">@lang('admin/general.approve')</button>
-                                            {{ Form::close() }}
-                                        @endif
-                                        {!! Form::open([
-                                            'url' => route("admin.{$route}.comment_delete", $item),
-                                            'method' => 'delete',
-                                            'class' => 'd-inline',
-                                        ]) !!}
-                                        <a href="javascript:void(0);"
-                                            class="btn btn-danger destroy-btn">@lang('admin/general.delete')</a>
-                                        {!! Form::close() !!}
+                                            ]) !!}
+                                            <a class="destroy-btn p-2" href="javascript:void(0);">
+                                                <i data-feather="trash-2" class="feather-icon text-danger"></i>
+                                            </a>
+                                            {!! Form::close() !!}
+                                        </div>
                                     </td>
                                 </tr>
                             @empty
@@ -66,50 +105,6 @@
                     </table>
                 </div>
                 {{ $items->links(themeView('admin', 'layout.pagination')) }}
-            </div>
-        </div>
-    </div>
-    <button class="btn btn-added" data-bs-toggle="modal" data-bs-target="#add-category">Add New Category</button>
-    <div class="modal fade" id="add-category" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="page-wrapper-new p-0">
-                    <div class="content">
-                        <div class="modal-header border-0 custom-modal-header">
-                            <div class="page-title">
-                                <h4>Create Category</h4>
-                            </div>
-                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">×</span>
-                            </button>
-                        </div>
-                        <div class="modal-body custom-modal-body">
-                            <form action="category-list.html">
-                                <div class="mb-3">
-                                    <label class="form-label">Category</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="mb-3">
-                                    <label class="form-label">Category Slug</label>
-                                    <input type="text" class="form-control">
-                                </div>
-                                <div class="mb-0">
-                                    <div
-                                        class="status-toggle modal-status d-flex justify-content-between align-items-center">
-                                        <span class="status-label">Status</span>
-                                        <input type="checkbox" id="user2" class="check" checked="">
-                                        <label for="user2" class="checktoggle"></label>
-                                    </div>
-                                </div>
-                                <div class="modal-footer-btn">
-                                    <button type="button" class="btn btn-cancel me-2"
-                                        data-bs-dismiss="modal">Cancel</button>
-                                    <button type="submit" class="btn btn-submit">Create Category</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

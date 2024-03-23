@@ -25,7 +25,7 @@ enum StatusEnum: string
     {
         return match ($this) {
             self::Active => "linesuccess",
-            self::Passive => "error",
+            self::Passive => "lineerror",
             self::Draft => "secondary",
             self::Pending => "info",
             self::Read => "secondary",

@@ -1,23 +1,23 @@
-<td class="action-table-data">
-    <div class="edit-delete-action">
+<td class="table-action">
+    <div class="data-action-button">
         @isset($show)
             <a class="me-2 p-2" target="_blank" href="{{ $item->url }}">
-                <i data-feather="eye" class="feather-eye"></i>
+                <i data-feather="eye" class="feather-icon"></i>
             </a>
         @endisset
         @isset($image)
-            <a class="me-2 p-2" href="{{ route("admin.{$route}.image", $item) }}" class="btn btn-image">
-                <i data-feather="image" class="feather-image"></i>
+            <a class="me-2 p-2" href="{{ route("admin.{$route}.image", $item) }}">
+                <i data-feather="image" class="feather-icon text-secondary"></i>
             </a>
         @endisset
         @isset($comment)
-            <a class="me-2 p-2" href="{{ route("admin.{$route}.comment", $item) }}" class="btn btn-image">
-                <i data-feather="message-square" class="feather-comment"></i>
+            <a class="me-2 p-2" href="{{ route("admin.{$route}.comment", $item) }}">
+                <i data-feather="message-square" class="feather-icon text-info"></i>
             </a>
         @endisset
         @isset($edit)
             <a class="me-2 p-2" href="{{ route("admin.{$folder}.edit", $item) }}">
-                <i data-feather="edit" class="feather-edit"></i>
+                <i data-feather="edit" class="feather-icon text-success"></i>
             </a>
         @endisset
         @isset($delete)
@@ -27,7 +27,7 @@
                 'class' => 'd-inline',
             ]) !!}
             <a class="destroy-btn p-2" href="javascript:void(0);">
-                <i data-feather="trash-2" class="feather-trash-2"></i>
+                <i data-feather="trash-2" class="feather-icon text-danger"></i>
             </a>
             {!! Form::close() !!}
         @endisset
