@@ -20,4 +20,10 @@ class Language extends Model
     {
         return $query->whereStatus(StatusEnum::Active->value);
     }
+
+    public function getStatusViewAttribute()
+    {
+        $status = StatusEnum::getStatus($this->status);
+        return $status->badge();
+    }
 }
