@@ -1,6 +1,8 @@
 <?php
 return [
     "title" => "Mesaj Yönetimi",
+    "description" => "Kullanıcılardan gelen mesajları yönetin ve yeni mesajlar gönderin.",
+    "create" => "Yeni Mesaj Gönder",
     "list" => "Mesaj Listesi",
     "show" => "Mesaj Görüntüle",
     "reply" => "Mesajı Yanıtla",

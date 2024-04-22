@@ -5,6 +5,7 @@ return [
     'create' => 'İçerik Oluştur',
     'edit' => 'İçerik Düzenle',
     'list' => 'İçerik Listesi',
+    "comments" => "Yorumlar",
     "comment_title" => "Blog Yorumları",
     "comment_description" => "Blog yorumlarını yönetin.",
     'create_success' => 'İçerik başarıyla oluşturuldu.',
