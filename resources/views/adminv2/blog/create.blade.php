@@ -1,9 +1,6 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => true])
 @section('form')
-    {!! Form::file('image', [
-        'class' => 'dropify',
-        'accept' => '.png, .jpg, .jpeg, .gif',
-    ]) !!}
+{{ html()->file("image")->class("dropify")->accept(".png, .jpg, .jpeg, .gif") }}
     @foreach (languageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
