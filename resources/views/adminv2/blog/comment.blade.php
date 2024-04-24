@@ -84,15 +84,11 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            {!! Form::open([
-                                                'url' => route("admin.{$route}.comment_delete", $item),
-                                                'method' => 'delete',
-                                                'class' => 'd-inline',
-                                            ]) !!}
+                                            {{ Html::form(route("admin.{$route}.comment_delete", $item))->method('DELETE')->class('d-inline')->open() }}
                                             <a class="destroy-btn p-2" href="javascript:void(0);">
                                                 <i data-feather="trash-2" class="feather-icon text-danger"></i>
                                             </a>
-                                            {!! Form::close() !!}
+                                            {{ Html::form()->close() }}
                                         </div>
                                     </td>
                                 </tr>
