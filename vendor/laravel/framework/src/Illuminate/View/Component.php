@@ -170,7 +170,7 @@ abstract class Component
             return static::$bladeViewCache[$key];
         }
 
-        if ($this->factory()->exists($contents)) {
+        if (strlen($contents) <= PHP_MAXPATHLEN && $this->factory()->exists($contents)) {
             return static::$bladeViewCache[$key] = $contents;
         }
 

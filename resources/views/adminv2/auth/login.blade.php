@@ -21,7 +21,7 @@
         <div class="account-content">
             <div class="login-wrapper bg-img">
                 <div class="login-content">
-                    {{ html()->form('POST', route("admin.{$route}.authenticate"))->id('login-form')->open() }}
+                    {{ Form::open(['url' => route("admin.{$route}.authenticate"), 'id' => 'login-form']) }}
                     <div class="login-userset">
                         <div class="login-logo logo-normal">
                             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="img">
@@ -34,23 +34,23 @@
                             <h4>@lang("admin/{$folder}.please_login")</h4>
                         </div>
                         <div class="form-login">
-                            {{ html()->label(__("admin/{$folder}.email")) }}
+                            {{ Form::label(__("admin/{$folder}.email")) }}
                             <div class="form-addons">
-                                {{ html()->email('email')->class('form-control mb-0')->placeholder(__("admin/{$folder}.email_placeholder")) }}
+                                {{ Form::email('email', null, ['class' => 'form-control mb-0', 'placeholder' => __("admin/{$folder}.email_placeholder")]) }}
                                 <img src="{{ themeAsset('admin', 'img/icons/mail.svg') }}" alt="img">
                             </div>
                             @error('email')
-                                {{ html()->span($message)->class('text-danger') }}
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-login">
-                            {{ html()->label(__("admin/{$folder}.password")) }}
+                            {{ Form::label(__("admin/{$folder}.password")) }}
                             <div class="pass-group">
-                                {{ html()->password('password')->class('form-control pass-input mb-0')->placeholder(__("admin/{$folder}.password_placeholder")) }}
+                                {{ Form::password('password', ['class' => 'form-control pass-input mb-0', 'placeholder' => __("admin/{$folder}.password_placeholder")]) }}
                                 <span class="fas toggle-password fa-eye-slash"></span>
                             </div>
                             @error('password')
-                                {{ html()->span($message)->class('text-danger') }}
+                                <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
                         <div class="form-login authentication-check">
@@ -68,7 +68,12 @@
                             </div>
                         </div>
                         <div class="form-login">
-                            {{ html()->submit(__('admin/auth.login'))->class('btn btn-login g-recaptcha')->attribute('data-sitekey', config('setting.recaptcha.site_key'))->attribute('data-callback', 'onSubmit')->attribute('data-action', 'submit') }}
+                            {!! Form::submit(__('admin/auth.login'), [
+                                'class' => 'btn btn-login g-recaptcha',
+                                'data-sitekey' => config('setting.recaptcha.site_key'),
+                                'data-callback' => 'onSubmit',
+                                'data-action' => 'submit',
+                            ]) !!}
                         </div>
                         {{-- <div class="form-setlogin or-text">
                             <h4>&</h4>
@@ -98,7 +103,7 @@
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
                     </div>
-                    {{ html()->form()->close() }}
+                    {{ Form::close() }}
                 </div>
             </div>
         </div>

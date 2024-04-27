@@ -12,10 +12,9 @@ use Illuminate\Support\Traits\Conditionable;
 use Illuminate\Support\Traits\Macroable;
 use IteratorAggregate;
 use JsonSerializable;
-use Stringable;
 use Traversable;
 
-class ComponentAttributeBag implements ArrayAccess, IteratorAggregate, JsonSerializable, Htmlable, Stringable
+class ComponentAttributeBag implements ArrayAccess, IteratorAggregate, JsonSerializable, Htmlable
 {
     use Conditionable, Macroable;
 
@@ -502,7 +501,8 @@ class ComponentAttributeBag implements ArrayAccess, IteratorAggregate, JsonSeria
             }
 
             if ($value === true) {
-                $value = $key === 'x-data' || str_starts_with($key, 'wire:') ? '' : $key;
+                // Exception for Alpine...
+                $value = $key === 'x-data' ? '' : $key;
             }
 
             $string .= ' '.$key.'="'.str_replace('"', '\\"', trim($value)).'"';
