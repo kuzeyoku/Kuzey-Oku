@@ -2,9 +2,8 @@
 
 namespace App\Http\Requests\Blog;
 
-use App\Enums\ModuleEnum;
-use Illuminate\Validation\Rules\File;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Enums\ModuleEnum;
 
 class StoreBlogRequest extends FormRequest
 {
@@ -30,6 +29,7 @@ class StoreBlogRequest extends FormRequest
             "order" => "required|numeric|min:0",
             "status" => "required",
             "category_id" => "",
+            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . config("setting.image.max_size", 4096)
         ];
     }
 
