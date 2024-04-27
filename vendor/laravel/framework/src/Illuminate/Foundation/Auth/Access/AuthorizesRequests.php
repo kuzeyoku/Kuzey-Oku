@@ -49,7 +49,7 @@ trait AuthorizesRequests
      */
     protected function parseAbilityAndArguments($ability, $arguments)
     {
-        if (is_string($ability) && !str_contains($ability, '\\')) {
+        if (is_string($ability) && ! str_contains($ability, '\\')) {
             return [$ability, $arguments];
         }
 
@@ -109,15 +109,13 @@ trait AuthorizesRequests
     protected function resourceAbilityMap()
     {
         return [
-            'index' => 'index',
-            'show' => 'show',
+            'index' => 'viewAny',
+            'show' => 'view',
             'create' => 'create',
-            'store' => 'store',
-            'edit' => 'edit',
+            'store' => 'create',
+            'edit' => 'update',
             'update' => 'update',
-            'destroy' => 'destroy',
-            "destroy" => "imageDelete",
-            "destroy" => "imageAllDelete",
+            'destroy' => 'delete',
         ];
     }
 
