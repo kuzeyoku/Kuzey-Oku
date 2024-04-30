@@ -20,7 +20,6 @@ class ImageService
 
     public function upload(UploadedFile $file)
     {
-
         $fileName = uniqid() . "." . $file->getClientOriginalExtension();
         $uploadFolder = config("setting.image.upload_folder", "image");
         $path = "public/" . $uploadFolder . "/" . $this->module->folder();
@@ -30,7 +29,9 @@ class ImageService
 
         $this->imageManager
             ->fromFile($file->getPathname())
-            ->fitToWidth($width)
+            ->resize($width, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })
             ->crop(0, 0, $width, $height)
             ->toFile($file->getPathname());
         if (Storage::putFileAs($path, $file, $fileName)) {
