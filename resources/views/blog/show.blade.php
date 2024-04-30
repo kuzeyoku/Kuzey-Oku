@@ -10,7 +10,7 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="blog-details__left">
                         <div class="blog-details__img">
-                            <img src="{{ $post->image_url }}" alt="">
+                            {{ $post->getFirstMedia('cover') }}
                             <div class="blog-details__date">
                                 <span class="day">{{ $post->created_at->translatedFormat('d') }}</span>
                                 <span class="month">{{ $post->created_at->translatedFormat('M') }}</span>
@@ -107,7 +107,8 @@
                             <ul class="sidebar__post-list list-unstyled">
                                 @foreach ($popularPost as $item)
                                     <li>
-                                        <div class="sidebar__post-image"> <img src="{{ $item->image_url }}" alt="">
+                                        <div class="sidebar__post-image"> <img
+                                                src="{{ $item->getFirstMediaUrl('cover', 'thumbnail') }}" alt="">
                                         </div>
                                         <div class="sidebar__post-content">
                                             <h3> <span class="sidebar__post-content-meta"><i

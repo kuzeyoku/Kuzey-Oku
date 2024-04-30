@@ -2,7 +2,7 @@
 @section('form')
     {!! Form::file('image', [
         'class' => 'dropify',
-        'data-default-file' => $blog->image_url,
+        'data-default-file' => $blog->getFirstMediaUrl("cover"),
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     @foreach (languageList() as $lang)

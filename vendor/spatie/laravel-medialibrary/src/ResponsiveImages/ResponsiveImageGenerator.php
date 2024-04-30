@@ -179,6 +179,6 @@ class ResponsiveImageGenerator
     {
         $fileName = pathinfo($fileName, PATHINFO_FILENAME);
 
-        return "{$fileName}___{$conversionName}_{$width}_{$height}.{$extension}";
+        return "{$fileName}_{$width}_{$height}.{$extension}";
     }
 }

@@ -61,19 +61,6 @@ class BaseService
 
     public function delete(Model $item)
     {
-        if (isset($item->image) && $item->image !== null) {
-            $imageService = new ImageService($this->module);
-            $imageService->delete($item->image);
-        }
-        if (isset($item->brochure) && $item->brochure !== null) {
-            $fileService = new FileService($this->module);
-            $fileService->delete($item->brochure);
-        }
-        if (isset($item->thumbnail) && $item->thumbnail !== null) {
-            $imageService = new ImageService($this->module);
-            $imageService->delete($item->thumbnail);
-        }
-
         $this->cacheClear();
         return $item->delete();
     }

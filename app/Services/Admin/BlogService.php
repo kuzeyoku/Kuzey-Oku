@@ -30,14 +30,15 @@ class BlogService extends BaseService
             "user_id" => auth()->user()->id
         ]);
 
-        // if (isset($request->image) && $request->image->isValid()) {
-        //     $data->merge(["image" => $this->imageService->upload($request->image)]);
-        // }
-
         $query = parent::create($data);
-        $query->addMediaFromRequest("image")->toMediaCollection("image");
 
         if ($query->id) {
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")
+                    ->usingName($data->slug)
+                    ->withResponsiveImages()
+                    ->toMediaCollection("cover");
+            }
             $this->translations($query->id, $request);
         }
 
@@ -53,20 +54,21 @@ class BlogService extends BaseService
             "category_id" => $request->category_id,
         ]);
 
-        if (isset($request->imageDelete)) {
-            parent::imageDelete($post);
-        }
-
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($post->image)) {
-                $this->imageService->delete($post->image);
-            }
-        }
-
         $query = parent::update($data, $post);
 
         if ($query) {
+            if (isset($request->imageDelete)) {
+                $post->clearMediaCollection("cover");
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $post->clearMediaCollection("cover");
+
+                $post->addMediaFromRequest("image")
+                    ->usingName($data->slug)
+                    ->withResponsiveImages()
+                    ->toMediaCollection("cover");
+            }
             $this->translations($post->id, $request);
         }
 

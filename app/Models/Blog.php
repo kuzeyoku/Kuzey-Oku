@@ -17,12 +17,12 @@ class Blog extends Model implements HasMedia
     use HasFactory, InteractsWithMedia;
 
     public function registerMediaConversions(Media $media = null): void
-{
-    $this
-        ->addMediaConversion('preview')
-        ->fit(Manipulations::FIT_CROP, 300, 300)
-        ->nonQueued();
-}
+    {
+        $this
+            ->addMediaConversion('thumbnail')
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->nonQueued();
+    }
 
     protected $fillable = [
         'slug',
