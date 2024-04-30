@@ -30,7 +30,7 @@ class UpdateLanguageRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title" => __("admin/{$this->folder}.form.title"),
+            "title" => __("admin/{$this->folder}.form_title"),
             "status" => __("admin/general.status")
         ];
     }

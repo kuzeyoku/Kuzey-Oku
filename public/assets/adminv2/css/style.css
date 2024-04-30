@@ -7239,7 +7239,6 @@ caption {
 .table td {
     padding: .75rem;
     vertical-align: middle;
-    line-height: 1.462;
     font-size: .813rem;
     white-space: nowrap
 }

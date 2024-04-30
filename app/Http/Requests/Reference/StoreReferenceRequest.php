@@ -32,8 +32,8 @@ class StoreReferenceRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "image" => __("admin/{$this->folder}.form.image"),
-            "url" => __("admin/{$this->folder}.form.url"),
+            "image" => __("admin/{$this->folder}.form_image"),
+            "url" => __("admin/{$this->folder}.form_url"),
             "order" => __("admin/general.order"),
             "status" => __("admin/general.status")
         ];

@@ -43,20 +43,20 @@ class UpdateProjectRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form.title"),
-            "title.*" => __("admin/{$this->folder}.form.title"),
-            "description.*" => __("admin/{$this->folder}.form.description"),
-            "shortdescription.*" => __("admin/{$this->folder}.form.shortdescription"),
-            "features.*" => __("admin/{$this->folder}.form.features"),
-            "start_date" => __("admin/{$this->folder}.form.start_date"),
-            "end_date" => __("admin/{$this->folder}.form.end_date"),
-            "video" => __("admin/{$this->folder}.form.video"),
-            "brochure" => __("admin/{$this->folder}.form.brochure"),
-            "model3D" => __("admin/{$this->folder}.form.3d"),
+            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
+            "title.*" => __("admin/{$this->folder}.form_title"),
+            "description.*" => __("admin/{$this->folder}.form_description"),
+            "shortdescription.*" => __("admin/{$this->folder}.form_shortdescription"),
+            "features.*" => __("admin/{$this->folder}.form_features"),
+            "start_date" => __("admin/{$this->folder}.form_start_date"),
+            "end_date" => __("admin/{$this->folder}.form_end_date"),
+            "video" => __("admin/{$this->folder}.form_video"),
+            "brochure" => __("admin/{$this->folder}.form_brochure"),
+            "model3D" => __("admin/{$this->folder}.form_3d"),
             "order" => __("admin/general.order"),
             "status" => __("admin/general.status"),
-            "category_id" => __("admin/{$this->folder}.form.category"),
-            "image" => __("admin/{$this->folder}.form.image"),
+            "category_id" => __("admin/{$this->folder}.form_category"),
+            "image" => __("admin/{$this->folder}.form_image"),
         ];
     }
 }

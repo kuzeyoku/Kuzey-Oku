@@ -36,10 +36,10 @@ class StoreCategoryRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form.title"),
-            "description.*" => __("admin/{$this->folder}.form.description"),
-            "module" => __("admin/{$this->folder}.form.module"),
-            "parent" => __("admin/{$this->folder}.form.parent"),
+            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
+            "description.*" => __("admin/{$this->folder}.form_description"),
+            "module" => __("admin/{$this->folder}.form_module"),
+            "parent" => __("admin/{$this->folder}.form_parent"),
             "order" => __("admin/general.order"),
             "status" => __("admin/general.status")
         ];

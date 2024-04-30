@@ -32,8 +32,8 @@ class UpdatePageRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form.title"),
-            "description.*" => __("admin/{$this->folder}.form.description"),
+            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
+            "description.*" => __("admin/{$this->folder}.form_description"),
             "status" => __("admin/general.status")
         ];
     }

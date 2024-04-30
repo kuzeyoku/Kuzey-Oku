@@ -24,6 +24,7 @@ return [
     "comment_delete_error" => "Yorum Silinirken Bir Hata Oluştu.",
     "comment_delete_log" => "Bir Yorum Silindi",
     'form_title' => 'İçerik Başlığı',
+    "form_image" => "Görsel",
     'form_title_placeholder' => 'İçerik Başlığı Giriniz',
     'form_description' => 'Açıklama',
     "form_tags" => "Etiketler",

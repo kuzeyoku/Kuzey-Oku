@@ -45,21 +45,21 @@ class UpdatePopupRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "type" => __("admin/{$this->folder}.form.type"),
-            "image" => __("admin/{$this->folder}.form.image"),
-            "url" => __("admin/{$this->folder}.form.url"),
-            "video" => __("admin/{$this->folder}.form.video"),
-            "title.*" => __("admin/{$this->folder}.form.title"),
-            "description.*" => __("admin/{$this->folder}.form.description"),
+            "type" => __("admin/{$this->folder}.form_type"),
+            "image" => __("admin/{$this->folder}.form_image"),
+            "url" => __("admin/{$this->folder}.form_url"),
+            "video" => __("admin/{$this->folder}.form_video"),
+            "title.*" => __("admin/{$this->folder}.form_title"),
+            "description.*" => __("admin/{$this->folder}.form_description"),
             "status" => __("admin.general.status"),
-            "time" => __("admin/{$this->folder}.form.time"),
-            "width" => __("admin/{$this->folder}.form.width"),
-            "closeOnEscape" => __("admin/{$this->folder}.form.closeOnEscape"),
-            "closeButton" => __("admin/{$this->folder}.form.closeButton"),
-            "overlayClose" => __("admin/{$this->folder}.form.overlayClose"),
-            "pauseOnHover" => __("admin/{$this->folder}.form.pauseOnHover"),
-            "fullScreenButton" => __("admin/{$this->folder}.form.fullScreenButton"),
-            "color" => __("admin/{$this->folder}.form.color"),
+            "time" => __("admin/{$this->folder}.form_time"),
+            "width" => __("admin/{$this->folder}.form_width"),
+            "closeOnEscape" => __("admin/{$this->folder}.form_closeOnEscape"),
+            "closeButton" => __("admin/{$this->folder}.form_closeButton"),
+            "overlayClose" => __("admin/{$this->folder}.form_overlayClose"),
+            "pauseOnHover" => __("admin/{$this->folder}.form_pauseOnHover"),
+            "fullScreenButton" => __("admin/{$this->folder}.form_fullScreenButton"),
+            "color" => __("admin/{$this->folder}.form_color"),
         ];
     }
 }

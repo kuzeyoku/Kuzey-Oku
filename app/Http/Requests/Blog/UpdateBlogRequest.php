@@ -37,11 +37,11 @@ class UpdateBlogRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title." . app()->getLocale() => __("admin/{$this->folder}.form.title"),
-            "description.*" => __("admin/{$this->folder}.form.description"),
-            "tags.*" => __("admin/{$this->folder}.form.tags"),
-            "category_id" => __("admin/{$this->folder}.form.category"),
-            "image" => __("admin/{$this->folder}.form.image"),
+            "title." . app()->getLocale() => __("admin/{$this->folder}.form_title"),
+            "description.*" => __("admin/{$this->folder}.form_description"),
+            "tags.*" => __("admin/{$this->folder}.form_tags"),
+            "category_id" => __("admin/{$this->folder}.form_category"),
+            "image" => __("admin/{$this->folder}.form_image"),
             "order" => __("admin/general.order"),
             "status" => __("admin/general.status")
         ];

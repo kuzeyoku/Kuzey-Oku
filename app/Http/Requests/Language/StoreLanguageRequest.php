@@ -31,8 +31,8 @@ class StoreLanguageRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title" => __("admin/{$this->folder}.form.title"),
-            "code" => __("admin/{$this->folder}.form.code"),
+            "title" => __("admin/{$this->folder}.form_title"),
+            "code" => __("admin/{$this->folder}.form_code"),
             "status" => __("admin/general.status"),
         ];
     }

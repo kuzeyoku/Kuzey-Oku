@@ -36,12 +36,12 @@ class StoreMenuRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form.title"),
-            "title.*" => __("admin/{$this->folder}.form.title"),
-            "type" => __("admin/{$this->folder}.form.type"),
-            "parent_id" => __("admin/{$this->folder}.form.parent"),
+            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
+            "title.*" => __("admin/{$this->folder}.form_title"),
+            "type" => __("admin/{$this->folder}.form_type"),
+            "parent_id" => __("admin/{$this->folder}.form_parent"),
             "order" => __("admin/general.order"),
-            "blank" => __("admin/{$this->folder}.form.blank"),
+            "blank" => __("admin/{$this->folder}.form_blank"),
         ];
     }
 }

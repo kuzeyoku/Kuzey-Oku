@@ -39,13 +39,13 @@ class StoreEducationRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form.title"),
-            "description.*" => __("admin/{$this->folder}.form.description"),
-            // "category_id" => __("admin/{$this->folder}.form.category"),
-            "image" => __("admin/{$this->folder}.form.image"),
+            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
+            "description.*" => __("admin/{$this->folder}.form_description"),
+            // "category_id" => __("admin/{$this->folder}.form_category"),
+            "image" => __("admin/{$this->folder}.form_image"),
             "status" => __("admin/general.status"),
             "order" => __("admin/general.order"),
-            "video" => __("admin/{$this->folder}.form.video"),
+            "video" => __("admin/{$this->folder}.form_video"),
         ];
     }
 }

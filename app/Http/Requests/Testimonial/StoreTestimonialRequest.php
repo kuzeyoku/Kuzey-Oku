@@ -36,11 +36,11 @@ class StoreTestimonialRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            // "image" => __("admin/{$this->folder}.form.image"),
-            "name" => __("admin/{$this->folder}.form.name"),
-            "company" => __("admin/{$this->folder}.form.company"),
-            "position" => __("admin/{$this->folder}.form.position"),
-            "message" => __("admin/{$this->folder}.form.message"),
+            // "image" => __("admin/{$this->folder}.form_image"),
+            "name" => __("admin/{$this->folder}.form_name"),
+            "company" => __("admin/{$this->folder}.form_company"),
+            "position" => __("admin/{$this->folder}.form_position"),
+            "message" => __("admin/{$this->folder}.form_message"),
             "order" => __("admin/general.order"),
             "status" => "admin.general.status",
         ];

@@ -19,6 +19,13 @@
                 @if ($tab)
                     @include(themeView('admin', 'layout.langtab'))
                 @endif
+                @if ($errors)
+                    @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger">
+                            {!! $error !!}
+                        </div>
+                    @endforeach
+                @endif
                 {!! Form::open(['route' => "admin.{$route}.store", 'method' => 'post', 'files' => true]) !!}
                 @if ($tab)
                     <div class="tab-content">
