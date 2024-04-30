@@ -30,11 +30,12 @@ class BlogService extends BaseService
             "user_id" => auth()->user()->id
         ]);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-        }
+        // if (isset($request->image) && $request->image->isValid()) {
+        //     $data->merge(["image" => $this->imageService->upload($request->image)]);
+        // }
 
         $query = parent::create($data);
+        $query->addMediaFromRequest("image")->toMediaCollection("image");
 
         if ($query->id) {
             $this->translations($query->id, $request);

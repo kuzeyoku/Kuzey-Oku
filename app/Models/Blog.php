@@ -7,10 +7,22 @@ use App\Enums\StatusEnum;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class Blog extends Model
+class Blog extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
+
+    public function registerMediaConversions(Media $media = null): void
+{
+    $this
+        ->addMediaConversion('preview')
+        ->fit(Manipulations::FIT_CROP, 300, 300)
+        ->nonQueued();
+}
 
     protected $fillable = [
         'slug',
