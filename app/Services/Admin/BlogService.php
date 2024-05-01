@@ -35,7 +35,6 @@ class BlogService extends BaseService
         if ($query->id) {
             if (isset($request->image) && $request->image->isValid()) {
                 $query->addMediaFromRequest("image")
-                    ->usingName($data->slug)
                     ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }
@@ -65,7 +64,6 @@ class BlogService extends BaseService
                 $post->clearMediaCollection("cover");
 
                 $post->addMediaFromRequest("image")
-                    ->usingName($data->slug)
                     ->withResponsiveImages()
                     ->toMediaCollection("cover");
             }

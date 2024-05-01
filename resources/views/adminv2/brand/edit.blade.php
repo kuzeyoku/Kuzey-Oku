@@ -2,7 +2,7 @@
 @section('form')
     {!! Form::file('image', [
         'class' => 'dropify',
-        'data-default-file' => $brand->image_url,
+        'data-default-file' => $brand->getFirstMediaUrl('image'),
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     <br>

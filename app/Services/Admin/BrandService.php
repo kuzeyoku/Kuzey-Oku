@@ -27,11 +27,13 @@ class BrandService extends BaseService
             "status" => $request->status
         ]);
 
+        $query = parent::create($data);
+
         if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
+            $query->addMediaFromRequest("image")->toMediaCollection("image");
         }
 
-        return parent::create($data);
+        return $query;
     }
 
     public function update(Object $request, Model $brand)
@@ -44,13 +46,12 @@ class BrandService extends BaseService
         ]);
 
         if (isset($request->imageDelete)) {
-            parent::imageDelete($brand);
+            $brand->clearMediaCollection("image");
         }
 
         if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($brand->image))
-                $this->imageService->delete($brand->image);
+            $brand->clearMediaCollection("image");
+            $brand->addMediaFromRequest("image")->toMediaCollection("image");
         }
 
         return parent::update($data, $brand);

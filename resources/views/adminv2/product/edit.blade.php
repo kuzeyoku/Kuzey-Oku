@@ -1,8 +1,8 @@
-@extends(themeView('admin', 'layout.edit'), ['item' => $product])
+@extends(themeView('admin', 'layout.edit'), ['tab' => true, 'item' => $product])
 @section('form')
     {!! Form::file('image', [
         'class' => 'dropify',
-        'data-default-file' => $product->image_url,
+        'data-default-file' => $product->getFirstMediaUrl('cover'),
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     @foreach (languageList() as $lang)

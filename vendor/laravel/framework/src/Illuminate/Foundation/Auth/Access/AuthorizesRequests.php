@@ -49,7 +49,7 @@ trait AuthorizesRequests
      */
     protected function parseAbilityAndArguments($ability, $arguments)
     {
-        if (is_string($ability) && ! str_contains($ability, '\\')) {
+        if (is_string($ability) && !str_contains($ability, '\\')) {
             return [$ability, $arguments];
         }
 
@@ -115,9 +115,9 @@ trait AuthorizesRequests
             'store' => 'store',
             'edit' => 'edit',
             'update' => 'update',
-            'destroy' => 'destroy',
+            'destroy' => 'delete',
             "destroy" => "imageDelete",
-            "destroy" => "imageAllDelete",
+            "destroy" => "imageAllDelete"
         ];
     }
 

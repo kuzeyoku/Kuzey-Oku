@@ -31,11 +31,11 @@ class ProductService extends BaseService
             "video" => $request->video,
         ]);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-        }
-
         $query = parent::create($data);
+
+        if (isset($request->image) && $request->image->isValid()) {
+            $query->addMediaFromRequest("image")->toMediaCollection("cover");
+        }
 
         if ($query->id) {
             $this->translations($query->id, $request);
@@ -54,17 +54,16 @@ class ProductService extends BaseService
             "video" => $request->video,
         ]);
 
+        $query = parent::update($data, $product);
+
         if (isset($request->imageDelete)) {
-            parent::imageDelete($product);
+            $product->clearMediaCollection("cover");
         }
 
         if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($product->image))
-                $this->imageService->delete($product->image);
+            $product->clearMediaCollection("cover");
+            $product->addMediaFromRequest("image")->toMediaCollection("cover");
         }
-
-        $query = parent::update($data, $product);
 
         if ($query) {
             $this->translations($product->id, $request);
@@ -95,12 +94,8 @@ class ProductService extends BaseService
 
     public function imageUpload(Object $request)
     {
-        $data = new Request([
-            "product_id" => $request->product_id,
-            "image" => $this->imageService->upload($request->file),
-        ]);
-
-        return ProductImage::create($data->all());
+        $product = Product::findOrFail($request->product_id);
+        return $product->addMediaFromRequest("file")->toMediaCollection("images");
     }
 
     public function imageAllDelete(Model $product)

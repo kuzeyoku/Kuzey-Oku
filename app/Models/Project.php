@@ -22,7 +22,7 @@ class Project extends Model
 
     protected $locale;
 
-    protected $with = ["translate", "category", "images"];
+    protected $with = ["translate", "category"];
 
     public function __construct()
     {
@@ -48,11 +48,6 @@ class Project extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(ProjectImage::class);
     }
 
     public function getPreviousAttribute()

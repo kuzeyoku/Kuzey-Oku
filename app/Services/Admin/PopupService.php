@@ -38,11 +38,13 @@ class PopupService extends BaseService
             "status" => $request->status,
         ]);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-        }
+
 
         $query = parent::create($data);
+
+        if (isset($request->image) && $request->image->isValid()) {
+            $query->addMediaFromRequest('image')->toMediaCollection('image');
+        }
 
         if ($query->id)
             $this->translations($query->id, $request);
@@ -75,9 +77,8 @@ class PopupService extends BaseService
         }
 
         if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($popup->image))
-                $this->imageService->delete($popup->image);
+            $popup->clearMediaCollection('image');
+            $popup->addMediaFromRequest('image')->toMediaCollection('image');
         }
 
         $query = parent::update($data, $popup);

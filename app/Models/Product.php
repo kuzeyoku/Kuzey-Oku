@@ -7,10 +7,12 @@ use App\Enums\StatusEnum;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Product extends Model
+class Product extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         "status",
@@ -24,7 +26,7 @@ class Product extends Model
 
     protected $locale;
 
-    protected $with = ["translate", "category", "images"];
+    protected $with = ["translate", "category"];
 
     public function __construct()
     {
@@ -50,11 +52,6 @@ class Product extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
     }
 
     public function getTitlesAttribute()

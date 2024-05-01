@@ -33,10 +33,10 @@
                 @yield('form')
                 {!! Form::close() !!}
                 <div class="row">
-                    @foreach ($item->images as $image)
+                    @foreach ($item->getMedia("images") as $image)
                         <div class="col-md-2">
                             <div class="p-2 border rounded position-relative mb-4">
-                                <img src="{{ $image->image_url }}" class="img-fluid">
+                                <img src="{{ $image->getUrl() }}" class="img-fluid">
                                 {!! Form::open([
                                     'url' => route("admin.{$route}.imageDelete", $image),
                                     'method' => 'delete',
