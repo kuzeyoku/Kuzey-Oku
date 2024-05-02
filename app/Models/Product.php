@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Product extends Model implements HasMedia
 {
@@ -18,7 +18,6 @@ class Product extends Model implements HasMedia
         "status",
         "slug",
         "category_id",
-        "image",
         "brochure",
         "video",
         "order"
@@ -104,12 +103,5 @@ class Product extends Model implements HasMedia
     public function getUrlAttribute()
     {
         return route(ModuleEnum::Product->route() . ".show", [$this->id, $this->slug]);
-    }
-
-    public function getImageUrlAttribute()
-    {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Product->folder() . "/" . $this->image);
     }
 }

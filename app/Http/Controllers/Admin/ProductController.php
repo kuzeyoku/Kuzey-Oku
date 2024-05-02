@@ -9,6 +9,7 @@ use App\Services\Admin\ProductService;
 use App\Http\Requests\Product\ImageProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProductController extends Controller
 {
@@ -21,7 +22,8 @@ class ProductController extends Controller
         view()->share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
-            "folder" => $this->service->folder()
+            "folder" => $this->service->folder(),
+            "module" => $this->service->module()
         ]);
     }
 
@@ -67,9 +69,9 @@ class ProductController extends Controller
         return view(themeView("admin", "{$this->service->folder()}.image"), compact("product"));
     }
 
-    public function imageStore(ImageProductRequest $request): object
+    public function imageStore(ImageProductRequest $request, Product $product): object
     {
-        if ($this->service->imageUpload((object)$request->validated())) {
+        if ($this->service->imageUpload($product)) {
             return (object) [
                 "message" => __("admin/{$this->service->folder()}.image_success")
             ];
@@ -80,13 +82,14 @@ class ProductController extends Controller
         }
     }
 
-    public function imageDelete(ProductImage $image)
+    public function imageDelete(Media $image)
     {
         try {
-            $this->service->imageDelete($image, true);
+            $this->service->imageDelete($image);
             return back()
                 ->withSuccess(__("admin/{$this->service->folder()}.image_delete_success"));
         } catch (Throwable $e) {
+            dd($e->getMessage());
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/{$this->service->folder()}.image_delete_error"));

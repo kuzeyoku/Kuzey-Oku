@@ -63,7 +63,7 @@ Route::prefix(config("template.admin.route"))->name('admin.')->group(function ()
         if (ModuleEnum::Product->status())
             Route::controller(App\Http\Controllers\Admin\ProductController::class)->prefix("product")->group(function () {
                 Route::get("/{product}/image", "image")->name(ModuleEnum::Product->route() . ".image");
-                Route::post("/imageStore", "imageStore")->name(ModuleEnum::Product->route() . ".imageStore");
+                Route::post("/{product}/imageStore", "imageStore")->name(ModuleEnum::Product->route() . ".imageStore");
                 Route::delete("/{image}/imagedelete", "imageDelete")->name(ModuleEnum::Product->route() . ".imageDelete");
                 Route::delete("/{product}/imagealldelete", "imageAllDelete")->name(ModuleEnum::Product->route() . ".imageAllDelete");
             });
@@ -71,7 +71,7 @@ Route::prefix(config("template.admin.route"))->name('admin.')->group(function ()
         if (ModuleEnum::Project->status())
             Route::controller(App\Http\Controllers\Admin\ProjectController::class)->prefix("project")->group(function () {
                 Route::get("/{project}/image", "image")->name(ModuleEnum::Project->route() . ".image");
-                Route::post("/imageStore", "imageStore")->name(ModuleEnum::Project->route() . ".imageStore");
+                Route::post("/{project}/imageStore", "imageStore")->name(ModuleEnum::Project->route() . ".imageStore");
                 Route::delete("/{image}/imageDelete", "imageDelete")->name(ModuleEnum::Project->route() . ".imageDelete");
                 Route::delete("/{project}/imageAllDelete", "imageAllDelete")->name(ModuleEnum::Project->route() . ".imageAllDelete");
             });

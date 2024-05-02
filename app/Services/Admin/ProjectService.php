@@ -3,22 +3,19 @@
 namespace App\Services\Admin;
 
 use App\Models\Project;
+use App\Models\ProjectTranslate;
 use App\Enums\ModuleEnum;
 use Illuminate\Support\Str;
-use App\Models\ProjectImage;
 use Illuminate\Http\Request;
-use App\Models\ProjectTranslate;
 use Illuminate\Database\Eloquent\Model;
 
 class ProjectService extends BaseService
 {
-    protected $imageService;
     protected $project;
 
     public function __construct(Project $project)
     {
         parent::__construct($project, ModuleEnum::Project);
-        $this->imageService = new ImageService(ModuleEnum::Project);
     }
 
     public function create(Object $request)
@@ -32,13 +29,14 @@ class ProjectService extends BaseService
             "order" => $request->order
         ]);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-        }
-
         $query = parent::create($data);
+
         if ($query->id) {
             $this->translations($query->id, $request);
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
         return $query;
@@ -56,13 +54,12 @@ class ProjectService extends BaseService
         ]);
 
         if (isset($request->imageDelete)) {
-            parent::imageDelete($project);
+            $project->clearMediaCollection($this->module->COVER_COLLECTION());
         }
 
         if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($project->image))
-                $this->imageService->delete($project->image);
+            $project->clearMediaCollection($this->module->COVER_COLLECTION());
+            $project->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
         }
 
         $query = parent::update($data, $project);
@@ -94,27 +91,13 @@ class ProjectService extends BaseService
         }
     }
 
-    public function imageUpload(Object $request)
+    public function imageUpload(Model $project)
     {
-        $data = new Request([
-            "project_id" => $request->project_id,
-            "image" => $this->imageService->upload($request->file),
-        ]);
-
-        return ProjectImage::create($data->all());
-    }
-
-    public function imageAllDelete(Model $project)
-    {
-        if (!$project->images->isEmpty()) {
-            $this->imageService->delete($project->images->pluck("image")->toArray());
-        }
-        return ProjectImage::where("project_id", $project->id)->delete();
+        return $project->addMediaFromRequest("file")->toMediaCollection($this->module->IMAGE_COLLECTION());
     }
 
     public function delete(Model $project)
     {
-        $this->imageAllDelete($project);
         return parent::delete($project);
     }
 }

@@ -26,14 +26,14 @@
         <div class="card">
             <div class="card-body">
                 {!! Form::open([
-                    'url' => route("admin.{$route}.imageStore"),
+                    'url' => route("admin.{$route}.imageStore", $item),
                     'class' => 'dropzone mb-3',
                     'file' => true,
                 ]) !!}
                 @yield('form')
                 {!! Form::close() !!}
                 <div class="row">
-                    @foreach ($item->getMedia("images") as $image)
+                    @foreach ($item->getMedia('images') as $image)
                         <div class="col-md-2">
                             <div class="p-2 border rounded position-relative mb-4">
                                 <img src="{{ $image->getUrl() }}" class="img-fluid">

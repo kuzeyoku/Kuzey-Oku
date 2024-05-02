@@ -262,4 +262,27 @@ enum ModuleEnum: string
             self::Popup => null,
         };
     }
+
+    public function IMAGE_COLLECTION()
+    {
+        return match ($this) {
+            self::Product => "images",
+            self::Project => "images",
+        };
+    }
+
+    public function COVER_COLLECTION()
+    {
+        return match ($this) {
+            self::Blog => "cover",
+            self::Service => "cover",
+            self::Brand => "cover",
+            self::Reference => "cover",
+            self::Product => "cover",
+            self::Project => "cover",
+            self::Slider => "cover",
+            self::Testimonial => "avatar",
+            self::Popup => "cover",
+        };
+    }
 }

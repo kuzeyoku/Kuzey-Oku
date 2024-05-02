@@ -9,6 +9,7 @@ use App\Services\Admin\ProjectService;
 use App\Http\Requests\Project\ImageProjectRequest;
 use App\Http\Requests\Project\StoreProjectRequest;
 use App\Http\Requests\Project\UpdateProjectRequest;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProjectController extends Controller
 {
@@ -22,6 +23,7 @@ class ProjectController extends Controller
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
             "folder" => $this->service->folder(),
+            "module" => $this->service->module()
         ]);
     }
 
@@ -36,9 +38,9 @@ class ProjectController extends Controller
         return view(themeView("admin", "{$this->service->folder()}.image"), compact("project"));
     }
 
-    public function imageStore(ImageProjectRequest $request): object
+    public function imageStore(ImageProjectRequest $request, Project $project): object
     {
-        if ($this->service->imageUpload((object)$request->validated())) {
+        if ($this->service->imageUpload($project)) {
             return (object) [
                 "message" => __("admin/{$this->service->folder()}.image_success")
             ];
@@ -49,10 +51,10 @@ class ProjectController extends Controller
         }
     }
 
-    public function imageDelete(ProjectImage $image)
+    public function imageDelete(Media $image)
     {
         try {
-            $this->service->imageDelete($image, true);
+            $this->service->imageDelete($image);
             return back()
                 ->withSuccess(__("admin/{$this->service->folder()}.image_delete_success"));
         } catch (Throwable $e) {

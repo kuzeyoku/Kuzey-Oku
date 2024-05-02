@@ -4,7 +4,6 @@ namespace App\Services\Admin;
 
 use App\Models\Product;
 use App\Models\ProductTranslate;
-use App\Models\ProductImage;
 use App\Enums\ModuleEnum;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
@@ -12,33 +11,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductService extends BaseService
 {
-    protected $imageService;
     protected $product;
 
     public function __construct(Product $product)
     {
         parent::__construct($product, ModuleEnum::Product);
-        $this->imageService = new ImageService(ModuleEnum::Product);
     }
 
     public function create(Object $request)
     {
         $data = new Request([
             "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "order" => $request->order,
             "status" => $request->status,
             "category_id" => $request->category_id,
             "video" => $request->video,
+            "order" => $request->order,
         ]);
 
         $query = parent::create($data);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $query->addMediaFromRequest("image")->toMediaCollection("cover");
-        }
-
         if ($query->id) {
             $this->translations($query->id, $request);
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
         return $query;
@@ -57,12 +54,12 @@ class ProductService extends BaseService
         $query = parent::update($data, $product);
 
         if (isset($request->imageDelete)) {
-            $product->clearMediaCollection("cover");
+            $product->clearMediaCollection($this->module->COVER_COLLECTION());
         }
 
         if (isset($request->image) && $request->image->isValid()) {
-            $product->clearMediaCollection("cover");
-            $product->addMediaFromRequest("image")->toMediaCollection("cover");
+            $product->clearMediaCollection($this->module->COVER_COLLECTION());
+            $product->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
         }
 
         if ($query) {
@@ -92,23 +89,13 @@ class ProductService extends BaseService
         }
     }
 
-    public function imageUpload(Object $request)
+    public function imageUpload(Model $product)
     {
-        $product = Product::findOrFail($request->product_id);
-        return $product->addMediaFromRequest("file")->toMediaCollection("images");
-    }
-
-    public function imageAllDelete(Model $product)
-    {
-        if (!$product->images->isEmpty()) {
-            $this->imageService->delete($product->images->pluck("image")->toArray());
-        }
-        return ProductImage::where("product_id", $product->id)->delete();
+        return $product->addMediaFromRequest("file")->toMediaCollection($this->module->IMAGE_COLLECTION());
     }
 
     public function delete(Model $product)
     {
-        $this->imageAllDelete($product);
         return parent::delete($product);
     }
 }

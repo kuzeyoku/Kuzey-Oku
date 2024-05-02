@@ -37,6 +37,11 @@ class BaseService
         return $this->module->route();
     }
 
+    public function module()
+    {
+        return $this->module;
+    }
+
     public function all()
     {
         $currentpage = Paginator::resolveCurrentPage() ?: 1;
@@ -65,19 +70,14 @@ class BaseService
         return $item->delete();
     }
 
-    public function imageDelete(Model $item, $delete = false)
+    public function imageDelete(Model $item)
     {
-        if (!empty($item->image)) {
-            $imageService = new ImageService($this->module);
-            if ($imageService->delete($item->image)) {
-                if ($delete === true)
-                    return $item->delete();
-                $item->image = null;
-                return $item->save();
-            }
-            return false;
-        }
-        return false;
+        return $item->delete();
+    }
+
+    public function imageAllDelete(Model $item)
+    {
+        return $item->clearMediaCollection($this->module->IMAGE_COLLECTION());
     }
 
     public function getCategories()

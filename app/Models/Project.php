@@ -4,16 +4,19 @@ namespace App\Models;
 
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
+use Illuminate\Support\Str;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class Project extends Model
+class Project extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
+
     protected $fillable = [
         "slug",
         "category_id",
-        "image",
         "video",
         "model3D",
         "order",
@@ -100,15 +103,13 @@ class Project extends Model
         return $result;
     }
 
+    public function getShortDescriptionAttribute()
+    {
+        return Str::limit("strip_tags($this->description)", 100);
+    }
+
     public function getUrlAttribute()
     {
         return route(ModuleEnum::Project->route() . ".show", [$this, $this->slug]);
-    }
-
-    public function getImageUrlAttribute()
-    {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Project->folder() . "/" . $this->image);
     }
 }
