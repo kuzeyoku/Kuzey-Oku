@@ -36,7 +36,7 @@ class PageController extends Controller
     public function store(StorePageRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -57,7 +57,7 @@ class PageController extends Controller
     public function update(UpdatePageRequest $request, Page $page)
     {
         try {
-            $this->service->update((object)$request->validated(), $page);
+            $this->service->update($request, $page);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $page->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

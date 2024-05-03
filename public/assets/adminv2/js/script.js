@@ -2086,18 +2086,38 @@ if ($("textarea.editor").length > 0) {
     });
 }
 
-if ($(".dropify").length > 0) {
-    $(".dropify").dropify({
+if ($(".dropify-image").length > 0) {
+    $(".dropify-image").dropify({
         messages: {
-            default: "",
-            replace: "",
+            default: "Resim Seç Yada Sürükle Bırak.",
+            replace: "Değiştir",
             remove: "Kaldır",
+            error: "Dosya Yüklenirken Bir Hata Oluştu.",
+        },
+        error: {
+            fileExtension:
+                "Sadece ({{ value }}) uzantılı dosya formatları yüklenebilir.",
+        },
+    });
+}
+
+if ($(".dropify-document").length > 0) {
+    $(".dropify-document").dropify({
+        messages: {
+            default: "Döküman Seç Yada Sürükle Bırak.",
+            replace: "Değiştir",
+            remove: "Kaldır",
+            error: "Dosya Yüklenirken Bir Hata Oluştu.",
+        },
+        error: {
+            fileExtension:
+                "Sadece ({{ value }}) uzantılı dosya formatları yüklenebilir.",
         },
     });
 }
 
 $(".dropify-clear").one("click", function () {
-    var input = $(this).prev("input.dropify");
+    var input = $(this).prev("input.dropify-image, input.dropify-document");
     var inputName = input.attr("name") + "Delete";
     const deleteInput = $(
         '<input type="hidden" name="' + inputName + '" value="true">'

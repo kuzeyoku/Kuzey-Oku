@@ -15,7 +15,6 @@ class Brand extends Model implements HasMedia
 
     protected $fillable = [
         "url",
-        "image",
         "title",
         "order",
         "status"

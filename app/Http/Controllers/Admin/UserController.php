@@ -40,7 +40,7 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -61,7 +61,7 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         try {
-            $this->service->update((object)$request->validated(), $user);
+            $this->service->update($request, $user);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

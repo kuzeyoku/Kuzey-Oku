@@ -36,7 +36,7 @@ class TestimonialController extends Controller
     public function store(StoreTestimonialRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log"));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -57,7 +57,7 @@ class TestimonialController extends Controller
     public function update(UpdateTestimonialRequest $request, Testimonial $testimonial)
     {
         try {
-            $this->service->update((object)$request->validated(), $testimonial);
+            $this->service->update($request, $testimonial);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log"));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

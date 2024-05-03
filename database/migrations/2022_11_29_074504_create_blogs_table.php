@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('blogs', function (Blueprint $table) {
             $table->id();
             $table->string("slug", 255);
-            $table->string("image", 30)->nullable();
             $table->integer("category_id")->default(0);
             $table->integer("order")->default(0);
             $table->enum("status", StatusEnum::getValues())->default(StatusEnum::Active->value);

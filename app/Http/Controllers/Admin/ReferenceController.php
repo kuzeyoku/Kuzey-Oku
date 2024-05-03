@@ -37,7 +37,7 @@ class ReferenceController extends Controller
     public function store(StoreReferenceRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log"));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -58,7 +58,7 @@ class ReferenceController extends Controller
     public function update(UpdateReferenceRequest $request, Reference $reference)
     {
         try {
-            $this->service->update((object)$request->validated(), $reference);
+            $this->service->update($request, $reference);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log"));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

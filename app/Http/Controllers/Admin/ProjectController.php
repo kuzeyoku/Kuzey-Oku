@@ -85,7 +85,7 @@ class ProjectController extends Controller
     public function store(StoreProjectRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -106,7 +106,7 @@ class ProjectController extends Controller
     public function update(UpdateProjectRequest $request, Project $project)
     {
         try {
-            $this->service->update((object)$request->validated(), $project);
+            $this->service->update($request, $project);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $project->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

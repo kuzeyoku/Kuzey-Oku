@@ -29,7 +29,6 @@ class Blog extends Model implements HasMedia
         'status',
         'category_id',
         'user_id',
-        "image",
         "order"
     ];
 
@@ -144,5 +143,14 @@ class Blog extends Model implements HasMedia
     {
         $status = StatusEnum::getStatus($this->status);
         return $status->badge();
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($model) {
+            $model->user_id = auth()->id();
+        });
     }
 }

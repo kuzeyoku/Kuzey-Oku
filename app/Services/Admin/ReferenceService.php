@@ -9,46 +9,45 @@ use Illuminate\Database\Eloquent\Model;
 
 class ReferenceService extends BaseService
 {
-    protected $imageService;
     protected $reference;
 
     public function __construct(Reference $reference)
     {
         parent::__construct($reference, ModuleEnum::Reference);
-        $this->imageService = new ImageService(ModuleEnum::Reference);
     }
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "url" => $request->url,
-            "order" => $request->order,
-            "status" => $request->status
-        ]);
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
+        $data = new Request($request->only("url", "order", "status"));
+
+        $query = parent::create($data);
+
+        if ($query->id) {
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
-        return parent::create($data);
+        return $query;
     }
 
     public function update(Object $request, Model $reference)
     {
-        $data = new Request([
-            "url" => $request->url,
-            "order" => $request->order,
-            "status" => $request->status
-        ]);
+        $data = new Request($request->only("url", "order", "status"));
 
-        if (isset($request->imageDelete)) {
-            parent::imageDelete($reference);
+        $query = parent::update($data, $reference);
+
+        if ($query) {
+            if (isset($request->imageDelete)) {
+                $reference->clearMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $reference->clearMediaCollection($this->module->COVER_COLLECTION());
+                $reference->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($reference->image))
-                $this->imageService->delete($reference->image);
-        }
-        return parent::update($data, $reference);
+        return $query;
     }
 }

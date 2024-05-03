@@ -36,7 +36,7 @@ class SliderController extends Controller
     public function store(StoreSliderRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -57,7 +57,7 @@ class SliderController extends Controller
     public function update(UpdateSliderRequest $request, Slider $slider)
     {
         try {
-            $this->service->update((object)$request->validated(), $slider);
+            $this->service->update($request, $slider);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $slider->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

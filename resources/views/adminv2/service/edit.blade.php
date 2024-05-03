@@ -1,9 +1,16 @@
-@extends(themeView('admin', 'layout.edit'), ['item' => $service])
+@extends(themeView('admin', 'layout.edit'), ['tab' => true, 'item' => $service])
 @section('form')
     {!! Form::file('image', [
-        'class' => 'dropify',
-        'data-default-file' => $service->image_url,
+        'class' => 'dropify-image',
+        'data-default-file' => $service->getFirstMediaUrl($module->COVER_COLLECTION()),
+        'data-allowed-file-extensions' => 'png jpg jpeg gif',
         'accept' => '.png, .jpg, .jpeg, .gif',
+    ]) !!}
+    {!! Form::file('document', [
+        'class' => 'dropify-document',
+        'data-default-file' => $service->getFirstMediaUrl($module->DOCUMENT_COLLECTION()),
+        'data-allowed-file-extensions' => 'pdf doc docx xls xlsx ppt pptx',
+        'accept' => '.pdf, .doc, .docx, .xls, .xlsx, .ppt, .pptx',
     ]) !!}
     @foreach (LanguageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">

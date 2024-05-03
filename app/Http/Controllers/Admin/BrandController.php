@@ -36,7 +36,7 @@ class BrandController extends Controller
     public function store(StoreBrandRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log"));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -57,7 +57,7 @@ class BrandController extends Controller
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
         try {
-            $this->service->update((object)$request->validated(), $brand);
+            $this->service->update($request, $brand);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log"));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

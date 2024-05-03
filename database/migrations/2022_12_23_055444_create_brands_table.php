@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->id();
             $table->string('url', 255)->nullable();
-            $table->string("image", 30)->nullable();
             $table->string("title")->nullable();
             $table->integer("order")->default(0);
             $table->enum("status", StatusEnum::getValues())->default(StatusEnum::Active->value);

@@ -15,7 +15,6 @@ return new class extends Migration
         Schema::create('popups', function (Blueprint $table) {
             $table->id();
             $table->enum("type", ["image", "video", "text"])->default("text");
-            $table->string("image", 50)->nullable();
             $table->string("video")->nullable();
             $table->string("url")->nullable();
             $table->json("setting")->nullable();

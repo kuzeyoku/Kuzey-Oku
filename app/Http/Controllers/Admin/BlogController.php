@@ -39,7 +39,7 @@ class BlogController extends Controller
     public function store(StoreBlogRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -60,7 +60,7 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
         try {
-            $this->service->update((object)$request->validated(), $blog);
+            $this->service->update($request, $blog);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $blog->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

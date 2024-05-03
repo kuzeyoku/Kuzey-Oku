@@ -285,4 +285,13 @@ enum ModuleEnum: string
             self::Popup => "cover",
         };
     }
+
+    public function DOCUMENT_COLLECTION()
+    {
+        return match ($this) {
+            self::Service => "documents",
+            self::Product => "documents",
+            self::Project => "documents",
+        };
+    }
 }

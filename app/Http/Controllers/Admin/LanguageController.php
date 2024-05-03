@@ -37,7 +37,7 @@ class LanguageController extends Controller
     public function store(StoreLanguageRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -83,7 +83,7 @@ class LanguageController extends Controller
     public function update(UpdateLanguageRequest $request, Language $language)
     {
         try {
-            $this->service->update((object)$request->validated(), $language);
+            $this->service->update($request, $language);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

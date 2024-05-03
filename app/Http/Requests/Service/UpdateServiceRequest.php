@@ -29,7 +29,9 @@ class UpdateServiceRequest extends FormRequest
             "order" => "required|numeric|min:0",
             "category_id" => "",
             "image" => "image|mimes:jpeg,png,jpg,gif|max:" . config("setting.image.max_size", 4096),
-            "imageDelete" => ""
+            "document" => "file|mimes:pdf,doc,docx,xls,xlsx,ppt,pptx|max:" . config("setting.document.max_size", 4096),
+            "imageDelete" => "",
+            "documentDelete" => ""
         ];
     }
 

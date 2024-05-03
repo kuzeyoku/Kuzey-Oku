@@ -15,22 +15,18 @@ class BrandService extends BaseService
     public function __construct(Brand $brand)
     {
         parent::__construct($brand, ModuleEnum::Brand);
-        $this->imageService = new ImageService(ModuleEnum::Brand);
     }
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "url" => $request->url,
-            "title" => $request->title,
-            "order" => $request->order,
-            "status" => $request->status
-        ]);
+        $data = new Request($request->only("url", "title", "order", "status"));
 
         $query = parent::create($data);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $query->addMediaFromRequest("image")->toMediaCollection("image");
+        if ($query->id) {
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
         return $query;
@@ -38,22 +34,21 @@ class BrandService extends BaseService
 
     public function update(Object $request, Model $brand)
     {
-        $data = new Request([
-            "url" => $request->url,
-            "title" => $request->title,
-            "order" => $request->order,
-            "status" => $request->status
-        ]);
+        $data = new Request($request->only("url", "title", "order", "status"));
 
-        if (isset($request->imageDelete)) {
-            $brand->clearMediaCollection("image");
+        $query = parent::update($data, $brand);
+
+        if ($query) {
+            if (isset($request->imageDelete)) {
+                $brand->clearMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $brand->clearMediaCollection($this->module->COVER_COLLECTION());
+                $brand->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $brand->clearMediaCollection("image");
-            $brand->addMediaFromRequest("image")->toMediaCollection("image");
-        }
-
-        return parent::update($data, $brand);
+        return $query;
     }
 }

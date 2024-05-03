@@ -11,32 +11,31 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServiceService extends BaseService
 {
-    protected $imageService;
     protected $service;
 
     public function __construct(Service $service)
     {
         parent::__construct($service, ModuleEnum::Service);
-        $this->imageService = new ImageService(ModuleEnum::Service);
     }
 
-    public function create(Object $request)
+    public function create(Request $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "status" => $request->status,
-            "order" => $request->order,
-            "category_id" => $request->category_id,
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-        }
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
 
         $query = parent::create($data);
 
         if ($query->id) {
             $this->translations($query->id, $request);
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->document) && $request->document->isValid()) {
+                $query->addMediaFromRequest("document")->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+            }
         }
 
         return $query;
@@ -44,32 +43,32 @@ class ServiceService extends BaseService
 
     public function update(Object $request, Model $service)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "status" => $request->status,
-            "order" => $request->order,
-            "category_id" => $request->category_id,
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
-        if (isset($request->imageDelete)) {
-            parent::imageDelete($service);
-        }
-
-        // request()->whenFilled("imageDelete", function () use ($service) {
-        //     parent::imageDelete($service);
-        // });
-
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($service->image)) {
-                $this->imageService->delete($service->image);
-            }
-        }
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
 
         $query = parent::update($data, $service);
 
         if ($query) {
             $this->translations($service->id, $request);
+
+            if (isset($request->imageDelete)) {
+                $service->clearMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->documentDelete)) {
+                $service->clearMediaCollection($this->module->DOCUMENT_COLLECTION());
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $service->clearMediaCollection($this->module->COVER_COLLECTION());
+                $service->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->document) && $request->document->isValid()) {
+                $service->clearMediaCollection($this->module->DOCUMENT_COLLECTION());
+                $service->addMediaFromRequest("document")->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+            }
         }
 
         return $query;

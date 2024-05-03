@@ -20,58 +20,46 @@ class CategoryService extends BaseService
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "order" => $request->order,
-            "status" => $request->status,
-            "parent_id" => $request->parent,
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
         if ($request->parent == 0) {
-            $data = $data->merge([
-                "module" => $request->module,
-            ]);
+            $arr["module"] = $request->module;
         } else {
             $parent = Category::find($request->parent);
-            $data = $data->merge([
-                "module" => $parent->module,
-            ]);
+            $arr["module"] = $parent->module;
         }
 
-        $category = parent::create($data);
+        $data = new Request(array_merge($arr, $request->only("order", "status", "parent_id")));
 
-        if ($category->id) {
-            $this->upsertTranslations($category->id, $request);
-            return true;
+        $query = parent::create($data);
+
+        if ($query->id) {
+            $this->upsertTranslations($query->id, $request);
         }
-        return false;
+
+        return $query;
     }
 
     public function update(Object $request, $category)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "order" => $request->order,
-            "status" => $request->status,
-            "parent_id" => $request->parent,
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
+
         if ($request->parent != 0) {
             $parent = Category::find($request->parent);
-            $data = $data->merge([
-                "module" => $parent->module,
-            ]);
+            $arr["module"] = $parent->module;
         } else {
-            $data = $data->merge([
-                "module" => $request->module,
-            ]);
+            $arr["module"] = $request->module;
         }
 
+        $data = new Request(array_merge($arr, $request->only("order", "status", "parent_id")));
+
         $query = Parent::update($data, $category);
+
         if ($query) {
             $this->upsertTranslations($category->id, $request);
-            return true;
         }
-        return false;
+
+        return $query;
     }
 
     protected function upsertTranslations(int $categoryId, Object $request)

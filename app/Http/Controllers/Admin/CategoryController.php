@@ -41,7 +41,7 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -62,7 +62,7 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, Category $category)
     {
         try {
-            $this->service->update((object)$request->validated(), $category);
+            $this->service->update($request, $category);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $category->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

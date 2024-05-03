@@ -16,7 +16,6 @@ class PopupService extends BaseService
     public function __construct(Popup $popup)
     {
         parent::__construct($popup, ModuleEnum::Popup);
-        $this->imageService = new ImageService(ModuleEnum::Popup);
     }
 
     public function create(Object $request)
@@ -38,16 +37,15 @@ class PopupService extends BaseService
             "status" => $request->status,
         ]);
 
-
-
         $query = parent::create($data);
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $query->addMediaFromRequest('image')->toMediaCollection('image');
-        }
-
-        if ($query->id)
+        if ($query->id) {
             $this->translations($query->id, $request);
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest('image')->toMediaCollection($this->module->COVER_COLLECTION());
+            }
+        }
 
         return $query;
     }
@@ -72,19 +70,19 @@ class PopupService extends BaseService
 
         ]);
 
-        if (isset($request->imageDelete)) {
-            parent::imageDelete($popup);
-        }
-
-        if (isset($request->image) && $request->image->isValid()) {
-            $popup->clearMediaCollection('image');
-            $popup->addMediaFromRequest('image')->toMediaCollection('image');
-        }
-
         $query = parent::update($data, $popup);
 
         if ($query) {
             $this->translations($popup->id, $request);
+
+            if (isset($request->imageDelete)) {
+                parent::imageDelete($popup);
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $popup->clearMediaCollection($this->module->COVER_COLLECTION());
+                $popup->addMediaFromRequest('image')->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
         return $query;
     }

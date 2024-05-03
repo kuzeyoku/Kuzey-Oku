@@ -20,14 +20,9 @@ class ProjectService extends BaseService
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "status" => $request->status,
-            "category_id" => $request->category_id,
-            "video" => $request->video,
-            "model3D" => $request->model3D,
-            "order" => $request->order
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
+
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id", "video", "model3D")));
 
         $query = parent::create($data);
 
@@ -44,28 +39,23 @@ class ProjectService extends BaseService
 
     public function update(Object $request, Model $project)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "status" => $request->status,
-            "category_id" => $request->category_id,
-            "video" => $request->video,
-            "model3D" => $request->model3D,
-            "order" => $request->order
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
-        if (isset($request->imageDelete)) {
-            $project->clearMediaCollection($this->module->COVER_COLLECTION());
-        }
-
-        if (isset($request->image) && $request->image->isValid()) {
-            $project->clearMediaCollection($this->module->COVER_COLLECTION());
-            $project->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
-        }
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id", "video", "model3D")));
 
         $query = parent::update($data, $project);
 
         if ($query) {
             $this->translations($project->id, $request);
+
+            if (isset($request->imageDelete)) {
+                $project->clearMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $project->clearMediaCollection($this->module->COVER_COLLECTION());
+                $project->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
         return $query;

@@ -13,7 +13,6 @@ class Reference extends Model
 
     protected $fillable = [
         "url",
-        "image",
         "status",
         "order"
     ];

@@ -11,63 +11,55 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogService extends BaseService
 {
-    protected $imageService;
     protected $blog;
 
     public function __construct(Blog $blog)
     {
         parent::__construct($blog, ModuleEnum::Blog);
-        $this->imageService = new ImageService(ModuleEnum::Blog);
     }
 
-    public function create(Object $request)
+    public function create(Request $request)
     {
-        $data = new Request([
+        $arr = [
             "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "order" => $request->order,
-            "status" => $request->status,
-            "category_id" => $request->category_id,
-            "user_id" => auth()->user()->id
-        ]);
+        ];
+
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
 
         $query = parent::create($data);
 
         if ($query->id) {
-            if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")
-                    ->withResponsiveImages()
-                    ->toMediaCollection("cover");
-            }
             $this->translations($query->id, $request);
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->withResponsiveImages()->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
         return $query;
     }
 
-    public function update(Object $request, Model $post)
+    public function update(Request $request, Model $post)
     {
-        $data = new Request([
+        $arr = [
             "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "order" => $request->order,
-            "status" => $request->status,
-            "category_id" => $request->category_id,
-        ]);
+        ];
+
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
 
         $query = parent::update($data, $post);
 
         if ($query) {
+            $this->translations($post->id, $request);
+
             if (isset($request->imageDelete)) {
-                $post->clearMediaCollection("cover");
+                $post->clearMediaCollection($this->module->COVER_COLLECTION());
             }
 
             if (isset($request->image) && $request->image->isValid()) {
-                $post->clearMediaCollection("cover");
-
-                $post->addMediaFromRequest("image")
-                    ->withResponsiveImages()
-                    ->toMediaCollection("cover");
+                $post->clearMediaCollection($this->module->COVER_COLLECTION());
+                $post->addMediaFromRequest("image")->withResponsiveImages()->toMediaCollection($this->module->COVER_COLLECTION());
             }
-            $this->translations($post->id, $request);
         }
 
         return $query;

@@ -5,58 +5,48 @@ namespace App\Services\Admin;
 use App\Models\Testimonial;
 use App\Enums\ModuleEnum;
 use Illuminate\Database\Eloquent\Model;
-use App\Services\Admin\ImageService;
 use Illuminate\Http\Request;
 
 class TestimonialService extends BaseService
 {
 
-    protected $imageService;
     protected $testimonial;
 
     public function __construct(Testimonial $testimonial)
     {
         parent::__construct($testimonial, ModuleEnum::Testimonial);
-        $this->imageService = new ImageService(ModuleEnum::Testimonial);
     }
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "name" => $request->name,
-            "company" => $request->company,
-            "position" => $request->position,
-            "message" => $request->message,
-            "order" => $request->order,
-            "status" => $request->status,
-        ]);
+        $data = new Request($request->only("name", "company", "position", "message", "order", "status"));
 
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
+        $query = parent::create($data);
+
+        if ($query->id) {
+            if (isset($request->image) && $request->image->isValid()) {
+                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
-        return parent::create($data);
+        return $query;
     }
 
     public function update(Object $request, Model $testimonial)
     {
-        $data = new Request([
-            "name" => $request->name,
-            "company" => $request->company,
-            "position" => $request->position,
-            "message" => $request->message,
-            "order" => $request->order,
-            "status" => $request->status
-        ]);
+        $data = new Request($request->only("name", "company", "position", "message", "order", "status"));
 
-        if (isset($request->imageDelete)) {
-            parent::imageDelete($testimonial);
+        $query = parent::update($data, $testimonial);
+
+        if ($query) {
+            if (isset($request->imageDelete)) {
+                $testimonial->clearMediaCollection($this->module->COVER_COLLECTION());
+            }
+            if (isset($request->image) && $request->image->isValid()) {
+                $testimonial->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
-        if (isset($request->image) && $request->image->isValid()) {
-            $data->merge(["image" => $this->imageService->upload($request->image)]);
-            if ($data->image && !is_null($testimonial->image))
-                parent::imageDelete($testimonial);
-        }
-        return parent::update($data, $testimonial);
+
+        return $query;
     }
 }

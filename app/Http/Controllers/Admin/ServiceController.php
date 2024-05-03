@@ -20,25 +20,26 @@ class ServiceController extends Controller
         view()->share([
             "categories" => $this->service->getCategories(ModuleEnum::Service),
             "route" => $this->service->route(),
-            "folder" => $this->service->folder()
+            "folder" => $this->service->folder(),
+            "module" => $this->service->module()
         ]);
     }
 
     public function index()
     {
         $items = $this->service->all();
-        return view(themeView("admin","{$this->service->folder()}.index"), compact('items'));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact('items'));
     }
 
     public function create()
     {
-        return view(themeView("admin","{$this->service->folder()}.create"));
+        return view(themeView("admin", "{$this->service->folder()}.create"));
     }
 
     public function store(StoreServiceRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -54,13 +55,13 @@ class ServiceController extends Controller
 
     public function edit(Service $service)
     {
-        return view(themeView("admin","{$this->service->folder()}.edit"), compact('service'));
+        return view(themeView("admin", "{$this->service->folder()}.edit"), compact('service'));
     }
 
     public function update(UpdateServiceRequest $request, Service $service)
     {
         try {
-            $this->service->update((object)$request->validated(), $service);
+            $this->service->update($request, $service);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $service->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

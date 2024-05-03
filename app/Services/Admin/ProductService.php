@@ -20,13 +20,10 @@ class ProductService extends BaseService
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "status" => $request->status,
-            "category_id" => $request->category_id,
-            "video" => $request->video,
-            "order" => $request->order,
-        ]);
+
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
+
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id", "video")));
 
         $query = parent::create($data);
 
@@ -43,27 +40,23 @@ class ProductService extends BaseService
 
     public function update(Object $request, Model $product)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "order" => $request->order,
-            "status" => $request->status,
-            "category_id" => $request->category_id,
-            "video" => $request->video,
-        ]);
+        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
+
+        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id", "video")));
 
         $query = parent::update($data, $product);
 
-        if (isset($request->imageDelete)) {
-            $product->clearMediaCollection($this->module->COVER_COLLECTION());
-        }
-
-        if (isset($request->image) && $request->image->isValid()) {
-            $product->clearMediaCollection($this->module->COVER_COLLECTION());
-            $product->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
-        }
-
         if ($query) {
             $this->translations($product->id, $request);
+
+            if (isset($request->imageDelete)) {
+                $product->clearMediaCollection($this->module->COVER_COLLECTION());
+            }
+
+            if (isset($request->image) && $request->image->isValid()) {
+                $product->clearMediaCollection($this->module->COVER_COLLECTION());
+                $product->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+            }
         }
 
         return $query;
@@ -92,10 +85,5 @@ class ProductService extends BaseService
     public function imageUpload(Model $product)
     {
         return $product->addMediaFromRequest("file")->toMediaCollection($this->module->IMAGE_COLLECTION());
-    }
-
-    public function delete(Model $product)
-    {
-        return parent::delete($product);
     }
 }

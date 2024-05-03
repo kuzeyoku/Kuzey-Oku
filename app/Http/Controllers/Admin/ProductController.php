@@ -46,7 +46,7 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-            $this->service->create((object)$request->validated());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
@@ -112,7 +112,7 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         try {
-            $this->service->update((object)$request->validated(), $product);
+            $this->service->update($request, $product);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $product->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
