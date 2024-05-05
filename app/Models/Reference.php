@@ -6,10 +6,12 @@ use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Reference extends Model
+class Reference extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         "url",
@@ -25,12 +27,5 @@ class Reference extends Model
     public function scopeOrder($query)
     {
         return $query->orderBy("order", "asc");
-    }
-
-    public function getImageUrlAttribute()
-    {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Reference->folder() . "/" . $this->image);
     }
 }

@@ -14,7 +14,7 @@
         ['class' => 'form-control', 'id' => 'type'],
     ) !!}
     <div id="image" style="display: none">
-        {!! Form::file('image', ['class' => 'dropify', 'accept' => '.png, .jpg, .jpeg, .gif']) !!}
+        {!! Form::file('image', ['class' => 'dropify-image', 'accept' => '.png, .jpg, .jpeg, .gif']) !!}
     </div>
     @foreach (languageList() as $key => $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">

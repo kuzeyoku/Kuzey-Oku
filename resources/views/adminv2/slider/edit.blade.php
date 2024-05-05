@@ -1,7 +1,7 @@
 @extends(themeView('admin', 'layout.edit'), ['item' => $slider])
 @section('form')
     {!! Form::file('image', [
-        'class' => 'dropify',
+        'class' => 'dropify-image',
         'data-default-file' => $slider->image_url,
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}

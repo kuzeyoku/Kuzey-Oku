@@ -1,7 +1,7 @@
 @extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $brand])
 @section('form')
     {!! Form::file('image', [
-        'class' => 'dropify',
+        'class' => 'dropify-image',
         'data-default-file' => $brand->getFirstMediaUrl('image'),
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}

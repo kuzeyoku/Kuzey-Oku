@@ -1,7 +1,7 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => true])
 @section('form')
     {!! Form::file('image', [
-        'class' => 'dropify',
+        'class' => 'dropify-image',
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     @foreach (languageList() as $lang)

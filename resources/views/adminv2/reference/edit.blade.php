@@ -1,8 +1,8 @@
-@extends(themeView('admin', 'layout.edit'), ['item' => $reference])
+@extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $reference])
 @section('content')
     {!! Form::file('image', [
-        'class' => 'dropify',
-        'data-default-file' => $reference->image_url,
+        'class' => 'dropify-image',
+        'data-default-file' => $reference->getFirtsMediaUrl($module->COVER_COLLECTION()),
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     <br>

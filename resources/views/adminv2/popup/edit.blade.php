@@ -17,7 +17,7 @@
     ) !!}
     <div id="image" style="display: none">
         {!! Form::file('image', [
-            'class' => 'dropify',
+            'class' => 'dropify-image',
             'data-default-file' => $popup->getFirstMediaUrl('image'),
             'accept' => '.png, .jpg, .jpeg, .gif',
         ]) !!}

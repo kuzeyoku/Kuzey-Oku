@@ -1,7 +1,7 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => false])
 @section('form')
     {!! Form::file('image', [
-        'class' => 'dropify',
+        'class' => 'dropify-image',
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     <br>
