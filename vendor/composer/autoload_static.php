@@ -7,8 +7,8 @@ namespace Composer\Autoload;
 class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
 {
     public static $files = array (
-        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'e69f7f6ee287b969198c3c9d6777bd38' => __DIR__ . '/..' . '/symfony/polyfill-intl-normalizer/bootstrap.php',
         '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
@@ -123,7 +123,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'f57d353b41eb2e234b26064d63d8c5dd' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Filesystem/functions.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        'f18cc91337d49233e5754e93f3ed9ec3' => __DIR__ . '/..' . '/laravelcollective/html/src/helpers.php',
         'c72349b1fe8d0deeedd3a52e8aa814d8' => __DIR__ . '/..' . '/mockery/mockery/library/helpers.php',
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
@@ -232,7 +231,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
             'League\\Flysystem\\' => 17,
             'League\\Config\\' => 14,
             'League\\CommonMark\\' => 18,
-            'League\\ColorExtractor\\' => 22,
             'Laravel\\Tinker\\' => 15,
             'Laravel\\SerializableClosure\\' => 28,
             'Laravel\\Sanctum\\' => 16,
@@ -276,7 +274,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'C' => 
         array (
             'Cron\\' => 5,
-            'Collective\\Html\\' => 16,
             'Carbon\\Doctrine\\' => 16,
             'Carbon\\' => 7,
         ),
@@ -558,10 +555,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         array (
             0 => __DIR__ . '/..' . '/league/commonmark/src',
         ),
-        'League\\ColorExtractor\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/league/color-extractor/src',
-        ),
         'Laravel\\Tinker\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/tinker/src',
@@ -666,10 +659,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         array (
             0 => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron',
         ),
-        'Collective\\Html\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/laravelcollective/html/src',
-        ),
         'Carbon\\Doctrine\\' => 
         array (
             0 => __DIR__ . '/..' . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine',
@@ -694,16 +683,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         array (
             0 => __DIR__ . '/../..' . '/app',
             1 => __DIR__ . '/..' . '/laravel/pint/app',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'c' => 
-        array (
-            'claviska' => 
-            array (
-                0 => __DIR__ . '/..' . '/claviska/simpleimage/src',
-            ),
         ),
     );
 
@@ -1037,13 +1016,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\TranslatorImmutable' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorImmutable.php',
         'Carbon\\TranslatorStrongTypeInterface' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/TranslatorStrongTypeInterface.php',
-        'Collective\\Html\\Componentable' => __DIR__ . '/..' . '/laravelcollective/html/src/Componentable.php',
-        'Collective\\Html\\Eloquent\\FormAccessible' => __DIR__ . '/..' . '/laravelcollective/html/src/Eloquent/FormAccessible.php',
-        'Collective\\Html\\FormBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/FormBuilder.php',
-        'Collective\\Html\\FormFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/FormFacade.php',
-        'Collective\\Html\\HtmlBuilder' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlBuilder.php',
-        'Collective\\Html\\HtmlFacade' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlFacade.php',
-        'Collective\\Html\\HtmlServiceProvider' => __DIR__ . '/..' . '/laravelcollective/html/src/HtmlServiceProvider.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/dragonmantank/cron-expression/src/Cron/CronExpression.php',
@@ -3450,9 +3422,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Laravel\\Tinker\\Console\\TinkerCommand' => __DIR__ . '/..' . '/laravel/tinker/src/Console/TinkerCommand.php',
         'Laravel\\Tinker\\TinkerCaster' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerCaster.php',
         'Laravel\\Tinker\\TinkerServiceProvider' => __DIR__ . '/..' . '/laravel/tinker/src/TinkerServiceProvider.php',
-        'League\\ColorExtractor\\Color' => __DIR__ . '/..' . '/league/color-extractor/src/Color.php',
-        'League\\ColorExtractor\\ColorExtractor' => __DIR__ . '/..' . '/league/color-extractor/src/ColorExtractor.php',
-        'League\\ColorExtractor\\Palette' => __DIR__ . '/..' . '/league/color-extractor/src/Palette.php',
         'League\\CommonMark\\CommonMarkConverter' => __DIR__ . '/..' . '/league/commonmark/src/CommonMarkConverter.php',
         'League\\CommonMark\\ConverterInterface' => __DIR__ . '/..' . '/league/commonmark/src/ConverterInterface.php',
         'League\\CommonMark\\Delimiter\\Delimiter' => __DIR__ . '/..' . '/league/commonmark/src/Delimiter/Delimiter.php',
@@ -6212,6 +6181,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddContext' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddContext.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddDumps' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddDumps.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddEnvironmentInformation' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddEnvironmentInformation.php',
+        'Spatie\\LaravelIgnition\\FlareMiddleware\\AddExceptionHandledStatus' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddExceptionHandledStatus.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddExceptionInformation' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddExceptionInformation.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddJobs' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddJobs.php',
         'Spatie\\LaravelIgnition\\FlareMiddleware\\AddLogs' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/FlareMiddleware/AddLogs.php',
@@ -7311,7 +7281,9 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Symfony\\Contracts\\Service\\Attribute\\Required' => __DIR__ . '/..' . '/symfony/service-contracts/Attribute/Required.php',
         'Symfony\\Contracts\\Service\\Attribute\\SubscribedService' => __DIR__ . '/..' . '/symfony/service-contracts/Attribute/SubscribedService.php',
         'Symfony\\Contracts\\Service\\ResetInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ResetInterface.php',
+        'Symfony\\Contracts\\Service\\ServiceCollectionInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceCollectionInterface.php',
         'Symfony\\Contracts\\Service\\ServiceLocatorTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceLocatorTrait.php',
+        'Symfony\\Contracts\\Service\\ServiceMethodsSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceMethodsSubscriberTrait.php',
         'Symfony\\Contracts\\Service\\ServiceProviderInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceProviderInterface.php',
         'Symfony\\Contracts\\Service\\ServiceSubscriberInterface' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberInterface.php',
         'Symfony\\Contracts\\Service\\ServiceSubscriberTrait' => __DIR__ . '/..' . '/symfony/service-contracts/ServiceSubscriberTrait.php',
@@ -7438,7 +7410,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'ZipStream\\Zip64\\ExtendedInformationExtraField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zip64/ExtendedInformationExtraField.php',
         'ZipStream\\ZipStream' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/ZipStream.php',
         'ZipStream\\Zs\\ExtendedInformationExtraField' => __DIR__ . '/..' . '/maennchen/zipstream-php/src/Zs/ExtendedInformationExtraField.php',
-        'claviska\\SimpleImage' => __DIR__ . '/..' . '/claviska/simpleimage/src/claviska/SimpleImage.php',
         'voku\\helper\\ASCII' => __DIR__ . '/..' . '/voku/portable-ascii/src/voku/helper/ASCII.php',
     );
 
@@ -7447,7 +7418,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc::$prefixesPsr0;
             $loader->classMap = ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc::$classMap;
 
         }, null, ClassLoader::class);

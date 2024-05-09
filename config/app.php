@@ -169,7 +169,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
-        Collective\Html\HtmlServiceProvider::class,
+        Spatie\Html\HtmlServiceProvider::class,
         App\Providers\SettingProvider::class,
         App\Providers\MenuProvider::class,
         App\Providers\PopupProvider::class,
@@ -189,8 +189,7 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
-        'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class,
+        "Html" => Spatie\Html\Facades\Html::class,
     ])->toArray(),
 
 

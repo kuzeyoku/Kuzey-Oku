@@ -6,12 +6,10 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
-        "claviska/simpleimage": "^4.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
-        "laravelcollective/html": "^6.4",
         "owenvoke/blade-fontawesome": "^2.4",
         "spatie/laravel-html": "^3.9",
         "spatie/laravel-medialibrary": "^10.0.0"
