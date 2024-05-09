@@ -97,7 +97,6 @@ class Category extends Model
 
     public function getStatusViewAttribute()
     {
-        $status = StatusEnum::getStatus($this->status);
-        return $status->badge();
+        return StatusEnum::fromValue($this->status)->badge();
     }
 }

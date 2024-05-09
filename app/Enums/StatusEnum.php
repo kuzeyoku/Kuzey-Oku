@@ -59,7 +59,7 @@ enum StatusEnum: string
         ];
     }
 
-    public static function getStatus($value)
+    public static function fromValue($value)
     {
         $statusList = [
             'active' => StatusEnum::Active,

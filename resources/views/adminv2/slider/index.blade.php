@@ -17,11 +17,11 @@
             @forelse ($items as $item)
                 <tr>
                     <td>{{ $item->id }}</td>
-                    <td><img class="table_image" src="{{ $item->image_url }}"></td>
+                    <td><img class="table-image" src="{{ $item->getFirstMediaUrl($module->COVER_COLLECTION()) }}"></td>
                     <td>{{ $item->titles[config('app.fallback_locale')] ?? null }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{{ $item->status_view }}</td>
+                    <td>{!! $item->status_view !!}</td>
                     @include(themeView('admin', 'layout.action'), ['edit' => '', 'delete' => ''])
                 </tr>
             @empty

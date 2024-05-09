@@ -30,16 +30,8 @@ class Brand extends Model implements HasMedia
         return $query->orderBy("order");
     }
 
-    public function getImageUrlAttribute()
-    {
-        if ($this->image)
-            return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Brand->folder() . "/" . $this->image);
-        return asset("assets/img/noimage.png");
-    }
-
     public function getStatusViewAttribute()
     {
-        $status = StatusEnum::getStatus($this->status);
-        return $status->badge();
+        return StatusEnum::fromValue($this->status)->badge();
     }
 }

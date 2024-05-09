@@ -2,6 +2,7 @@
 @section('form')
     {!! Form::file('image', [
         'class' => 'dropify-image',
+        'data-allowed-file-extensions' => 'png jpg jpeg gif',
         'accept' => '.png, .jpg, .jpeg, .gif',
     ]) !!}
     @foreach (languageList() as $lang)

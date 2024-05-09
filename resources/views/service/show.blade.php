@@ -10,7 +10,7 @@
                 <div class="col-xl-4 col-lg-4">
                     <div class="service-sidebar">
                         <div class="sidebar-widget service-sidebar-single">
-                            @if ($otherServices)
+                            @if ($otherServices->isNotEmpty())
                                 <div class="sidebar-service-list">
                                     <ul>
                                         @foreach ($otherServices as $item)
@@ -40,7 +40,7 @@
                 </div>
                 <div class="col-xl-8 col-lg-8">
                     <div class="services-details__content">
-                        <img src="{{ $service->image_url }}" alt="">
+                        {{ $service->getFirstMedia('cover') }}
                         <h3 class="mt-4">{{ $service->title }}</h3>
                         {!! $service->description !!}
                     </div>

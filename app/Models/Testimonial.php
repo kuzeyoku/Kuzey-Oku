@@ -30,10 +30,4 @@ class Testimonial extends Model
         return $query->orderBy("order");
     }
 
-    public function getImageUrlAttribute()
-    {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Testimonial->folder() . "/" . $this->image);
-    }
 }

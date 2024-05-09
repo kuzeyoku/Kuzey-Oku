@@ -36160,3 +36160,7 @@ label span {
     overflow-y: auto;
 
 }
+
+.table-image {
+    max-height: 50px;
+}

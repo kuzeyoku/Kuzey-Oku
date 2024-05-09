@@ -62,10 +62,4 @@ class Popup extends Model implements HasMedia
         return json_decode($this->setting);
     }
 
-    public function getImageUrlAttribute()
-    {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Popup->folder() . "/" . $this->image);
-    }
 }

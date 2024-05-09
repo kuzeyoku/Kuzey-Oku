@@ -18,7 +18,8 @@
     <div id="image" style="display: none">
         {!! Form::file('image', [
             'class' => 'dropify-image',
-            'data-default-file' => $popup->getFirstMediaUrl('image'),
+            'data-default-file' => $popup->getFirstMediaUrl($module->COVER_COLLECTION()),
+            'data-allowed-file-extensions' => 'png jpg jpeg gif',
             'accept' => '.png, .jpg, .jpeg, .gif',
         ]) !!}
     </div>

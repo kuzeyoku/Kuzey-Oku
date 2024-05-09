@@ -34,7 +34,7 @@
             </a>
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
-                    <span class="notification-title">@lang('admin/general.message')</span>
+                    <span class="notification-title">@lang('admin/general.messages')</span>
                     <a href="javascript:void(0)" class="clear-noti"> @lang('admin/general.all_delete') </a>
                 </div>
                 <div class="noti-content">

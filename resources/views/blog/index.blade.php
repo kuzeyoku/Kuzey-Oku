@@ -10,7 +10,7 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image">
-                                    <a href="{{ $post->url }}"><img src="{{ $post->image_url }}" alt=""></a>
+                                    <a href="{{ $post->url }}">{{ $post->getFirstMedia('cover') }}</a>
                                 </figure>
                             </div>
                             <div class="content-box">

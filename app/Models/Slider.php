@@ -6,10 +6,12 @@ use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Slider extends Model
+class Slider extends Model implements HasMedia
 {
-    use HasFactory;
+    use HasFactory, InteractsWithMedia;
 
     protected $fillable = [
         "button",
@@ -63,10 +65,15 @@ class Slider extends Model
         return $this->translate->pluck("description", "lang")->all();
     }
 
-    public function getImageUrlAttribute()
+    // public function getImageUrlAttribute()
+    // {
+    //     if (is_null($this->image))
+    //         return asset("assets/img/noimage.png");
+    //     return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Slider->folder() . "/" . $this->image);
+    // }
+
+    public function getStatusViewAttribute()
     {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Slider->folder() . "/" . $this->image);
+        return StatusEnum::fromValue($this->status)->badge();
     }
 }

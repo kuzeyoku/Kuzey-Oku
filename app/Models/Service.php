@@ -92,13 +92,6 @@ class Service extends Model implements HasMedia
         return route(ModuleEnum::Service->route() . ".show", [$this, $this->slug]);
     }
 
-    public function getImageUrlAttribute()
-    {
-        if (is_null($this->image))
-            return asset("assets/img/noimage.png");
-        return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Service->folder() . "/" . $this->image);
-    }
-
     public function getOtherAttribute()
     {
         return Service::active()->where("id", "!=", $this->id)->limit(5)->get();
@@ -106,7 +99,6 @@ class Service extends Model implements HasMedia
 
     public function getStatusViewAttribute()
     {
-        $status = StatusEnum::getStatus($this->status);
-        return $status->badge();
+        return StatusEnum::fromValue($this->status)->badge();
     }
 }

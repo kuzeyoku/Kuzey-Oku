@@ -18,7 +18,7 @@ class SliderService extends BaseService
         parent::__construct($slider, ModuleEnum::Slider);
     }
 
-    public function create(Object $request)
+    public function create(Request $request)
     {
         $data = new Request($request->only("button", "video", "order", "status"));
 

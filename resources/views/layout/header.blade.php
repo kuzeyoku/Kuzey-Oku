@@ -1,9 +1,7 @@
 <header class="main-header header-style-one">
-
     <div class="header-top">
         <div class="inner-container">
             <div class="top-left">
-
                 <ul class="list-style-one">
                     <li>
                         <i class="fa fa-envelope"></i>
@@ -75,8 +73,7 @@
 
         <nav class="menu-box">
             <div class="upper-box">
-                <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
-                            alt="" title=""></a></div>
+                <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation clearfix">

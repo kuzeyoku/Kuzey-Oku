@@ -1,6 +1,10 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => false])
 @section('form')
-    {!! Form::file('image', ['class' => 'dropify-image', 'accept' => '.png, .jpg, .jpeg, .gif']) !!}
+    {!! Form::file('image', [
+        'class' => 'dropify-image',
+        'data-allowed-file-extensions' => 'png jpg jpeg gif',
+        'accept' => '.png, .jpg, .jpeg, .gif',
+    ]) !!}
     <br>
     {!! Form::label('url', __("admin/{$folder}.form_url")) !!}
     {!! Form::text('url', null, [

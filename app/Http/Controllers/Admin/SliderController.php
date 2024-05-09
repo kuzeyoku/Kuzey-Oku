@@ -18,19 +18,20 @@ class SliderController extends Controller
         $this->service = $service;
         view()->share([
             "route" => $this->service->route(),
-            "folder" => $this->service->folder()
+            "folder" => $this->service->folder(),
+            "module" => $this->service->module()
         ]);
     }
 
     public function index()
     {
         $items = $this->service->all();
-        return view(themeView("admin","{$this->service->folder()}.index"), compact("items"));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact("items"));
     }
 
     public function create()
     {
-        return view(themeView("admin","{$this->service->folder()}.create"));
+        return view(themeView("admin", "{$this->service->folder()}.create"));
     }
 
     public function store(StoreSliderRequest $request)
@@ -51,7 +52,7 @@ class SliderController extends Controller
 
     public function edit(Slider $slider)
     {
-        return view(themeView("admin","{$this->service->folder()}.edit"), compact("slider"));
+        return view(themeView("admin", "{$this->service->folder()}.edit"), compact("slider"));
     }
 
     public function update(UpdateSliderRequest $request, Slider $slider)
