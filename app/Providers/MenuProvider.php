@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\Menu;
 use App\Models\Page;
+use App\Models\Service;
+use App\Enums\StatusEnum;
 use Illuminate\Support\ServiceProvider;
 
 class MenuProvider extends ServiceProvider
@@ -40,7 +42,11 @@ class MenuProvider extends ServiceProvider
                 $pages = [];
             }
 
-            $view->with(compact("pages"));
+            $services = $cache->remember("footerServices_" . app()->getLocale(), $cacheTime, function () {
+                return Service::whereStatus(StatusEnum::Active->value)->limit(6)->get();
+            });
+
+            $view->with(compact("pages", "services"));
         });
 
         view()->composer("layout.header", function ($view) use ($cache, $cacheTime) {
@@ -50,12 +56,12 @@ class MenuProvider extends ServiceProvider
             $view->with(compact("headerMenu"));
         });
 
-        view()->composer("layout.topbar", function ($view) use ($cache, $cacheTime) {
-            $languageList = $cache->remember("frontLanguageList", $cacheTime, function () {
-                $language = new \App\Models\Language();
-                return $language->active()->pluck("title", "code");
-            });
-            $view->with(compact("languageList"));
-        });
+        // view()->composer("layout.topbar", function ($view) use ($cache, $cacheTime) {
+        //     $languageList = $cache->remember("frontLanguageList", $cacheTime, function () {
+        //         $language = new \App\Models\Language();
+        //         return $language->active()->pluck("title", "code");
+        //     });
+        //     $view->with(compact("languageList"));
+        // });
     }
 }

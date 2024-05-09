@@ -23,14 +23,15 @@
             <div class="row">
                 <div class="footer-column col-xl-3 col-lg-12 col-md-12">
                     <div class="footer-widget about-widget">
-                        <div class="logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"
-                                    alt=""></a>
+                        <div class="logo"><a href="{{ route('home') }}"><img
+                                    src="{{ asset('assets/images/logo.png') }}"></a>
                         </div>
                         <div class="text">{{ config('setting.general.description') }}</div>
                         <ul class="social-icon-two">
                             @foreach (config('setting.social', []) as $key => $value)
                                 @if ($value)
-                                    <li><a href="{{ $value }}"><i class="fab fa-{{ $key }}"></i></a>
+                                    <li>
+                                        <a href="{{ $value }}"><i class="fab fa-{{ $key }}"></i></a>
                                     </li>
                                 @endif
                             @endforeach
@@ -54,37 +55,13 @@
                         <h6 class="widget-title">@lang('front/footer.txt2')</h6>
                         <div class="widget-content">
                             <div class="outer clearfix">
-                                <figure class="image">
-                                    <a href="#"><img
-                                            src="{{ asset('assets/images/resource/project-thumb-1.jpg') }}"
-                                            alt=""></a>
-                                </figure>
-                                <figure class="image">
-                                    <a href="#"><img
-                                            src="{{ asset('assets/images/resource/project-thumb-2.jpg') }}"
-                                            alt=""></a>
-                                </figure>
-                                <figure class="image">
-                                    <a href="#"><img
-                                            src="{{ asset('assets/images/resource/project-thumb-3.jpg') }}"
-                                            alt=""></a>
-                                </figure>
-                                <figure class="image">
-                                    <a href="#"><img
-                                            src="{{ asset('assets/images/resource/project-thumb-4.jpg') }}"
-                                            alt=""></a>
-                                </figure>
-                                <figure class="image">
-                                    <a href="#">
-                                        <imgw src="{{ asset('assets/images/resource/project-thumb-5.jpg') }}"
-                                            alt="">
-                                    </a>
-                                </figure>
-                                <figure class="image">
-                                    <a href="#"><img
-                                            src="{{ asset('assets/images/resource/project-thumb-6.jpg') }}"
-                                            alt=""></a>
-                                </figure>
+                                @foreach ($services as $service)
+                                    <figure class="image">
+                                        <a href="{{ $service->url }}">
+                                            <img src="{{ $service->getFirstMediaUrl('cover', 'thumbnail') }}">
+                                        </a>
+                                    </figure>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -117,7 +94,7 @@
     <div class="footer-bottom">
         <div class="auto-container">
             <div class="inner-container">
-                <div class="copyright-text">@lang('front/footer.txt4', ['year' => date('Y'), "title" => config("setting.general.title"), "url" => "#", "author" => "Babazan Software"])</a>
+                <div class="copyright-text">@lang('front/footer.txt4', ['year' => date('Y'), 'title' => config('setting.general.title'), 'url' => '#', 'author' => 'Babazan Software'])</a>
                 </div>
             </div>
         </div>
