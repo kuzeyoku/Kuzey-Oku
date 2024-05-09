@@ -10,6 +10,7 @@ return [
     "approve" => "Onayla",
     "delete" => "Sil",
     "order" => "Sıra",
+    "order_placeholder" => "Sıra numarası giriniz...",
     "status" => "Durum",
     "default" => "Varsayılan",
     "uncategorized" => "Kategori Yok",

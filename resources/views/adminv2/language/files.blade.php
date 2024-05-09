@@ -17,26 +17,18 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-6">
-                        {!! Form::open(['url' => route("admin.{$route}.files", $language)]) !!}
-                        {!! Form::hidden('folder', 'admin') !!}
-                        {!! Form::label(__("admin/{$folder}.form_admin_files")) !!}
-                        {!! Form::select('filename', $adminFiles, $dir == 'admin' ? $filename : 'default', [
-                            'class' => 'form-control',
-                            'placeholder' => __('admin/general.select'),
-                            'onchange' => 'this.form.submit()',
-                        ]) !!}
-                        {!! Form::close() !!}
+                        {{ Html::Form('POST', route("admin.{$route}.files", $language))->open() }}
+                        {{ Html::hidden('folder', 'admin') }}
+                        {{ Html::label(__("admin/{$folder}.form_admin_files")) }}
+                        {{ Html::select('filename', $adminFiles, $dir == 'admin' ? $filename : 'default')->placeholder(__('admin/general.select'))->class('form-control')->attribute('onchange', 'this.form.submit()') }}
+                        {{ Html::Form()->close() }}
                     </div>
                     <div class="col-lg-6">
-                        {!! Form::open(['url' => route("admin.{$route}.files", $language)]) !!}
-                        {!! Form::hidden('folder', 'front') !!}
-                        {!! Form::label(__("admin/{$route}.form_site_files")) !!}
-                        {!! Form::select('filename', $frontFiles, $dir == 'front' ? $filename : 'default', [
-                            'class' => 'form-control',
-                            'placeholder' => __('admin/general.select'),
-                            'onchange' => 'this.form.submit()',
-                        ]) !!}
-                        {!! Form::close() !!}
+                        {{ Html::Form('POST', route("admin.{$route}.files", $language)) }}
+                        {{ Html::hidden('folder', 'front') }}
+                        {{ Html::label(__("admin/{$route}.form_site_files")) }}
+                        {{ Html::select('filename', $frontFiles, $dir == 'front' ? $filename : 'default')->placeholder(__('admin/general.select'))->class('form-control')->attribute('onchange', 'this.form.submit()') }}
+                        {{ Html::Form()->close() }}
                     </div>
                 </div>
             </div>
@@ -46,16 +38,16 @@
                 <h3 class="card-title">{{ __("admin/{$folder}.files_title") }}</h3>
             </div>
             <div class="card-body">
-                {!! Form::open(['url' => route("admin.{$route}.updateFileContent", $language), 'method' => 'put']) !!}
-                {!! Form::hidden('filename', $filename) !!}
-                {!! Form::hidden('folder', $dir) !!}
+                {{ Html::Form('PUT', route("admin.{$route}.updateFileContent", $language)) }}
+                {{ Html::hidden('filename', $filename) }}
+                {{ Html::hidden('folder', $dir) }}
                 <table class="table table-responsive mb-3">
                     <tbody>
                         @forelse ($fileContent as $key => $value)
                             <tr>
                                 <td>{{ $key }}</td>
                                 <td>
-                                    {!! Form::text($key, $value, ['class' => 'form-control mb-0']) !!}
+                                    {{ Html::text($key, $value)->class('form-control mb-0') }}
                                 </td>
                             </tr>
                         @empty
@@ -66,9 +58,9 @@
                     </tbody>
                 </table>
                 @if (!empty($fileContent))
-                    {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
+                    {{ Html::submit(__('admin/general.save'))->class('btn btn-primary') }}
                 @endif
-                {!! Form::close() !!}
+                {{ Html::Form()->close() }}
             </div>
         </div>
     </div>

@@ -22,11 +22,11 @@
                 @if ($errors)
                     @foreach ($errors->all() as $error)
                         <div class="alert alert-danger">
-                            {!! $error !!}
+                            {{ $error }}
                         </div>
                     @endforeach
                 @endif
-                {!! Form::open(['route' => "admin.{$route}.store", 'method' => 'post', 'files' => true]) !!}
+                {{ Html::form('POST', route("admin.{$route}.store"))->open() }}
                 @if ($tab)
                     <div class="tab-content">
                         @yield('form')
@@ -34,8 +34,8 @@
                 @else
                     @yield('form')
                 @endif
-                {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-                {!! Form::close() !!}
+                {{ Html::submit(__('admin/general.save'))->class('btn btn-primary') }}
+                {{ Html::form()->close() }}
             </div>
         </div>
     </div>

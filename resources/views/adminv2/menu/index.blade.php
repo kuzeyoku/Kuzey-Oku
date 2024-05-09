@@ -34,15 +34,15 @@
                                                     class="btn btn-sm btn-light">
                                                     {{ __('admin/general.edit') }}
                                                 </a>
-                                                {!! Form::open([
+                                                {{ Form::open([
                                                     'url' => route("admin.{$route}.destroy", $menu),
                                                     'method' => 'delete',
                                                     'class' => 'd-inline',
-                                                ]) !!}
+                                                ]) }}
                                                 <a href="javascript:void(0);" class="btn btn-sm destroy-btn btn-danger">
                                                     {{ __('admin/general.delete') }}
                                                 </a>
-                                                {!! Form::close() !!}
+                                                {{ Form::close() }}
                                             </div>
                                         </li>
                                         @if ($menu->subMenu)

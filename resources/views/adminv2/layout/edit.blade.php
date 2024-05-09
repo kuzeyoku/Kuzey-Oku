@@ -19,7 +19,7 @@
                 @if ($tab)
                     @include(themeView('admin', 'layout.langtab'))
                 @endif
-                {!! Form::open(['url' => route("admin.{$folder}.update", $item), 'method' => 'PUT', 'files' => true]) !!}
+                {{ Html::form('PUT', route("admin.{$folder}.update", $item)) }}
                 @if ($tab)
                     <div class="tab-content">
                         @yield('form')
@@ -27,8 +27,8 @@
                 @else
                     @yield('form')
                 @endif
-                {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-                {!! Form::close() !!}
+                {{ Html::submit(__('admin/general.save'))->class('btn btn-primary') }}
+                {{ Html::form()->close() }}
             </div>
         </div>
     </div>

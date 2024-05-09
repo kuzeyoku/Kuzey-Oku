@@ -18,7 +18,7 @@
                     <td>{{ $item->title }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{!! $item->status_view !!}</td>
+                    <td>{{ $item->status_view }}</td>
                     <td class="table-action">
                         <div class="data-action-button">
                             <a class="me-2 p-2" href="{{ route("admin.{$route}.files", $item) }}">
@@ -27,15 +27,15 @@
                             <a class="me-2 p-2" href="{{ route("admin.{$route}.edit", $item) }}">
                                 <i data-feather="edit" class="feather-icon text-success"></i>
                             </a>
-                            {!! Form::open([
+                            {{ Form::open([
                                 'url' => route("admin.{$route}.destroy", $item),
                                 'method' => 'delete',
                                 'class' => 'd-inline',
-                            ]) !!}
+                            ]) }}
                             <a class="destroy-btn p-2" href="javascript:void(0);">
                                 <i data-feather="trash-2" class="feather-icon text-danger"></i>
                             </a>
-                            {!! Form::close() !!}
+                            {{ Form::close() }}
                         </div>
                     </td>
                 </tr>

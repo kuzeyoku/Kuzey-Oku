@@ -1,30 +1,19 @@
 @extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $brand])
 @section('form')
-    {!! Form::file('image', [
-        'class' => 'dropify-image',
-        'data-default-file' => $brand->getFirstMediaUrl($module->COVER_COLLECTION()),
-        'data-allowed-file-extensions' => 'png jpg jpeg gif',
-        'accept' => '.png, .jpg, .jpeg, .gif',
-    ]) !!}
+    {{ Html::file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $brand->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     <br>
-    {!! Form::label('title', __("admin/{$folder}.form_title")) !!}
-    {!! Form::text('title', $brand->title, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-    ]) !!}
-    {!! Form::label('url', __("admin/{$folder}.form_url")) !!}
-    {!! Form::text('url', $brand->url, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_url_placeholder"),
-    ]) !!}
+    {{ Html::label(__("admin/{$folder}.form_title")) }}
+    {{ Html::text('title', $brand->title)->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+    {{ Html::label(__("admin/{$folder}.form_url")) }}
+    {{ Html::text('url', $brand->url)->placeholder(__("admin/{$folder}.form_url_placeholder"))->class('form-control') }}
     <div class="row">
         <div class="col-lg-6">
-            {!! Form::label('order', __('admin/general.order')) !!} <span class="manitory">*</span>
-            {!! Form::number('order', $brand->order, ['class' => 'form-control']) !!}
+            {{ Html::label(__('admin/general.order')) }}
+            {{ Html::number('order', $brand->order)->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-            {!! Form::select('status', statusList(), $brand->status, ['class' => 'form-control']) !!}
+            {{ Html::label(__('admin/general.status')) }}
+            {{ Html::select('status', statusList(), $brand->status)->class('form-control') }}
         </div>
     </div>
 @endsection

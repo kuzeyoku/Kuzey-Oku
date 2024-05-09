@@ -21,15 +21,11 @@
             </a>
         @endisset
         @isset($delete)
-            {!! Form::open([
-                'url' => route("admin.{$route}.destroy", $item),
-                'method' => 'delete',
-                'class' => 'd-inline',
-            ]) !!}
+            {{ Html::Form('DELETE', route("admin.{$route}.destroy", $item)) }}
             <a class="destroy-btn p-2" href="javascript:void(0);">
                 <i data-feather="trash-2" class="feather-icon text-danger"></i>
             </a>
-            {!! Form::close() !!}
+            {{ Html::form()->close() }}
         @endisset
     </div>
 </td>

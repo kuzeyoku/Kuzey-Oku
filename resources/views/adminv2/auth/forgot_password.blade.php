@@ -44,12 +44,12 @@
                             @enderror
                         </div>
                         <div class="form-login">
-                            {!! Form::submit(__('admin/auth.confirm'), [
+                            {{ Form::submit(__('admin/auth.confirm'), [
                                 'class' => 'btn btn-login g-recaptcha',
                                 'data-sitekey' => config('setting.recaptcha.site_key'),
                                 'data-callback' => 'onSubmit',
                                 'data-action' => 'submit',
-                            ]) !!}
+                            ]) }}
                         </div>
                         <div class="signinform text-center">
                             <h4>@lang("admin/{$folder}.or") <a href="{{ route("admin.{$folder}.login") }}" class="hover-a">

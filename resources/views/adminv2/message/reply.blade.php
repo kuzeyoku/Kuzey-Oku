@@ -16,16 +16,16 @@
         </div>
         <div class="card">
             <div class="card-body">
-                {!! Form::open(['url' => route("admin.{$route}.sendReply", $message), 'method' => 'post']) !!}
-                {!! Form::hidden('message_id', $message->id) !!}
-                {!! Form::label('email', __("admin/{$folder}.form_customer")) !!}
-                {!! Form::text('email', $message->email, ['class' => 'form-control', 'readonly' => '']) !!}
-                {!! Form::label('subject', __("admin/{$folder}.form_subject")) !!}
-                {!! Form::text('subject', 're:' . $message->subject, ['class' => 'form-control']) !!}
-                {!! Form::label('message', __("admin/{$folder}.form_content")) !!}
-                {!! Form::textarea('message', null, ['class' => 'form-control']) !!}
-                {!! Form::submit(__("admin/{$folder}.form_send"), ['class' => 'btn btn-primary']) !!}
-                {!! Form::close() !!}
+                {{ Form::open(['url' => route("admin.{$route}.sendReply", $message), 'method' => 'post']) }}
+                {{ Form::hidden('message_id', $message->id) }}
+                {{ Form::label('email', __("admin/{$folder}.form_customer")) }}
+                {{ Form::text('email', $message->email, ['class' => 'form-control', 'readonly' => '']) }}
+                {{ Form::label('subject', __("admin/{$folder}.form_subject")) }}
+                {{ Form::text('subject', 're:' . $message->subject, ['class' => 'form-control']) }}
+                {{ Form::label('message', __("admin/{$folder}.form_content")) }}
+                {{ Form::textarea('message', null, ['class' => 'form-control']) }}
+                {{ Form::submit(__("admin/{$folder}.form_send"), ['class' => 'btn btn-primary']) }}
+                {{ Form::close() }}
             </div>
         </div>
     </div>

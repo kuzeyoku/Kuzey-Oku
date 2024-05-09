@@ -8,15 +8,15 @@
                 <a href="{{ route("admin.{$folder}.edit", $subMenu) }}" class="btn btn-sm btn-primary">
                     {{ __('admin/general.edit') }}
                 </a>
-                {!! Form::open([
+                {{ Form::open([
                     'url' => route("admin.{$route}.destroy", $subMenu),
                     'method' => 'delete',
                     'class' => 'd-inline',
-                ]) !!}
+                ]) }}
                 <a href="javascript:void(0);" class="btn btn-sm btn-danger destroy-btn">
                     {{ __('admin/general.delete') }}
                 </a>
-                {!! Form::close() !!}
+                {{ Form::close() }}
             </div>
         </li>
         @if ($subMenu->subMenu)

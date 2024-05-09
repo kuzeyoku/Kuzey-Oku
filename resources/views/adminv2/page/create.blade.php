@@ -2,15 +2,12 @@
 @section('form')
     @foreach (LanguageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
-            {!! Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
-            {!! Form::text("title[$lang->code]", null, [
-                'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-                'class' => 'form-control',
-            ]) !!}
-            {!! Form::label('description', __("admin/{$folder}.form_description")) !!}
-            {!! Form::textarea("description[$lang->code]", null, ['class' => 'editor']) !!}
+            {{ Html::label(__("admin/{$folder}.form_title")) }}
+            {{ Html::text("title[$lang->code]")->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
+            {{ Html::label(__("admin/{$folder}.form_description")) }}
+            {{ Html::textarea("description[$lang->code]")->class('editor') }}
         </div>
     @endforeach
-    {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-    {!! Form::select('status', statusList(), 'default', ['class' => 'form-control']) !!}
+    {{ Html::label(__('admin/general.status')) }}
+    {{ Html::select('status', statusList())->class('form-control') }}
 @endsection

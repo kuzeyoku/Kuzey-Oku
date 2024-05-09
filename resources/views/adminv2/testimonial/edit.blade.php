@@ -1,36 +1,21 @@
 @extends('admin.layout.main', ['tab' => false, 'item' => $testimonial])
 @section('form')
-    {!! Form::label('name', __("admin/{$folder}.form_name")) !!}
-    {!! Form::text('name', $testimonial->name, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_name_placeholder"),
-    ]) !!}
-    {!! Form::label('company', __("admin/{$folder}.form_company")) !!}
-    {!! Form::text('company', $testimonial->company, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_company_placeholder"),
-    ]) !!}
-    {!! Form::label('position', __("admin/{$folder}.form_position")) !!}
-    {!! Form::text('position', $testimonial->position, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_position_placeholder"),
-    ]) !!}
-    {!! Form::label('message', __("admin/{$folder}.form_message")) !!}
-    {!! Form::textarea('message', $testimonial->message, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_message_placeholder"),
-    ]) !!}
+    {{ Html::label(__("admin/{$folder}.form_name")) }}
+    {{ Html::text('name', $testimonial->name)->placeholder(__("admin/{$folder}.form_name_placeholder"))->class('form-control') }}
+    {{ Html::label(__("admin/{$folder}.form_company")) }}
+    {{ Html::text('company', $testimonial->company)->placeholder(__("admin/{$folder}.form_company_placeholder"))->class('form-control') }}
+    {{ Html::label(__("admin/{$folder}.form_position")) }}
+    {{ Html::text('position', $testimonial->position)->placeholder(__("admin/{$folder}.form_position_placeholder"))->class('form-control') }}
+    {{ Html::label(__("admin/{$folder}.form_message")) }}
+    {{ Html::textarea('message', $testimonial->message)->placeholder(__("admin/{$folder}.form_message_placeholder"))->class('form-control') }}
     <div class="row">
         <div class="col-lg-6">
-            {!! Form::label('order', __('admin/general.order')) !!} <span class="manitory">*</span>
-            {!! Form::number('order', $testimonial->order, [
-                'class' => 'form-control',
-                'placeholder' => __('admin/general.order_placeholder'),
-            ]) !!}
+            {{ Html::label(__('admin/general.order')) }}
+            {{ Html::number('order', $testimonial->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-            {!! Form::select('status', statusList(), $testimonial->status, ['class' => 'form-control']) !!}
+            {{ Html::label(__('admin/general.status')) }}
+            {{ Html::select('status', statusList(), $testimonial->status)->class('form-control') }}
         </div>
     </div>
 @endsection

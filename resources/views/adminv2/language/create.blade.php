@@ -15,21 +15,15 @@
         </div>
         <div class="card">
             <div class="card-body">
-                {{ Form::open(['url' => route("admin.{$route}.store"), 'method' => 'POST']) }}
-                {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
-                {!! Form::text('title', null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-                ]) !!}
-                {!! Form::label('code', __("admin/{$folder}.form_code")) !!} <span class="manitory">*</span>
-                {!! Form::text('code', null, [
-                    'class' => 'form-control',
-                    'placeholder' => __("admin/{$folder}.form_code_placeholder"),
-                ]) !!}
-                {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-                {!! Form::select('status', statusList(), 'default', ['class' => 'form-control']) !!}
-                {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-                {{ Form::close() }}
+                {{ Html::Form('POST', route("admin.{$route}.store"))->open() }}
+                {{ Html::label(__("admin/{$folder}.form_title")) }}
+                {{ Html::text('title')->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+                {{ Html::label('code', __("admin/{$folder}.form_code")) }}
+                {{ Html::text('code')->placeholder(__("admin/{$folder}.form_code_placeholder"))->class('form-control') }}
+                {{ Html::label(__('admin/general.status')) }}
+                {{ Html::select('status', statusList())->class('form-control') }}
+                {{ Html::submit(__('admin/general.save'))->class('btn btn-primary') }}
+                {{ Html::Form()->close() }}
             </div>
         </div>
     </div>

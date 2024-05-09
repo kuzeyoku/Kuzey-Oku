@@ -19,7 +19,7 @@ class PageService extends BaseService
         parent::__construct($page, ModuleEnum::Page);
     }
 
-    public function create(Object $request)
+    public function create(Request $request)
     {
         $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
@@ -34,7 +34,7 @@ class PageService extends BaseService
         return $query;
     }
 
-    public function update(Object $request, Model $page)
+    public function update(Request $request, Model $page)
     {
         $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
@@ -49,11 +49,12 @@ class PageService extends BaseService
         return $query;
     }
 
-    public function translations(int $pageId, Object $request)
+    public function translations(int $pageId, Request $request)
     {
         $languages = languageList();
+
         foreach ($languages as $language) {
-            if (!empty($request->title[$language->code]) || !empty($request->content[$language->code])) {
+            if (!empty($request->title[$language->code]) || !empty($request->description[$language->code])) {
                 PageTranslate::updateOrCreate(
                     [
                         "page_id" => $pageId,

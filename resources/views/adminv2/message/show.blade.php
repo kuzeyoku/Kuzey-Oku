@@ -28,13 +28,13 @@
                 <a class="btn btn-primary" href="{{ route("admin.{$route}.reply", $message) }}">
                     {{ __("admin/{$folder}.reply") }}
                 </a>
-                {!! Form::open([
+                {{ Form::open([
                     'url' => route("admin.{$route}.destroy", $message),
                     'method' => 'delete',
                     'class' => 'd-inline',
-                ]) !!}
+                ]) }}
                 <button type="button" class="btn btn-danger destroy-btn">{{ __('admin/general.delete') }}</button>
-                {!! Form::close() !!}
+                {{ Form::close() }}
             </div>
         </div>
     </div>

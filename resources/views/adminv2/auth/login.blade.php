@@ -68,12 +68,12 @@
                             </div>
                         </div>
                         <div class="form-login">
-                            {!! Form::submit(__('admin/auth.login'), [
+                            {{ Form::submit(__('admin/auth.login'), [
                                 'class' => 'btn btn-login g-recaptcha',
                                 'data-sitekey' => config('setting.recaptcha.site_key'),
                                 'data-callback' => 'onSubmit',
                                 'data-action' => 'submit',
-                            ]) !!}
+                            ]) }}
                         </div>
                         {{-- <div class="form-setlogin or-text">
                             <h4>&</h4>
