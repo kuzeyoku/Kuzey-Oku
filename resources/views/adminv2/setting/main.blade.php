@@ -9,8 +9,8 @@
                 </div>
             </div>
         </div>
-        {{ Form::open(['url' => route('admin.setting.update'), 'method' => 'PUT']) }}
-        {{ Form::hidden('category', request()->category) }}
+        {{ Html::Form('PUT', route('admin.setting.update'))->open() }}
+        {{ Html::hidden('category', request()->category) }}
         <div class="card">
             <div class="card-header">
                 <h4>@lang('admin/setting.category_' . request()->category)</h4>
@@ -19,7 +19,14 @@
                 @yield('setting_form')
             </div>
         </div>
-        {{ Form::submit(__('admin/general.save'), ['class' => 'btn btn-submit']) }}
-        {{ Form::close() }}
+        {{ Html::submit(__('admin/general.save'))->class('btn btn-submit') }}
+        {{ Html::Form()->close() }}
     </div>
 @endsection
+@push('style')
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/dropify.min.css') }}">
+@endpush
+@push('script')
+    <script src="{{ themeAsset('admin', 'js/dropzone.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/dropify.min.js') }}"></script>
+@endpush

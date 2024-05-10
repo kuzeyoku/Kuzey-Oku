@@ -4,10 +4,10 @@
         href="{{ url(route('sitemap.index')) }}">{{ url(route('sitemap.index')) }}</a>
     <hr>
     @foreach ($service->getSitemapModuleList() as $module)
-        {{ Form::label(__("admin/{$folder}.sitemap_{$module}")) }}
+        {{ Html::label(__("admin/{$folder}.sitemap_{$module}")) }}
         <div class="row">
             <div class="col-lg-9">
-                {{ Form::range($module . '_priority', config('setting.sitemap.' . $module . '_priority'), [
+                {{ Html::range($module . '_priority', config('setting.sitemap.' . $module . '_priority'), [
                     'class' => 'form-control',
                     'min' => 0,
                     'max' => 1,
@@ -15,7 +15,7 @@
                 ]) }}
             </div>
             <div class="col-lg-3">
-                {{ Form::select(
+                {{ Html::select(
                     $module . '_changefreq',
                     $service->getChangeFreqList(),
                     config('setting.sitemap.' . $module . '_changefreq'),

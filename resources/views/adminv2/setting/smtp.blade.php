@@ -14,8 +14,8 @@
     @endphp
 
     @foreach ($formElementList as $element)
-        {{ Form::label($element, __('admin/setting.smtp_' . $element)) }}
-        {{ Form::text("{$element}", config('setting.smtp.' . $element), [
+        {{ Html::label($element, __('admin/setting.smtp_' . $element)) }}
+        {{ Html::text("{$element}", config('setting.smtp.' . $element), [
             'class' => 'form-control',
             'placeholder' => __("admin/{$folder}.smtp_{$element}_placeholder"),
         ]) }}

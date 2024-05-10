@@ -21,7 +21,7 @@
         <div class="account-content">
             <div class="login-wrapper bg-img">
                 <div class="login-content">
-                    {{ Form::open(['url' => route("admin.{$route}.reset_password"), 'id' => 'reset-password-form']) }}
+                    {{ Html::Form('POST', route("admin.{$route}.reset_password"))->id('reset-password-form')->open() }}
                     <div class="login-userset">
                         <div class="login-logo logo-normal">
                             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="img">
@@ -33,28 +33,27 @@
                             <h3>@lang("admin/{$folder}.reset_password")</h3>
                             <h4>@lang("admin/{$folder}.reset_password_description")</h4>
                         </div>
-                        {{ Form::hidden('token', $token) }}
+                        {{ Html::hidden('token', $token) }}
                         <div class="form-login">
-                            {{ Form::label(__("admin/{$folder}.new_password")) }}
+                            {{ Html::label(__("admin/{$folder}.new_password")) }}
                             <div class="pass-group">
-                                {{ Form::password('password', ['class' => 'pass-inputs form-control']) }}
+                                {{ Html::password('password')->class('pass-inputs form-control') }}
                                 <span class="fas toggle-passwords fa-eye-slash"></span>
                             </div>
                         </div>
                         <div class="form-login">
-                            {{ Form::label(__("admin/{$folder}.new_password_confirmation")) }}
+                            {{ Html::label(__("admin/{$folder}.new_password_confirmation")) }}
                             <div class="pass-group">
-                                {{ Form::password('password_confirmation', ['class' => 'pass-inputa form-control']) }}
+                                {{ Html::password('password_confirmation')->class('pass-inputa form-control') }}
                                 <span class="fas toggle-passworda fa-eye-slash"></span>
                             </div>
                         </div>
                         <div class="form-login">
-                            {{ Form::submit(__('admin/auth.confirm'), [
-                                'class' => 'btn btn-login g-recaptcha',
-                                'data-sitekey' => config('setting.recaptcha.site_key'),
-                                'data-callback' => 'onSubmit',
-                                'data-action' => 'submit',
-                            ]) }}
+                            {{ Html::submit(__('admin/auth.confirm'))->class('btn btn-login g-recaptcha')->attributes([
+                                    'data-sitekey' => config('setting.recaptcha.site_key'),
+                                    'data-callback' => 'onSubmit',
+                                    'data-action' => 'submit',
+                                ]) }}
                         </div>
                         <div class="signinform text-center">
                             <h4>@lang("admin/{$folder}.or") <a href="{{ route("admin.{$route}.login") }}" class="hover-a">
@@ -64,7 +63,7 @@
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
                     </div>
-                    {{ Form::close() }}
+                    {{ Html::Form()->close() }}
                 </div>
             </div>
         </div>

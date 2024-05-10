@@ -124,6 +124,7 @@ return [
     "sitemap_changefreq_never" => "Asla",
     "sitemap_view" => "Sitemap Görüntüle : ",
     "recaptcha" => "Google Recaptcha",
+    "analytics" => "Google Analytics",
     "recaptcha_status" => "Recaptcha Durumu",
     "recaptcha_site_key" => "Site Anahtarı",
     "recaptcha_site_key_placeholder" => "Site Anahtarı Giriniz",

@@ -21,7 +21,7 @@
         <div class="account-content">
             <div class="login-wrapper bg-img">
                 <div class="login-content">
-                    {{ Form::open(['url' => route("admin.{$folder}.forgot_password"), 'id' => 'forgot-password-form']) }}
+                    {{ Html::Form('POST', route("admin.{$folder}.forgot_password"))->id('forgot-password-form')->open() }}
                     <div class="login-userset">
                         <div class="login-logo logo-normal">
                             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="img">
@@ -34,9 +34,9 @@
                             <h4>@lang("admin/{$folder}.forgot_password_description")</h4>
                         </div>
                         <div class="form-login">
-                            {{ Form::label(__("admin/{$folder}.email")) }}
+                            {{ Html::label(__("admin/{$folder}.email")) }}
                             <div class="form-addons">
-                                {{ Form::email('email', null, ['class' => 'form-control mb-0', 'placeholder' => __("admin/{$folder}.email_placeholder")]) }}
+                                {{ Html::email('email')->class('form-control mb-0')->placeholder(__("admin/{$folder}.email_placeholder")) }}
                                 <img src="{{ themeAsset('admin', 'img/icons/mail.svg') }}" alt="img">
                             </div>
                             @error('email')
@@ -44,12 +44,11 @@
                             @enderror
                         </div>
                         <div class="form-login">
-                            {{ Form::submit(__('admin/auth.confirm'), [
-                                'class' => 'btn btn-login g-recaptcha',
-                                'data-sitekey' => config('setting.recaptcha.site_key'),
-                                'data-callback' => 'onSubmit',
-                                'data-action' => 'submit',
-                            ]) }}
+                            {{ Html::submit(__('admin/auth.confirm'))->class('btn btn-login g-recaptcha')->attributes([
+                                    'data-sitekey' => config('setting.recaptcha.site_key'),
+                                    'data-callback' => 'onSubmit',
+                                    'data-action' => 'submit',
+                                ]) }}
                         </div>
                         <div class="signinform text-center">
                             <h4>@lang("admin/{$folder}.or") <a href="{{ route("admin.{$folder}.login") }}" class="hover-a">
@@ -59,7 +58,7 @@
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
                     </div>
-                    {{ Form::close() }}
+                    {{ Html::Form()->close() }}
                 </div>
             </div>
         </div>

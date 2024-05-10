@@ -4,8 +4,8 @@
         $formElementList = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
     @endphp
     @foreach ($formElementList as $element)
-        {{ Form::label($element, __('admin/setting.social_' . $element)) }}
-        {{ Form::text("{$element}", config('setting.social.' . $element), [
+        {{ Html::label($element, __('admin/setting.social_' . $element)) }}
+        {{ Html::text("{$element}", config('setting.social.' . $element), [
             'class' => 'form-control',
             'placeholder' => __("admin/{$folder}.social_{$element}_placeholder"),
         ]) }}
