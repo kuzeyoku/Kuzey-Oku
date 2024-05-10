@@ -1,6 +1,6 @@
 @extends(themeView('admin', 'layout.edit'), ['tab' => true, 'item' => $project])
 @section('form')
-    {{ Html::file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $project->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
+    {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $project->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     @foreach (languageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {{ Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) }}
@@ -44,7 +44,7 @@
             {{ Form::number('order', $project->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            {{ Html::label(__('admin/general.status')) }}
+            {{ html()->label(__('admin/general.status')) }}
             {{ Form::select('status', statusList(), $project->status, ['class' => 'form-control']) }}
         </div>
     </div>

@@ -1,11 +1,11 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => true])
 @section('form')
-    {{ Html::file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
+    {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
 
     @foreach (languageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {{ Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) }}
-            {{ Html::text("title[$lang->code]")->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
+            {{ html()->text("title[$lang->code]")->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
             {{ Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) }}
             {{ Form::textarea("description[$lang->code]", null, [
                 'rows' => 3,
@@ -37,7 +37,7 @@
         </div>
         <div class="col-lg-6">
             {{ Form::label('status', __('admin/general.status')) }}
-            {{ Html::select('status', statusList())->class('form-control') }}
+            {{ html()->select('status', statusList())->class('form-control') }}
         </div>
     </div>
 @endsection

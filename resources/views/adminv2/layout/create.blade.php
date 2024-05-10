@@ -19,14 +19,14 @@
                 @if ($tab)
                     @include(themeView('admin', 'layout.langtab'))
                 @endif
-                @if ($errors)
+                @if ($errors->any())
                     @foreach ($errors->all() as $error)
                         <div class="alert alert-danger">
                             {{ $error }}
                         </div>
                     @endforeach
                 @endif
-                {{ Html::form('POST', route("admin.{$route}.store"))->open() }}
+                {{ html()->form()->route("admin.{$route}.store")->open() }}
                 @if ($tab)
                     <div class="tab-content">
                         @yield('form')
@@ -34,8 +34,8 @@
                 @else
                     @yield('form')
                 @endif
-                {{ Html::submit(__('admin/general.save'))->class('btn btn-primary') }}
-                {{ Html::form()->close() }}
+                {{ html()->submit(__('admin/general.save'))->class('btn btn-primary') }}
+                {{ html()->form()->close() }}
             </div>
         </div>
     </div>

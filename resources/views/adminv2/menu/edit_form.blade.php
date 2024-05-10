@@ -4,7 +4,7 @@
 {{ Form::open(['url' => route("admin.{$route}.update", $menu), 'method' => 'put']) }}
 @foreach (languageList() as $key => $lang)
     <div id="{{ $lang->code }}" class="tab-pane fade @if ($loop->first) active show @endif">
-        {{ Html::label(__("admin/{$folder}.form_title")) }}
+        {{ html()->label(__("admin/{$folder}.form_title")) }}
         {{ Form::text("title[$lang->code]", $menu->titles[$lang->code] ?? null, [
             'class' => 'form-control',
             'placeholder' => __("admin/{$folder}.form_title_placeholder"),

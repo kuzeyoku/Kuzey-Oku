@@ -21,7 +21,7 @@
         <div class="account-content">
             <div class="login-wrapper bg-img">
                 <div class="login-content">
-                    {{ Html::Form('POST', route("admin.{$folder}.forgot_password"))->id('forgot-password-form')->open() }}
+                    {{ html()->form()->route("admin.{$folder}.forgot_password")->id('forgot-password-form')->open() }}
                     <div class="login-userset">
                         <div class="login-logo logo-normal">
                             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="img">
@@ -34,9 +34,9 @@
                             <h4>@lang("admin/{$folder}.forgot_password_description")</h4>
                         </div>
                         <div class="form-login">
-                            {{ Html::label(__("admin/{$folder}.email")) }}
+                            {{ html()->label(__("admin/{$folder}.email")) }}
                             <div class="form-addons">
-                                {{ Html::email('email')->class('form-control mb-0')->placeholder(__("admin/{$folder}.email_placeholder")) }}
+                                {{ html()->email('email')->placeholder(__("admin/{$folder}.email_placeholder"))->class('form-control mb-0') }}
                                 <img src="{{ themeAsset('admin', 'img/icons/mail.svg') }}" alt="img">
                             </div>
                             @error('email')
@@ -44,7 +44,7 @@
                             @enderror
                         </div>
                         <div class="form-login">
-                            {{ Html::submit(__('admin/auth.confirm'))->class('btn btn-login g-recaptcha')->attributes([
+                            {{ html()->submit(__('admin/auth.confirm'))->class('btn btn-login g-recaptcha')->attributes([
                                     'data-sitekey' => config('setting.recaptcha.site_key'),
                                     'data-callback' => 'onSubmit',
                                     'data-action' => 'submit',
@@ -58,7 +58,7 @@
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
                     </div>
-                    {{ Html::Form()->close() }}
+                    {{ html()->form()->close() }}
                 </div>
             </div>
         </div>

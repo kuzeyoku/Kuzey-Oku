@@ -9,8 +9,8 @@
                 </div>
             </div>
         </div>
-        {{ Html::Form('PUT', route('admin.setting.update'))->open() }}
-        {{ Html::hidden('category', request()->category) }}
+        {{ html()->form('PUT', route('admin.setting.update'))->open() }}
+        {{ html()->hidden('category', request()->category) }}
         <div class="card">
             <div class="card-header">
                 <h4>@lang('admin/setting.category_' . request()->category)</h4>
@@ -19,8 +19,8 @@
                 @yield('setting_form')
             </div>
         </div>
-        {{ Html::submit(__('admin/general.save'))->class('btn btn-submit') }}
-        {{ Html::Form()->close() }}
+        {{ html()->submit(__('admin/general.save'))->class('btn btn-submit') }}
+        {{ html()->form()->close() }}
     </div>
 @endsection
 @push('style')

@@ -1,7 +1,7 @@
 @extends(themeView('admin', 'setting.main'))
 @section('setting_form')
-    {{ Html::label(__('admin/setting.information_cookie_notification_status')) }}
-    {{ Html::select(
+    {{ html()->label(__('admin/setting.information_cookie_notification_status')) }}
+    {{ html()->select(
         'cookie_notification_status',
         App\Enums\StatusEnum::getOnOffSelectArray(),
         config('setting.information.cookie_notification_status'),
@@ -17,7 +17,7 @@
         ];
     @endphp
     @foreach ($formElementList as $element)
-        {{ Html::label(__('admin/setting.information_' . $element)) }}
-        {{ Html::select($element, App\Models\Page::toSelectArray(), config('setting.information.' . $element))->placeholder(__('admin/general.select'))->class('form-control') }}
+        {{ html()->label(__('admin/setting.information_' . $element)) }}
+        {{ html()->select($element, App\Models\Page::toSelectArray(), config('setting.information.' . $element))->placeholder(__('admin/general.select'))->class('form-control') }}
     @endforeach
 @endsection

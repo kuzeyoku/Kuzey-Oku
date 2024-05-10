@@ -50,7 +50,7 @@ $(this).val($(this).val());}else if(!arg1&&!arg2){results.push(tagsinput);}else 
 if(retVal!==undefined)
 results.push(retVal);}});if(typeof arg1=='string'){return results.length>1?results:results[0];}else{return results;}};$.fn.tagsinput.Constructor=TagsInput;function makeOptionItemFunction(options,key){if(typeof options[key]!=='function'){var propertyName=options[key];options[key]=function(item){return item[propertyName];};}}
 function makeOptionFunction(options,key){if(typeof options[key]!=='function'){var value=options[key];options[key]=function(){return value;};}}
-var htmlEncodeContainer=$('<div />');function htmlEncode(value){if(value){return htmlEncodeContainer.text(value).html();}else{return '';}}
+var htmlEncodeContainer=$('<div />');function htmlEncode(value){if(value){return htmlEncodeContainer.text(value).html()->;}else{return '';}}
 function doGetCaretPosition(oField){var iCaretPos=0;if(document.selection){oField.focus();var oSel=document.selection.createRange();oSel.moveStart('character',-oField.value.length);iCaretPos=oSel.text.length;}else if(oField.selectionStart||oField.selectionStart=='0'){iCaretPos=oField.selectionStart;}
 return(iCaretPos);}
 function keyCombinationInList(keyPressEvent,lookupList){var found=false;$.each(lookupList,function(index,keyCombination){if(typeof(keyCombination)==='number'&&keyPressEvent.which===keyCombination){found=true;return false;}

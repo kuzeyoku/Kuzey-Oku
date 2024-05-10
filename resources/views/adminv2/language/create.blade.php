@@ -15,15 +15,15 @@
         </div>
         <div class="card">
             <div class="card-body">
-                {{ Html::Form('POST', route("admin.{$route}.store"))->open() }}
-                {{ Html::label(__("admin/{$folder}.form_title")) }}
-                {{ Html::text('title')->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
-                {{ Html::label('code', __("admin/{$folder}.form_code")) }}
-                {{ Html::text('code')->placeholder(__("admin/{$folder}.form_code_placeholder"))->class('form-control') }}
-                {{ Html::label(__('admin/general.status')) }}
-                {{ Html::select('status', statusList())->class('form-control') }}
-                {{ Html::submit(__('admin/general.save'))->class('btn btn-primary') }}
-                {{ Html::Form()->close() }}
+                {{ html()->form('POST', route("admin.{$route}.store"))->open() }}
+                {{ html()->label(__("admin/{$folder}.form_title")) }}
+                {{ html()->text('title')->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+                {{ html()->label('code', __("admin/{$folder}.form_code")) }}
+                {{ html()->text('code')->placeholder(__("admin/{$folder}.form_code_placeholder"))->class('form-control') }}
+                {{ html()->label(__('admin/general.status')) }}
+                {{ html()->select('status', statusList())->class('form-control') }}
+                {{ html()->submit(__('admin/general.save'))->class('btn btn-primary') }}
+                {{ html()->form()->close() }}
             </div>
         </div>
     </div>

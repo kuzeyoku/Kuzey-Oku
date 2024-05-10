@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\User;
 
+use App\Enums\ModuleEnum;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UserUpdateRequest extends FormRequest
@@ -12,6 +13,13 @@ class UserUpdateRequest extends FormRequest
     public function authorize(): bool
     {
         return true;
+    }
+
+    protected $folder;
+
+    public function __construct()
+    {
+        $this->folder = ModuleEnum::User->folder();
     }
 
     /**
@@ -32,10 +40,10 @@ class UserUpdateRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            "name" => __("admin/user.form.name"),
-            "email" => __("admin/user.form.email"),
-            "password" => __("admin/user.form.password"),
-            "role" => __("admin/user.form.role"),
+            "name" => __("admin/{$this->folder}.form_name"),
+            "email" => __("admin/{$this->folder}.form_email"),
+            "password" => __("admin/{$this->folder}.form_password"),
+            "role" => __("admin/{$this->folder}.form_role"),
         ];
     }
 }

@@ -1,6 +1,6 @@
 @extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $reference])
 @section('content')
-    {{ Html::file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $reference->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
+    {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $reference->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     <br>
     {{ Form::label('url', __("admin/{$folder}.form_url")) }}
     {{ Form::text('url', $reference->url, [
@@ -14,7 +14,7 @@
         </div>
 
         <div class="col-lg-6">
-            {{ Html::label(__('admin/general.status')) }}
+            {{ html()->label(__('admin/general.status')) }}
             {{ Form::select('status', statusList(), $reference->status, ['class' => 'form-control']) }}
         </div>
     </div>

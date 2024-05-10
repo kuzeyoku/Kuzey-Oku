@@ -21,7 +21,7 @@
         <div class="account-content">
             <div class="login-wrapper bg-img">
                 <div class="login-content">
-                    {{ Html::Form('POST', route("admin.{$route}.reset_password"))->id('reset-password-form')->open() }}
+                    {{ html()->form()->route("admin.{$route}.reset_password")->id('reset-password-form')->open() }}
                     <div class="login-userset">
                         <div class="login-logo logo-normal">
                             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="img">
@@ -33,23 +33,23 @@
                             <h3>@lang("admin/{$folder}.reset_password")</h3>
                             <h4>@lang("admin/{$folder}.reset_password_description")</h4>
                         </div>
-                        {{ Html::hidden('token', $token) }}
+                        {{ html()->hidden('token', $token) }}
                         <div class="form-login">
-                            {{ Html::label(__("admin/{$folder}.new_password")) }}
+                            {{ html()->label(__("admin/{$folder}.new_password")) }}
                             <div class="pass-group">
-                                {{ Html::password('password')->class('pass-inputs form-control') }}
+                                {{ html()->password('password')->class('pass-inputs form-control') }}
                                 <span class="fas toggle-passwords fa-eye-slash"></span>
                             </div>
                         </div>
                         <div class="form-login">
-                            {{ Html::label(__("admin/{$folder}.new_password_confirmation")) }}
+                            {{ html()->label(__("admin/{$folder}.new_password_confirmation")) }}
                             <div class="pass-group">
-                                {{ Html::password('password_confirmation')->class('pass-inputa form-control') }}
+                                {{ html()->password('password_confirmation')->class('pass-inputa form-control') }}
                                 <span class="fas toggle-passworda fa-eye-slash"></span>
                             </div>
                         </div>
                         <div class="form-login">
-                            {{ Html::submit(__('admin/auth.confirm'))->class('btn btn-login g-recaptcha')->attributes([
+                            {{ html()->submit(__('admin/auth.confirm'))->class('btn btn-login g-recaptcha')->attributes([
                                     'data-sitekey' => config('setting.recaptcha.site_key'),
                                     'data-callback' => 'onSubmit',
                                     'data-action' => 'submit',
@@ -63,7 +63,7 @@
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
                     </div>
-                    {{ Html::Form()->close() }}
+                    {{ html()->form()->close() }}
                 </div>
             </div>
         </div>

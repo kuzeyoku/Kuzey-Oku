@@ -16,17 +16,17 @@
         ['class' => 'form-control', 'id' => 'type'],
     ) }}
     <div id="image" style="display: none">
-        {{ Html::file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $popup->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
+        {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $popup->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     </div>
     @foreach (languageList() as $key => $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
-            {{ Html::label(__("admin/{$folder}.form_title")) }}
+            {{ html()->label(__("admin/{$folder}.form_title")) }}
             {{ Form::text("title[$lang->code]", $popup->titles[$lang->code] ?? null, [
                 'class' => 'form-control',
                 'placeholder' => __("admin/{$folder}.form_title_placeholder"),
             ]) }}
             <div id="text" style="display: none">
-                {{ Html::label(__("admin/{$folder}.form_description")) }}
+                {{ html()->label(__("admin/{$folder}.form_description")) }}
                 {{ Form::textarea("description[$lang->code]", $popup->descriptions[$lang->code] ?? null, ['class' => 'editor']) }}
             </div>
         </div>
@@ -110,7 +110,7 @@
             ]) }}
         </div>
     </div>
-    {{ Html::label(__('admin/general.status')) }}
+    {{ html()->label(__('admin/general.status')) }}
     {{ Form::select('status', statusList(), $popup->status, ['class' => 'form-control']) }}
 @endsection
 @push('script')

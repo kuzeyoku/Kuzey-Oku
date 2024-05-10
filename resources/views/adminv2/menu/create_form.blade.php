@@ -1,7 +1,7 @@
 {{ Form::open(['route' => "admin.{$route}.store", 'method' => 'post']) }}
 @foreach (languageList() as $key => $lang)
     <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
-        {{ Html::label(__("admin/{$folder}.form_title")) }}
+        {{ html()->label(__("admin/{$folder}.form_title")) }}
         {{ Form::text("title[$lang->code]", null, [
             'class' => 'form-control',
             'placeholder' => __("admin/{$folder}.form_title_placeholder"),

@@ -12,12 +12,8 @@
             'reply_address',
         ];
     @endphp
-
     @foreach ($formElementList as $element)
-        {{ Html::label($element, __('admin/setting.smtp_' . $element)) }}
-        {{ Html::text("{$element}", config('setting.smtp.' . $element), [
-            'class' => 'form-control',
-            'placeholder' => __("admin/{$folder}.smtp_{$element}_placeholder"),
-        ]) }}
+        {{ html()->label(__('admin/setting.smtp_' . $element)) }}
+        {{ html()->text($element, config('setting.smtp.' . $element))->placeholder(__('admin/setting.smtp_' . $element . '_placeholder'))->class('form-control') }}
     @endforeach
 @endsection

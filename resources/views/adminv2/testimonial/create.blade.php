@@ -26,8 +26,8 @@
             {{ Form::number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            {{ Html::label(__('admin/general.status')) }}
-            {{ Html::select('status', statusList())->class('form-control') }}
+            {{ html()->label(__('admin/general.status')) }}
+            {{ html()->select('status', statusList())->class('form-control') }}
         </div>
     </div>
 @endsection

@@ -21,7 +21,7 @@
         <div class="account-content">
             <div class="login-wrapper bg-img">
                 <div class="login-content">
-                    {{ Html::Form('POST', route("admin.{$route}.authenticate"))->id('login-form')->open() }}
+                    {{ html()->form()->route("admin.{$route}.authenticate")->id('login-form')->open() }}
                     <div class="login-userset">
                         <div class="login-logo logo-normal">
                             <img src="{{ themeAsset('admin', 'img/logo.png') }}" alt="img">
@@ -34,9 +34,9 @@
                             <h4>@lang("admin/{$folder}.please_login")</h4>
                         </div>
                         <div class="form-login">
-                            {{ Html::label(__("admin/{$folder}.email")) }}
+                            {{ html()->label(__("admin/{$folder}.email")) }}
                             <div class="form-addons">
-                                {{ Html::email('email')->class('form-control mb-0')->placeholder(__("admin/{$folder}.email_placeholder")) }}
+                                {{ html()->email('email')->class('form-control mb-0')->placeholder(__("admin/{$folder}.email_placeholder")) }}
                                 <img src="{{ themeAsset('admin', 'img/icons/mail.svg') }}" alt="img">
                             </div>
                             @error('email')
@@ -44,9 +44,9 @@
                             @enderror
                         </div>
                         <div class="form-login">
-                            {{ Html::label(__("admin/{$folder}.password")) }}
+                            {{ html()->label(__("admin/{$folder}.password")) }}
                             <div class="pass-group">
-                                {{ Html::password('password')->class('form-control pass-input mb-0')->placeholder(__("admin/{$folder}.password_placeholder")) }}
+                                {{ html()->password('password')->class('form-control pass-input mb-0')->placeholder(__("admin/{$folder}.password_placeholder")) }}
                                 <span class="fas toggle-password fa-eye-slash"></span>
                             </div>
                             @error('password')
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                         <div class="form-login">
-                            {{ Html::submit(__('admin/auth.login'))->class('btn btn-login g-recaptcha')->attributes([
+                            {{ html()->submit(__('admin/auth.login'))->class('btn btn-login g-recaptcha')->attributes([
                                     'data-sitekey' => config('setting.recaptcha.site_key'),
                                     'data-callback' => 'onSubmit',
                                     'data-action' => 'submit',
@@ -102,7 +102,7 @@
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
                     </div>
-                    {{ Html::Form()->close() }}
+                    {{ html()->form()->close() }}
                 </div>
             </div>
         </div>
