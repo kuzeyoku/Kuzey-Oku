@@ -15,6 +15,11 @@
                 <i data-feather="message-square" class="feather-icon text-info"></i>
             </a>
         @endisset
+        @isset($file)
+            <a class="me-2 p-2" href="{{ route("admin.{$route}.files", $item) }}">
+                <i data-feather="repeat" class="feather-icon text-primary"></i>
+            </a>
+        @endisset
         @isset($edit)
             <a class="me-2 p-2" href="{{ route("admin.{$folder}.edit", $item) }}">
                 <i data-feather="edit" class="feather-icon text-success"></i>
@@ -29,4 +34,3 @@
         @endisset
     </div>
 </td>
- 

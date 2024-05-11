@@ -8,7 +8,7 @@
                         {{ $menu ? __("admin/{$folder}.edit") : __("admin/{$folder}.create") }}
                     </div>
                     <div class="card-body">
-                        @include(themeView('admin', 'layout.langTab'))
+                        @include(themeView('admin', 'layout.langtab'))
                         @if (!empty($menu))
                             @include(themeView('admin', "{$folder}.edit_form"))
                         @else
@@ -34,15 +34,11 @@
                                                     class="btn btn-sm btn-light">
                                                     {{ __('admin/general.edit') }}
                                                 </a>
-                                                {{ Form::open([
-                                                    'url' => route("admin.{$route}.destroy", $menu),
-                                                    'method' => 'delete',
-                                                    'class' => 'd-inline',
-                                                ]) }}
+                                                {{ html()->form('DELETE')->route("admin.{$route}.destroy", $menu)->open() }}
                                                 <a href="javascript:void(0);" class="btn btn-sm destroy-btn btn-danger">
                                                     {{ __('admin/general.delete') }}
                                                 </a>
-                                                {{ Form::close() }}
+                                                {{ html()->form()->close() }}
                                             </div>
                                         </li>
                                         @if ($menu->subMenu)

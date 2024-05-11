@@ -23,7 +23,6 @@
         <div class="col-lg-4">
             {{ html()->label(__('admin/general.status')) }}
             {{ html()->select('status', statusList(), $blog->status)->class('form-control') }}
-
         </div>
     </div>
 @endsection

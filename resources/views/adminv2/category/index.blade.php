@@ -9,7 +9,7 @@
                 <th>{{ __('admin/general.table_created_at') }}</th>
                 <th>{{ __('admin/general.table_updated_at') }}</th>
                 <th>{{ __('admin/general.table_status') }}</th>
-                <th>{{ __('admin/general.table_action') }}</th>
+                <th style="width:200px">@lang('admin/general.table_action')</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                     <td>{{ __("admin/{$item->module}.title") }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{{ $item->status_view }}</td>
+                    <td>{!! $item->status_view !!}</td>
                     @include(themeView('admin', 'layout.action'), ['edit' => '', 'delete' => ''])
                 </tr>
             @empty

@@ -9,7 +9,7 @@
     <div class="row">
         <div class="col-lg-6">
             {{ html()->label(__('admin/general.order')) }}
-            {{ html()->number('order', $brand->order)->class('form-control') }}
+            {{ html()->number('order', $brand->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
             {{ html()->label(__('admin/general.status')) }}
