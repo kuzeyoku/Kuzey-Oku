@@ -1,50 +1,31 @@
-@extends('admin.layout.main')
-@section('pageTitle', __("admin/{$folder}.create"))
-@section('content')
-    @include('admin.layout.langTabs')
-    {!! Form::open(['route' => "admin.{$route}.store", 'method' => 'post']) !!}
-    <div class="tab-content">
-        @foreach (LanguageList() as $key => $lang)
-            <div id="{{ $lang->code }}" class="tab-pane fade @if ($loop->first) active show @endif">
-                <div class="form-group">
-                    {!! Form::label('title', __("admin/{$folder}.form_title")) !!} <span class="manitory">*</span>
-                    {!! Form::text("title[$lang->code]", null, ['placeholder' => __("admin/{$folder}.form_title_placeholder")]) !!}
-                </div>
-                <div class="form-group">
-                    {!! Form::label('description', __("admin/{$folder}.form_description")) !!}
-                    {!! Form::textarea("description[$lang->code]", null, ['class' => 'editor']) !!}
-                </div>
-            </div>
-        @endforeach
-    </div>
+@extends(themeView('admin', 'layout.create'), ['tab' => true])
+@section('form')
+    @foreach (LanguageList() as $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+            {{ html()->label(__("admin/{$folder}.form_title")) }}
+            {{ html()->text("title[$lang->code]")->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
+            {{ html()->label(__("admin/{$folder}.form_description")) }}
+            {{ html()->textarea("description[$lang->code]")->class('editor') }}
+        </div>
+    @endforeach
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('module', __("admin/{$folder}.form_module")) !!} <span class="manitory">*</span>
-                {!! Form::select('module', $modules, null) !!}
-            </div>
+            {{ html()->label(__("admin/{$folder}.form_module")) }}
+            {{ html()->select('module', $modules)->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('parent', __("admin/{$folder}.form_parent")) !!}
-                {!! Form::select('parent', $categories, null) !!}
-            </div>
+            {{ html()->label(__("admin/{$folder}.form_parent")) }}
+            {{ html()->select('parent', $categories)->class('form-control') }}
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('order', __('admin/general.order')) !!} <span class="manitory">*</span>
-                {!! Form::number('order', 0, ['placeholder' => __('admin/general.order_placeholder')]) !!}
-            </div>
+            {{ html()->label(__('admin/general.order')) }}
+            {{ html()->number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-                {!! Form::select('status', statusList(), 'default') !!}
-            </div>
+            {{ html()->label(__('admin/general.status')) }}
+            {{ html()->select('status', statusList())->class('form-control') }}
         </div>
     </div>
-    {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
 @endsection

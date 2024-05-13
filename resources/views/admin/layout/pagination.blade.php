@@ -30,13 +30,13 @@
         <div class="d-none flex-sm-fill d-sm-flex align-items-sm-center justify-content-sm-between">
             <div>
                 <p class="small text-muted">
-                    {!! __('Toplam') !!}
+                    {{ __('Toplam') }}
                     <span class="fw-semibold">{{ $paginator->total() }}</span>
-                    {!! __('Kayıttan') !!}
+                    {{ __('Kayıttan') }}
                     <span class="fw-semibold">{{ $paginator->firstItem() }}</span>
-                    {!! __('İle') !!}
+                    {{ __('İle') }}
                     <span class="fw-semibold">{{ $paginator->lastItem() }}</span>
-                    {!! __('Arası Gösteriliyor') !!}
+                    {{ __('Arası Gösteriliyor') }}
                 </p>
             </div>
 

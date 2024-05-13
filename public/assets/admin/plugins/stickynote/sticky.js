@@ -5,7 +5,7 @@
 {for(var i=0,r='';i<number;i++)r+=string;return r;};var val=self.value.replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/&/g,'&amp;').replace(/\n$/,'<br/>&nbsp;').replace(/\n/g,'<br/>').replace(/ {2,}/g,function(space){return times('&nbsp;',space.length-1)+' '});if(event&&event.data&&event.data.event==='keydown'&&event.keyCode===13){val+='<br />';}
 shadow.css('width',$self.width());shadow.html(val+(noFlickerPad===0?'...':''));$self.height(Math.max(shadow.height()+noFlickerPad,minHeight));}
 $self.change(update).keyup(update).keydown({event:'keydown'},update);$(window).resize(update);update();});};})(jQuery);var noteTemp='<div class="note">'
-+'<a href="javascript:;" class="button remove">X</a>'
++'<a href="javascript:void(0);" class="button remove">X</a>'
 +'<div class="note_cnt">'
 +'<textarea class="title" placeholder="Enter note title"></textarea>'
 +'<textarea class="cnt" placeholder="Enter note description here"></textarea>'

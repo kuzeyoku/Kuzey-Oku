@@ -1,40 +1,19 @@
-@extends('admin.layout.main')
-@section('pageTitle', __("admin/{$folder}.edit"))
-@section('content')
-    {!! Form::open(['url' => route("admin.{$route}.update", $brand), 'method' => 'put', 'files' => true]) !!}
-    {!! Form::file('image', [
-        'class' => 'dropify',
-        'data-default-file' => $brand->image_url,
-        'accept' => '.png, .jpg, .jpeg, .gif',
-    ]) !!}
+@extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $brand])
+@section('form')
+    {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $brand->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
+    <br>
+    {{ html()->label(__("admin/{$folder}.form_title")) }}
+    {{ html()->text('title', $brand->title)->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+    {{ html()->label(__("admin/{$folder}.form_url")) }}
+    {{ html()->text('url', $brand->url)->placeholder(__("admin/{$folder}.form_url_placeholder"))->class('form-control') }}
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('title', __("admin/{$folder}.form_title")) !!}
-                {!! Form::text('title', $brand->title, ['placeholder' => __("admin/{$folder}.form_title_placeholder")]) !!}
-            </div>
+            {{ html()->label(__('admin/general.order')) }}
+            {{ html()->number('order', $brand->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('url', __("admin/{$folder}.form_url")) !!}
-                {!! Form::text('url', $brand->url, ['placeholder' => __("admin/{$folder}.form_url_placeholder")]) !!}
-            </div>
+            {{ html()->label(__('admin/general.status')) }}
+            {{ html()->select('status', statusList(), $brand->status)->class('form-control') }}
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('order', __('admin/general.order')) !!} <span class="manitory">*</span>
-                {!! Form::number('order', $brand->order) !!}
-            </div>
-        </div>
-        <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-                {!! Form::select('status', statusList(), $brand->status) !!}
-            </div>
-        </div>
-    </div>
-    {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
 @endsection

@@ -1,30 +1,21 @@
-@extends('admin.layout.main')
-@section('pageTitle', __("admin/{$folder}.edit"))
+@extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $reference])
 @section('content')
-    {!! Form::open(['url' => route("admin.{$route}.update", $reference), 'method' => 'put', 'files' => true]) !!}
-    {!! Form::file('image', [
-        'class' => 'dropify',
-        'data-default-file' => $reference->image_url,
-        'accept' => '.png, .jpg, .jpeg, .gif',
-    ]) !!}
-    <div class="form-group">
-        {!! Form::label('url', __("admin/{$folder}.form_url")) !!}
-        {!! Form::text('url', $reference->url, ['placeholder' => "admin/{$folder}.form_url_placeholder"]) !!}
-    </div>
+    {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default->file', $reference->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
+    <br>
+    {{ Form::label('url', __("admin/{$folder}.form_url")) }}
+    {{ Form::text('url', $reference->url, [
+        'class' => 'form-control',
+        'placeholder' => "admin/{$folder}.form_url_placeholder",
+    ]) }}
     <div class="row">
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('order', __('admin/general.order')) !!} <span class="manitory">*</span>
-                {!! Form::number('order', $reference->order, ['placeholder' => __('admin/general.order_placeholder')]) !!}
-            </div>
+            {{ Form::label(__('admin/general.order')) }}
+            {{ Form::number('order', $reference->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
+
         <div class="col-lg-6">
-            <div class="form-group">
-                {!! Form::label('status_', __('admin/general.status')) !!} <span class="manitory">*</span>
-                {!! Form::select('status', statusList(), $reference->status) !!}
-            </div>
+            {{ html()->label(__('admin/general.status')) }}
+            {{ Form::select('status', statusList(), $reference->status, ['class' => 'form-control']) }}
         </div>
     </div>
-    {!! Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) !!}
-    {!! Form::close() !!}
 @endsection

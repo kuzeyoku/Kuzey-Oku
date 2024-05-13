@@ -5,51 +5,37 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
     <meta name="robots" content="noindex, nofollow">
-    <title>@yield('pageTitle')</title>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('assets/admin/img/favicon.png') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/animate.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/admin/css/dropify.min.css') }}">
-    @yield('style')
-    <link href="https://unpkg.com/dropzone@6.0.0-beta.1/dist/dropzone.css" rel="stylesheet" type="text/css" />
+    <title>@lang('admin/home.title')</title>
+    <link rel="shortcut icon" type="image/x-icon" href="{{ themeAsset('admin', 'img/favicon.png') }}">
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap-datetimepicker.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/animate.css') }}">
+    {{-- <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/select2/css/select2.min.css') }}"> --}}
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/fontawesome.min.css') }}">
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/all.min.css') }}">
+    @stack('style')
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/style.css') }}">
 </head>
 
 <body>
+    <div id="global-loader">
+        <div class="whirly-loader"> </div>
+    </div>
     <div class="main-wrapper">
-        @include('admin.layout.header')
-        @include('admin.layout.sidebar')
-        <div class="page-wrapper pagehead">
-            <div class="content">
-                <div class="row">
-                    <div class="col-sm-12">
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                    <strong>{{ __('admin/general.error') }} !</strong> {{ $error }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                            @endforeach
-                        @endif
-                        <div class="card">
-                            <div class="card-header d-flex flex-row justify-content-between">
-                                <h3 class="card-title">@yield('pageTitle')</h3>
-                                @yield('button')
-                            </div>
-                            <div class="card-body">
-                                @yield('content')
-                            </div>
-                        </div>
-                        @yield('card')
-                    </div>
-                </div>
-            </div>
+        @include(themeview('admin', 'layout.header'))
+        @include(themeView('admin', 'layout.sidebar'))
+        <div class="page-wrapper">
+            @yield('content')
         </div>
     </div>
-    @include('admin.layout.script')
-    @yield('script')
-    @include('admin.layout.alert')
+    <script src="{{ themeAsset('admin', 'js/jquery-3.7.1.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/feather.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
+    @include(themeView('admin', 'layout.alert'))
+    @stack('script')
+    <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
 </body>
 
 </html>
