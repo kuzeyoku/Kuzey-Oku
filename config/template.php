@@ -7,7 +7,7 @@ return [
     ],
     "admin" => [
         "route" => "admin",
-        "view" => "adminv2",
-        "asset" => "adminv2"
+        "view" => "admin",
+        "asset" => "admin"
     ],
 ];

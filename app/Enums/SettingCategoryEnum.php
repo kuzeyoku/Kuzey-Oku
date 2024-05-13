@@ -5,6 +5,7 @@ namespace App\Enums;
 enum SettingCategoryEnum: string
 {
     case General = "general";
+    case System = "system";
     case Pagination = "pagination";
     case Information = "information";
     case Social = "social";
@@ -26,6 +27,7 @@ enum SettingCategoryEnum: string
     {
         return match ($this) {
             self::General => true,
+            self::System => true,
             self::Pagination => true,
             self::Information => true,
             self::Social => true,
@@ -37,24 +39,6 @@ enum SettingCategoryEnum: string
             self::Sitemap => true,
             self::Integration => true,
             self::Logo => false,
-        };
-    }
-
-    public function icon(): string
-    {
-        return match ($this) {
-            self::General => "fas-cog",
-            self::Pagination => "fas-map-signs",
-            self::Information => "fas-info-circle",
-            self::Social => "fas-share-alt",
-            self::Caching => "fas-sync",
-            self::Contact => "fas-address-book",
-            self::Smtp => "fas-envelope-open-text",
-            self::Maintenance => "fas-tools",
-            self::Image => "fas-image",
-            self::Sitemap => "fas-sitemap",
-            self::Integration => "fas-shield-alt",
-            self::Logo => "fas-image",
         };
     }
 

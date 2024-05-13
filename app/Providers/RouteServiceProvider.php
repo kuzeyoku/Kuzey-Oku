@@ -7,6 +7,7 @@ use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvi
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Schema;
 
 class RouteServiceProvider extends ServiceProvider
 {
@@ -24,6 +25,14 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $admin_route = cache()->rememberForever('admin_route', function () {
+            return \App\Models\Setting::where("category", "system")->where('key', 'admin_route')->first()->value ?? 'admin';
+        });
+
+        config([
+            'setting.system.admin_route' => $admin_route,
+        ]);
+
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()->id ?: $request->ip());
         });

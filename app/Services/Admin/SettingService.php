@@ -20,7 +20,6 @@ class SettingService
 
     public function update(Request $request)
     {
-        dd($request->all());
         $settings = collect($request->except(["_token", "_method", "category"]))
             ->map(function ($value, $key) use ($request) {
                 return [

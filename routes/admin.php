@@ -3,14 +3,8 @@
 use App\Enums\ModuleEnum;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
-//use Illuminate\Support\Facades\Artisan;
 
-Route::prefix(config("template.admin.route"))->name('admin.')->group(function () {
-
-    // Route::get("/storage-link", function () {
-    //     Artisan::call("storage:link");
-    //     return back()->with("success", "Storage Link Successfull");
-    // })->name("storage-link");
+Route::prefix(config("setting.system.admin_route"))->name('admin.')->group(function () {
 
     Route::get('login', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('auth.login');
     Route::get("forgot-password", [App\Http\Controllers\Admin\AuthController::class, "forgot_password_view"])->name("auth.forgot_password_view");
