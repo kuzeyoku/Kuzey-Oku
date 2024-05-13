@@ -9,11 +9,11 @@
                     </div>
                     <div class="card-body">
                         @include(themeView('admin', 'layout.langtab'))
-                        @if (!empty($menu))
-                            @include(themeView('admin', "{$folder}.edit_form"))
-                        @else
+                        @empty($menu)
                             @include(themeView('admin', "{$folder}.create_form"))
-                        @endif
+                        @else
+                            @include(themeView('admin', "{$folder}.edit_form"))
+                        @endempty
                     </div>
                 </div>
             </div>

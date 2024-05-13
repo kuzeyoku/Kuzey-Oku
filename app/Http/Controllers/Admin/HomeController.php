@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Exception;
 use GuzzleHttp\Client;
-use App\Models\Message;
 use App\Models\Visitor;
-use App\Models\BlogComment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
@@ -17,7 +15,7 @@ class HomeController extends Controller
     public function index()
     {
         $client = new Client();
-        $response = $client->get("ipinfo.io/193.243.196.2?token=1a17407b2ccf6f");
+        $response = $client->get("ipinfo.io/" . request()->ip() . "?token=1a17407b2ccf6f");
         $data["userData"] = json_decode($response->getBody());
         $errorLogsFile = storage_path('logs/custom_errors.log');
         $infoLogsFile = storage_path('logs/custom_info.log');

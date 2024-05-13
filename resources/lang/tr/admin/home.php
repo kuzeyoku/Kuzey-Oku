@@ -2,6 +2,8 @@
 return [
     "title" => "Yönetim Paneli",
     "welcome" => "Hoşgeldiniz - IP : :ip (:location - :country)",
+    "unique_visits" => "Tekil Ziyaretçi Sayısı",
+    "page_views" => "Sayfa Görüntüleme Sayısı",
     "unread_messages" => "Okunmamış Mesajlarınız Var",
     "no_unread_messages" => "Okunmamış Mesajınız Yok",
     "go_messages" => "Mesajlara Git",
@@ -9,6 +11,7 @@ return [
     "no_pending_approval_comments" => "Onay Bekleyen Yorum Yok",
     "go_comments" => "Yorumlara Git",
     "transaction_records" => "İşlem Kayıtları",
+    "info_logs" => "Bilgi Kayıtları",
     "error_logs" => "Hata Kayıtları",
     "no_log_records" => "Log Kaydı Bulunamadı",
     "visitor_records" => "Ziyaretçi Kayıtları",
