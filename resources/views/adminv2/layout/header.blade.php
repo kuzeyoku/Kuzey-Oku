@@ -23,9 +23,14 @@
     <ul class="nav user-menu">
         <li class="nav-item nav-searchinputs">
         </li>
-        <li class="nav-item nav-item-box">
+        <li class="nav-item nav-item-box" title="@lang('admin/home.fullscreen')">
             <a href="javascript:void(0);" id="btnFullscreen">
                 <i data-feather="maximize"></i>
+            </a>
+        </li>
+        <li class="nav-item nav-item-box" title="@lang('admin/home.cache_clear')">
+            <a href="{{ route('admin.cache_clear') }}">
+                <i data-feather="server"></i>
             </a>
         </li>
         <li class="nav-item dropdown nav-item-box">
@@ -87,7 +92,7 @@
                                 <a href="{{ route('admin.blog.comments') }}">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="{{ themeAsset('admin', 'img/avatar.png') }}">
+                                            <img src="{{ themeAsset('admin', 'img/avatar.png') }}">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details">
@@ -116,7 +121,7 @@
             </div>
         </li>
 
-        <li class="nav-item nav-item-box">
+        <li class="nav-item nav-item-box" title="@lang('admin/home.go_site')">
             <a href="{{ route('home') }}" target="_blank"><i data-feather="link"></i></a>
         </li>
         <li class="nav-item dropdown has-arrow main-drop">
@@ -143,8 +148,8 @@
                         </div>
                     </div>
                     <hr class="m-0">
-                    <a class="dropdown-item logout pb-0" href="{{ route('admin.auth.logout') }}"><img
-                            src="{{ themeAsset('admin', 'img/icons/log-out.svg') }}" class="me-2"
+                    <a class="dropdown-item logout pb-0" href="{{ route('admin.auth.logout') }}">
+                        <img src="{{ themeAsset('admin', 'img/icons/log-out.svg') }}" class="me-2"
                             alt="img">@lang('admin/auth.logout')</a>
                 </div>
             </div>

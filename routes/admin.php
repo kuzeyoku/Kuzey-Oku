@@ -31,7 +31,7 @@ Route::prefix(config("template.admin.route"))->name('admin.')->group(function ()
         });
 
         Route::post("editor/upload", [App\Http\Controllers\Admin\EditorController::class, "store"])->name("editor.upload");
-        Route::get("cache-clear", [App\Http\Controllers\Admin\HomeController::class, "cacheClear"])->name("cache-clear");
+        Route::get("cache-clear", [App\Http\Controllers\Admin\HomeController::class, "cacheClear"])->name("cache_clear");
         Route::post("log-clean", [App\Http\Controllers\Admin\HomeController::class, "logClean"])->name("logclean");
         Route::post("clear-visitor-counter", [App\Http\Controllers\Admin\HomeController::class, "clearVisitorCounter"])->name("clearvisitorcounter");
         Route::get("update-visitor-counter", function () {
