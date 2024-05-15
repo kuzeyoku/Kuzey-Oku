@@ -38,11 +38,11 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das3">
                     <div class="dash-counts">
-                        <h4>170</h4>
-                        <h5>Sales Invoice</h5>
+                        <h4>{{ $subscrip }}</h4>
+                        <h5>@lang('admin/home.subscrip')</h5>
                     </div>
                     <div class="dash-imgs">
-                        <i data-feather="file"></i>
+                        <i data-feather="rss"></i>
                     </div>
                 </div>
             </div>

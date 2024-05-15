@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Exception;
 use GuzzleHttp\Client;
 use App\Models\Visitor;
+use App\Models\Subscrib;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;
@@ -36,6 +37,7 @@ class HomeController extends Controller
         $data["visits"] = Cache::remember("visits", 300, function () {
             return Visitor::all();
         });
+        $data["subscrip"] = Subscrib::count();
         return view(themeView("admin", "index"), $data);
     }
 

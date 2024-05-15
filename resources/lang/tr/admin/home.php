@@ -4,6 +4,7 @@ return [
     "welcome" => "Hoşgeldiniz - IP : :ip (:location - :country)",
     "unique_visits" => "Tekil Ziyaretçi Sayısı",
     "page_views" => "Sayfa Görüntüleme Sayısı",
+    "subscrip" => "Abone Sayısı",
     "unread_messages" => "Okunmamış Mesajlarınız Var",
     "no_unread_messages" => "Okunmamış Mesajınız Yok",
     "go_messages" => "Mesajlara Git",
