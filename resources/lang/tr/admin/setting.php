@@ -27,6 +27,7 @@ return [
     "general_slider_type" => "Slider Türü",
     "system_admin_route" => "Admin Panel Yolu",
     "system_admin_route_placeholder" => "Admin Panel Yolunu Giriniz, Varsayılan : admin",
+    "system_admin_route_alert" => "Bu ayarı değiştirdikten sonra önbelleği temizleyin ve yeni url ile devam edin.",
     "pagination_admin" => "Admin Panel İçin Sayfa Başına Veri",
     "pagination_admin_info" => "Sayfa Başına Listelenecek Veri Miktarını Giriniz",
     "pagination_admin_placeholder" => "Varsayılan : 15",

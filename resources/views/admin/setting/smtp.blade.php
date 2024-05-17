@@ -13,7 +13,7 @@
         ];
     @endphp
     @foreach ($formElementList as $element)
-        {{ html()->label(__('admin/setting.smtp_' . $element)) }}
-        {{ html()->text($element, config('setting.smtp.' . $element))->placeholder(__('admin/setting.smtp_' . $element . '_placeholder'))->class('form-control') }}
+        {{ html()->label(__("admin/{$folder}.smtp_{$element}")) }}
+        {{ html()->text($element, config('setting.smtp.' . $element))->placeholder(__("admin/{$folder}.smtp_{$element}_placeholder"))->class('form-control') }}
     @endforeach
 @endsection

@@ -35,6 +35,7 @@ return [
     'form_status' => 'Durum',
     'table_title' => 'İçerik Başlığı',
     'table_category' => 'Kategori',
+    "table_view_count" => "Görüntülenme Sayısı",
     "comment_table_post" => "Konu",
     "comment_table_name" => "Adı",
     "comment_table_mail" => "E-Mail",

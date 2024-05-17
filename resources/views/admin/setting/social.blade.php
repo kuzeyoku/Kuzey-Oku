@@ -4,7 +4,7 @@
         $formElementList = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
     @endphp
     @foreach ($formElementList as $element)
-        {{ html()->label(__('admin/setting.social_' . $element)) }}
-        {{ html()->text("{$element}", config('setting.social.' . $element))->placeholder(__('admin/setting.social_' . $element . '_placeholder'))->class('form-control') }}
+        {{ html()->label(__("admin/{$folder}.social_{$element}")) }}
+        {{ html()->text($element, config('setting.social.' . $element))->placeholder(__("admin/{$folder}.social_{$element}_placeholder"))->class('form-control') }}
     @endforeach
 @endsection

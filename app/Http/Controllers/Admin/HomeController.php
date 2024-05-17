@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use App\Models\Blog;
 use GuzzleHttp\Client;
 use App\Models\Visitor;
 use App\Models\Subscrib;
@@ -37,7 +38,12 @@ class HomeController extends Controller
         $data["visits"] = Cache::remember("visits", 300, function () {
             return Visitor::all();
         });
-        $data["subscrip"] = Subscrib::count();
+        $data["subscrip"] = Cache::remember("subscrip", 300, function () {
+            return Subscrib::count();
+        });
+        $data["popularPosts"] = Cache::remember("popularPosts", 300, function () {
+            return Blog::orderBy("view_count", "desc")->limit(5)->get();
+        });
         return view(themeView("admin", "index"), $data);
     }
 

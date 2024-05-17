@@ -3,7 +3,10 @@ $(document).ready(function () {
     var $wrapper = $(".main-wrapper");
     var $slimScrolls = $(".slimscroll");
     var $pageWrapper = $(".page-wrapper");
-    feather.replace();
+    // Replace feather icons
+    if ($("[data-feather]").length > 0) {
+        feather.replace();
+    }
 
     // Page Content Height Resize
     $(window).resize(function () {

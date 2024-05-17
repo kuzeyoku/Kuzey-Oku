@@ -16,8 +16,19 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das1">
                     <div class="dash-counts">
+                        <h4>{{ $visits->where('updated_at', '>', today())->count() }}</h4>
+                        <h5>@lang('admin/home.today_visits')</h5>
+                    </div>
+                    <div class="dash-imgs">
+                        <i data-feather="user"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-sm-6 col-12 d-flex">
+                <div class="dash-count das2">
+                    <div class="dash-counts">
                         <h4>{{ $visits->count() }}</h4>
-                        <h5>@lang('admin/home.unique_visits')</h5>
+                        <h5>@lang('admin/home.total_visits')</h5>
                     </div>
                     <div class="dash-imgs">
                         <i data-feather="users"></i>
@@ -25,24 +36,13 @@
                 </div>
             </div>
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                <div class="dash-count das2">
+                <div class="dash-count das3">
                     <div class="dash-counts">
                         <h4>{{ $visits->sum('visit_count') }}</h4>
-                        <h5>@lang('admin/home.page_views')</h5>
+                        <h5>@lang('admin/home.total_page_views')</h5>
                     </div>
                     <div class="dash-imgs">
                         <i data-feather="eye"></i>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-3 col-sm-6 col-12 d-flex">
-                <div class="dash-count das3">
-                    <div class="dash-counts">
-                        <h4>{{ $subscrip }}</h4>
-                        <h5>@lang('admin/home.subscrip')</h5>
-                    </div>
-                    <div class="dash-imgs">
-                        <i data-feather="rss"></i>
                     </div>
                 </div>
             </div>
@@ -82,6 +82,29 @@
                                         <tr>
                                             <td>#</td>
                                             <td>{{ $message }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h4 class="card-title mb-0">@lang('Popüler Blog Konuları')</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    @foreach ($popularPosts as $post)
+                                        <tr>
+                                            <td>{{ $post->title }}</td>
+                                            <td>{{ $post->view_count }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

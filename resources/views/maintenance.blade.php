@@ -10,10 +10,6 @@
     <title>{{ config('setting.general.title') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ themeAsset('admin', 'img/favicon.png') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/animate.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/dataTables.bootstrap5.min.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/style.css') }}">
 </head>
 
@@ -39,22 +35,7 @@
             </div>
         </div>
     </div>
-
-    <div class="customizer-links" id="setdata">
-        <ul class="sticky-sidebar">
-            <li class="sidebar-icons">
-                <a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left"
-                    data-bs-original-title="Theme">
-                    <i data-feather="settings" class="feather-five"></i>
-                </a>
-            </li>
-        </ul>
-    </div>
-
     <script src="{{ themeAsset('admin', 'js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'js/feather.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'js/jquery.slimscroll.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
     <script>
         if ($(".comming-soon-pg").length > 0) {

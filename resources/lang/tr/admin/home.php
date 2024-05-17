@@ -2,8 +2,9 @@
 return [
     "title" => "Yönetim Paneli",
     "welcome" => "Hoşgeldiniz - IP : :ip (:location - :country)",
-    "unique_visits" => "Tekil Ziyaretçi Sayısı",
-    "page_views" => "Sayfa Görüntüleme Sayısı",
+    "today_visits" => "Bugünki Ziyaretçi Sayısı",
+    "total_visits" => "Toplam Ziyaretçi Sayısı",
+    "total_page_views" => "Toplam Sayfa Görüntüleme Sayısı",
     "subscrip" => "Abone Sayısı",
     "unread_messages" => "Okunmamış Mesajlarınız Var",
     "no_unread_messages" => "Okunmamış Mesajınız Yok",
