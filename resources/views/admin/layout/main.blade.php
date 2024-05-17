@@ -36,6 +36,7 @@
     @include(themeView('admin', 'layout.alert'))
     @stack('script')
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
+    @yield('script')
 </body>
 
 </html>

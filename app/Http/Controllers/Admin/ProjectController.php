@@ -35,12 +35,12 @@ class ProjectController extends Controller
 
     public function image(Project $project)
     {
-        return view(themeView("admin", "{$this->service->folder()}.image"), compact("project"));
+        return view(themeView("admin", "layout.image"), compact("project"));
     }
 
     public function imageStore(ImageProjectRequest $request, Project $project): object
     {
-        if ($this->service->imageUpload($project)) {
+        if ($this->service->imageUpload($request, $project)) {
             return (object) [
                 "message" => __("admin/{$this->service->folder()}.image_success")
             ];

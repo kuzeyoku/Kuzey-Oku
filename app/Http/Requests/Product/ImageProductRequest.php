@@ -15,7 +15,6 @@ class ImageProductRequest extends FormRequest
     {
         return [
             "file" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:" . config("setting.image.max_size", 4096),
-            "product_id" => "required|numeric"
         ];
     }
 }

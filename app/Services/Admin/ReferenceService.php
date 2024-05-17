@@ -4,6 +4,7 @@ namespace App\Services\Admin;
 
 use App\Enums\ModuleEnum;
 use App\Models\Reference;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,7 +25,7 @@ class ReferenceService extends BaseService
 
         if ($query->id) {
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -44,7 +45,7 @@ class ReferenceService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $reference->clearMediaCollection($this->module->COVER_COLLECTION());
-                $reference->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $reference->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 

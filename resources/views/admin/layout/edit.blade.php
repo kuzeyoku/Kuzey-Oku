@@ -19,7 +19,7 @@
                 @if ($tab)
                     @include(themeView('admin', 'layout.langtab'))
                 @endif
-                {{ html()->form('PUT')->route("admin.{$folder}.update", $item)->open() }}
+                {{ html()->form('PUT')->route("admin.{$folder}.update", $item)->acceptsFiles()->open() }}
                 @if ($tab)
                     <div class="tab-content">
                         @yield('form')
@@ -37,7 +37,12 @@
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/dropify.min.css') }}">
 @endpush
 @push('script')
-    <script src="{{ themeAsset('admin', 'js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/dropzone.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/dropify.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/tinymce/tinymce.min.js') }}"></script>
 @endpush
+@section('script')
+    <script>
+        editorinit("{{ route('admin.editor.upload') }}");
+    </script>
+@endsection

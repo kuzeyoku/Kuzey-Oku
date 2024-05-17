@@ -14,37 +14,24 @@
                     <h6>@lang("admin/{$folder}.image_description")</h6>
                 </div>
             </div>
-
-            {{ Form::open([
-                'url' => route("admin.{$route}.imageAllDelete", $item),
-                'method' => 'delete',
-                'class' => 'd-inline',
-            ]) }}
+            {{ html()->form('DELETE')->route("admin.{$route}.imageAllDelete", $item)->open() }}
             <a href="javascript:void(0);" class="btn btn-danger destroy-btn">{{ __('admin/general.all_delete') }}</a>
-            {{ Form::close() }}
+            {{ html()->form()->close() }}
         </div>
         <div class="card">
             <div class="card-body">
-                {{ Form::open([
-                    'url' => route("admin.{$route}.imageStore", $item),
-                    'class' => 'dropzone mb-3',
-                    'file' => true,
-                ]) }}
+                {{ html()->form()->route("admin.{$route}.imageStore", $item)->class('dropzone mb-4')->acceptsFiles()->open() }}
                 @yield('form')
-                {{ Form::close() }}
+                {{ html()->form()->close() }}
                 <div class="row">
                     @foreach ($item->getMedia('images') as $image)
                         <div class="col-md-2">
                             <div class="p-2 border rounded position-relative mb-4">
                                 <img src="{{ $image->getUrl() }}" class="img-fluid">
-                                {{ Form::open([
-                                    'url' => route("admin.{$route}.imageDelete", $image),
-                                    'method' => 'delete',
-                                    'class' => 'd-inline',
-                                ]) }}
+                                {{ html()->form('DELETE')->route("admin.{$route}.imageDelete", $image)->open() }}
                                 <button type="button"
                                     class="btn btn-danger btn-sm position-absolute top-0 end-0 destroy-btn">{{ __('admin/general.delete') }}</button>
-                                {{ Form::close() }}
+                                {{ html()->form()->close() }}
                             </div>
                         </div>
                     @endforeach

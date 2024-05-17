@@ -18,7 +18,8 @@ class PopupController extends Controller
         $this->service = $service;
         view()->share([
             "route" => $this->service->route(),
-            "folder" => $this->service->folder()
+            "folder" => $this->service->folder(),
+            "module" => $this->service->module()
         ]);
     }
 

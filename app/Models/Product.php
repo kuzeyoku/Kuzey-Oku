@@ -104,4 +104,9 @@ class Product extends Model implements HasMedia
     {
         return route(ModuleEnum::Product->route() . ".show", [$this->id, $this->slug]);
     }
+
+    public function getStatusViewAttribute()
+    {
+        return StatusEnum::fromValue($this->status)->badge();
+    }
 }

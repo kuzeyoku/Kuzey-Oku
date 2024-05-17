@@ -30,11 +30,11 @@ class ServiceService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
 
             if (isset($request->document) && $request->document->isValid()) {
-                $query->addMediaFromRequest("document")->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+                $query->addMediaFromRequest("document")->usingFileName(Str::random(8) . "." . $request->document->extension())->toMediaCollection($this->module->DOCUMENT_COLLECTION());
             }
         }
 
@@ -62,12 +62,12 @@ class ServiceService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $service->clearMediaCollection($this->module->COVER_COLLECTION());
-                $service->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $service->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
 
             if (isset($request->document) && $request->document->isValid()) {
                 $service->clearMediaCollection($this->module->DOCUMENT_COLLECTION());
-                $service->addMediaFromRequest("document")->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+                $service->addMediaFromRequest("document")->usingFileName(Str::random(8) . "." . $request->document->extension())->toMediaCollection($this->module->DOCUMENT_COLLECTION());
             }
         }
 

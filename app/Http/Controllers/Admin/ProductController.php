@@ -66,12 +66,12 @@ class ProductController extends Controller
 
     public function image(Product $product)
     {
-        return view(themeView("admin", "{$this->service->folder()}.image"), compact("product"));
+        return view(themeView("admin", "layout.image"), ["item" => $product]);
     }
 
     public function imageStore(ImageProductRequest $request, Product $product): object
     {
-        if ($this->service->imageUpload($product)) {
+        if ($this->service->imageUpload($request, $product)) {
             return (object) [
                 "message" => __("admin/{$this->service->folder()}.image_success")
             ];

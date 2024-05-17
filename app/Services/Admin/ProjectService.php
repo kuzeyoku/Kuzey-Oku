@@ -30,7 +30,7 @@ class ProjectService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -54,7 +54,7 @@ class ProjectService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $project->clearMediaCollection($this->module->COVER_COLLECTION());
-                $project->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $project->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -81,9 +81,9 @@ class ProjectService extends BaseService
         }
     }
 
-    public function imageUpload(Model $project)
+    public function imageUpload(Request $request, Model $project)
     {
-        return $project->addMediaFromRequest("file")->toMediaCollection($this->module->IMAGE_COLLECTION());
+        return $project->addMediaFromRequest("file")->usingFileName(Str::random(8) . "." . $request->file->extension())->toMediaCollection($this->module->IMAGE_COLLECTION());
     }
 
     public function delete(Model $project)

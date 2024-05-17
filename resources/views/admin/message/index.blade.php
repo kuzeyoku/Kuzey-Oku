@@ -26,15 +26,11 @@
                             <a class="me-2 edit-icon p-2" href="{{ route("admin.{$route}.show", $item) }}">
                                 <i data-feather="eye" class="feather-eye"></i>
                             </a>
-                            {{ Form::open([
-                                'url' => route("admin.{$route}.destroy", $item),
-                                'method' => 'delete',
-                                'class' => 'd-inline',
-                            ]) }}
+                            {{ html()->form('DELETE')->route("admin.{$route}.destroy")->open() }}
                             <a class="destroy-btn p-2" href="javascript:void(0);">
                                 <i data-feather="trash-2" class="feather-trash-2"></i>
                             </a>
-                            {{ Form::close() }}
+                            {{ html()->form()->close() }}
                         </div>
                     </td>
                 </tr>

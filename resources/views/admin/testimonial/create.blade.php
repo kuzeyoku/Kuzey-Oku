@@ -1,29 +1,17 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => false])
 @section('form')
-    {{ Form::label('name', __("admin/{$folder}.form_name")) }}
-    {{ Form::text('name', null, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_name_placeholder"),
-    ]) }}
-    {{ Form::label('company', __("admin/{$folder}.form_company")) }}
-    {{ Form::text('company', null, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_company_placeholder"),
-    ]) }}
-    {{ Form::label('position', __("admin/{$folder}.form_position")) }}
-    {{ Form::text('position', null, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_position_placeholder"),
-    ]) }}
-    {{ Form::label('message', __("admin/{$folder}.form_message")) }}
-    {{ Form::textarea('message', null, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_message_placeholder"),
-    ]) }}
+    {{ html()->label(__("admin/{$folder}.form_name")) }}
+    {{ html()->text('name')->placeholder(__("admin/{$folder}.form_name_placeholder"))->class('form-control') }}
+    {{ html()->label(__("admin/{$folder}.form_company")) }}
+    {{ html()->text('company')->placeholder(__("admin/{$folder}.form_company_placeholder"))->class('form-control') }}
+    {{ html()->label(__("admin/{$folder}.form_position")) }}
+    {{ html()->text('position')->placeholder(__("admin/{$folder}.form_position_placeholder"))->class('form-control') }}
+    {{ html()->label(__("admin/{$folder}.form_message")) }}
+    {{ html()->textarea('message')->placeholder(__("admin/{$folder}.form_message_placeholder"))->class('form-control') }}
     <div class="row">
         <div class="col-lg-6">
-            {{ Form::label(__('admin/general.order')) }}
-            {{ Form::number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
+            {{ html()->label(__('admin/general.order')) }}
+            {{ html()->number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
             {{ html()->label(__('admin/general.status')) }}

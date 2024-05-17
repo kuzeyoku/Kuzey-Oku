@@ -3,9 +3,10 @@
 namespace App\Services\Admin;
 
 use App\Models\Slider;
-use App\Models\SliderTranslate;
 use App\Enums\ModuleEnum;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\SliderTranslate;
 use Illuminate\Database\Eloquent\Model;
 
 class SliderService extends BaseService
@@ -28,7 +29,7 @@ class SliderService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -50,7 +51,7 @@ class SliderService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $slider->clearMediaCollection($this->module->COVER_COLLECTION());
-                $slider->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $slider->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 

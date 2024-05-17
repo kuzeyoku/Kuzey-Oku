@@ -3,15 +3,12 @@
     {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
 
     <br>
-    {{ Form::label('url', __("admin/{$folder}.form_url")) }}
-    {{ Form::text('url', null, [
-        'class' => 'form-control',
-        'placeholder' => __("admin/{$folder}.form_url_placeholder"),
-    ]) }}
+    {{ html()->label(__("admin/{$folder}.form_url")) }}
+    {{ html()->input('url', 'url')->placeholder(__("admin/{$folder}.form_url_placeholder"))->class('form-control') }}
     <div class="row">
         <div class="col-lg-6">
-            {{ Form::label(__('admin/general.order')) }}
-            {{ Form::number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
+            {{ html()->label(__('admin/general.order')) }}
+            {{ html()->number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
             {{ html()->label(__('admin/general.status')) }}

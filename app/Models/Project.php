@@ -112,4 +112,9 @@ class Project extends Model implements HasMedia
     {
         return route(ModuleEnum::Project->route() . ".show", [$this, $this->slug]);
     }
+
+    public function getStatusViewAttribute()
+    {
+        return StatusEnum::fromValue($this->status)->badge();
+    }
 }

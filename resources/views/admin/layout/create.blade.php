@@ -26,7 +26,7 @@
                         </div>
                     @endforeach
                 @endif
-                {{ html()->form()->route("admin.{$route}.store")->open() }}
+                {{ html()->form()->route("admin.{$route}.store")->acceptsFiles()->open() }}
                 @if ($tab)
                     <div class="tab-content">
                         @yield('form')
@@ -44,7 +44,12 @@
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/dropify.min.css') }}">
 @endpush
 @push('script')
-    <script src="{{ themeAsset('admin', 'js/tinymce/tinymce.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/dropzone.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/dropify.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/tinymce/tinymce.min.js') }}"></script>
 @endpush
+@section('script')
+    <script>
+        editorinit("{{ route('admin.editor.upload') }}");
+    </script>
+@endsection

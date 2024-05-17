@@ -31,7 +31,7 @@ class ProductService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -55,7 +55,7 @@ class ProductService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $product->clearMediaCollection($this->module->COVER_COLLECTION());
-                $product->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $product->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -82,8 +82,8 @@ class ProductService extends BaseService
         }
     }
 
-    public function imageUpload(Model $product)
+    public function imageUpload(Request $request, Model $product)
     {
-        return $product->addMediaFromRequest("file")->toMediaCollection($this->module->IMAGE_COLLECTION());
+        return $product->addMediaFromRequest("file")->usingFileName(Str::random(8) . "." . $request->file->extension())->toMediaCollection($this->module->IMAGE_COLLECTION());
     }
 }

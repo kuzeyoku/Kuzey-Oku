@@ -2,10 +2,11 @@
 
 namespace App\Services\Admin;
 
-use App\Models\Testimonial;
 use App\Enums\ModuleEnum;
-use Illuminate\Database\Eloquent\Model;
+use App\Models\Testimonial;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
 
 class TestimonialService extends BaseService
 {
@@ -25,7 +26,7 @@ class TestimonialService extends BaseService
 
         if ($query->id) {
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -43,7 +44,7 @@ class TestimonialService extends BaseService
                 $testimonial->clearMediaCollection($this->module->COVER_COLLECTION());
             }
             if (isset($request->image) && $request->image->isValid()) {
-                $testimonial->addMediaFromRequest("image")->toMediaCollection($this->module->COVER_COLLECTION());
+                $testimonial->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 

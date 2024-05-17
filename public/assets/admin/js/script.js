@@ -2066,9 +2066,7 @@ $(document).ready(function () {
     /* card with close button */
 });
 
-if ($("textarea.editor").length > 0) {
-    const protocol = window.location.protocol + "//";
-    const currentDomain = window.location.hostname + "/admin/editor/upload";
+function editorinit(upload_url) {
     tinymce.init({
         selector: "textarea.editor",
         plugins:
@@ -2079,7 +2077,7 @@ if ($("textarea.editor").length > 0) {
         language: "tr",
         height: 400,
         file_picker_types: "image",
-        images_upload_url: protocol + currentDomain,
+        images_upload_url: upload_url,
         relative_urls: false,
         remove_script_host: true,
         document_base_url: "/",
@@ -2142,3 +2140,4 @@ if ($(".dropzone").length > 0) {
         },
     });
 }
+

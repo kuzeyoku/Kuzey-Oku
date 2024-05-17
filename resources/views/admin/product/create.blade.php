@@ -4,31 +4,28 @@
 
     @foreach (languageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
-            {{ Form::label("title[$lang->code]", __("admin/{$folder}.form_title")) }}
+            {{ html()->label(__("admin/{$folder}.form_title")) }}
             {{ html()->text("title[$lang->code]")->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
-            {{ Form::label("description[$lang->code]", __("admin/{$folder}.form_description")) }}
+            {{ html()->label(__("admin/{$folder}.form_description")) }}
             {{ html()->textarea("description[$lang->code]")->class('editor') }}
-            {{ Form::label("features[$lang->code]", __("admin/{$folder}.form_features")) }}
-            {{ Form::textarea("features[$lang->code]", null, ['class' => 'form-control', 'rows' => 4, 'placeholder' => __("admin/{$folder}.form_features_placeholder")]) }}
+            {{ html()->label(__("admin/{$folder}.form_features")) }}
+            {{ html()->textarea("features[$lang->code]")->placeholder(__("admin/{$folder}.form_features_placeholder"))->rows(5)->class('form-control') }}
         </div>
     @endforeach
     <div class="row">
         <div class="col-lg-6">
-            {{ Form::label('category_id', __("admin/{$folder}.form_category")) }}
-            {{ Form::select('category_id', $categories, null, ['class' => 'form-control']) }}
+            {{ html()->label(__("admin/{$folder}.form_category")) }}
+            {{ html()->select('category_id', $categories)->class('form-control') }}
         </div>
         <div class="col-lg-6">
-            {{ Form::label('video', __("admin/{$folder}.form_video")) }}
-            {{ Form::text('video', null, [
-                'class' => 'form-control',
-                'placeholder' => __("admin/{$folder}.form_video_placeholder"),
-            ]) }}
+            {{ html()->label(__("admin/{$folder}.form_video")) }}
+            {{ html()->input('url', 'video')->placeholder(__("admin/{$folder}.form_video_placeholder"))->class('form-control') }}
         </div>
     </div>
     <div class="row">
         <div class="col-lg-6">
-            {{ Form::label(__('admin/general.order')) }}
-            {{ Form::number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
+            {{ html()->label(__('admin/general.order')) }}
+            {{ html()->number('order', 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-6">
             {{ html()->label(__('admin/general.status')) }}

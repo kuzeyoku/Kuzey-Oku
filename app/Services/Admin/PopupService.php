@@ -2,11 +2,12 @@
 
 namespace App\Services\Admin;
 
-use App\Enums\ModuleEnum;
 use App\Models\Popup;
+use App\Enums\ModuleEnum;
+use Illuminate\Support\Str;
+use Illuminate\Http\Request;
 use App\Models\PopupTranslate;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Http\Request;
 
 class PopupService extends BaseService
 {
@@ -43,7 +44,7 @@ class PopupService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest('image')->toMediaCollection($this->module->COVER_COLLECTION());
+                $query->addMediaFromRequest('image')->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
 
@@ -81,7 +82,7 @@ class PopupService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $popup->clearMediaCollection($this->module->COVER_COLLECTION());
-                $popup->addMediaFromRequest('image')->toMediaCollection($this->module->COVER_COLLECTION());
+                $popup->addMediaFromRequest('image')->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
             }
         }
         return $query;
