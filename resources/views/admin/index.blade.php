@@ -91,28 +91,5 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h4 class="card-title mb-0">@lang('Popüler Blog Konuları')</h4>
-                    </div>
-                    <div class="card-body">
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    @foreach ($popularPosts as $post)
-                                        <tr>
-                                            <td>{{ $post->title }}</td>
-                                            <td>{{ $post->view_count }}</td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
 @endsection
