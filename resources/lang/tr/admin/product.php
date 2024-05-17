@@ -4,7 +4,9 @@ return [
     "title" => "Ürün Yönetimi",
     "single_title" => "Ürünlerimiz",
     "create" => "Ürün Oluştur",
+    "create_description" => "Yeni bir ürün oluşturun",
     "edit" => "Ürün Düzenle",
+    "edit_description" => "Ürün bilgilerini düzenleyin",
     "list" => "Ürün Listesi",
     "images" => "Ürün Görselleri",
     //alert

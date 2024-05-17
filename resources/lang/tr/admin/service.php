@@ -4,7 +4,9 @@ return [
     "title" => "Hizmet Yönetimi",
     "single_title" => "Hizmetlerimiz",
     "create" => "Hizmet Oluştur",
+    "create_description" => "Yeni bir hizmet oluşturun",
     "edit" => "Hizmet Düzenle",
+    "edit_description" => "Hizmet bilgilerini düzenleyin",
     "list" => "Hizmet Listesi",
     //alert
     "create_success" => "Hizmet başarıyla oluşturuldu.",

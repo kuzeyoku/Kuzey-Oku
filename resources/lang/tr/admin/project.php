@@ -4,7 +4,9 @@ return [
     "title" => "Proje Yönetimi",
     "single_title" => "Projelerimiz",
     "create" => "Proje Oluştur",
+    "create_description" => "Yeni bir proje oluşturun",
     "edit" => "Proje Düzenle",
+    "edit_description" => "Proje bilgilerini düzenleyin",
     "list" => "Proje Listesi",
     "images" => "Proje Görselleri",
     //alert
