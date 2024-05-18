@@ -30,4 +30,14 @@ class Testimonial extends Model
         return $query->orderBy("order");
     }
 
+    public function getStatusViewAttribute()
+    {
+        return StatusEnum::fromValue($this->status)->badge();
+    }
+
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Testimonial->singleTitle();
+    }
+
 }

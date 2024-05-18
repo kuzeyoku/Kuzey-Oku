@@ -2,6 +2,7 @@
 return [
     //general
     "title" => "Slider Yönetimi",
+    "single_title" => "Slider",
     "create" => "Slider Ekle",
     "edit" => "Slider Düzenle",
     "list" => "Slider Listesi",

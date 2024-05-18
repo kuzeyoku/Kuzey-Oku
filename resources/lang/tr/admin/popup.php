@@ -1,6 +1,7 @@
 <?php
 return [
     "title" => "Popup Yönetimi",
+    "single_title" => "Popup",
     "create" => "Popup Ekle",
     "edit" => "Popup Düzenle",
     "list" => "Popup Listesi",

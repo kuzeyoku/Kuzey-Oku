@@ -5,6 +5,7 @@ namespace App\Enums;
 enum ModuleEnum: string
 {
     case Message = "message";
+    case Media = "media";
     case Menu = "menu";
     case Page = 'page';
     case Language = 'language';
@@ -25,6 +26,7 @@ enum ModuleEnum: string
         return match ($this) {
             self::User => true,
             self::Message => true,
+            self::Media => true,
             self::Menu => true,
             self::Page => true,
             self::Language => true,
@@ -56,6 +58,7 @@ enum ModuleEnum: string
         return match ($this) {
             self::User => "users",
             self::Message => "mail",
+            self::Media => "folder",
             self::Menu => "menu",
             self::Page => 'layout',
             self::Language => 'globe',
@@ -77,6 +80,7 @@ enum ModuleEnum: string
         return match ($this) {
             self::User => "user",
             self::Message => "message",
+            self::Media => "media",
             self::Menu => "menu",
             self::Page => 'page',
             self::Language => 'language',
@@ -98,6 +102,7 @@ enum ModuleEnum: string
         return match ($this) {
             self::User => "user",
             self::Message => "message",
+            self::Media => "media",
             self::Menu => "menu",
             self::Page => 'page',
             self::Language => "language",
@@ -119,6 +124,7 @@ enum ModuleEnum: string
         return match ($this) {
             self::User => \App\Http\Controllers\Admin\UserController::class,
             self::Message => \App\Http\Controllers\Admin\MessageController::class,
+            self::Media => \App\Http\Controllers\Admin\MediaController::class,
             self::Menu => \App\Http\Controllers\Admin\MenuController::class,
             self::Page => \App\Http\Controllers\Admin\PageController::class,
             self::Language => \App\Http\Controllers\Admin\LanguageController::class,
@@ -140,6 +146,7 @@ enum ModuleEnum: string
         return match ($this) {
             self::User => \App\Models\User::class,
             self::Message => \App\Models\Message::class,
+            self::Media => \Spatie\MediaLibrary\MediaCollections\Models\Media::class,
             self::Menu => \App\Models\Menu::class,
             self::Page => \App\Models\Page::class,
             self::Language => \App\Models\Language::class,
@@ -161,6 +168,9 @@ enum ModuleEnum: string
         return match ($this) {
 
             self::Message => [
+                "index" => __("admin/$this->value.index"),
+            ],
+            self::Media => [
                 "index" => __("admin/$this->value.index"),
             ],
             self::User => [

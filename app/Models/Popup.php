@@ -62,4 +62,9 @@ class Popup extends Model implements HasMedia
         return json_decode($this->setting);
     }
 
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Popup->singleTitle();
+    }
+
 }

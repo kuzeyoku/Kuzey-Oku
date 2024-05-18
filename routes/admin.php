@@ -78,6 +78,11 @@ Route::prefix(config("setting.system.admin_route"))->name('admin.')->group(funct
                 Route::delete("/comment/{comment}/delete", "comment_delete")->name(ModuleEnum::Blog->route() . ".comment_delete");
             });
 
+        if (ModuleEnum::Media->status())
+            Route::controller(App\Http\Controllers\Admin\MediaController::class)->prefix("media")->group(function () {
+                Route::delete("/{id}/delete", "destroy")->name(ModuleEnum::Media->route() . ".destroy");
+            });
+
         foreach (App\Enums\ModuleEnum::cases() as $module) {
             if ($module->status())
                 Route::resource($module->route(), $module->controller())->names($module->route());

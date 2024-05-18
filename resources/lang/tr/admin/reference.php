@@ -2,7 +2,7 @@
 return [
     //menu
     "title" => "Referans Yönetimi",
-    "single_title" => "Referanslarımız",
+    "single_title" => "Referanslar",
     "create" => "Referans Ekle",
     "edit" => "Referans Düzenle",
     "list" => "Referanslar",

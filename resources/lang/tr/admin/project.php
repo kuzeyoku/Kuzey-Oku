@@ -2,7 +2,7 @@
 return [
     //general
     "title" => "Proje Yönetimi",
-    "single_title" => "Projelerimiz",
+    "single_title" => "Projeler",
     "create" => "Proje Oluştur",
     "create_description" => "Yeni bir proje oluşturun",
     "edit" => "Proje Düzenle",

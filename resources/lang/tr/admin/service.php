@@ -2,7 +2,7 @@
 return [
     //general
     "title" => "Hizmet Yönetimi",
-    "single_title" => "Hizmetlerimiz",
+    "single_title" => "Hizmetler",
     "create" => "Hizmet Oluştur",
     "create_description" => "Yeni bir hizmet oluşturun",
     "edit" => "Hizmet Düzenle",

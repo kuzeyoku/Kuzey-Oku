@@ -137,6 +137,11 @@ class Blog extends Model implements HasMedia
         return StatusEnum::fromValue($this->status)->badge();
     }
 
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Blog->singleTitle();
+    }
+
     protected static function boot()
     {
         parent::boot();

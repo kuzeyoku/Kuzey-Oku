@@ -2,6 +2,7 @@
 return [
     //menu
     "title" => "Müşteri Yorumları",
+    "single_title" => "Müşteri Yorumları",
     "create" => "Yorum Ekle",
     "edit" => "Yorum Düzenle",
     "list" => "Yorum Listesi",

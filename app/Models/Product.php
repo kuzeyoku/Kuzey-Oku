@@ -109,4 +109,9 @@ class Product extends Model implements HasMedia
     {
         return StatusEnum::fromValue($this->status)->badge();
     }
+
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Product->singleTitle();
+    }
 }

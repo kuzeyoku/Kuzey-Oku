@@ -117,4 +117,9 @@ class Project extends Model implements HasMedia
     {
         return StatusEnum::fromValue($this->status)->badge();
     }
+
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Project->singleTitle();
+    }
 }

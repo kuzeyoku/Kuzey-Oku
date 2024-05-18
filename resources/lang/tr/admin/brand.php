@@ -2,6 +2,7 @@
 return [
     //menu
     "title" => "Marka Yönetimi",
+    "single_title" => "Markalar",
     "create" => "Marka Oluştur",
     "edit" => "Marka Düzenle",
     "list" => "Markalar",

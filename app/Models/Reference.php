@@ -28,4 +28,14 @@ class Reference extends Model implements HasMedia
     {
         return $query->orderBy("order", "asc");
     }
+
+    public function getStatusViewAttribute()
+    {
+        return StatusEnum::fromValue($this->status)->badge();
+    }
+
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Reference->singleTitle();
+    }
 }

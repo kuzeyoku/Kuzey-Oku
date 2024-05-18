@@ -1,6 +1,7 @@
 <?php
 return [
     "title" => "Kategori Yönetimi",
+    "single_title" => "Kategoriler",
     "create" => "Kategori Oluştur",
     "edit" => "Kategori Düzenle",
     "list" => "Kategori Listesi",

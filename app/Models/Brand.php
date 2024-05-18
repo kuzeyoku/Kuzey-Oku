@@ -34,4 +34,10 @@ class Brand extends Model implements HasMedia
     {
         return StatusEnum::fromValue($this->status)->badge();
     }
+
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Brand->singleTitle();
+    }
+
 }

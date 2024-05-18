@@ -65,15 +65,13 @@ class Slider extends Model implements HasMedia
         return $this->translate->pluck("description", "lang")->all();
     }
 
-    // public function getImageUrlAttribute()
-    // {
-    //     if (is_null($this->image))
-    //         return asset("assets/img/noimage.png");
-    //     return asset("storage/" . config("setting.image.folder", "image") . "/" . ModuleEnum::Slider->folder() . "/" . $this->image);
-    // }
-
     public function getStatusViewAttribute()
     {
         return StatusEnum::fromValue($this->status)->badge();
+    }
+
+    public function getModuleAttribute()
+    {
+        return ModuleEnum::Slider->singleTitle();
     }
 }

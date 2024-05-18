@@ -2,6 +2,7 @@
 
 return [
     "title" => "Kullanıcı Yönetimi",
+    "single_title" => "Editör",
     "create" => "Kullanıcı Ekle",
     "list" => "Kullanıcı Listesi",
     "form_name" => "Adı Soyadı",
