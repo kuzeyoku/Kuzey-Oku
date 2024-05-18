@@ -12,7 +12,8 @@
                         <div class="inner-box">
                             <div class="image-box">
                                 <figure class="image"><a href="{{ $project->url }}"><img
-                                            src="{{ $project->image_url }}" alt=""></a>
+                                            src="{{ $project->getFirstMediaUrl('cover', 'thumbnail') }}"
+                                            alt=""></a>
                                 </figure>
                                 <div class="info-box">
                                     <a href="{{ $project->url }}" class="read-more"><i

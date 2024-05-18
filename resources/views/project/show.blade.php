@@ -10,13 +10,13 @@
                 <div class="col-xl-12">
                     <div class="project-details__top">
                         <div class="project-details__img">
-                            <img src="{{ $project->image_url }}" alt="">
+                            <img src="{{ $project->getFirstMediaUrl('cover') }}" alt="">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="project-details__content">
-                <div class="row">
+                <div class="row mb-4">
                     <div class="col-xl-8 col-lg-8">
                         <div class="project-details__content-left">
                             <h3 class="mb-4">{{ $project->title }}</h3>
@@ -49,6 +49,9 @@
                         </div>
                     </div>
                 </div>
+                <iframe title="{{ $project->title }}" width="100%" height="600" src="{{ $project->model3D }}"
+                    frameborder="0" allow="fullscreen" allowfullscreen="true" mozallowfullscreen="true"
+                    webkitallowfullscreen="true"></iframe>
             </div>
             <div class="row">
                 <div class="col-xl-12">
@@ -84,37 +87,39 @@
             </div>
         </div>
     </section>
-    <section class="projects-section-two pt-0">
-        <div class="auto-container">
-            <div class="sec-title text-center">
-                <span class="sub-title">@lang('front/project.txt1')</span>
-                <h2>@lang('front/project.txt3')</h2>
-            </div>
-            <div class="carousel-outer">
-                <div class="projects-carousel owl-carousel owl-theme">
-                    @foreach ($otherProjects as $item)
-                        <div class="project-block">
-                            <div class="inner-box">
-                                <div class="image-box">
-                                    <figure class="image">
-                                        <a href="{{ $item->url }}">
-                                            <img src="{{ $item->image_url }}" alt="">
-                                        </a>
-                                    </figure>
-                                    <div class="info-box">
-                                        <a href="{{ $item->url }}" class="read-more">
-                                            <i class="fa fa-long-arrow-alt-right"></i>
-                                        </a>
-                                        <h6 class="title">
-                                            <a href="{{ $item->url }}">{{ $item->title }}</a>
-                                        </h6>
+    @if ($otherProjects->isNotEmpty())
+        <section class="projects-section-two pt-0">
+            <div class="auto-container">
+                <div class="sec-title text-center">
+                    <span class="sub-title">@lang('front/project.txt1')</span>
+                    <h2>@lang('front/project.txt3')</h2>
+                </div>
+                <div class="carousel-outer">
+                    <div class="projects-carousel owl-carousel owl-theme">
+                        @foreach ($otherProjects as $item)
+                            <div class="project-block">
+                                <div class="inner-box">
+                                    <div class="image-box">
+                                        <figure class="image">
+                                            <a href="{{ $item->url }}">
+                                                <img src="{{ $item->image_url }}" alt="">
+                                            </a>
+                                        </figure>
+                                        <div class="info-box">
+                                            <a href="{{ $item->url }}" class="read-more">
+                                                <i class="fa fa-long-arrow-alt-right"></i>
+                                            </a>
+                                            <h6 class="title">
+                                                <a href="{{ $item->url }}">{{ $item->title }}</a>
+                                            </h6>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    @endif
 @endsection

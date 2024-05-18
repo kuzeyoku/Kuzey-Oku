@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-6">
                     <span class="sub-title">@lang('front/feature.txt1')</span>
-                    <h2>@lang('front/feature.txt2')</h2>
+                    <h3>@lang('front/feature.txt2')</h3>
                 </div>
                 <div class="col-lg-6 d-flex justify-content-end">
                     <div class="text">@lang('front/feature.txt3')</div>

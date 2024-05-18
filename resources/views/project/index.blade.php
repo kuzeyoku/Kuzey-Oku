@@ -12,7 +12,7 @@
                                 <div class="image-box">
                                     <figure class="image">
                                         <a href="{{ route('project.show', [$project->id, $project->slug]) }}">
-                                            <img src="{{ $project->image_url }}" alt="">
+                                            <img src="{{ $project->getFirstMediaUrl('cover') }}" alt="">
                                         </a>
                                     </figure>
                                     <div class="info-box">

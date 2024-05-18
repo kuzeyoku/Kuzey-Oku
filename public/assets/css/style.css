@@ -2736,7 +2736,7 @@ li {
     min-width: 200px !important;
 }
 
-.main-slider ul li p{
+.main-slider ul li p {
     color: var(--bg-theme-color3);
     font-weight: 400px;
     font-size: 1.5em;
@@ -4060,10 +4060,10 @@ li {
     padding: 120px 0;
 }
 .projects-section.pull-up {
-    padding-top: 200px;
+    padding-top: 100px;
 }
 .projects-section.pull-up .bg {
-    max-height: 490px;
+    max-height: 380px;
 }
 .projects-section .carousel-outer {
     margin: 0 -260px;
@@ -5904,7 +5904,7 @@ li {
     content: "";
 }
 .why-choose-us-two .sec-title {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 .why-choose-us-two .sec-title .text {
     max-width: 505px;
@@ -11757,4 +11757,15 @@ table.tbl-shopping-cart > tfoot > tr > th {
 }
 .footer-bottom .copyright-text a:hover {
     color: #fff;
+}
+
+.project-details__content ul,
+.services-details__content ul {
+    margin-bottom: 20px;
+}
+
+.project-details__content li,
+.services-details__content li {
+    list-style: disc;
+    list-style-position: inside;
 }
