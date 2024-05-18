@@ -12,9 +12,9 @@
         </div>
         <div class="card">
             <div class="card-body">
-                <div class="alert alert-danger">@lang("admin/{$folder}.delete_alert")</div>
+                <div class="alert alert-danger text-center">@lang("admin/{$folder}.delete_alert")</div>
                 <div class="row">
-                    @foreach ($items as $item)
+                    @forelse ($items as $item)
                         <div class="col-lg-2">
                             <div class="card">
                                 <div class="card-header">
@@ -32,7 +32,11 @@
                                 </div>
                             </div>
                         </div>
-                    @endforeach
+                    @empty
+                        <div class="col-12 text-center">
+                            <div class="alert alert-info">@lang("admin/{$folder}.empty")</div>
+                        </div>
+                    @endforelse
                 </div>
                 {{ $items->links(themeView('admin', 'layout.pagination')) }}
             </div>

@@ -7,4 +7,5 @@ return [
     "delete_error" => "Medya silinirken bir hata oluştu.",
     "delete_alert" => "Eğer medyaları silerseniz bağlı oldukları içeriklerin sayfa yapısının
     bozulacağını unutmayın.",
+    "empty" => "Henüz medya dosyası eklenmemiş.",
 ];
