@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Product;
-use App\Models\ProductImage;
 use App\Services\Admin\ProductService;
 use App\Http\Requests\Product\ImageProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
@@ -17,7 +16,6 @@ class ProductController extends Controller
 
     public function __construct(ProductService $service)
     {
-        $this->authorizeResource(Product::class);
         $this->service = $service;
         view()->share([
             "categories" => $this->service->getCategories(),

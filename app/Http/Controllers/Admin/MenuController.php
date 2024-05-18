@@ -15,7 +15,6 @@ class MenuController extends Controller
 
     public function __construct(MenuService $service)
     {
-        $this->authorizeResource(Menu::class);
         $this->service = $service;
         view()->share([
             'route' => $this->service->route(),

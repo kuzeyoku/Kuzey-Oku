@@ -16,7 +16,6 @@ class BlogController extends Controller
 
     public function __construct(BlogService $service)
     {
-        $this->authorizeResource(Blog::class);
         $this->service = $service;
         view()->share([
             "categories" => $this->service->getCategories(),

@@ -9,12 +9,10 @@ use App\Http\Requests\Message\ReplyMessageRequest;
 
 class MessageController extends Controller
 {
-
     protected $service;
 
     public function __construct(MessageService $messageService)
     {
-        $this->authorizeResource(Message::class);
         $this->service = $messageService;
         view()->share([
             "route" => $this->service->route(),

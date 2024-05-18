@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Project;
-use App\Models\ProjectImage;
 use App\Services\Admin\ProjectService;
 use App\Http\Requests\Project\ImageProjectRequest;
 use App\Http\Requests\Project\StoreProjectRequest;
@@ -17,7 +16,6 @@ class ProjectController extends Controller
 
     public function __construct(ProjectService $service)
     {
-        $this->authorizeResource(Project::class);
         $this->service = $service;
         view()->share([
             "categories" => $this->service->getCategories(),
