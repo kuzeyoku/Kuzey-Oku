@@ -21,4 +21,9 @@ return [
     "fullscreen" => "Tam Ekran",
     "cache_clear" => "Önbelleği Temizle",
     "go_site" => "Siteye Git",
+    "log_clean_success" => "Loglar başarıyla temizlendi.",
+    "log_clean_error" => "Loglar temizlenirken bir hata oluştu.",
+    "visitor_counter_clear" => "Ziyaretçi Sayacı Temizle",
+    "visitor_counter_clear_success" => "Tüm Ziyaretçi Kayıtları Başarıyla Temizlendi",
+    "visitor_counter_clear_error" => "Ziyaretçi Sayacı Temizlenirken Bir Hata Oluştu",
 ];

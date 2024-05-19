@@ -59,9 +59,9 @@ class HomeController extends Controller
         $file = storage_path('logs/custom_' . $request->file . '.log');
         if (File::exists($file)) {
             File::delete($file);
-            return redirect()->back()->withSuccess(__('admin/general.log_clean_success', ['file' => $request->file]));
+            return redirect()->back()->withSuccess(__('admin/home.log_clean_success', ['file' => $request->file]));
         } else {
-            return redirect()->back()->withError(__('admin/general.log_clean_error', ['file' => $request->file]));
+            return redirect()->back()->withError(__('admin/home.log_clean_error', ['file' => $request->file]));
         }
     }
 
@@ -70,9 +70,9 @@ class HomeController extends Controller
         try {
             Cache::forget("visits");
             Visitor::truncate();
-            return back()->withSuccess("Tüm Ziyaretçi Kayıtları Başarıyla Temizlendi");
+            return back()->withSuccess(__('admin/home.visitor_counter_clear_success'));
         } catch (Exception $e) {
-            return back()->withError("Bir Hata Oluştu");
+            return back()->withError(__('admin/home.visitor_counter_clear_error'));
         }
     }
 }
