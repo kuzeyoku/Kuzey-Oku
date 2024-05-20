@@ -2,7 +2,7 @@
 @section('setting_form')
     {{ html()->label(__("admin/{$folder}.contact_phone")) }}
     {{ html()->text('phone', config('setting.contact.phone'))->placeholder(__("admin/{$folder}.contact_phone_placeholder"))->class('form-control') }}
-    {{ html()->label(__("admin/{$folder}.contact_emai")) }}
+    {{ html()->label(__("admin/{$folder}.contact_email")) }}
     {{ html()->text('email', config('setting.contact.email'))->placeholder(__("admin/{$folder}.contact_email_placeholder"))->class('form-control') }}
     {{ html()->label(__("admin/{$folder}.contact_address")) }}
     {{ html()->text('address', config('setting.contact.address'))->placeholder(__("admin/{$folder}.contact_address_placeholder"))->class('form-control') }}
