@@ -19,7 +19,7 @@ class Blog extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this
-            ->addMediaConversion('thumbnail')
+            ->addMediaConversion("thumbnail")
             ->fit(Manipulations::FIT_CROP, 300, 300)
             ->nonQueued();
     }

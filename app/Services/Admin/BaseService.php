@@ -90,9 +90,8 @@ class BaseService
                         return $query->where("module", $this->module);
                     })
                     ->get();
-                $response = [__("admin/general.select")];
-                $titles = $categories->pluck("title." . $this->defaultLocale, "id");
-                return $response + $titles->toArray();
+                $titles = $categories->pluck("titles." . $this->defaultLocale, "id");
+                return $titles->toArray();
             });
         } else {
             $categories = Category::whereStatus(StatusEnum::Active->value)
@@ -100,9 +99,8 @@ class BaseService
                     return $query->where("module", $this->module);
                 })
                 ->get();
-            $response = [__("admin/general.select")];
-            $titles = $categories->pluck("title." . $this->defaultLocale, "id");
-            return $response + $titles->toArray();
+            $titles = $categories->pluck("titles." . $this->defaultLocale, "id");
+            return $titles->toArray();
         }
     }
 

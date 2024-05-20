@@ -9368,7 +9368,8 @@ table.tbl-shopping-cart > tfoot > tr > th {
     content: "";
 }
 .page-title .title {
-    font-size: 64px;
+    font-size: 56px;
+    line-height: 1.2em;
     color: #fff;
     margin-bottom: 17px;
 }

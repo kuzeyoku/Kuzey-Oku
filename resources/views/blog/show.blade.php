@@ -18,6 +18,8 @@
                         </div>
                         <div class="blog-details__content">
                             <ul class="list-unstyled blog-details__meta">
+                                <li><a href="javascript:void(0);"><i
+                                            class="fas fa-sitemap"></i>{{ $post->category->title }}</a></li>
                                 <li><a><i class="fas fa-user-circle"></i>{{ $post->user->name }}</a>
                                 </li>
                                 <li><a><i class="fas fa-eye"></i>{{ $post->view_count }} @lang('front/blog.txt4')</a>
@@ -56,29 +58,30 @@
                         </div>
                         <div class="comment-form mb-80">
                             <h4 class="comment-form__title">@lang('front/blog.txt6')</h4>
-                            {{ Form::open(['url' => route('blog.comment_store', $post)]) }}
+                            {{ html()->form()->route('blog.comment_store', $post)->open() }}
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('front/blog.txt7')]) }}
+                                        {{ html()->text('name')->placeholder(__('front/blog.txt7'))->class('form-control') }}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
-                                        {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('front/blog.txt8')]) }}
+                                        {{ html()->email('email')->placeholder(__('front/blog.txt8'))->class('form-control') }}
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
-                                {{ Form::textarea('comment', null, ['class' => 'form-control', 'placeholder' => __('front/blog.txt9'), 'rows' => 5]) }}
+                                {{ html()->textarea('comment')->placeholder(__('front/blog.txt9'))->rows(5)->class('form-control') }}
                             </div>
                             <div class="mb-3">
-                                <button class="theme-btn btn-style-one" type="submit"
-                                    class="theme-btn btn-style-one g-recaptcha"
-                                    data-sitekey="{{ config('setting.recaptcha.site_key') }}" data-callback='comment-form'
-                                    data-action='submit'>@lang('front/blog.txt10')</button>
+                                {{ html()->submit(__('front/blog.txt10'))->class('theme-btn btn-style-one g-recaptcha')->attributes([
+                                        'data-sitekey' => config('setting.recaptcha.site_key'),
+                                        'data-callback' => 'comment-form',
+                                        'data-action' => 'submit',
+                                    ]) }}
                             </div>
-                            {{ Form::close() }}
+                            {{ html()->form()->close() }}
                         </div>
                         <div class="comment-one">
                             <h4 class="comment-one__title">@lang('front/blog.txt11', ['num' => $post->comments->count()])</h4>
@@ -120,7 +123,7 @@
                                 @endforeach
                             </ul>
                         </div>
-                        @if ($categories->count() > 0)
+                        @if ($categories->isNotEmpty())
                             <div class="sidebar__single sidebar__category">
                                 <h3 class="sidebar__title">@lang('front/blog.txt13')</h3>
                                 <ul class="sidebar__category-list list-unstyled">

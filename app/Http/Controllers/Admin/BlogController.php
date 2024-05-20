@@ -20,7 +20,8 @@ class BlogController extends Controller
         view()->share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
-            "folder" => $this->service->folder()
+            "folder" => $this->service->folder(),
+            "module" => $this->service->module()
         ]);
     }
 
