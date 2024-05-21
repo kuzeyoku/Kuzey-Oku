@@ -20,11 +20,12 @@ class BlogService extends BaseService
 
     public function create(Request $request)
     {
-        $arr = [
+        $data = new Request([
             "slug" => Str::slug($request->title[$this->defaultLocale]),
-        ];
-
-        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
+            "category_id" => $request->category_id ?? 0,
+            "status" => $request->status,
+            "order" => $request->order
+        ]);
 
         $query = parent::create($data);
 
@@ -41,11 +42,12 @@ class BlogService extends BaseService
 
     public function update(Request $request, Model $post)
     {
-        $arr = [
+        $data = new Request([
             "slug" => Str::slug($request->title[$this->defaultLocale]),
-        ];
-
-        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
+            "category_id" => $request->category_id ?? 0,
+            "status" => $request->status,
+            "order" => $request->order
+        ]);
 
         $query = parent::update($data, $post);
 
