@@ -20,22 +20,17 @@ class ProjectService extends BaseService
 
     public function create(Object $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order,
-            "video" => $request->video,
-            "model3D" => $request->model3D
-        ]);
-
-        $query = parent::create($data);
+        $query = parent::create(new Request($request->only("category_id", "video", "model3D", "status", "order")));
 
         if ($query->id) {
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -44,16 +39,7 @@ class ProjectService extends BaseService
 
     public function update(Object $request, Model $project)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order,
-            "video" => $request->video,
-            "model3D" => $request->model3D
-        ]);
-
-        $query = parent::update($data, $project);
+        $query = parent::update(new Request($request->only("category_id", "video", "model3D", "status", "order")), $project);
 
         if ($query) {
             $this->translations($project->id, $request);
@@ -64,7 +50,11 @@ class ProjectService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $project->clearMediaCollection($this->module->COVER_COLLECTION());
-                $project->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $project->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -94,10 +84,5 @@ class ProjectService extends BaseService
     public function imageUpload(Request $request, Model $project)
     {
         return $project->addMediaFromRequest("file")->usingFileName(Str::random(8) . "." . $request->file->extension())->toMediaCollection($this->module->IMAGE_COLLECTION());
-    }
-
-    public function delete(Model $project)
-    {
-        return parent::delete($project);
     }
 }

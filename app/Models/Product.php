@@ -114,4 +114,12 @@ class Product extends Model implements HasMedia
     {
         return ModuleEnum::Product->singleTitle();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->slug = Str::slug(request()->title[app()->getFallbackLocale()]);
+        });
+    }
 }

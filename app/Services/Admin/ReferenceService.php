@@ -19,13 +19,15 @@ class ReferenceService extends BaseService
 
     public function create(Object $request)
     {
-        $data = new Request($request->only("url", "order", "status"));
-
-        $query = parent::create($data);
+        $query = parent::create(new Request($request->only("url", "order", "status")));
 
         if ($query->id) {
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -34,9 +36,7 @@ class ReferenceService extends BaseService
 
     public function update(Object $request, Model $reference)
     {
-        $data = new Request($request->only("url", "order", "status"));
-
-        $query = parent::update($data, $reference);
+        $query = parent::update(new Request($request->only("url", "order", "status")), $reference);
 
         if ($query) {
             if (isset($request->imageDelete)) {
@@ -45,7 +45,11 @@ class ReferenceService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $reference->clearMediaCollection($this->module->COVER_COLLECTION());
-                $reference->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $reference->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 

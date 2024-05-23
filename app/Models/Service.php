@@ -106,4 +106,12 @@ class Service extends Model implements HasMedia
     {
         return ModuleEnum::Service->singleTitle();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->slug = Str::slug(request()->title[app()->getFallbackLocale()]);
+        });
+    }
 }

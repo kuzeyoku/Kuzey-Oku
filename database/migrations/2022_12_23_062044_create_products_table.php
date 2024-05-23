@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->string("slug", 255);
-            $table->integer("category_id")->default(0);
+            $table->integer("category_id")->nullable()->default(0);
             $table->string("video", 255)->nullable();
             $table->integer("order")->default(0);
             $table->enum("status", StatusEnum::getValues())->default(StatusEnum::Active->value);

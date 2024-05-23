@@ -21,11 +21,7 @@ class PageService extends BaseService
 
     public function create(Request $request)
     {
-        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
-
-        $data = new Request(array_merge($arr, $request->only("status")));
-
-        $query = parent::create($data);
+        $query = parent::create(new Request($request->only("status")));
 
         if ($query->id) {
             $this->translations($query->id, $request);
@@ -36,11 +32,7 @@ class PageService extends BaseService
 
     public function update(Request $request, Model $page)
     {
-        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
-
-        $data = new Request(array_merge($arr, $request->only("status")));
-
-        $query = parent::update($data, $page);
+        $query = parent::update(new Request($request->only("status")), $page);
 
         if ($query) {
             $this->translations($page->id, $request);

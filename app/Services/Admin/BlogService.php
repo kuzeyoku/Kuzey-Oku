@@ -20,14 +20,7 @@ class BlogService extends BaseService
 
     public function create(Request $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order
-        ]);
-
-        $query = parent::create($data);
+        $query = parent::create(new Request($request->only("category_id", "status", "order")));
 
         if ($query->id) {
             $this->translations($query->id, $request);
@@ -46,14 +39,7 @@ class BlogService extends BaseService
 
     public function update(Request $request, Model $post)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order
-        ]);
-
-        $query = parent::update($data, $post);
+        $query = parent::update(new Request($request->only("category_id", "status", "order")), $post);
 
         if ($query) {
             $this->translations($post->id, $request);

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -69,5 +70,13 @@ class Page extends Model
     public function getStatusViewAttribute()
     {
         return StatusEnum::fromValue($this->status)->badge();
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->slug = Str::slug(request()->title[app()->getFallbackLocale()]);
+        });
     }
 }

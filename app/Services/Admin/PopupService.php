@@ -25,6 +25,7 @@ class PopupService extends BaseService
             "type" => $request->type,
             "video" => $request->video,
             "url" => $request->url,
+            "status" => $request->status,
             "setting" => json_encode([
                 "time" => $request->time ?? 0,
                 "width" => $request->width ?? 600,
@@ -34,8 +35,7 @@ class PopupService extends BaseService
                 "pauseOnHover" => $request->pauseOnHover,
                 "fullScreenButton" => $request->fullScreenButton,
                 "color" => $request->color ?? "#88A0B9",
-            ]),
-            "status" => $request->status,
+            ])
         ]);
 
         $query = parent::create($data);
@@ -44,7 +44,11 @@ class PopupService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest('image')->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest('image')->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -57,6 +61,7 @@ class PopupService extends BaseService
             "type" => $request->type,
             "video" => $request->video,
             "url" => $request->url,
+            "status" => $request->status,
             "setting" => json_encode([
                 "time" => $request->time ?? 0,
                 "width" => $request->width ?? 600,
@@ -66,9 +71,7 @@ class PopupService extends BaseService
                 "pauseOnHover" => $request->pauseOnHover,
                 "fullScreenButton" => $request->fullScreenButton,
                 "color" => $request->color ?? "#88A0B9",
-            ]),
-            "status" => $request->status,
-
+            ])
         ]);
 
         $query = parent::update($data, $popup);
@@ -82,7 +85,11 @@ class PopupService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $popup->clearMediaCollection($this->module->COVER_COLLECTION());
-                $popup->addMediaFromRequest('image')->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $popup->addMediaFromRequest('image')->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
         return $query;

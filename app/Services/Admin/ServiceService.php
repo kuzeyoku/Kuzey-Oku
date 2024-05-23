@@ -20,24 +20,25 @@ class ServiceService extends BaseService
 
     public function create(Request $request)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order
-        ]);
+        $query = parent::create(new Request($request->only("category_id", "status", "order")));
 
-        $query = parent::create($data);
-
-        if ($query->id) {
+        if ($query) {
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
 
             if (isset($request->document) && $request->document->isValid()) {
-                $query->addMediaFromRequest("document")->usingFileName(Str::random(8) . "." . $request->document->extension())->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("document")->usingFileName(Str::random(8) . "." . $request->document->extension())->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -46,14 +47,8 @@ class ServiceService extends BaseService
 
     public function update(Object $request, Model $service)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order
-        ]);
 
-        $query = parent::update($data, $service);
+        $query = parent::update(new Request($request->only("category_id", "status", "order")), $service);
 
         if ($query) {
             $this->translations($service->id, $request);
@@ -68,12 +63,20 @@ class ServiceService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $service->clearMediaCollection($this->module->COVER_COLLECTION());
-                $service->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $service->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
 
             if (isset($request->document) && $request->document->isValid()) {
                 $service->clearMediaCollection($this->module->DOCUMENT_COLLECTION());
-                $service->addMediaFromRequest("document")->usingFileName(Str::random(8) . "." . $request->document->extension())->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+                try {
+                    $service->addMediaFromRequest("document")->usingFileName(Str::random(8) . "." . $request->document->extension())->toMediaCollection($this->module->DOCUMENT_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 

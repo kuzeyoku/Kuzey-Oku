@@ -21,15 +21,17 @@ class SliderService extends BaseService
 
     public function create(Request $request)
     {
-        $data = new Request($request->only("button", "video", "order", "status"));
-
-        $query = parent::create($data);
+        $query = parent::create(new Request($request->only("button", "video", "status", "order")));
 
         if ($query->id) {
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -38,9 +40,7 @@ class SliderService extends BaseService
 
     public function update(Object $request, Model $slider)
     {
-        $data = new Request($request->only("button", "video", "order", "status"));
-
-        $query = parent::update($data, $slider);
+        $query = parent::update(new Request($request->only("button", "video", "order", "status")), $slider);
 
         if ($query) {
             $this->translations($slider->id, $request);
@@ -51,7 +51,11 @@ class SliderService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $slider->clearMediaCollection($this->module->COVER_COLLECTION());
-                $slider->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $slider->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 

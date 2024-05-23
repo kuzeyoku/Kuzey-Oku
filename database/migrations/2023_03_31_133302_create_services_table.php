@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string("slug", 255);
-            $table->integer("category_id");
+            $table->integer("category_id")->nullable()->default(0);
             $table->integer("order")->default(0);
             $table->enum("status", StatusEnum::getValues())->default(StatusEnum::Active->value);
             $table->timestamps();

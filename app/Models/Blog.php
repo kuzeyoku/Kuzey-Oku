@@ -9,19 +9,20 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
-
+use Spatie\Image\Manipulations;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class Blog extends Model implements HasMedia
 {
     use HasFactory, InteractsWithMedia;
 
-    // public function registerMediaConversions(Media $media = null): void
-    // {
-    //     $this
-    //         ->addMediaConversion("thumbnail")
-    //         ->fit(Manipulations::FIT_CROP, 300, 300)
-    //         ->nonQueued();
-    // }
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this
+            ->addMediaConversion("thumbnail")
+            ->fit(Manipulations::FIT_CROP, 300, 300)
+            ->nonQueued();
+    }
 
     protected $fillable = [
         'slug',
@@ -144,9 +145,9 @@ class Blog extends Model implements HasMedia
     protected static function boot()
     {
         parent::boot();
-
         static::creating(function ($model) {
             $model->user_id = auth()->id();
+            $model->slug = Str::slug(request()->title[app()->getFallbackLocale()]);
         });
     }
 }

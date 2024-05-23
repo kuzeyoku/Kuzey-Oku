@@ -20,22 +20,17 @@ class ProductService extends BaseService
 
     public function create(Object $request)
     {
-
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order,
-            "video" => $request->video
-        ]);
-
-        $query = parent::create($data);
+        $query = parent::create(new Request($request->only("category_id", "video", "status", "order")));
 
         if ($query->id) {
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -44,15 +39,7 @@ class ProductService extends BaseService
 
     public function update(Object $request, Model $product)
     {
-        $data = new Request([
-            "slug" => Str::slug($request->title[$this->defaultLocale]),
-            "category_id" => $request->category_id ?? 0,
-            "status" => $request->status,
-            "order" => $request->order,
-            "video" => $request->video
-        ]);
-
-        $query = parent::update($data, $product);
+        $query = parent::update(new Request($request->only("category_id", "video", "status", "order")), $product);
 
         if ($query) {
             $this->translations($product->id, $request);
@@ -63,7 +50,11 @@ class ProductService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $product->clearMediaCollection($this->module->COVER_COLLECTION());
-                $product->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $product->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 

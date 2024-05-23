@@ -122,4 +122,12 @@ class Project extends Model implements HasMedia
     {
         return ModuleEnum::Project->singleTitle();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function ($model) {
+            $model->slug = Str::slug(request()->title[app()->getFallbackLocale()]);
+        });
+    }
 }

@@ -19,9 +19,7 @@ class UserService extends BaseService
 
     public function create(Object $request)
     {
-        $data = new Request($request->only("name", "email", "role", "password"));
-
-        return parent::create($data);
+        return parent::create(new Request($request->only("name", "email", "role", "password")));
     }
 
     public function update(Object $request, Model $user)
