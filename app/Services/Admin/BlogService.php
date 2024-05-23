@@ -33,7 +33,11 @@ class BlogService extends BaseService
             $this->translations($query->id, $request);
 
             if (isset($request->image) && $request->image->isValid()) {
-                $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->withResponsiveImages()->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $query->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->withResponsiveImages()->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 
@@ -60,7 +64,11 @@ class BlogService extends BaseService
 
             if (isset($request->image) && $request->image->isValid()) {
                 $post->clearMediaCollection($this->module->COVER_COLLECTION());
-                $post->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->withResponsiveImages()->toMediaCollection($this->module->COVER_COLLECTION());
+                try {
+                    $post->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->withResponsiveImages()->toMediaCollection($this->module->COVER_COLLECTION());
+                } catch (\Exception $e) {
+                    //Exception
+                }
             }
         }
 

@@ -45,7 +45,6 @@ class BlogController extends Controller
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
         } catch (Throwable $e) {
-            dd($e);
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
