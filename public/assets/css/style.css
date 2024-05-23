@@ -10421,6 +10421,7 @@ table.tbl-shopping-cart > tfoot > tr > th {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
+    margin-top: 30px;
 }
 .blog-details__meta li + li {
     margin-left: 18px;

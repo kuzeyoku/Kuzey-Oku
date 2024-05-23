@@ -16,19 +16,20 @@
                                 <span class="month">{{ $post->created_at->translatedFormat('M') }}</span>
                             </div>
                         </div>
+                        <ul class="blog-details__meta">
+                            <li>
+                                <a href="javascript:void(0);">
+                                    <i class="fas fa-sitemap"></i>
+                                    {{ $post->category->title ?? __('front/general.uncategorized') }}
+                                </a>
+                            </li>
+                            <li><a><i class="fas fa-user-circle"></i>{{ $post->user->name }}</a>
+                            </li>
+                            <li><a><i class="fas fa-eye"></i>{{ $post->view_count }} @lang('front/blog.txt4')</a>
+                            </li>
+                        </ul>
                         <div class="blog-details__content">
-                            <ul class="list-unstyled blog-details__meta">
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <i class="fas fa-sitemap"></i>
-                                        {{ $post->category->title ?? __('front/general.uncategorized') }}
-                                    </a>
-                                </li>
-                                <li><a><i class="fas fa-user-circle"></i>{{ $post->user->name }}</a>
-                                </li>
-                                <li><a><i class="fas fa-eye"></i>{{ $post->view_count }} @lang('front/blog.txt4')</a>
-                                </li>
-                            </ul>
+
                             <h3 class="blog-details__title">{{ $post->title }}</h3>
                             {!! $post->description !!}
                         </div>
