@@ -32,7 +32,7 @@
                             <p class="blog-details__tags">
                                 <span>@lang('front/blog.txt5')</span>
                                 @foreach ($post->tagsToArray as $tag)
-                                    <a href="#">{{ $tag }}</a>
+                                    <a href="javascript:void(0);" class="mb-2">{{ $tag }}</a>
                                 @endforeach
                             </p>
                             @if (config('setting.social'))
