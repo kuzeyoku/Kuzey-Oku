@@ -20,9 +20,12 @@ class ServiceService extends BaseService
 
     public function create(Request $request)
     {
-        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
-
-        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
+        $data = new Request([
+            "slug" => Str::slug($request->title[$this->defaultLocale]),
+            "category_id" => $request->category_id ?? 0,
+            "status" => $request->status,
+            "order" => $request->order
+        ]);
 
         $query = parent::create($data);
 
@@ -43,9 +46,12 @@ class ServiceService extends BaseService
 
     public function update(Object $request, Model $service)
     {
-        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
-
-        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id")));
+        $data = new Request([
+            "slug" => Str::slug($request->title[$this->defaultLocale]),
+            "category_id" => $request->category_id ?? 0,
+            "status" => $request->status,
+            "order" => $request->order
+        ]);
 
         $query = parent::update($data, $service);
 

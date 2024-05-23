@@ -20,9 +20,14 @@ class ProjectService extends BaseService
 
     public function create(Object $request)
     {
-        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
-
-        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id", "video", "model3D")));
+        $data = new Request([
+            "slug" => Str::slug($request->title[$this->defaultLocale]),
+            "category_id" => $request->category_id ?? 0,
+            "status" => $request->status,
+            "order" => $request->order,
+            "video" => $request->video,
+            "model3D" => $request->model3D
+        ]);
 
         $query = parent::create($data);
 
@@ -39,9 +44,14 @@ class ProjectService extends BaseService
 
     public function update(Object $request, Model $project)
     {
-        $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
-
-        $data = new Request(array_merge($arr, $request->only("status", "order", "category_id", "video", "model3D")));
+        $data = new Request([
+            "slug" => Str::slug($request->title[$this->defaultLocale]),
+            "category_id" => $request->category_id ?? 0,
+            "status" => $request->status,
+            "order" => $request->order,
+            "video" => $request->video,
+            "model3D" => $request->model3D
+        ]);
 
         $query = parent::update($data, $project);
 

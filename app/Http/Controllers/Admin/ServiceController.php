@@ -44,7 +44,6 @@ class ServiceController extends Controller
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
         } catch (Throwable $e) {
-            dd($e->getMessage());
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
