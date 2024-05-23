@@ -6,6 +6,7 @@ return [
     'create' => 'İçerik Oluştur',
     "create_description" => "Yeni bir blog içeriği oluşturun.",
     'edit' => 'İçerik Düzenle',
+    "edit_description" => "Blog içeriğini düzenleyin.",
     'list' => 'İçerik Listesi',
     "comments" => "Yorumlar",
     "comment_title" => "Blog Yorumları",
