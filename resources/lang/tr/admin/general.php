@@ -46,6 +46,5 @@ return [
     "table_updated_at" => "Güncellendi",
     "table_no_data" => "Herhangi bir veri bulunamadı.",
     "invalid_value" => "Geçersiz değer!",
-    "no_category" => "Kategorisiz",
     "empty_table" => "Henüz herhangi bir veri eklenmedi.",
 ];

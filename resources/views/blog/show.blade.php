@@ -18,8 +18,12 @@
                         </div>
                         <div class="blog-details__content">
                             <ul class="list-unstyled blog-details__meta">
-                                <li><a href="javascript:void(0);"><i
-                                            class="fas fa-sitemap"></i>{{ $post->category_title }}</a></li>
+                                <li>
+                                    <a href="javascript:void(0);">
+                                        <i class="fas fa-sitemap"></i>
+                                        {{ $post->category->title ?? __('front/general.uncategorized') }}
+                                    </a>
+                                </li>
                                 <li><a><i class="fas fa-user-circle"></i>{{ $post->user->name }}</a>
                                 </li>
                                 <li><a><i class="fas fa-eye"></i>{{ $post->view_count }} @lang('front/blog.txt4')</a>
