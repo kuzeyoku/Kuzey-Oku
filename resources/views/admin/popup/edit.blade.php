@@ -15,10 +15,10 @@
     @foreach (languageList() as $key => $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {{ html()->label(__("admin/{$folder}.form_title")) }}
-            {{ html()->text("title[$lang->code]", $popup->titles[$lang->code] ?? null)->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
+            {{ html()->text("title[$lang->code]", $popup->titles[$lang->code])->placeholder(__("admin/{$folder}.form_title"))->class('form-control') }}
             <div id="text" style="display: none">
                 {{ html()->label(__("admin/{$folder}.form_description")) }}
-                {{ html()->textarea("description[$lang->code]", $popup->descriptions[$lang->code] ?? null)->class('editor') }}
+                {{ html()->textarea("description[$lang->code]", $popup->descriptions[$lang->code])->class('editor') }}
             </div>
         </div>
     @endforeach

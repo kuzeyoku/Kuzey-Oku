@@ -64,20 +64,17 @@ class SliderService extends BaseService
 
     public function translations(int $sliderId, Object $request)
     {
-        $languages = languageList();
-        foreach ($languages as $language) {
-            if (!empty($request->title[$language->code]) || !empty($request->description[$language->code])) {
-                SliderTranslate::updateOrCreate(
-                    [
-                        "slider_id" => $sliderId,
-                        "lang" => $language->code
-                    ],
-                    [
-                        "title" => $request->title[$language->code] ?? null,
-                        "description" => $request->description[$language->code] ?? null
-                    ]
-                );
-            }
-        }
+        languageList()->each(function ($lang) use ($sliderId, $request) {
+            SliderTranslate::updateOrCreate(
+                [
+                    "slider_id" => $sliderId,
+                    "lang" => $lang->code
+                ],
+                [
+                    "title" => $request->title[$lang->code] ?? null,
+                    "description" => $request->description[$lang->code] ?? null,
+                ]
+            );
+        });
     }
 }

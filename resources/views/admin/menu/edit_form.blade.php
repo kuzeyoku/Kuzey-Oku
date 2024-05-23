@@ -1,36 +1,26 @@
 @php
     unset($parentList[$menu->id]);
 @endphp
-{{ Form::open(['url' => route("admin.{$route}.update", $menu), 'method' => 'put']) }}
-@foreach (languageList() as $key => $lang)
-    <div id="{{ $lang->code }}" class="tab-pane fade @if ($loop->first) active show @endif">
-        {{ html()->label(__("admin/{$folder}.form_title")) }}
-        {{ Form::text("title[$lang->code]", $menu->titles[$lang->code] ?? null, [
-            'class' => 'form-control',
-            'placeholder' => __("admin/{$folder}.form_title_placeholder"),
-        ]) }}
-    </div>
-@endforeach
-{{ Form::label('url', __("admin/{$folder}.form_url")) }}
-{{ Form::text('url', $menu->url, [
-    'class' => 'form-control',
-    'placeholder' => __("admin/{$folder}.form_url_placeholder"),
-]) }}
-{{ Form::label('order', __("admin/{$folder}.form_order")) }}
-{{ Form::number('order', $menu->order ?? 0, [
-    'class' => 'form-control',
-    'placeholder' => __("admin/{$folder}.form_order_placeholder"),
-]) }}
-{{ Form::label('parent', __("admin/{$folder}.form_parent")) }}
-{{ Form::select('parent_id', $parentList, $menu->parent_id, [
-    'class' => 'form-control',
-    'placeholder' => __('admin/general.select'),
-]) }}
+{{ html()->form('PUT')->route("admin.{$route}.update", $menu)->open() }}
+<div class="tab-content">
+    @foreach (languageList() as $key => $lang)
+        <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
+            {{ html()->label(__("admin/{$folder}.form_title")) }}
+            {{ html()->text("title[$lang->code]", $menu->titles[$lang->code])->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+        </div>
+    @endforeach
+</div>
+{{ html()->label(__("admin/{$folder}.form_url")) }}
+{{ html()->text('url', $menu->url)->placeholder(__("admin/{$folder}.form_url_placeholder"))->class('form-control') }}
+{{ html()->label(__("admin/{$folder}.form_order")) }}
+{{ html()->number('order', $menu->order)->placeholder(__("admin/{$folder}.form_order_placeholder"))->class('form-control') }}
+{{ html()->label(__("admin/{$folder}.form_parent")) }}
+{{ html()->select('parent_id', $parentList, $menu->parent_id)->placeholder(__("admin/general.select"))->class('form-control') }}
 <label class="inputcheck">
-    {{ Form::label('blank', __("admin/{$folder}.form_blank")) }}
-    {{ Form::checkbox('blank', true, $menu->blank) }}
+    {{ html()->label(__("admin/{$folder}.form_blank")) }}
+    {{ html()->checkbox('blank', true, $menu->blank) }}
     <span class="checkmark"></span>
 </label>
-{{ Form::hidden('type', $type) }}
-{{ Form::submit(__('admin/general.save'), ['class' => 'btn btn-primary']) }}
-{{ Form::close() }}
+{{ html()->hidden('type', $type) }}
+{{ html()->submit(__('admin/general.save'))->class('btn btn-primary') }}
+{{ html()->form()->close() }}

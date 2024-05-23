@@ -18,7 +18,7 @@ class CategoryService extends BaseService
         parent::__construct($category, ModuleEnum::Category);
     }
 
-    public function create(Object $request)
+    public function create(Request $request)
     {
         $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
@@ -34,13 +34,13 @@ class CategoryService extends BaseService
         $query = parent::create($data);
 
         if ($query->id) {
-            $this->upsertTranslations($query->id, $request);
+            $this->translations($query->id, $request);
         }
 
         return $query;
     }
 
-    public function update(Object $request, $category)
+    public function update(Request $request, $category)
     {
         $arr = ["slug" => Str::slug($request->title[$this->defaultLocale])];
 
@@ -56,32 +56,26 @@ class CategoryService extends BaseService
         $query = Parent::update($data, $category);
 
         if ($query) {
-            $this->upsertTranslations($category->id, $request);
+            $this->translations($category->id, $request);
         }
 
         return $query;
     }
 
-    protected function upsertTranslations(int $categoryId, Object $request)
+    protected function translations(int $categoryId, Request $request)
     {
-        $data = [];
-        $filteredTitle = array_filter($request->title);
-        $filteredDescription = array_filter($request->description);
-
-        foreach (languageList() as $lang) {
-            if (isset($filteredTitle[$lang->code]) || isset($filteredDescription[$lang->code])) {
-                $data[] = [
+        languageList()->each(function ($lang) use ($categoryId, $request) {
+            CategoryTranslate::updateOrCreate(
+                [
                     "category_id" => $categoryId,
-                    "lang" => $lang->code,
-                    "title" => $request->title[$lang->code] ?? null,
-                    "description" => $request->description[$lang->code] ?? null
-                ];
-            }
-        }
-
-        if (!empty($data)) {
-            CategoryTranslate::upsert($data, ["category_id", "lang"]);
-        }
+                    "lang" => $lang->code
+                ],
+                [
+                    "title" => $request->title[$lang->code],
+                    "description" => $request->description[$lang->code]
+                ]
+            );
+        });
     }
 
     public function delete(Model $category)

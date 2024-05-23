@@ -43,21 +43,17 @@ class PageService extends BaseService
 
     public function translations(int $pageId, Request $request)
     {
-        $languages = languageList();
-
-        foreach ($languages as $language) {
-            if (!empty($request->title[$language->code]) || !empty($request->description[$language->code])) {
-                PageTranslate::updateOrCreate(
-                    [
-                        "page_id" => $pageId,
-                        "lang" => $language->code
-                    ],
-                    [
-                        "title" => $request->title[$language->code] ?? null,
-                        "description" => $request->description[$language->code] ?? null
-                    ]
-                );
-            }
-        }
+        languageList()->each(function ($lang) use ($pageId, $request) {
+            PageTranslate::updateOrCreate(
+                [
+                    "page_id" => $pageId,
+                    "lang" => $lang->code
+                ],
+                [
+                    "title" => $request->title[$lang->code] ?? null,
+                    "description" => $request->description[$lang->code] ?? null,
+                ]
+            );
+        });
     }
 }

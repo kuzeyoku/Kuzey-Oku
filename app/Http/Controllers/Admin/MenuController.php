@@ -37,7 +37,7 @@ class MenuController extends Controller
         $menus = Menu::whereType($type)->order()->get();
         $parentList = Menu::toSelectArray($type);
         $urlList = $this->service->getUrlList();
-        return view(themeView("admin","{$this->service->folder()}.index"), compact('menus', 'type', "parentList", "urlList", "menu"));
+        return view(themeView("admin", "{$this->service->folder()}.index"), compact('menus', 'type', "parentList", "urlList", "menu"));
     }
 
     public function edit(Menu $menu)
@@ -53,7 +53,7 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request)
     {
         try {
-            $this->service->create((object)$request->all());
+            $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.$request->type")
@@ -69,7 +69,7 @@ class MenuController extends Controller
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
         try {
-            $this->service->update((object)$request->all(), $menu);
+            $this->service->update($request, $menu);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $menu->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.$request->type")

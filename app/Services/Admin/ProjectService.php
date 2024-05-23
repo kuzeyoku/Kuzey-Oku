@@ -63,22 +63,19 @@ class ProjectService extends BaseService
 
     public function translations(int $projectId, Object $request)
     {
-        $languages = languageList();
-        foreach ($languages as $language) {
-            if (!empty($request->title[$language->code]) || !empty($request->description[$language->code])) {
-                ProjectTranslate::updateOrCreate(
-                    [
-                        "project_id" => $projectId,
-                        "lang" => $language->code
-                    ],
-                    [
-                        "title" => $request->title[$language->code] ?? null,
-                        "description" => $request->description[$language->code] ?? null,
-                        "features" => trim($request->features[$language->code]) ?? null
-                    ]
-                );
-            }
-        }
+        languageList()->each(function ($lang) use ($projectId, $request) {
+            ProjectTranslate::updateOrCreate(
+                [
+                    "project_id" => $projectId,
+                    "lang" => $lang->code
+                ],
+                [
+                    "title" => $request->title[$lang->code] ?? null,
+                    "description" => $request->description[$lang->code] ?? null,
+                    "features" => $request->features[$lang->code] ?? null,
+                ]
+            );
+        });
     }
 
     public function imageUpload(Request $request, Model $project)

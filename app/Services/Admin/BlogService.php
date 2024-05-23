@@ -61,23 +61,20 @@ class BlogService extends BaseService
         return $query;
     }
 
-    public function translations(int $pageId, Object $request)
+    public function translations(int $postId, Request $request)
     {
-        $languages = languageList();
-        foreach ($languages as $language) {
-            if (!empty($request->title[$language->code]) || !empty($request->content[$language->code])) {
-                BlogTranslate::updateOrCreate(
-                    [
-                        "post_id" => $pageId,
-                        "lang" => $language->code
-                    ],
-                    [
-                        "title" => $request->title[$language->code] ?? null,
-                        "description" => $request->description[$language->code] ?? null,
-                        "tags" => $request->tags[$language->code] ?? null,
-                    ]
-                );
-            }
-        }
+        languageList()->each(function ($lang) use ($postId, $request) {
+            BlogTranslate::updateOrCreate(
+                [
+                    "post_id" => $postId,
+                    "lang" => $lang->code
+                ],
+                [
+                    "title" => $request->title[$lang->code] ?? null,
+                    "description" => $request->description[$lang->code] ?? null,
+                    "tags" => $request->tags[$lang->code] ?? null,
+                ]
+            );
+        });
     }
 }

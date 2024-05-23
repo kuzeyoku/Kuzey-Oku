@@ -4,11 +4,11 @@
     @foreach (languageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {{ html()->label(__("admin/{$folder}.form_title")) }}
-            {{ html()->text("title[$lang->code]", $product->titles[$lang->code] ?? null)->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+            {{ html()->text("title[$lang->code]", $product->titles[$lang->code])->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
             {{ html()->label(__("admin/{$folder}.form_description")) }}
-            {{ html()->textarea("description[$lang->code]", $product->descriptions[$lang->code] ?? null)->class('editor') }}
+            {{ html()->textarea("description[$lang->code]", $product->descriptions[$lang->code])->class('editor') }}
             {{ html()->label(__("admin/{$folder}.form_features")) }}
-            {{ html()->textarea("features[$lang->code]", $product->features[$lang->code] ?? null)->placeholder(__("admin/{$folder}.form_features_placeholder"))->rows(4)->class('form-control') }}
+            {{ html()->textarea("features[$lang->code]", $product->features[$lang->code])->placeholder(__("admin/{$folder}.form_features_placeholder"))->rows(4)->class('form-control') }}
         </div>
     @endforeach
     <div class="row">

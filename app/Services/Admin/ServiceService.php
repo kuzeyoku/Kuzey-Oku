@@ -85,20 +85,17 @@ class ServiceService extends BaseService
 
     public function translations(int $serviceId, Object $request)
     {
-        $languages = languageList();
-        foreach ($languages as $language) {
-            if (!empty($request->title[$language->code]) || !empty($request->description[$language->code])) {
-                ServiceTranslate::updateOrCreate(
-                    [
-                        "service_id" => $serviceId,
-                        "lang" => $language->code
-                    ],
-                    [
-                        "title" => $request->title[$language->code] ?? null,
-                        "description" => $request->description[$language->code] ?? null
-                    ]
-                );
-            }
-        }
+        languageList()->each(function ($lang) use ($serviceId, $request) {
+            ServiceTranslate::updateOrCreate(
+                [
+                    "service_id" => $serviceId,
+                    "lang" => $lang->code
+                ],
+                [
+                    "title" => $request->title[$lang->code] ?? null,
+                    "description" => $request->description[$lang->code] ?? null,
+                ]
+            );
+        });
     }
 }

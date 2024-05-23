@@ -19,7 +19,7 @@ class MenuService extends BaseService
         parent::__construct($menu, ModuleEnum::Menu);
     }
 
-    public function create(Object $request)
+    public function create(Request $request)
     {
         $data = new Request([
             "url" => $request->urlSelect ?? $request->url,
@@ -38,7 +38,7 @@ class MenuService extends BaseService
         return $query;
     }
 
-    public function update(Object $request, Model $menu)
+    public function update(Request $request, Model $menu)
     {
         $data = new Request([
             "url" => $request->urlSelect ?? $request->url,
@@ -67,22 +67,19 @@ class MenuService extends BaseService
         return $query;
     }
 
-    public function translations(int $pageId, Object $request)
+    public function translations(int $menuId, Object $request)
     {
-        $languages = languageList();
-        foreach ($languages as $language) {
-            if (!empty($request->title[$language->code])) {
-                MenuTranslate::updateOrCreate(
-                    [
-                        "menu_id" => $pageId,
-                        "lang" => $language->code
-                    ],
-                    [
-                        "title" => $request->title[$language->code] ?? null,
-                    ]
-                );
-            }
-        }
+        languageList()->each(function ($item) use ($menuId, $request) {
+            MenuTranslate::updateOrCreate(
+                [
+                    "menu_id" => $menuId,
+                    "lang" => $item->code
+                ],
+                [
+                    "title" => $request->title[$item->code] ?? null,
+                ]
+            );
+        });
     }
 
     public function getUrlList(): array
@@ -101,7 +98,7 @@ class MenuService extends BaseService
             route(ModuleEnum::Service->Route() . ".index") => ModuleEnum::Service->singleTitle(),
             //route(ModuleEnum::Product->Route() . ".index") => ModuleEnum::Product->singleTitle(),
             route(ModuleEnum::Project->Route() . ".index") => ModuleEnum::Project->singleTitle(),
-            // route(ModuleEnum::Reference->Route() . ".index") => ModuleEnum::Reference->singleTitle(),
+            //route(ModuleEnum::Reference->Route() . ".index") => ModuleEnum::Reference->singleTitle(),
             route("contact.index") => __("front/contact.txt1"),
             "Sayfalar" => $pages ?? [],
         ];

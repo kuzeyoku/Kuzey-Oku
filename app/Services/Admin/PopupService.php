@@ -95,20 +95,19 @@ class PopupService extends BaseService
         return $query;
     }
 
-    public function translations(int $popupId, Object $request)
+    public function translations(int $popupId, Request $request)
     {
-        $languages = languageList();
-        foreach ($languages as $language) {
+        languageList()->each(function ($lang) use ($popupId, $request) {
             PopupTranslate::updateOrCreate(
                 [
                     "popup_id" => $popupId,
-                    "lang" => $language->code
+                    "lang" => $lang->code
                 ],
                 [
-                    "title" => $request->title[$language->code] ?? null,
-                    "description" => $request->description[$language->code] ?? null
+                    "title" => $request->title[$lang->code] ?? null,
+                    "description" => $request->description[$lang->code] ?? null,
                 ]
             );
-        }
+        });
     }
 }

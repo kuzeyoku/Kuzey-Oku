@@ -5,9 +5,9 @@
     @foreach (LanguageList() as $lang)
         <div id="{{ $lang->code }}" class="tab-pane @if ($loop->first) active show @endif">
             {{ html()->label(__("admin/{$folder}.form_title")) }}
-            {{ html()->text("title[$lang->code]", $service->titles[$lang->code] ?? null)->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
+            {{ html()->text("title[$lang->code]", $service->titles[$lang->code])->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
             {{ html()->label(__("admin/{$folder}.form_description")) }}
-            {{ html()->textarea("description[$lang->code]", $service->descriptions[$lang->code] ?? null)->class('editor') }}
+            {{ html()->textarea("description[$lang->code]", $service->descriptions[$lang->code])->class('editor') }}
         </div>
     @endforeach
     <div class="row">
@@ -17,7 +17,7 @@
         </div>
         <div class="col-lg-4">
             {{ html()->label(__('admin/general.order')) }}
-            {{ html()->number('order', $service->order ?? 0)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
+            {{ html()->number('order', $service->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
         <div class="col-lg-4">
             {{ html()->label(__('admin/general.status')) }}
