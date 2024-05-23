@@ -11761,12 +11761,14 @@ table.tbl-shopping-cart > tfoot > tr > th {
 }
 
 .project-details__content ul,
-.services-details__content ul {
+.services-details__content ul,
+.blog-details__content ul{
     margin-bottom: 20px;
 }
 
 .project-details__content li,
-.services-details__content li {
+.services-details__content li,
+.blog-details__content li{
     list-style: disc;
     list-style-position: inside;
 }
