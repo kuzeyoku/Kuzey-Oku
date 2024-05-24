@@ -10,8 +10,7 @@
     <link href="{{ asset('assets/css/owl.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/linear.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/fontawesome.css') }}" rel="preload" as="style"
-        onload="this.onload=null;this.rel='stylesheet'">
+    <link href="{{ asset('assets/css/fontawesome.css') }}" rel="preload" as="style">
     <link href="{{ asset('assets/css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tm-bs-mp.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tm-utility-classes.css') }}" rel="stylesheet">
