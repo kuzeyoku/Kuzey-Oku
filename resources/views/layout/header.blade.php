@@ -5,7 +5,7 @@
                 <ul class="list-style-one">
                     <li>
                         <i class="fa fa-envelope"></i>
-                        <a href="">
+                        <a href="mailto:{{ config('setting.contact.mail') }}">
                             <span class="__cf_email__">{{ config('setting.contact.email') }}</span>
                         </a>
                     </li>
@@ -30,7 +30,8 @@
                 <div class="logo-box">
                     <div class="logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/images/logo.png') }}" alt="" title="Tronis">
+                            <img src="{{ asset('assets/images/logo.png') }}"
+                                alt="{{ config('setting.general.title', env('APP_NAME')) }}">
                         </a>
                     </div>
                 </div>
@@ -73,7 +74,8 @@
 
         <nav class="menu-box">
             <div class="upper-box">
-                <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ asset('assets/images/logo.png') }}"></a></div>
+                <div class="nav-logo"><a href="{{ route('home') }}"><img
+                            src="{{ asset('assets/images/logo.png') }}"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation clearfix">

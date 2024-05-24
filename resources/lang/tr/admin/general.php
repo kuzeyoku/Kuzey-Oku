@@ -18,6 +18,7 @@ return [
     "this_action_cannot_be_undone" => "Bu işlem geri alınamaz!",
     "yes_delete_it" => "Evet, sil!",
     "cancel" => "İptal",
+    "close" => "Kapat",
     "alert_button" => "Tamam",
     "error" => "Hata",
     "success" => "Başarılı",

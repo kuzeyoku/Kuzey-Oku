@@ -113,6 +113,19 @@ class BlogController extends Controller
         }
     }
 
+    public function comment_disapprove(BlogComment $comment)
+    {
+        try {
+            LogController::logger("info", __("admin/{$this->service->folder()}.comment_disapprove_log"));
+            $comment->status = StatusEnum::Passive->value;
+            $comment->save();
+            return back()->withSuccess(__("admin/{$this->service->folder()}.comment_disapprove_success"));
+        } catch (\Exception $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()->withError(__("admin/{$this->service->folder()}.comment_disapprove_error"));
+        }
+    }
+
     public function comment_delete(BlogComment $comment)
     {
         try {

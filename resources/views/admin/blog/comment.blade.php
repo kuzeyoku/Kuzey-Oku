@@ -39,15 +39,16 @@
                                     <td>{{ $item->created_at }}</td>
                                     <td class="table-action">
                                         <div class="data-action-button">
-                                            @if ($item->status != App\Enums\StatusEnum::Active->value)
-                                                {{ Form::open([
-                                                    'url' => route("admin.{$route}.comment_approve", $item),
-                                                    'method' => 'PUT',
-                                                    'class' => 'd-inline',
-                                                ]) }}
+                                            @if ($item->status == App\Enums\StatusEnum::Active->value)
+                                                {{ html()->form('PUT')->route("admin.{$route}.comment_disapprove", $item)->open() }}
+                                                <button class="me-2 p-2" type="submit"><i data-feather="x-circle"
+                                                        class="feather-icon text-danger"></i></button>
+                                                {{ html()->form()->close() }}
+                                            @else
+                                                {{ html()->form('PUT')->route("admin.{$route}.comment_approve", $item)->open() }}
                                                 <button class="me-2 p-2" type="submit"><i data-feather="check-circle"
                                                         class="feather-icon text-success"></i></button>
-                                                {{ Form::close() }}
+                                                {{ html()->form()->close() }}
                                             @endif
                                             <a class="me-2 p-2" data-bs-toggle="modal" href="javascript:void(0);"
                                                 data-bs-target="#{{ 'comment-' . $item->id }}">
@@ -59,7 +60,7 @@
                                                     <div class="modal-content">
                                                         <div class="modal-header border-0 custom-modal-header">
                                                             <div class="page-title">
-                                                                <h4>Yorum Detayları</h4>
+                                                                <h4>@lang("admin/{$folder}.comment_modal_title")</h4>
                                                             </div>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
@@ -69,30 +70,26 @@
                                                         <div class="modal-body">
                                                             <ul>
                                                                 <li class="p-2 border mb-2">
-                                                                    <b>Yorumu Yapan : </b>{{ $item->name }}
+                                                                    <b>@lang("admin/{$folder}.comment_modal_name") : </b>{{ $item->name }}
                                                                     ({{ $item->email }})
                                                                 </li>
                                                                 <li class="p-2 border mb-2">
-                                                                    <b>Yorum : </b>{{ $item->comment }}
+                                                                    <b>@lang("admin/{$folder}.comment_modal_comment") : </b>{{ $item->comment }}
                                                                 </li>
                                                             </ul>
                                                             <div class="modal-footer-btn">
-                                                                <button type="button" class="btn btn-cancel me-2"
-                                                                    data-bs-dismiss="modal">Kapat</button>
+                                                                <button type="button" class="btn btn-primary btn-cancel"
+                                                                    data-bs-dismiss="modal">@lang('admin/general.close')</button>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            {{ Form::open([
-                                                'url' => route("admin.{$route}.comment_delete", $item),
-                                                'method' => 'delete',
-                                                'class' => 'd-inline',
-                                            ]) }}
+                                            {{ html()->form('DELETE')->route("admin.{$route}.comment_delete", $item)->open() }}
                                             <a class="destroy-btn p-2" href="javascript:void(0);">
                                                 <i data-feather="trash-2" class="feather-icon text-danger"></i>
                                             </a>
-                                            {{ Form::close() }}
+                                            {{ html()->form()->close() }}
                                         </div>
                                     </td>
                                 </tr>

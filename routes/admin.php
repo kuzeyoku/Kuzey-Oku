@@ -75,6 +75,7 @@ Route::prefix(config("setting.system.admin_route"))->name('admin.')->group(funct
                 Route::get("/{blog}/comment", "comment")->name(ModuleEnum::Blog->route() . ".comment");
                 Route::get("/comments", "comments")->name(ModuleEnum::Blog->route() . ".comments");
                 Route::put("/comment/{comment}/approve", "comment_approve")->name(ModuleEnum::Blog->route() . ".comment_approve");
+                Route::put("/comment/{comment}/disapprove", "comment_disapprove")->name(ModuleEnum::Blog->route() . ".comment_disapprove");
                 Route::delete("/comment/{comment}/delete", "comment_delete")->name(ModuleEnum::Blog->route() . ".comment_delete");
             });
 

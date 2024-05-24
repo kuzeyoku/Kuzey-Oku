@@ -1,23 +1,4 @@
 <footer class="main-footer">
-    <div class="bg bg-pattern-9"></div>
-    {{-- <div class="auto-container">
-        <div class="subscribe-form">
-            <div class="title-column">
-                <h5 class="title"><i class="icon flaticon-open-envelope"></i> Subscribe now to get <br>latest
-                    updates</h5>
-            </div>
-            <div class="form-column">
-                <form method="post" action="#">
-                    <div class="form-group">
-                        <input type="email" name="email" class="email" value="" placeholder="Email Address"
-                            required="">
-                        <button type="button" class="theme-btn"><i class="fa fa-paper-plane"></i></button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div> --}}
-
     <div class="widgets-section">
         <div class="auto-container">
             <div class="row">
@@ -58,7 +39,8 @@
                                 @foreach ($services as $service)
                                     <figure class="image">
                                         <a href="{{ $service->url }}">
-                                            <img src="{{ $service->getFirstMediaUrl('cover', 'thumbnail') }}">
+                                            <img src="{{ $service->getFirstMediaUrl('cover', 'thumbnail') }}"
+                                                alt="{{ $service->title }}">
                                         </a>
                                     </figure>
                                 @endforeach
