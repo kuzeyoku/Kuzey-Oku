@@ -10,7 +10,8 @@
     <link href="{{ asset('assets/css/owl.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/linear.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/css/fontawesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/fontawesome.css') }}" rel="preload" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
     <link href="{{ asset('assets/css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tm-bs-mp.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tm-utility-classes.css') }}" rel="stylesheet">
@@ -28,19 +29,11 @@
 
 <body>
     <div class="page-wrapper">
-
         <div class="preloader"></div>
-
         @include('layout.header')
-
-
         @yield('content')
-
-
         @include('layout.footer')
-
     </div>
-
     <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
