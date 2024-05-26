@@ -4,13 +4,16 @@
 <head>
     <meta charset="utf-8">
     <title>@yield('title', config('setting.general.title'))</title>
-
+    <meta name="description" content="@yield('description', config('setting.general.description'))">
+    <meta name="keywords" content="@yield('keywords', config('setting.general.keywords'))">
+    @include('layout.seo')
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/owl.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/jquery.fancybox.min.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/linear.css') }}" rel="stylesheet">
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'" href="{{ asset('assets/css/fontawesome.css') }}">
+    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
+        href="{{ asset('assets/css/fontawesome.css') }}">
     <link href="{{ asset('assets/css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tm-bs-mp.css') }}" rel="stylesheet">
     <link href="{{ asset('assets/css/tm-utility-classes.css') }}" rel="stylesheet">

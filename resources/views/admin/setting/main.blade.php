@@ -9,7 +9,7 @@
                 </div>
             </div>
         </div>
-        {{ html()->form('PUT', route('admin.setting.update'))->open() }}
+        {{ html()->form('PUT', route('admin.setting.update'))->acceptsFiles()->open() }}
         {{ html()->hidden('category', request()->category) }}
         <div class="card">
             <div class="card-header">

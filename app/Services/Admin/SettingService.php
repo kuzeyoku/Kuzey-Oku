@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 use App\Models\Setting;
 use App\Enums\ModuleEnum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SettingService
 {
@@ -20,6 +21,14 @@ class SettingService
 
     public function update(Request $request)
     {
+        if ($request->category == "logo") {
+            if ($request->hasFile("header-logo") && $request->{'header-logo'}->isValid())
+                Storage::putFileAs("public/logo", $request->file("header-logo"), "header-logo.png");
+            if ($request->hasFile("footer-logo") && $request->{'footer-logo'}->isValid())
+                Storage::putFileAs("public/logo", $request->file("footer-logo"), "footer-logo.png");
+            if ($request->hasFile("cover") && $request->{'cover'}->isValid())
+                Storage::putFileAs("public/logo", $request->file("cover"), "cover.png");
+        }
         $settings = collect($request->except(["_token", "_method", "category"]))
             ->map(function ($value, $key) use ($request) {
                 return [

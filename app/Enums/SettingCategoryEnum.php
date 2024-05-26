@@ -15,6 +15,7 @@ enum SettingCategoryEnum: string
     case Maintenance = "maintenance";
     case Image = "image";
     case Sitemap = "sitemap";
+    case Seo = "seo";
     case Integration = "integration";
     case Logo = "logo";
 
@@ -37,6 +38,7 @@ enum SettingCategoryEnum: string
             self::Maintenance => false,
             self::Image => true,
             self::Sitemap => true,
+            self::Seo => true,
             self::Integration => true,
             self::Logo => false,
         };
