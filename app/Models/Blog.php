@@ -18,8 +18,7 @@ class Blog extends Model implements HasMedia
     public function registerMediaConversions(Media $media = null): void
     {
         $this->addMediaConversion("thumbnail")
-            ->width(100)
-            ->height(100)
+            ->width(200)
             ->sharpen(10);
     }
 
