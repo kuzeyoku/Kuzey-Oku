@@ -19,7 +19,6 @@
                 <div class="table-responsive">
                     @yield('table')
                 </div>
-                {{ $items->links(themeView('admin', 'layout.pagination')) }}
             </div>
         </div>
     </div>

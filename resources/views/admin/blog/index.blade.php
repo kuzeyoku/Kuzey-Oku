@@ -35,4 +35,5 @@
             @endforelse
         </tbody>
     </table>
+    {{ $items->links("pagination::bootstrap-4") }}
 @endsection

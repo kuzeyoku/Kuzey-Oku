@@ -45,11 +45,12 @@ class BaseService
     public function all()
     {
         $currentpage = Paginator::resolveCurrentPage() ?: 1;
-        return Cache::remember($this->module->value . '_' . $currentpage, $this->cacheTime, function () {
+        if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
+            return Cache::remember($this->module->value . '_' . $currentpage, $this->cacheTime, function () {
+                return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
+            });
+        else
             return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
-        })->unless(config("setting.caching.status", false), function () {
-            return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
-        });
     }
 
     public function create(Request $request)
@@ -84,7 +85,7 @@ class BaseService
     {
         if ($this->cacheStatus) {
             $cacheKey = ($this->module ? $this->module->value . "_" : "all_") . "categories";
-            return Cache::remember($cacheKey, config("setting.cache.time", 3600), function () {
+            return Cache::remember($cacheKey, $this->cacheTime, function () {
                 $categories = Category::whereStatus(StatusEnum::Active->value)
                     ->when($this->module !== null, function ($query) {
                         return $query->where("module", $this->module);

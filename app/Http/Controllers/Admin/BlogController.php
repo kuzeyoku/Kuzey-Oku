@@ -101,7 +101,7 @@ class BlogController extends Controller
     }
 
     public function comment_approve(BlogComment $comment)
-    {
+    { 
         try {
             LogController::logger("info", __("admin/{$this->service->folder()}.comment_approve_log"));
             $comment->status = StatusEnum::Active->value;
