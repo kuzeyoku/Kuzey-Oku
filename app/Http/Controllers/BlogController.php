@@ -23,7 +23,6 @@ class BlogController extends Controller
     }
     public function index()
     {
-
         $currentpage = Paginator::resolveCurrentPage() ?: 1;
         $pagination = config("setting.pagination.front", 9);
 

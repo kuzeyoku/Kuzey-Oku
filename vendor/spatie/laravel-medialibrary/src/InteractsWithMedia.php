@@ -26,6 +26,7 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 use Spatie\MediaLibrary\Support\MediaLibraryPro;
 use Spatie\MediaLibraryPro\PendingMediaLibraryRequestHandler;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Illuminate\Support\Facades\Cache;
 
 trait InteractsWithMedia
 {
@@ -47,7 +48,7 @@ trait InteractsWithMedia
             }
 
             if (in_array(SoftDeletes::class, class_uses_recursive($model))) {
-                if (! $model->forceDeleting) {
+                if (!$model->forceDeleting) {
                     return;
                 }
             }
@@ -139,7 +140,7 @@ trait InteractsWithMedia
      */
     public function addMediaFromUrl(string $url, array|string ...$allowedMimeTypes): FileAdder
     {
-        if (! Str::startsWith($url, ['http://', 'https://'])) {
+        if (!Str::startsWith($url, ['http://', 'https://'])) {
             throw InvalidUrl::doesNotStartWithProtocol($url);
         }
 
@@ -154,7 +155,7 @@ trait InteractsWithMedia
             $filename = 'file';
         }
 
-        if (! Str::contains($filename, '.')) {
+        if (!Str::contains($filename, '.')) {
             $mediaExtension = explode('/', mime_content_type($temporaryFile));
             $filename = "{$filename}.{$mediaExtension[1]}";
         }
@@ -267,9 +268,15 @@ trait InteractsWithMedia
      */
     public function getMedia(string $collectionName = 'default', array|callable $filters = []): MediaCollections\Models\Collections\MediaCollection
     {
-        return $this->getMediaRepository()
-            ->getCollection($this, $collectionName, $filters)
-            ->collectionName($collectionName);
+        if (config("setting.caching.status", \App\Enums\StatusEnum::Passive->value) == \App\Enums\StatusEnum::Active->value) {
+            return Cache::remember("media_" . "_" . get_class($this) . "_" . $this->id, config("setting.caching.time", 3600), function () use ($collectionName, $filters) {
+                return $this->getMediaRepository()->getCollection($this, $collectionName, $filters)->collectionName($collectionName);
+            });
+        } else {
+            return $this->getMediaRepository()
+                ->getCollection($this, $collectionName, $filters)
+                ->collectionName($collectionName);
+        }
     }
 
     public function getMediaRepository(): MediaRepository
@@ -293,11 +300,11 @@ trait InteractsWithMedia
     {
         $media = $this->getFirstMedia($collectionName);
 
-        if (! $media) {
+        if (!$media) {
             return $this->getFallbackMediaUrl($collectionName, $conversionName) ?: '';
         }
 
-        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+        if ($conversionName !== '' && !$media->hasGeneratedConversion($conversionName)) {
             return $media->getUrl();
         }
 
@@ -317,11 +324,11 @@ trait InteractsWithMedia
     ): string {
         $media = $this->getFirstMedia($collectionName);
 
-        if (! $media) {
+        if (!$media) {
             return $this->getFallbackMediaUrl($collectionName, $conversionName) ?: '';
         }
 
-        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+        if ($conversionName !== '' && !$media->hasGeneratedConversion($conversionName)) {
             return $media->getTemporaryUrl($expiration);
         }
 
@@ -374,11 +381,11 @@ trait InteractsWithMedia
     {
         $media = $this->getFirstMedia($collectionName);
 
-        if (! $media) {
+        if (!$media) {
             return $this->getFallbackMediaPath($collectionName, $conversionName) ?: '';
         }
 
-        if ($conversionName !== '' && ! $media->hasGeneratedConversion($conversionName)) {
+        if ($conversionName !== '' && !$media->hasGeneratedConversion($conversionName)) {
             return $media->getPath();
         }
 
@@ -497,7 +504,7 @@ trait InteractsWithMedia
 
         $media = $this->media->find($mediaId);
 
-        if (! $media) {
+        if (!$media) {
             throw MediaCannotBeDeleted::doesNotBelongToModel($mediaId, $this);
         }
 
