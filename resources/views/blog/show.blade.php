@@ -116,7 +116,7 @@
                                 @foreach ($popularPost as $item)
                                     <li>
                                         <div class="sidebar__post-image"> <img
-                                                src="{{ $item->getFirstMediaUrl('cover', 'thumbnail') }}" alt="">
+                                                src="{{ $item->getFirstMediaUrl("cover") }}" alt="">
                                         </div>
                                         <div class="sidebar__post-content">
                                             <h3> <span class="sidebar__post-content-meta"><i
