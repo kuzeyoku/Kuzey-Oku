@@ -51,7 +51,7 @@ class BlogController extends Controller
     {
         $cacheKey = ModuleEnum::Blog->value . "_" . $post->id . "_" . app()->getLocale();
         $post->increment("view_count");
-        if (config("setting.caching.status", false)) {
+        if (config("setting.caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
             $data = Cache::remember($cacheKey, config("setting.caching.time", 3600), function () use ($post) {
                 return [
                     "post" => $post,
