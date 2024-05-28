@@ -115,8 +115,8 @@
                             <ul class="sidebar__post-list list-unstyled">
                                 @foreach ($popularPost as $item)
                                     <li>
-                                        <div class="sidebar__post-image"> <img
-                                                src="{{ $item->getFirstMediaUrl("cover") }}" alt="{{ $post->title }}">
+                                        <div class="sidebar__post-image"> <img src="{{ $item->getFirstMediaUrl('cover') }}"
+                                                alt="{{ $post->title }}">
                                         </div>
                                         <div class="sidebar__post-content">
                                             <h3> <span class="sidebar__post-content-meta"><i
@@ -133,8 +133,10 @@
                                 <h3 class="sidebar__title">@lang('front/blog.txt13')</h3>
                                 <ul class="sidebar__category-list list-unstyled">
                                     @foreach ($categories as $category)
-                                        <li><a href="{{ $category->url }}">{{ $category->title }}<span
-                                                    class="icon-right-arrow"></span></a>
+                                        <li>
+                                            <a href="{{ $category->url }}">{{ $category->title }}
+                                                <span class="icon-right-arrow"></span>
+                                            </a>
                                         </li>
                                     @endforeach
                                 </ul>
