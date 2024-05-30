@@ -25,7 +25,6 @@ class BlogController extends Controller
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
                 ];
             });
-            dd("önbellekten çekildi");
         } else {
             $data = [
                 "posts" => Blog::active()->order()->paginate(config("setting.pagination.front", 10))->onEachSide(1),
