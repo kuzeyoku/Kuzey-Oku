@@ -23,7 +23,6 @@ class BaseService
         $this->defaultLocale = app()->getFallbackLocale();
         $this->model = $model;
         $this->module = $module;
-        $this->cacheStatus = config("setting.caching.status", false);
         $this->cacheTime = config("setting.caching.time", 3600);
     }
 
@@ -45,7 +44,7 @@ class BaseService
     public function all()
     {
         if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
-            return Cache::remember($this->module->value . '_' . Paginator::resolveCurrentPage() ?: 1 . "_admin", $this->cacheTime, function () {
+            return Cache::remember($this->module->value . '_' . Paginator::resolveCurrentPage() ?: 1 . "_" . app()->getLanguage() . "_admin", $this->cacheTime, function () {
                 return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
             });
         else
@@ -82,7 +81,7 @@ class BaseService
 
     public function getCategories()
     {
-        if ($this->cacheStatus) {
+        if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value) {
             $cacheKey = ($this->module ? $this->module->value . "_" : "all_") . "categories";
             return Cache::remember($cacheKey, $this->cacheTime, function () {
                 $categories = Category::whereStatus(StatusEnum::Active->value)
