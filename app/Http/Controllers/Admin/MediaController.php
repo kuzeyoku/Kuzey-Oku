@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Enums\ModuleEnum;
 use App\Http\Controllers\Controller;
-use App\Services\Admin\MediaService;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class MediaController extends Controller
