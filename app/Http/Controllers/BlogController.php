@@ -13,37 +13,27 @@ use Illuminate\Support\Facades\Cache;
 
 class BlogController extends Controller
 {
-    protected $cacheTime;
-    protected $folder;
 
-    public function __construct()
-    {
-        $this->cacheTime = config("settings.caching.time", 3600);
-        $this->folder = ModuleEnum::Blog->folder();
-    }
     public function index()
     {
-        $currentpage = Paginator::resolveCurrentPage() ?: 1;
-        $pagination = config("setting.pagination.front", 10);
-
-        $cacheKey = ModuleEnum::Blog->value . "_" . $currentpage . "_" . app()->getLocale();
-
+        $cacheKey = ModuleEnum::Blog->value . "_" . Paginator::resolveCurrentPage() ?: 1 . "_" . app()->getLocale();
         if (config("setting.caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-            $data = Cache::remember($cacheKey, config("setting.caching.time", 3600), function () use ($pagination) {
+            $data = Cache::remember($cacheKey, config("setting.caching.time", 3600), function () {
                 return [
-                    "posts" => Blog::active()->order()->paginate($pagination),
+                    "posts" => Blog::active()->order()->paginate(config("setting.pagination.front", 10)),
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
                 ];
             });
+            dd("önbellekten çekildi");
         } else {
             $data = [
-                "posts" => Blog::active()->order()->paginate($pagination)->onEachSide(1),
+                "posts" => Blog::active()->order()->paginate(config("setting.pagination.front", 10))->onEachSide(1),
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
             ];
         }
-        return view("$this->folder.index", $data);
+        return view(ModuleEnum::Blog->folder() . ".index", $data);
     }
 
     public function show(Blog $post)
@@ -67,7 +57,7 @@ class BlogController extends Controller
                 "comments" => $post->comments()->paginate(5),
             ];
         }
-        return view("$this->folder.show", $data);
+        return view(ModuleEnum::Blog->folder() . ".show", $data);
     }
 
     public function comment_store(Request $request, Blog $post)
