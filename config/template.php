@@ -3,7 +3,7 @@
 return [
     "front" => [
         "view" => "front",
-        "asset" => null,
+        "asset" => "theme",
     ],
     "admin" => [
         "route" => "admin",

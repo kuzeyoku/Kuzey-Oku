@@ -30,7 +30,7 @@
                 <div class="logo-box">
                     <div class="logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('assets/images/logo.png') }}"
+                            <img src="{{ themeAsset('front', 'images/logo.png') }}"
                                 alt="{{ config('setting.general.title', env('APP_NAME')) }}">
                         </a>
                     </div>
@@ -75,7 +75,7 @@
         <nav class="menu-box">
             <div class="upper-box">
                 <div class="nav-logo"><a href="{{ route('home') }}"><img
-                            src="{{ asset('assets/images/logo.png') }}"></a></div>
+                            src="{{ themeAsset('front', 'images/logo.png') }}"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="navigation clearfix">
@@ -127,7 +127,7 @@
             <div class="inner-container">
                 <div class="logo">
                     <a href="{{ route('home') }}" title="">
-                        <img src="{{ asset('assets/images/logo-2.png') }}" alt="" title="">
+                        <img src="{{ themeAsset('front', 'images/logo-2.png') }}" alt="" title="">
                     </a>
                 </div>
                 <div class="nav-outer">

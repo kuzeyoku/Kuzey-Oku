@@ -25,12 +25,12 @@
                     <div class="image-box">
                         <span class="bg-shape"></span>
                         <figure class="image-1 overlay-anim wow fadeInUp"><img
-                                src="{{ asset('assets/images/about-1.jpg') }}"></figure>
+                                src="{{ themeAsset('front', 'images/about-1.jpg') }}"></figure>
                         <figure class="image-2 overlay-anim wow fadeInRight"><img
-                                src="{{ asset('assets/images/about-2.jpg') }}"></figure>
+                                src="{{ themeAsset('front', 'images/about-2.jpg') }}"></figure>
                         <figure class="image-3 overlay-anim wow fadeInRight"><img
-                                src="{{ asset('assets/images/about-3.jpg') }}"></figure>
-                        <figure class="logo"><img src="{{ asset('assets/images/resource/fav-icon.png') }}">
+                                src="{{ themeAsset('front', 'images/about-3.jpg') }}"></figure>
+                        <figure class="logo"><img src="{{ themeAsset('front', 'images/resource/fav-icon.png') }}">
                         </figure>
                     </div>
                 </div>

@@ -46,13 +46,13 @@
                 <div class="inner-column wow fadeInLeft">
                     <div class="image-box">
                         <figure class="image-1 overlay-anim wow fadeInUp">
-                            <img src="{{ asset('assets/images/resource/why-us-1.jpg') }}" alt="">
+                            <img src="{{ themeAsset('front', 'images/resource/why-us-1.jpg') }}" alt="">
                         </figure>
                         <figure class="image-2 overlay-anim wow fadeInRight">
-                            <img src="{{ asset('assets/images/resource/why-us-2.jpg') }}" alt="">
+                            <img src="{{ themeAsset('front', 'images/resource/why-us-2.jpg') }}" alt="">
                         </figure>
                         <figure class="logo">
-                            <img src="{{ asset('assets/images/resource/fav-icon-light.png') }}" alt="">
+                            <img src="{{ themeAsset('front', 'images/resource/fav-icon-light.png') }}" alt="">
                         </figure>
                     </div>
                 </div>
