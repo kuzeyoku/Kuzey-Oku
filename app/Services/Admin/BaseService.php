@@ -44,9 +44,8 @@ class BaseService
 
     public function all()
     {
-        $currentpage = Paginator::resolveCurrentPage() ?: 1;
         if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
-            return Cache::remember($this->module->value . '_' . $currentpage, $this->cacheTime, function () {
+            return Cache::remember($this->module->value . '_' . Paginator::resolveCurrentPage() ?: 1 . "_admin", $this->cacheTime, function () {
                 return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
             });
         else
