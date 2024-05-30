@@ -43,9 +43,6 @@ class BlogController extends Controller
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
             ];
         }
-
-        dd($data);
-
         return view("$this->folder.index", $data);
     }
 
