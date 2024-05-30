@@ -24,7 +24,7 @@ class BlogController extends Controller
     public function index()
     {
         $currentpage = Paginator::resolveCurrentPage() ?: 1;
-        $pagination = config("setting.pagination.front", 9);
+        $pagination = config("setting.pagination.front", 10);
 
         $cacheKey = ModuleEnum::Blog->value . "_" . $currentpage . "_" . app()->getLocale();
 
@@ -43,6 +43,8 @@ class BlogController extends Controller
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
             ];
         }
+
+        dd($data);
 
         return view("$this->folder.index", $data);
     }
