@@ -51,5 +51,5 @@ function themeView($folder, $file)
 
 function themeAsset($folder, $file)
 {
-    return asset("assets" . config("template.{$folder}.asset") . "/" . $file);
+    return asset("assets/" . config("template.{$folder}.asset") . "/" . $file);
 }
