@@ -44,7 +44,7 @@ class BaseService
     public function all()
     {
         if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
-            return Cache::remember($this->module->value . '_' . Paginator::resolveCurrentPage() ?: 1 . "_" . app()->getLanguage() . "_admin", $this->cacheTime, function () {
+            return Cache::remember($this->module->value . '_' . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale() . "_admin", $this->cacheTime, function () {
                 return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
             });
         else

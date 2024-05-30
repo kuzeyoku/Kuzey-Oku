@@ -17,7 +17,7 @@ class BlogController extends Controller
     public function index()
     {
         if (config("setting.caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-            $cacheKey = ModuleEnum::Blog->value . "_" . Paginator::resolveCurrentPage() ?: 1 . "_" . app()->getLocale();
+            $cacheKey = ModuleEnum::Blog->value . "_" . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale();
             $data = Cache::remember($cacheKey, config("setting.caching.time", 3600), function () {
                 return [
                     "posts" => Blog::active()->order()->paginate(config("setting.pagination.front", 10)),
