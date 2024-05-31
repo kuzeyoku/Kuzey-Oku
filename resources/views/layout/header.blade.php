@@ -13,6 +13,10 @@
                 </ul>
             </div>
             <div class="top-right">
+                <select class="bg-transparent text-white" name="" id="">
+                    <option class="bg-dark" value="tr">Türkçe</option>
+                    <option class="bg-dark" value="en">English</option>
+                </select>
                 <ul class="social-icon-one">
                     @foreach (config('setting.social', []) as $key => $value)
                         @if ($value)
@@ -78,12 +82,8 @@
                             src="{{ themeAsset('front', 'images/logo.png') }}"></a></div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
-            <ul class="navigation clearfix">
-
-            </ul>
             <ul class="contact-list-one">
                 <li>
-
                     <div class="contact-info-box">
                         <i class="icon lnr-icon-phone-handset"></i>
                         <span class="title">Telefon</span>
@@ -91,7 +91,6 @@
                     </div>
                 </li>
                 <li>
-
                     <div class="contact-info-box">
                         <span class="icon lnr-icon-envelope1"></span>
                         <span class="title">Email</span>
@@ -100,7 +99,6 @@
                     </div>
                 </li>
                 <li>
-
                     <div class="contact-info-box">
                         <span class="icon lnr-icon-map"></span>
                         <span class="title">Adres</span>
