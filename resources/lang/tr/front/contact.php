@@ -16,6 +16,7 @@ return [
     "txt14" => "Mesajınız",
     "txt15" => "Gönder",
     "txt16" => "Temizle",
+    "txt17" => "Bize Ulaşın",
     "send_success" => "Mesajınız Başarıyla Gönderildi",
     "send_error" => "Mesajınız gönderilirken bir hata oluştu",
 ];

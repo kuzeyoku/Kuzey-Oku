@@ -13,10 +13,11 @@
                 </ul>
             </div>
             <div class="top-right">
-                <select class="bg-transparent text-white" name="" id="">
-                    <option class="bg-dark" value="tr">Türkçe</option>
-                    <option class="bg-dark" value="en">English</option>
-                </select>
+                @if (config('setting.system.multilanguage', App\Enums\Statusenum::Passive->value) == App\Enums\StatusEnum::Active->value)
+                    {{ html()->form()->route('language.set')->open() }}
+                    {{ html()->select('locale', languageList()->pluck('title', 'code'), session()->get('locale'))->class('lang-select') }}
+                    {{ html()->form()->close() }}
+                @endif
                 <ul class="social-icon-one">
                     @foreach (config('setting.social', []) as $key => $value)
                         @if ($value)
@@ -64,7 +65,7 @@
                     </div>
                     <a href="tel:{{ config('setting.contact.phone') }}" class="info-btn">
                         <i class="icon fa fa-phone"></i>
-                        <small>Bize Ulaşın</small>{{ config('setting.contact.phone') }}
+                        <small>@lang('front/contact.txt17')</small>{{ config('setting.contact.phone') }}
                     </a>
 
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>

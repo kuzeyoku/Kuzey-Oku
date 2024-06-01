@@ -10136,9 +10136,9 @@ table.tbl-shopping-cart > tfoot > tr > th {
     color: #fff;
 }
 .help-title {
-    font-size: 38px;
+    font-size: 28px;
     color: #fff;
-    line-height: 40px;
+    line-height: 50px;
     margin-bottom: 21px;
     font-weight: 700;
 }
@@ -11834,4 +11834,18 @@ table.tbl-shopping-cart > tfoot > tr > th {
 
 .cookie .cookie-btn:hover {
     background-color: #fd7a70;
+}
+
+.lang-select {
+    position: relative;
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+    background-color: transparent;
+    color: #fff;
+}
+
+.lang-select option {
+    background-color: #000;
+    color: #fff;
 }

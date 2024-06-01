@@ -1,6 +1,7 @@
 <?php
 
 use App\Enums\ModuleEnum;
+use App\Enums\StatusEnum;
 use App\Http\Middleware\Maintenance;
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\CountVisitors;
@@ -8,8 +9,10 @@ use App\Http\Middleware\CountVisitors;
 Route::middleware(CountVisitors::class, Maintenance::class)->group(function () {
     Route::get("/", [App\Http\Controllers\HomeController::class, "index"])->name("home");
 
-    Route::post("/setlocale", [App\Http\Controllers\HomeController::class, "setLocale"])->name("locale.set");
-
+    if (config("setting.system.multilanguage", StatusEnum::Passive->value) == StatusEnum::Active->value) {
+        Route::post("/setLocale", [App\Http\Controllers\LanguageController::class, "set"])->name("language.set");
+    }
+    
     Route::post("/newsletter", [App\Http\Controllers\NewsletterController::class, "store"])->name("newsletter.store");
 
     Route::get("/contact", [App\Http\Controllers\ContactController::class, "index"])->name("contact.index");

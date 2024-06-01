@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
-use App\Models\Visitor;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -43,14 +41,5 @@ class HomeController extends Controller
             });
         }
         return view("index", $data);
-    }
-
-    public function setLocale(Request $request)
-    {
-        $request->validate([
-            "locale" => "required|exists:languages,code",
-        ]);
-        session()->put("locale", $request->locale);
-        return redirect()->back();
     }
 }

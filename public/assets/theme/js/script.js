@@ -628,4 +628,7 @@ var THEMEMASCOT = {};
     $(window).on("load", function () {
         handlePreloader();
     });
+    $(".lang-select").on("change", function () {
+        $(this).closest("form").submit();
+    });
 })(window.jQuery);

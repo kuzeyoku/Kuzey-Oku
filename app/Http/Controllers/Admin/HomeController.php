@@ -51,16 +51,16 @@ class HomeController extends Controller
     {
         Cache::flush();
         LogController::logger('info', __('admin/general.cache_clear_log'));
-        return redirect()->route("admin.index")->withSuccess(__('admin/general.cache_clear_success'));
+        return redirect()->back()->withSuccess(__('admin/general.cache_clear_success'));
     }
 
     public function logclean(Request $request)
     {
         $file = storage_path('logs/custom_' . $request->file . '.log');
-        if (File::exists($file)) {
-            File::delete($file);
+        try {
+            File::put($file, '');
             return redirect()->back()->withSuccess(__('admin/home.log_clean_success', ['file' => $request->file]));
-        } else {
+        } catch (Exception $e) {
             return redirect()->back()->withError(__('admin/home.log_clean_error', ['file' => $request->file]));
         }
     }
