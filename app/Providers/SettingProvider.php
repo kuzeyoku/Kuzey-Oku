@@ -35,6 +35,9 @@ class SettingProvider extends ServiceProvider
             return $config;
         });
         config($settingsConfig);
+        foreach (config("setting.smtp", []) as $key => $value) {
+            config("mail.mailers.smtp.{$key}", $value);
+        }
         config([
             "mail.mailers.smtp.host" => config("setting.smtp.host"),
             "mail.mailers.smtp.port" => config("setting.smtp.port"),
