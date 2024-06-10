@@ -12,9 +12,9 @@
                     </div>
                     <blockquote class="blockquote-one">@lang('front/about.txt4')</blockquote>
                     <div class="btn-box">
-                        <a href="https://www.youtube.com/watch?v=Fvae8nxzVz4" class="play-now-two lightbox-image"><i
+                        <a href="#" class="play-now-two lightbox-image"><i
                                 class="icon fa fa-play"></i>@lang('front/about.txt5')</a>
-                        <a href="page-service-details.html.htm" class="theme-btn btn-style-one"><span
+                        <a href="#" class="theme-btn btn-style-one"><span
                                 class="btn-title">@lang('front/about.txt6')</span></a>
                     </div>
                 </div>
