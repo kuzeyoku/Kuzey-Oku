@@ -19,8 +19,7 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt5')</h6>
-                                    <a
-                                        href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
+                                    <a href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
                                 </div>
                             </li>
                             <li>
