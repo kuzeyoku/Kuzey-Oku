@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Enums\StatusEnum;
 use App\Http\Requests\ContactRequest;
-use App\Jobs\SendMessage;
 use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
