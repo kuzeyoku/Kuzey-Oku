@@ -26,7 +26,7 @@
                             <a class="me-2 edit-icon p-2" href="{{ route("admin.{$route}.show", $item) }}">
                                 <i data-feather="eye" class="feather-eye"></i>
                             </a>
-                            {{ html()->form('DELETE')->route("admin.{$route}.destroy")->open() }}
+                            {{ html()->form('DELETE')->route("admin.{$route}.destroy", $item)->open() }}
                             <a class="destroy-btn p-2" href="javascript:void(0);">
                                 <i data-feather="trash-2" class="feather-trash-2"></i>
                             </a>
