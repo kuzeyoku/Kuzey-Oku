@@ -28,7 +28,7 @@
                 <a class="btn btn-primary" href="{{ route("admin.{$route}.reply", $message) }}">
                     {{ __("admin/{$folder}.reply") }}
                 </a>
-                {{ html()->form('delete')->route("admin.{$route}.destroy", $message)->open() }}
+                {{ html()->form('delete')->route("admin.{$route}.destroy", $message)->class('d-inline')->open() }}
                 <button type="button" class="btn btn-danger destroy-btn">{{ __('admin/general.delete') }}</button>
                 {{ html()->form()->close() }}
             </div>
