@@ -23,7 +23,6 @@ class ContactController extends Controller
                 ->withError(__("front/general.recaptcha_error"));
         }
         try {
-            $this->dispact(new SendMessage($request));
             Message::create([
                 "name" => $request->name,
                 "phone" => $request->phone,
