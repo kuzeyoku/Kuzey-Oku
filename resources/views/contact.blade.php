@@ -62,31 +62,31 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    {{ Form::open(['url' => route('contact.send')]) }}
+                    {{ html()->form()->route('contact.send')->open() }}
                     <div class="row">
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
-                                {{ Form::text('name', null, ['class' => 'form-control', 'placeholder' => __('front/contact.txt10')]) }}
+                                {{ html()->text('name')->placeholder(__('front/contact.txt10'))->class('form-control') }}
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
-                                {{ Form::email('email', null, ['class' => 'form-control', 'placeholder' => __('front/contact.txt11')]) }}
+                                {{ html()->email('email')->placeholder(__('front/contact.txt11'))->class('form-control') }}
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
-                                {{ Form::text('phone', null, ['class' => 'form-control', 'placeholder' => __('front/contact.txt12')]) }}
+                                {{ html()->text('phone')->placeholder(__('front/contact.txt12'))->class('form-control') }}
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
-                                {{ Form::text('subject', null, ['class' => 'form-control', 'placeholder' => __('front/contact.txt13')]) }}
+                                {{ html()->text('subject')->placeholder(__('front/contact.txt13'))->class('form-control') }}
                             </div>
                         </div>
                     </div>
                     <div class="form-group mb-3">
-                        {{ Form::textarea('message', null, ['class' => 'form-control', 'placeholder' => __('front/contact.txt14')]) }}
+                        {{ html()->textarea('message')->placeholder(__('front/contact.txt14'))->class('form-control') }}
                     </div>
                     <button type="submit" class="theme-btn btn-style-one g-recaptcha"
                         data-sitekey="{{ config('setting.recaptcha.site_key') }}" data-callback='contact-form'
@@ -95,7 +95,7 @@
                     </button>
                     <button type="reset" class="theme-btn btn-style-one"><span
                             class="btn-title">@lang('front/contact.txt16')</span></button>
-                    {{ Form::close() }}
+                    {{ html()->form()->close() }}
                 </div>
             </div>
         </div>

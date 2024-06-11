@@ -63,9 +63,9 @@
                             <span class="icon lnr lnr-icon-search"></span>
                         </button>
                     </div>
-                    <a href="tel:{{ config('setting.contact.phone') }}" class="info-btn">
-                        <i class="icon fa fa-phone"></i>
-                        <small>@lang('front/contact.txt17')</small>{{ config('setting.contact.phone') }}
+                    <a href="{{ route('contact.index') }}" class="info-btn">
+                        <i class="icon fa fa-envelope"></i>
+                        <span>@lang('front/contact.txt1')</span>
                     </a>
 
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
