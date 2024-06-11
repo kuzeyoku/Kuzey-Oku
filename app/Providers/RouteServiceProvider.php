@@ -25,10 +25,12 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $admin_route = cache()->rememberForever('admin_route', function () {
-            return \App\Models\Setting::where("category", "system")->where('key', 'admin_route')->first()->value ?? 'admin';
-        });
-
+        $admin_route = 'admin';
+        if (Schema::hasTable("settings")) {
+            $admin_route = cache()->rememberForever('admin_route', function () {
+                return \App\Models\Setting::whereCategory("system")->whereKey('admin_route')->pluck("value") ?? 'admin';
+            });
+        }
         config([
             'setting.system.admin_route' => $admin_route,
         ]);
