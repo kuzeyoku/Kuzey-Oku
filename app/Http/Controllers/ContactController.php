@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Message;
 use App\Enums\StatusEnum;
 use App\Http\Requests\ContactRequest;
-use App\Jobs\SendMessage;
+use Illuminate\Support\Facades\Mail;
 
 class ContactController extends Controller
 {
@@ -23,7 +23,6 @@ class ContactController extends Controller
                 ->withError(__("front/general.recaptcha_error"));
         }
         try {
-            $this->dispact(new SendMessage($request));
             Message::create([
                 "name" => $request->name,
                 "phone" => $request->phone,
@@ -35,6 +34,8 @@ class ContactController extends Controller
                 "user_agent" => $request->userAgent(),
                 //"consent" => $request->terms
             ]);
+            Mail::to(config("setting.contact.email"))
+                ->send(new \App\Mail\Contact($request));
             return back()
                 ->withSuccess(__("front/contact.send_success"));
         } catch (\Exception $e) {
