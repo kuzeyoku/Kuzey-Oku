@@ -33,4 +33,13 @@ class BlogComment extends Model
     {
         return "https://www.gravatar.com/avatar/" . md5(strtolower(trim($this->email)));
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderByDesc('created_at');
+        });
+    }
 }
