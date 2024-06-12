@@ -35,7 +35,7 @@ class SettingProvider extends ServiceProvider
             return $config;
         });
         config($settingsConfig);
-        dd(config("setting.smtp"));
+        dd(config("mail.mailers.smtp"));
         foreach (config("setting.smtp", []) as $key => $value) {
             config("mail.mailers.smtp.{$key}", $value);
         }
