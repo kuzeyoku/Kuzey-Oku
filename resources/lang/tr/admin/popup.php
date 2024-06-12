@@ -1,9 +1,12 @@
 <?php
 return [
     "title" => "Popup Yönetimi",
+    "description" => "Popupları Yönetin",
     "single_title" => "Popup",
     "create" => "Popup Ekle",
+    "create_description" => "Yeni bir popup oluşturun",
     "edit" => "Popup Düzenle",
+    "edit_description" => "Popup bilgilerini düzenleyin",
     "list" => "Popup Listesi",
     //alert
     "create_success" => "Popup başarıyla eklendi.",

@@ -56,7 +56,6 @@ class LanguageController extends Controller
 
     public function files(Language $language)
     {
-        $this->authorize("fileProcess", Language::class);
         $response = $this->service->files($language);
         $frontFiles = $response['frontFiles'] ?? [];
         $adminFiles = $response['adminFiles'] ?? [];
@@ -68,7 +67,6 @@ class LanguageController extends Controller
 
     public function updateFileContent(Language $language, Request $request)
     {
-        $this->authorize("fileProcess", Language::class);
         try {
             $this->service->updateFileContent($language);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_file_content_log", ["title" => $language->title]));

@@ -2,9 +2,12 @@
 return [
     //menu
     "title" => "Müşteri Yorumları",
+    "description" => "Müşteri Yorumlarını Yönetin",
     "single_title" => "Müşteri Yorumları",
     "create" => "Yorum Ekle",
+    "create_description" => "Yeni bir yorum oluşturun",
     "edit" => "Yorum Düzenle",
+    "edit_description" => "Yorum bilgilerini düzenleyin",
     "list" => "Yorum Listesi",
     //alert
     "create_success" => "Yorum başarıyla oluşturuldu.",

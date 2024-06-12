@@ -2,9 +2,12 @@
 return [
     //menu
     "title" => "Referans Yönetimi",
+    "description" => "Referansları Yönetin",
     "single_title" => "Referanslar",
     "create" => "Referans Ekle",
+    "create_description" => "Yeni Referans Ekle",
     "edit" => "Referans Düzenle",
+    "edit_description" => "Referans Düzenle",
     "list" => "Referanslar",
     //alert
     "create_success" => "Referans başarıyla oluşturuldu.",

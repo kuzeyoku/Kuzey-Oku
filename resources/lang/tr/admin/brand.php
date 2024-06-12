@@ -2,9 +2,12 @@
 return [
     //menu
     "title" => "Marka Yönetimi",
+    "description" => "Markaları Yönetin",
     "single_title" => "Markalar",
     "create" => "Marka Oluştur",
+    "create_description" => "Yeni Marka Oluştur",
     "edit" => "Marka Düzenle",
+    "edit_description" => "Marka Düzenle",
     "list" => "Markalar",
     //alert
     "create_success" => "Marka başarıyla oluşturuldu.",

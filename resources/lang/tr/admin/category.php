@@ -1,9 +1,12 @@
 <?php
 return [
     "title" => "Kategori Yönetimi",
+    "description" => "Kategorileri Yönetin",
     "single_title" => "Kategoriler",
     "create" => "Kategori Oluştur",
+    "create_description" => "Yeni Kategori Oluştur",
     "edit" => "Kategori Düzenle",
+    "edit_description" => "Kategori Düzenle",
     "list" => "Kategori Listesi",
     //alert
     "create_success" => "Kategori Başarıyla Oluşturuldu",

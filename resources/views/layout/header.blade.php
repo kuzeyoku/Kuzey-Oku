@@ -4,12 +4,12 @@
             <div class="top-left">
                 <ul class="list-style-one">
                     <li>
-                        <i class="fa fa-envelope"></i>
+                        <i class="far fa-envelope"></i>
                         <a href="mailto:{{ config('setting.contact.mail') }}">
                             <span class="__cf_email__">{{ config('setting.contact.email') }}</span>
                         </a>
                     </li>
-                    <li><i class="fa fa-map-marker"></i>{{ config('setting.contact.address') }}</li>
+                    <li><i class="far fa-map-marker"></i>{{ config('setting.contact.address') }}</li>
                 </ul>
             </div>
             <div class="top-right">
@@ -58,14 +58,9 @@
                     </nav>
                 </div>
                 <div class="outer-box">
-                    <div class="ui-btn-outer">
-                        <button class="ui-btn ui-btn search-btn">
-                            <span class="icon lnr lnr-icon-search"></span>
-                        </button>
-                    </div>
                     <a href="{{ route('contact.index') }}" class="info-btn">
-                        <i class="icon fa fa-envelope"></i>
-                        <span>@lang('front/contact.txt1')</span>
+                        <i class="icon far fa-envelope"></i>
+                        <span>@lang('front/header.txt1')</span>
                     </a>
 
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
@@ -73,10 +68,8 @@
             </div>
         </div>
     </div>
-
     <div class="mobile-menu">
         <div class="menu-backdrop"></div>
-
         <nav class="menu-box">
             <div class="upper-box">
                 <div class="nav-logo"><a href="{{ route('home') }}"><img
@@ -87,14 +80,14 @@
                 <li>
                     <div class="contact-info-box">
                         <i class="icon lnr-icon-phone-handset"></i>
-                        <span class="title">Telefon</span>
+                        <span class="title">@lang('front/header.txt2')</span>
                         <a href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
                     </div>
                 </li>
                 <li>
                     <div class="contact-info-box">
                         <span class="icon lnr-icon-envelope1"></span>
-                        <span class="title">Email</span>
+                        <span class="title">@lang('front/header.txt3')</span>
                         <a href="mailto:{{ config('setting.contact.phone') }}"><span
                                 class="__cf_email__">{{ config('setting.contact.email') }}</span></a>
                     </div>
@@ -102,7 +95,7 @@
                 <li>
                     <div class="contact-info-box">
                         <span class="icon lnr-icon-map"></span>
-                        <span class="title">Adres</span>
+                        <span class="title">@lang('front/header.txt4')</span>
                         {{ config('setting.contact.address') }}
                     </div>
                 </li>
@@ -126,17 +119,11 @@
             <div class="inner-container">
                 <div class="logo">
                     <a href="{{ route('home') }}" title="">
-                        <img src="{{ themeAsset('front', 'images/logo-2.png') }}" alt="" title="">
+                        <img src="{{ themeAsset('front', 'images/logo-2.png') }}"
+                            alt="{{ config('setting.general.title', env('APP_NAME')) }}">
                     </a>
                 </div>
                 <div class="nav-outer">
-                    <nav class="main-menu">
-                        <div class="navbar-collapse show collapse clearfix">
-                            <ul class="navigation clearfix">
-
-                            </ul>
-                        </div>
-                    </nav>
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
                 </div>
             </div>

@@ -2,8 +2,11 @@
 return [
     //general
     "title" => "Çeviriler",
+    "description" => "Çevirileri Yönetin",
     "create" => "Yeni Çeviri",
+    "create_description" => "Yeni Çeviri Oluştur",
     "edit" => "Çeviri Düzenle",
+    "edit_description" => "Çeviri Düzenle",
     "list" => "Çeviri Listesi",
     //alert
     "create_success" => "Çeviri Başarıyla Oluşturuldu",
@@ -34,6 +37,7 @@ return [
     "table_title" => "Başlık",
     "table_code" => "Kod",
     "files_title" => "Dil Dosyası İçeriği",
+    "files_description" => "Dil Dosyası İçeriğini Düzenleyin",
     "files_select_title" => "Dil Dosyaları",
     "files_table_empty" => "Henüz dosya seçmediniz. Lütfen düzenlemek istediğiniz dil dosyasını seçiniz."
 ];

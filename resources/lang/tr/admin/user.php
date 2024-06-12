@@ -2,8 +2,10 @@
 
 return [
     "title" => "Kullanıcı Yönetimi",
+    "description" => "Kullanıcıları Yönetin",
     "single_title" => "Editör",
     "create" => "Kullanıcı Ekle",
+    "create_description" => "Yeni bir kullanıcı oluşturun",
     "list" => "Kullanıcı Listesi",
     "form_name" => "Adı Soyadı",
     "form_name_placeholder" => "Adı Soyadı Giriniz",
