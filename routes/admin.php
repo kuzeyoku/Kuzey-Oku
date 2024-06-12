@@ -19,6 +19,11 @@ Route::prefix(config("setting.system.admin_route"))->name('admin.')->group(funct
 
         Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('index');
 
+        Route::get("{notification}/read", function ($notification) {
+            $notification = auth()->user()->notifications->find($notification)->markAsRead();
+            return back();
+        })->name("notification.read");
+
         Route::controller(App\Http\Controllers\Admin\SettingController::class)->prefix('setting')->group(function () {
             Route::get('/{category}', 'index')->name('setting');
             Route::put('/update', 'update')->name('setting.update');

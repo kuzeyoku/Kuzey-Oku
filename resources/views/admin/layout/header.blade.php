@@ -35,6 +35,47 @@
         </li>
         <li class="nav-item dropdown nav-item-box">
             <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
+                <i data-feather="bell"></i><span
+                    class="badge rounded-pill">{{ Auth::user()->unreadNotifications->count() }}</span>
+            </a>
+            <div class="dropdown-menu notifications">
+                <div class="topnav-dropdown-header">
+                    <span class="notification-title">@lang('admin/general.notifications')</span>
+                </div>
+                <div class="noti-content">
+                    <ul class="notification-list">
+                        @forelse (Auth::user()->unreadNotifications as $notification)
+                            <li class="notification-message">
+                                <a href="{{ route('admin.notification.read', $notification) }}">
+                                    <div class="media d-flex">
+                                        <div class="media-body flex-grow-1">
+                                            <p class="noti-details">
+                                                <span class="noti-title">{{ $notification->data['message'] }}</span>
+                                                <br>
+                                                <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                                {{ $notification->data['exception'] }}
+                                            </p>
+                                            <p class="noti-time"><span
+                                                    class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        @empty
+                            <li class="notification-message">
+                                <div class="alert alert-info">@lang('admin/general.no_notifications')</div>
+                            </li>
+                        @endforelse
+                    </ul>
+                </div>
+                <div class="topnav-dropdown-footer">
+                    <a href="{{ route('admin.index') }}">@lang('admin/general.mark_all_as_read')</a>
+                </div>
+            </div>
+        </li>
+        <li class="nav-item dropdown nav-item-box">
+            <a href="javascript:void(0);" class="dropdown-toggle nav-link" data-bs-toggle="dropdown">
                 <i data-feather="mail"></i><span class="badge rounded-pill">{{ $messages->count() }}</span>
             </a>
             <div class="dropdown-menu notifications">

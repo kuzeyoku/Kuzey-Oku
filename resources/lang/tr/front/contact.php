@@ -19,4 +19,5 @@ return [
     "txt17" => "Bize Ulaşın",
     "send_success" => "Mesajınız Başarıyla Gönderildi",
     "send_error" => "Mesajınız gönderilirken bir hata oluştu",
+    "notify_error" => "İletişim sayfasından mail gönderme sırasında hata meydana geldi",
 ];
