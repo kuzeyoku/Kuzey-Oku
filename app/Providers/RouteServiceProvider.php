@@ -29,7 +29,7 @@ class RouteServiceProvider extends ServiceProvider
     {
         $admin_route = Cache::rememberForever('admin_route', function () {
             if (Schema::hasTable('settings'))
-                return Setting::where("category", "system")->where("key", "admin_route")->value("value");
+                return Setting::where("category", "system")->where("key", "admin_route")->value("value") ?? "admin";
             return "admin";
         });
 
