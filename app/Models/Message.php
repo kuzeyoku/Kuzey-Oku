@@ -31,4 +31,13 @@ class Message extends Model
     {
         return StatusEnum::fromValue($this->status)->badge();
     }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('order', function ($builder) {
+            $builder->orderByDesc('created_at');
+        });
+    }
 }
