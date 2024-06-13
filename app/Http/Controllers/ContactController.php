@@ -24,7 +24,7 @@ class ContactController extends Controller
                 ->withError(__("front/general.recaptcha_error"));
         }
         try {
-            Mail::to(config("setting.contact.email"))
+            Mail::to(settings("contact.email"))
                 ->send(new \App\Mail\Contact($request));
         } catch (\Exception $e) {
             $admins = \App\Models\User::where("role", "admin")->get();

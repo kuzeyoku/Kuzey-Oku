@@ -30,12 +30,12 @@ class UpdateProjectRequest extends FormRequest
             "start_date" => "nullable",
             "end_date" => "nullable",
             "video" => "nullable|active_url",
-            "brochure" => "nullable|mimes:pdf|max:" . config("setting.file.max_size", 4096),
+            "brochure" => "nullable|mimes:pdf|max:" . settings("file.max_size", 4096),
             "model3D" => "nullable",
             "order" => "nullable|numeric|min:0",
             "status" => "required",
             "category_id" => "nullable|numeric",
-            "image" => "image|mimes:png,jpeg,jpg,gif|max:" . config("setting.image.max_size", 4096),
+            "image" => "image|mimes:png,jpeg,jpg,gif|max:" . settings("image.max_size", 4096),
             "imageDelete" => "nullable",
         ];
     }

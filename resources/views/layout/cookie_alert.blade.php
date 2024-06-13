@@ -1,4 +1,4 @@
-@if (config('setting.information.cookie_notification_status', App\Enums\StatusEnum::Passive->value) ==
+@if (settings('information.cookie_notification_status', App\Enums\StatusEnum::Passive->value) ==
         App\Enums\StatusEnum::Active->value)
     <div class="cookie" id="cookie-notification" style="display:none">
         <img src="{{ themeAsset('front', 'images/cookie.svg') }}" alt="cookie">

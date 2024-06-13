@@ -7,7 +7,7 @@
         {{ html()->label(__("admin/{$folder}.sitemap_{$module}")) }}
         <div class="row">
             <div class="col-lg-9">
-                {{ html()->range("{$module}_priority", config('setting.sitemap.' . $module . '_priority'))->attributes([
+                {{ html()->range("{$module}_priority", settings('sitemap.' . $module . '_priority'))->attributes([
                         'min' => 0,
                         'max' => 1,
                         'step' => 0.1,
@@ -17,7 +17,7 @@
                 {{ html()->select(
                         "{$module}_changefreq",
                         $service->getChangeFreqList(),
-                        config('setting.sitemap.' . $module . '_changefreq'),
+                        settings('sitemap.' . $module . '_changefreq'),
                     )->class('form-control sitemap-changefreq') }}
             </div>
         </div>

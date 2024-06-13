@@ -127,6 +127,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'ce9671a430e4846b44e1c68c7611f9f5' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'a1cfe24d14977df6878b9bf804af2d1c' => __DIR__ . '/..' . '/nunomaduro/collision/src/Adapters/Phpunit/Autoload.php',
         'ec07570ca5a812141189b1fa81503674' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert/Functions.php',
+        'd0c161509101c17fe4df2138760ec4b6' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/helpers.php',
         'eed9c7469f94573c0d97cc45de79b754' => __DIR__ . '/..' . '/spatie/laravel-html/src/helpers.php',
         '320163ac6b93aebe3dc25b60a0533d56' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/helpers.php',
         '8fde5feda9697fe0ee53a3938c839fb0' => __DIR__ . '/../..' . '/app/Helpers/Helper.php',
@@ -184,6 +185,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
             'Symfony\\Component\\Console\\' => 26,
             'Spatie\\TemporaryDirectory\\' => 26,
             'Spatie\\MediaLibrary\\' => 20,
+            'Spatie\\LaravelPackageTools\\' => 27,
             'Spatie\\LaravelIgnition\\' => 23,
             'Spatie\\Image\\' => 13,
             'Spatie\\ImageOptimizer\\' => 22,
@@ -194,6 +196,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         ),
         'R' => 
         array (
+            'Rawilk\\Settings\\' => 16,
             'Ramsey\\Uuid\\' => 12,
             'Ramsey\\Collection\\' => 18,
         ),
@@ -438,6 +441,10 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src',
         ),
+        'Spatie\\LaravelPackageTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/spatie/laravel-package-tools/src',
+        ),
         'Spatie\\LaravelIgnition\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
@@ -465,6 +472,10 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Spatie\\Backtrace\\' => 
         array (
             0 => __DIR__ . '/..' . '/spatie/backtrace/src',
+        ),
+        'Rawilk\\Settings\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rawilk/laravel-settings/src',
         ),
         'Ramsey\\Uuid\\' => 
         array (
@@ -821,6 +832,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Models\\Testimonial' => __DIR__ . '/../..' . '/app/Models/Testimonial.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Models\\Visitor' => __DIR__ . '/../..' . '/app/Models/Visitor.php',
+        'App\\Notifications\\AdminNotification' => __DIR__ . '/../..' . '/app/Notifications/AdminNotification.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',
         'App\\Providers\\AuthServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AuthServiceProvider.php',
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
@@ -5702,6 +5714,33 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Ramsey\\Uuid\\UuidInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/UuidInterface.php',
         'Ramsey\\Uuid\\Validator\\GenericValidator' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/GenericValidator.php',
         'Ramsey\\Uuid\\Validator\\ValidatorInterface' => __DIR__ . '/..' . '/ramsey/uuid/src/Validator/ValidatorInterface.php',
+        'Rawilk\\Settings\\Contracts\\ContextSerializer' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Contracts/ContextSerializer.php',
+        'Rawilk\\Settings\\Contracts\\Driver' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Contracts/Driver.php',
+        'Rawilk\\Settings\\Contracts\\KeyGenerator' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Contracts/KeyGenerator.php',
+        'Rawilk\\Settings\\Contracts\\Setting' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Contracts/Setting.php',
+        'Rawilk\\Settings\\Contracts\\ValueSerializer' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Contracts/ValueSerializer.php',
+        'Rawilk\\Settings\\Drivers\\DatabaseDriver' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Drivers/DatabaseDriver.php',
+        'Rawilk\\Settings\\Drivers\\EloquentDriver' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Drivers/EloquentDriver.php',
+        'Rawilk\\Settings\\Drivers\\Factory' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Drivers/Factory.php',
+        'Rawilk\\Settings\\Events\\SettingWasDeleted' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Events/SettingWasDeleted.php',
+        'Rawilk\\Settings\\Events\\SettingWasStored' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Events/SettingWasStored.php',
+        'Rawilk\\Settings\\Events\\SettingsFlushed' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Events/SettingsFlushed.php',
+        'Rawilk\\Settings\\Exceptions\\InvalidBulkValueResult' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Exceptions/InvalidBulkValueResult.php',
+        'Rawilk\\Settings\\Exceptions\\InvalidContextValue' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Exceptions/InvalidContextValue.php',
+        'Rawilk\\Settings\\Exceptions\\InvalidEnumType' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Exceptions/InvalidEnumType.php',
+        'Rawilk\\Settings\\Exceptions\\InvalidKeyGenerator' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Exceptions/InvalidKeyGenerator.php',
+        'Rawilk\\Settings\\Facades\\Settings' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Facades/Settings.php',
+        'Rawilk\\Settings\\Models\\HasSettings' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Models/HasSettings.php',
+        'Rawilk\\Settings\\Models\\Setting' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Models/Setting.php',
+        'Rawilk\\Settings\\Settings' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Settings.php',
+        'Rawilk\\Settings\\SettingsServiceProvider' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/SettingsServiceProvider.php',
+        'Rawilk\\Settings\\Support\\Context' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/Context.php',
+        'Rawilk\\Settings\\Support\\ContextSerializers\\ContextSerializer' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/ContextSerializers/ContextSerializer.php',
+        'Rawilk\\Settings\\Support\\ContextSerializers\\DotNotationContextSerializer' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/ContextSerializers/DotNotationContextSerializer.php',
+        'Rawilk\\Settings\\Support\\KeyGenerators\\Md5KeyGenerator' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/KeyGenerators/Md5KeyGenerator.php',
+        'Rawilk\\Settings\\Support\\KeyGenerators\\ReadableKeyGenerator' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/KeyGenerators/ReadableKeyGenerator.php',
+        'Rawilk\\Settings\\Support\\ValueSerializers\\JsonValueSerializer' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/ValueSerializers/JsonValueSerializer.php',
+        'Rawilk\\Settings\\Support\\ValueSerializers\\ValueSerializer' => __DIR__ . '/..' . '/rawilk/laravel-settings/src/Support/ValueSerializers/ValueSerializer.php',
         'SQLite3Exception' => __DIR__ . '/..' . '/symfony/polyfill-php83/Resources/stubs/SQLite3Exception.php',
         'Safe\\DateTime' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/DateTime.php',
         'Safe\\DateTimeImmutable' => __DIR__ . '/..' . '/thecodingmachine/safe/lib/DateTimeImmutable.php',
@@ -6239,6 +6278,10 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Spatie\\LaravelIgnition\\Support\\StringComparator' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Support/StringComparator.php',
         'Spatie\\LaravelIgnition\\Views\\BladeSourceMapCompiler' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/BladeSourceMapCompiler.php',
         'Spatie\\LaravelIgnition\\Views\\ViewExceptionMapper' => __DIR__ . '/..' . '/spatie/laravel-ignition/src/Views/ViewExceptionMapper.php',
+        'Spatie\\LaravelPackageTools\\Commands\\InstallCommand' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Commands/InstallCommand.php',
+        'Spatie\\LaravelPackageTools\\Exceptions\\InvalidPackage' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Exceptions/InvalidPackage.php',
+        'Spatie\\LaravelPackageTools\\Package' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/Package.php',
+        'Spatie\\LaravelPackageTools\\PackageServiceProvider' => __DIR__ . '/..' . '/spatie/laravel-package-tools/src/PackageServiceProvider.php',
         'Spatie\\MediaLibrary\\Conversions\\Actions\\PerformConversionAction' => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src/Conversions/Actions/PerformConversionAction.php',
         'Spatie\\MediaLibrary\\Conversions\\Actions\\PerformManipulationsAction' => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src/Conversions/Actions/PerformManipulationsAction.php',
         'Spatie\\MediaLibrary\\Conversions\\Commands\\RegenerateCommand' => __DIR__ . '/..' . '/spatie/laravel-medialibrary/src/Conversions/Commands/RegenerateCommand.php',

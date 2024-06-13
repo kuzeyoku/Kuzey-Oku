@@ -90,18 +90,18 @@ class BlogController extends Controller
 
     public function comment(Blog $blog)
     {
-        $items = $blog->comments()->paginate(config("setting.pagination.admin", 15));
+        $items = $blog->comments()->paginate(settings("pagination.admin", 15));
         return view(themeView("admin", "{$this->service->folder()}.comment"), compact("items"));
     }
 
     public function comments()
     {
-        $items = BlogComment::orderBy("id", "DESC")->paginate(config("setting.pagination.admin", 15));
+        $items = BlogComment::orderBy("id", "DESC")->paginate(settings("pagination.admin", 15));
         return view(themeView("admin", "{$this->service->folder()}.comment"), compact("items"));
     }
 
     public function comment_approve(BlogComment $comment)
-    { 
+    {
         try {
             LogController::logger("info", __("admin/{$this->service->folder()}.comment_approve_log"));
             $comment->status = StatusEnum::Active->value;

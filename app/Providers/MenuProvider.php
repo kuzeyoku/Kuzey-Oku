@@ -24,11 +24,11 @@ class MenuProvider extends ServiceProvider
     public function boot(): void
     {
         $cache = cache();
-        $cacheTime = config("setting.caching.time", 3600);
+        $cacheTime = settings("caching.time", 3600);
 
         view()->composer("layout.footer", function ($view) use ($cache, $cacheTime) {
 
-            $informationPages = config("setting.information");
+            $informationPages = settings("information");
             if ($informationPages) {
                 unset($informationPages["cookie_notification_status"]);
                 $pages = $cache->remember("footerInformationPages_" . app()->getLocale(), $cacheTime, function () use ($informationPages) {

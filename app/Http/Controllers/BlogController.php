@@ -16,18 +16,18 @@ class BlogController extends Controller
 
     public function index()
     {
-        if (config("setting.caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
+        if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
             $cacheKey = ModuleEnum::Blog->value . "_list_" . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale();
-            $data = Cache::remember($cacheKey, config("setting.caching.time", 3600), function () {
+            $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () {
                 return [
-                    "posts" => Blog::active()->order()->paginate(config("setting.pagination.front", 10)),
+                    "posts" => Blog::active()->order()->paginate(settings("pagination.front", 10)),
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
                 ];
             });
         } else {
             $data = [
-                "posts" => Blog::active()->order()->paginate(config("setting.pagination.front", 10))->onEachSide(1),
+                "posts" => Blog::active()->order()->paginate(settings("pagination.front", 10))->onEachSide(1),
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
             ];
@@ -39,8 +39,8 @@ class BlogController extends Controller
     {
         $cacheKey = ModuleEnum::Blog->value . "_detail_" . $post->id . "_" . app()->getLocale();
         $post->increment("view_count");
-        if (config("setting.caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-            $data = Cache::remember($cacheKey, config("setting.caching.time", 3600), function () use ($post) {
+        if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
+            $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () use ($post) {
                 return [
                     "post" => $post,
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),

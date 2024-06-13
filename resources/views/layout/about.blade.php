@@ -14,7 +14,7 @@
                     <div class="btn-box">
                         <a href="#" class="play-now-two lightbox-image"><i
                                 class="icon fa fa-play"></i>@lang('front/about.txt5')</a>
-                        <a href="{{ config('setting.information.about_page') }}" class="theme-btn btn-style-one"><span
+                        <a href="{{ settings('information.about_page') }}" class="theme-btn btn-style-one"><span
                                 class="btn-title">@lang('front/about.txt6')</span></a>
                     </div>
                 </div>

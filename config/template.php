@@ -6,7 +6,6 @@ return [
         "asset" => "theme",
     ],
     "admin" => [
-        "route" => "admin",
         "view" => "admin",
         "asset" => "admin"
     ],

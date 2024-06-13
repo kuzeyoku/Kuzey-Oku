@@ -3,9 +3,9 @@
 
 <head>
     <meta charset="utf-8">
-    <title>@yield('title', config('setting.general.title'))</title>
-    <meta name="description" content="@yield('description', config('setting.general.description'))">
-    <meta name="keywords" content="@yield('keywords', config('setting.general.keywords'))">
+    <title>@yield('title', settings('general.title'))</title>
+    <meta name="description" content="@yield('description', settings('general.description'))">
+    <meta name="keywords" content="@yield('keywords', settings('general.keywords'))">
     @include('layout.seo')
     <link href="{{ themeAsset('front', 'css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/animate.css') }}" rel="stylesheet">

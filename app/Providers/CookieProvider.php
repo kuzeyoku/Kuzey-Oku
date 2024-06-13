@@ -19,8 +19,8 @@ class CookieProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        if (config("setting.information.cookie_notification_status", \App\Enums\StatusEnum::Passive->value) == \App\Enums\StatusEnum::Active->value) {
-            $page = \App\Models\Page::find(config("setting.information.cookie_policy_page"));
+        if (settings("information.cookie_notification_status", \App\Enums\StatusEnum::Passive->value) == \App\Enums\StatusEnum::Active->value) {
+            $page = \App\Models\Page::find(settings("information.cookie_policy_page"));
             view()->composer("layout.cookie_alert", function ($view) use ($page) {
                 $cookiePolicyPageLink = $page->url ?? null;
                 $view->with(compact("cookiePolicyPageLink"));

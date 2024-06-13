@@ -2,7 +2,6 @@
 
 namespace App\Services\Admin;
 
-use App\Models\Setting;
 use App\Enums\ModuleEnum;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -29,16 +28,12 @@ class SettingService
             if ($request->hasFile("cover") && $request->{'cover'}->isValid())
                 Storage::putFileAs("public/logo", $request->file("cover"), "cover.png");
         }
-        $settings = collect($request->except(["_token", "_method", "category"]))
-            ->map(function ($value, $key) use ($request) {
-                return [
-                    'category' => $request->category,
-                    'key' => $key,
-                    'value' => $value
-                ];
-            })->toArray();
-        cache()->forget('setting');
-        return Setting::upsert($settings, ['key', 'category'], ['value']);
+        $except = $request->except("_token", "_method", "category");
+        $settings = array_reduce(array_keys($except), function ($result, $key) use ($except, $request) {
+            $result[$request->category . "." . $key] = $except[$key];
+            return $result;
+        }, []);
+        return settings($settings);
     }
 
     public static function getSitemapModuleList()

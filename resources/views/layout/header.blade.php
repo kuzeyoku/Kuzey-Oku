@@ -5,21 +5,21 @@
                 <ul class="list-style-one">
                     <li>
                         <i class="far fa-envelope"></i>
-                        <a href="mailto:{{ config('setting.contact.mail') }}">
-                            <span class="__cf_email__">{{ config('setting.contact.email') }}</span>
+                        <a href="mailto:{{ settings('contact.mail') }}">
+                            <span class="__cf_email__">{{ settings('contact.email') }}</span>
                         </a>
                     </li>
-                    <li><i class="far fa-map-marker"></i>{{ config('setting.contact.address') }}</li>
+                    <li><i class="far fa-map-marker"></i>{{ settings('contact.address') }}</li>
                 </ul>
             </div>
             <div class="top-right">
-                @if (config('setting.system.multilanguage', App\Enums\Statusenum::Passive->value) == App\Enums\StatusEnum::Active->value)
+                @if (settings('system.multilanguage', App\Enums\Statusenum::Passive->value) == App\Enums\StatusEnum::Active->value)
                     {{ html()->form()->route('language.set')->open() }}
                     {{ html()->select('locale', languageList()->pluck('title', 'code'), session()->get('locale'))->class('lang-select') }}
                     {{ html()->form()->close() }}
                 @endif
                 <ul class="social-icon-one">
-                    @foreach (config('setting.social', []) as $key => $value)
+                    @foreach (settings('social', []) as $key => $value)
                         @if ($value)
                             <li><a href="{{ $value }}"><span class="fab fa-{{ $key }}"></span></a></li>
                         @endif
@@ -36,7 +36,7 @@
                     <div class="logo">
                         <a href="{{ route('home') }}">
                             <img src="{{ themeAsset('front', 'images/logo.png') }}"
-                                alt="{{ config('setting.general.title', env('APP_NAME')) }}">
+                                alt="{{ settings('general.title', env('APP_NAME')) }}">
                         </a>
                     </div>
                 </div>
@@ -81,27 +81,27 @@
                     <div class="contact-info-box">
                         <i class="icon lnr-icon-phone-handset"></i>
                         <span class="title">@lang('front/header.txt2')</span>
-                        <a href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
+                        <a href="tel:{{ settings('contact.phone') }}">{{ settings('contact.phone') }}</a>
                     </div>
                 </li>
                 <li>
                     <div class="contact-info-box">
                         <span class="icon lnr-icon-envelope1"></span>
                         <span class="title">@lang('front/header.txt3')</span>
-                        <a href="mailto:{{ config('setting.contact.phone') }}"><span
-                                class="__cf_email__">{{ config('setting.contact.email') }}</span></a>
+                        <a href="mailto:{{ settings('contact.phone') }}"><span
+                                class="__cf_email__">{{ settings('contact.email') }}</span></a>
                     </div>
                 </li>
                 <li>
                     <div class="contact-info-box">
                         <span class="icon lnr-icon-map"></span>
                         <span class="title">@lang('front/header.txt4')</span>
-                        {{ config('setting.contact.address') }}
+                        {{ settings('contact.address') }}
                     </div>
                 </li>
             </ul>
             <ul class="social-links">
-                @foreach (config('setting.social', []) as $key => $value)
+                @foreach (settings('social', []) as $key => $value)
                     @if ($value)
                         <li>
                             <a href="{{ $value }}">
@@ -120,7 +120,7 @@
                 <div class="logo">
                     <a href="{{ route('home') }}" title="">
                         <img src="{{ themeAsset('front', 'images/logo-2.png') }}"
-                            alt="{{ config('setting.general.title', env('APP_NAME')) }}">
+                            alt="{{ settings('general.title', env('APP_NAME')) }}">
                     </a>
                 </div>
                 <div class="nav-outer">

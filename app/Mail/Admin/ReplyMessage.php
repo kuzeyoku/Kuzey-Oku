@@ -26,8 +26,8 @@ class ReplyMessage extends Mailable
 
     public function envelope(): Envelope
     {
-        $fromAddress = config("setting.smtp.from_address", env("MAIL_FROM_ADDRESS"));
-        $fromName = config("setting.smtp.from_name", env("MAIL_FROM_NAME"));
+        $fromAddress = settings("smtp.from_address", env("MAIL_FROM_ADDRESS"));
+        $fromName = settings("smtp.from_name", env("MAIL_FROM_NAME"));
 
         $from = new Address($fromAddress, $fromName);
         $subject = $this->request->subject;
@@ -42,7 +42,7 @@ class ReplyMessage extends Mailable
             with: [
                 'text' => $this->request->message,
                 'name' => $this->message->name,
-                'title' => config("setting.general.title", env("APP_NAME"))
+                'title' => settings("general.title", env("APP_NAME"))
             ]
         );
     }

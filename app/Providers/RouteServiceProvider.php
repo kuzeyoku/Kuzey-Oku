@@ -2,11 +2,8 @@
 
 namespace App\Providers;
 
-use App\Models\Setting;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -27,14 +24,6 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        $admin_route = Cache::rememberForever('admin_route', function () {
-            if (Schema::hasTable('settings'))
-                return Setting::where("category", "system")->where("key", "admin_route")->value("value") ?? "admin";
-            return "admin";
-        });
-
-        config()->set("setting.system.admin_route", $admin_route);
-
         RateLimiter::for('api', function (Request $request) {
             return Limit::perMinute(60)->by($request->user()->id ?: $request->ip());
         });

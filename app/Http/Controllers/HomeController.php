@@ -26,8 +26,8 @@ class HomeController extends Controller
 
         foreach ($modules as $module) {
             $model = $module->model();
-            if (config("setting.caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-                $data[$module->value] = Cache::remember($module->value . "_home_" . app()->getLocale(), config("setting.caching.time", 3600), function () use ($module, $model) {
+            if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
+                $data[$module->value] = Cache::remember($module->value . "_home_" . app()->getLocale(), settings("caching.time", 3600), function () use ($module, $model) {
                     return $model::active()->order()->limit($module->homeLimit())->get();
                 });
             } else {
@@ -35,9 +35,9 @@ class HomeController extends Controller
             };
         }
 
-        if (config("setting.information.about_page", false)) {
-            $data["about"] = Cache::remember("about_home", config("setting.caching.time", 3600), function () {
-                return Page::findOrFail(config("setting.information.about_page"));
+        if (settings("information.about_page", false)) {
+            $data["about"] = Cache::remember("about_home", settings("caching.time", 3600), function () {
+                return Page::findOrFail(settings("information.about_page"));
             });
         }
         return view("index", $data);

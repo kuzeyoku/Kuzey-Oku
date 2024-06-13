@@ -10,8 +10,8 @@ class MaintenanceController extends Controller
 {
     public function index()
     {
-        if (config("setting.maintenance.status") == StatusEnum::Active->value) {
-            $date = Carbon::parse(config("setting.maintenance.end_date"))->format("m.d.Y");
+        if (settings("maintenance.status") == StatusEnum::Active->value) {
+            $date = Carbon::parse(settings("maintenance.end_date"))->format("m.d.Y");
             return view("maintenance", compact("date"));
         } else {
             return redirect()->route("home");

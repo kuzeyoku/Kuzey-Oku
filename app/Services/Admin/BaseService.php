@@ -23,7 +23,7 @@ class BaseService
         $this->defaultLocale = app()->getFallbackLocale();
         $this->model = $model;
         $this->module = $module;
-        $this->cacheTime = config("setting.caching.time", 3600);
+        $this->cacheTime = settings("caching.time", 3600);
     }
 
     public function folder()
@@ -43,12 +43,12 @@ class BaseService
 
     public function all()
     {
-        if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
+        if (settings("caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
             return Cache::remember($this->module->value . '_' . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale() . "_admin", $this->cacheTime, function () {
-                return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
+                return $this->model->orderByDesc("id")->paginate(settings("pagination.admin", 15));
             });
         else
-            return $this->model->orderByDesc("id")->paginate(config("setting.pagination.admin", 15));
+            return $this->model->orderByDesc("id")->paginate(settings("pagination.admin", 15));
     }
 
     public function create(Request $request)
@@ -81,7 +81,7 @@ class BaseService
 
     public function getCategories()
     {
-        if (config("setting.caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value) {
+        if (settings("caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value) {
             $cacheKey = ($this->module ? $this->module->value . "_" : "all_") . "categories";
             return Cache::remember($cacheKey, $this->cacheTime, function () {
                 $categories = Category::whereStatus(StatusEnum::Active->value)

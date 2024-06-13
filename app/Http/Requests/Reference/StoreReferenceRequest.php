@@ -22,7 +22,7 @@ class StoreReferenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "image" => "required|image|mimes:jpeg,png,jpg,gif|max:" . config("setting.image.max_size", 4096),
+            "image" => "required|image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
             "url" => "nullable|active_url",
             "order" => "required|numeric|min:0",
             "status" => "required"

@@ -16,7 +16,7 @@ class Maintenance
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (config("setting.maintenance.status") == StatusEnum::Active->value) {
+        if (settings("maintenance.status") == StatusEnum::Active->value) {
             return redirect()->route("maintenance");
         } else {
             return $next($request);

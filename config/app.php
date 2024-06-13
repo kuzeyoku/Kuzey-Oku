@@ -57,7 +57,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost/'),
 
-    'asset_url' => env('APP_URL').'/public',
+    'asset_url' => env('APP_URL') . '/public',
 
     /*
     |--------------------------------------------------------------------------
@@ -170,7 +170,6 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Html\HtmlServiceProvider::class,
-        App\Providers\SettingProvider::class,
         App\Providers\MenuProvider::class,
         App\Providers\PopupProvider::class,
         App\Providers\CookieProvider::class,

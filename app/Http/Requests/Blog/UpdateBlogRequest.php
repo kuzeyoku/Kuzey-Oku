@@ -29,7 +29,7 @@ class UpdateBlogRequest extends FormRequest
             "order" => "required|numeric|min:0",
             "status" => "required",
             "category_id" => "",
-            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . config("setting.image.max_size", 4096),
+            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
             "imageDelete" => ""
         ];
     }

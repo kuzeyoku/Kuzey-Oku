@@ -23,7 +23,7 @@ class UpdateTestimonialRequest extends FormRequest
     public function rules(): array
     {
         return [
-            // "image" => "image|mimes:jpeg,png,jpg,gif|max:" . config("setting.image.max_size", 4096),
+            // "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
             "name" => "required",
             "company" => "nullable",
             "position" => "nullable",

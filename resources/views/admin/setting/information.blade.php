@@ -4,7 +4,7 @@
     {{ html()->select(
             'cookie_notification_status',
             App\Enums\StatusEnum::getOnOffSelectArray(),
-            config('setting.information.cookie_notification_status'),
+            settings('information.cookie_notification_status'),
         )->class('form-control') }}
     @php
         $formElementList = [
@@ -18,6 +18,6 @@
     @endphp
     @foreach ($formElementList as $element)
         {{ html()->label(__("admin/{$folder}.information_{$element}")) }}
-        {{ html()->select($element, App\Models\Page::toSelectArray(), config('setting.information.' . $element))->placeholder(__('admin/general.select'))->class('form-control') }}
+        {{ html()->select($element, App\Models\Page::toSelectArray(), settings('information.' . $element))->placeholder(__('admin/general.select'))->class('form-control') }}
     @endforeach
 @endsection

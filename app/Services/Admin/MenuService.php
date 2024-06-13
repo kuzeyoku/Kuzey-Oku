@@ -85,7 +85,7 @@ class MenuService extends BaseService
     public function getUrlList(): array
     {
 
-        $pages = Cache::remember("pages_menu_list", config("setting.caching.time", 3600), function () {
+        $pages = Cache::remember("pages_menu_list", settings("caching.time", 3600), function () {
             return Page::active()->get()->each(function ($item) {
                 $item->title = $item->title;
                 $item->url = $item->url;

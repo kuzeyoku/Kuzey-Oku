@@ -32,7 +32,7 @@ return [
     |            "postmark", "log", "array", "failover"
     |
     */
-    //TODO : Buraya Bak Mail Ayarları Buradan Yapılıyormu
+
     'mailers' => [
         'smtp' => [
             'transport' => 'smtp',

@@ -14,7 +14,7 @@ class ImageProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "file" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:" . config("setting.image.max_size", 4096),
+            "file" => "required|image|mimes:jpeg,png,jpg,gif,svg|max:" . settings("image.max_size", 4096),
         ];
     }
 }
