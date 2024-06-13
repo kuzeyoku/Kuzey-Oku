@@ -12,7 +12,8 @@
                         <div class="image-box">
                             <figure class="image">
                                 <a href="{{ $post->url }}">
-                                    {{ $post->getFirstMedia('cover') }}
+                                    <img loading="lazy" src="{{ $post->getFirstMediaUrl('cover') }}"
+                                        alt="{{ $post->title }}">
                                 </a>
                             </figure>
                         </div>
