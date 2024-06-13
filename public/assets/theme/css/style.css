@@ -2678,14 +2678,7 @@ li {
     content: "//";
     color: var(--theme-color2);
 }
-.sec-title h1 {
-    position: relative;
-    font-size: 60px;
-    line-height: 1em;
-    color: var(--sec-title-color);
-    font-family: var(--sec-title-font-family);
-    font-weight: var(--sec-title-font-weight);
-}
+.sec-title h1,
 .sec-title h2 {
     position: relative;
     font-size: var(--sec-title-font-size);
@@ -2694,6 +2687,7 @@ li {
     font-weight: var(--sec-title-font-weight);
     margin-top: -5px;
     margin-bottom: 0;
+    line-height: var(--line-height-heading);
 }
 .sec-title .text {
     margin-top: 30px;
@@ -11765,13 +11759,13 @@ table.tbl-shopping-cart > tfoot > tr > th {
 
 .project-details__content ul,
 .services-details__content ul,
-.blog-details__content ul{
+.blog-details__content ul {
     margin-bottom: 20px;
 }
 
 .project-details__content li,
 .services-details__content li,
-.blog-details__content li{
+.blog-details__content li {
     list-style: disc;
     list-style-position: inside;
 }

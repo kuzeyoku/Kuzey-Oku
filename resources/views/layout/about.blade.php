@@ -7,7 +7,7 @@
                 <div class="inner-column">
                     <div class="sec-title">
                         <span class="sub-title">@lang('front/about.txt1')</span>
-                        <h2>@lang('front/about.txt2')</h2>
+                        <h1>@lang('front/about.txt2')</h1>
                         <div class="text">@lang('front/about.txt3')</div>
                     </div>
                     <blockquote class="blockquote-one">@lang('front/about.txt4')</blockquote>
