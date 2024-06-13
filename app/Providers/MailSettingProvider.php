@@ -19,7 +19,7 @@ class MailSettingProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        foreach (settings("smtp") as $key => $value) {
+        foreach (settings("smtp", []) as $key => $value) {
             config(["mail.mailers.smtp.{$key}" => $value]);
         }
     }
