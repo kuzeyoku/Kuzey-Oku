@@ -4,7 +4,7 @@ use App\Enums\ModuleEnum;
 use App\Http\Middleware\Admin;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(function () {
+Route::prefix("admin")->name('admin.')->group(function () {
     Route::get('login', [App\Http\Controllers\Admin\AuthController::class, 'login'])->name('auth.login');
     Route::get("forgot-password", [App\Http\Controllers\Admin\AuthController::class, "forgot_password_view"])->name("auth.forgot_password_view");
     Route::post('forgot-password', [App\Http\Controllers\Admin\AuthController::class, "forgot_password"])->name("auth.forgot_password");
