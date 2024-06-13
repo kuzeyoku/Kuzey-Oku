@@ -23,7 +23,7 @@
 
                 <div class="footer-column col-xl-3 col-lg-4 col-md-4">
                     <div class="footer-widget links-widget">
-                        <h6 class="widget-title">@lang('front/footer.txt1')</h6>
+                        <h4 class="widget-title">@lang('front/footer.txt1')</h4>
                         <ul class="user-links">
                             @foreach ($pages as $page)
                                 <li><a href="{{ $page->url }}">{{ $page->title }}</a></li>
@@ -34,7 +34,7 @@
 
                 <div class="footer-column col-xl-3 col-lg-4 col-md-4 col-sm-8">
                     <div class="footer-widget gallery-widget">
-                        <h6 class="widget-title">@lang('front/footer.txt2')</h6>
+                        <h4 class="widget-title">@lang('front/footer.txt2')</h4>
                         <div class="widget-content">
                             <div class="outer clearfix">
                                 @foreach ($services as $service)
@@ -52,7 +52,7 @@
 
                 <div class="footer-column col-xl-3 col-lg-4 col-md-4">
                     <div class="footer-widget contacts-widget">
-                        <h6 class="widget-title">@lang('front/footer.txt3')</h6>
+                        <h4 class="widget-title">@lang('front/footer.txt3')</h4>
                         <div class="text">{{ settings('contact.address') }}</div>
                         <ul class="contact-info">
                             <li>
