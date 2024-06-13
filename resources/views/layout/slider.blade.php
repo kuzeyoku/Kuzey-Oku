@@ -23,7 +23,7 @@
             <ul>
                 @foreach ($slider as $slider)
                     <li data-index="rs-{{ $loop->iteration }}" data-transition="random-premium">
-                        <img src="{{ $slider->getFirstMediaUrl('cover') }}" alt="" class="rev-slidebg">
+                        <img loading="lazy" src="{{ $slider->getFirstMediaUrl('cover') }}" alt="" class="rev-slidebg">
                         <div class="tp-caption" data-paddingbottom="[15,15,15,15]" data-paddingleft="[15,15,15,15]"
                             data-paddingright="[15,15,15,15]" data-paddingtop="[0,0,0,0]" data-responsive_offset="on"
                             data-type="text" data-height="none" data-width="['1000','1000','1000','650']"

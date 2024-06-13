@@ -11,7 +11,7 @@
                     <div class="project-block">
                         <div class="inner-box">
                             <div class="image-box">
-                                <figure class="image"><a href="{{ $project->url }}"><img
+                                <figure class="image"><a href="{{ $project->url }}"><img loading="lazy"
                                             src="{{ $project->getFirstMediaUrl('cover', 'thumbnail') }}"
                                             alt=""></a>
                                 </figure>
