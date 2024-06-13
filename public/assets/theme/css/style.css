@@ -11762,8 +11762,7 @@ table.tbl-shopping-cart > tfoot > tr > th {
 @media only screen and (max-width: 767px) {
     .cookie {
         width: 100%;
-        left: 20px;
-        right: 20px;
+        margin: 20px;
         padding: 20px;
     }
 }
