@@ -14,4 +14,4 @@
             {{ html()->file('favicon')->class('dropify-image')->attribute('data-default-file', asset('storage/logo/favicon.ico'))->accept('.png, .ico') }}
         </div>
     </div>
-@endsectionww
+@endsection
