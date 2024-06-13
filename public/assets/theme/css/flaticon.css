@@ -5,6 +5,7 @@
         url(../fonts/flaticon_agency.woff2) format("woff2"),
         url(../fonts/flaticon_agency.eot) format("embedded-opentype"),
         url(../fonts/flaticon_agency.svg) format("svg");
+    font-display: swap;
 }
 i[class^="flaticon-"]:before,
 i[class*=" flaticon-"]:before {
