@@ -43,23 +43,21 @@
                     <span class="notification-title">@lang('admin/general.notifications')</span>
                 </div>
                 <div class="noti-content">
-                    <ul class="notification-list">
+                    <ul class="notification-list p-2">
                         @forelse (Auth::user()->unreadNotifications as $notification)
-                            <li class="notification-message">
+                            <li class="notification-message bg-soft-{{ $notification->data['type'] }}">
                                 <a href="{{ route('admin.notification.read', $notification) }}">
-                                    <div class="media d-flex">
-                                        <div class="media-body flex-grow-1">
-                                            <p class="noti-details">
-                                                <span class="noti-title">{{ $notification->data['message'] }}</span>
-                                                <br>
-                                                <i class="fa fa-quote-left" aria-hidden="true"></i>
-                                                {{ $notification->data['exception'] }}
-                                            </p>
-                                            <p class="noti-time"><span
-                                                    class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
-                                            </p>
-                                        </div>
-                                    </div>
+                                    <p class="noti-details">
+                                        <span class="noti-title">
+                                            {{ $notification->data['message'] }}
+                                        </span>
+                                        <br>
+                                        <i class="fa fa-quote-left" aria-hidden="true"></i>
+                                        {{ $notification->data['exception'] }}
+                                    </p>
+                                    <p class="noti-time"><span
+                                            class="notification-time">{{ $notification->created_at->diffForHumans() }}</span>
+                                    </p>
                                 </a>
                             </li>
                         @empty
@@ -70,7 +68,7 @@
                     </ul>
                 </div>
                 <div class="topnav-dropdown-footer">
-                    <a href="{{ route('admin.index') }}">@lang('admin/general.mark_all_as_read')</a>
+                    <a href="{{ route('admin.notification.mark_all_as_read') }}">@lang('admin/general.mark_all_as_read')</a>
                 </div>
             </div>
         </li>
@@ -90,7 +88,7 @@
                                 <a href="{{ route('admin.message.show', $message) }}">
                                     <div class="media d-flex">
                                         <span class="avatar flex-shrink-0">
-                                            <img alt="" src="{{ themeAsset('admin', 'img/avatar.png') }}">
+                                            <img src="{{ themeAsset('admin', 'img/avatar.png') }}">
                                         </span>
                                         <div class="media-body flex-grow-1">
                                             <p class="noti-details">
@@ -124,7 +122,7 @@
             <div class="dropdown-menu notifications">
                 <div class="topnav-dropdown-header">
                     <span class="notification-title">@lang('admin/general.comments')</span>
-                    <a href="javascript:void(0)" class="clear-noti"> @lang('admin/general.all_delete') </a>
+                    <a href="javascript:void(0);" class="clear-noti"> @lang('admin/general.all_delete') </a>
                 </div>
                 <div class="noti-content">
                     <ul class="notification-list">

@@ -13,6 +13,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Requests\Auth\ForgotPasswordRequest;
+use App\Notifications\AdminNotification;
 
 class AuthController extends Controller
 {
@@ -46,7 +47,8 @@ class AuthController extends Controller
         }
         if (Auth::attempt($request->only("email", "password"))) {
             $request->session()->regenerate();
-            LogController::logger("info", "Giriş Yapıldı.");
+            $user = User::where("email", $request->email)->first();
+            $user->notify(new AdminNotification("success", $user->name . " Tarafından Giriş Yapıldı", "IP : " . request()->ip()));
             $message = [
                 "title" => __("admin/{$this->folder}.login_success_title", ["name" => Auth::user()->name]),
                 "message" => __("admin/{$this->folder}.login_success_message")
@@ -55,7 +57,10 @@ class AuthController extends Controller
                 ->intended('admin')
                 ->withSuccess($message);
         }
-        LogController::logger("error", "Başarısız Giriş Denemesi - IP: " . $request->ip() . " - Email: " . $request->email);
+        $user = User::where("role", "admin")->get();
+        $user->each(function ($item) {
+            $item->notify(new AdminNotification("danger", "Başarısız Giriş Denemesi", "IP: " . request()->ip() . " - Email: " . request()->email, ""));
+        });
         return back()
             ->withInput()
             ->withError(__("admin/{$this->folder}.login_error"));

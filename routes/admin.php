@@ -19,10 +19,16 @@ Route::prefix(config("setting.system.admin_route"))->name('admin.')->group(funct
 
         Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('index');
 
-        Route::get("{notification}/read", function ($notification) {
-            $notification = auth()->user()->notifications->find($notification)->markAsRead();
-            return back();
-        })->name("notification.read");
+        Route::prefix("notification")->name("notification.")->group(function () {
+            Route::get("{notification}/read", function ($notification) {
+                $notification = auth()->user()->notifications->find($notification)->markAsRead();
+                return back();
+            })->name("read");
+            Route::get("mark-all-as-read", function () {
+                auth()->user()->unreadNotifications->markAsRead();
+                return back();
+            })->name("mark_all_as_read");
+        });
 
         Route::controller(App\Http\Controllers\Admin\SettingController::class)->prefix('setting')->group(function () {
             Route::get('/{category}', 'index')->name('setting');
