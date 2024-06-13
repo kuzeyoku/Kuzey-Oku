@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt5')</h6>
-                                    <a href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
+                                    <a href="tel:{{ settings('contact.phone') }}">{{ settings('contact.phone') }}</a>
                                 </div>
                             </li>
                             <li>
@@ -28,8 +28,8 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt6')</h6>
-                                    <a href="mailto:{{ config('setting.contact.email') }}"><span
-                                            class="__cf_email__">{{ config('setting.contact.email') }}</span></a>
+                                    <a href="mailto:{{ settings('contact.email') }}"><span
+                                            class="__cf_email__">{{ settings('contact.email') }}</span></a>
                                 </div>
                             </li>
                             <li>
@@ -38,14 +38,14 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt7')</h6>
-                                    <span>{{ config('setting.contact.address') }}</span>
+                                    <span>{{ settings('contact.address') }}</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-6">
-                    <iframe src="{{ config('setting.contact.map') }}" width="100%" height="550" frameborder="0"
+                    <iframe src="{{ settings('contact.map') }}" width="100%" height="550" frameborder="0"
                         allowfullscreen=""></iframe>
                 </div>
             </div>
@@ -88,7 +88,7 @@
                         {{ html()->textarea('message')->placeholder(__('front/contact.txt14'))->class('form-control') }}
                     </div>
                     <button type="submit" class="theme-btn btn-style-one g-recaptcha"
-                        data-sitekey="{{ config('setting.recaptcha.site_key') }}" data-callback='contact-form'
+                        data-sitekey="{{ settings('recaptcha.site_key') }}" data-callback='contact-form'
                         data-action='submit'>
                         <span class="btn-title">@lang('front/contact.txt15')</span>
                     </button>
