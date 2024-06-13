@@ -5,7 +5,8 @@
                 <div class="footer-column col-xl-3 col-lg-12 col-md-12">
                     <div class="footer-widget about-widget">
                         <div class="logo"><a href="{{ route('home') }}"><img
-                                    src="{{ themeAsset('front', 'images/logo.png') }}"></a>
+                                    src="{{ themeAsset('front', 'images/logo.png') }}"
+                                    alt="{{ settings('general.title') }}"></a>
                         </div>
                         <div class="text">{{ settings('general.description') }}</div>
                         <ul class="social-icon-two">
