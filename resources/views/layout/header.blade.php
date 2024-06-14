@@ -22,10 +22,11 @@
                     <?php
                     $social = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
                     ?>
-                    @foreach ($social as $key => $value)
-                        @if ($value)
+                    @foreach ($social as $item)
+                        @if ($item)
                             <li>
-                                <a href="{{ settings("social.{$key}") }}">@svg('fab-' . $value, 'text-white')</a>
+                                <a aria-label="{{ $item }}"
+                                    href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
                             </li>
                         @endif
                     @endforeach
@@ -109,7 +110,7 @@
                 @foreach ($social as $item)
                     @if (settings("social.{$item}"))
                         <li>
-                            <a href="{{ settings('social.' . $item) }}">
+                            <a aria-label="{{ $item }}" href="{{ settings('social.' . $item) }}">
                                 @svg('fab-' . $item)
                             </a>
                         </li>
