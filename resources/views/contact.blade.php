@@ -15,7 +15,7 @@
                         <ul class="list-unstyled contact-details__info">
                             <li>
                                 <div class="icon">
-                                    <span class="lnr-icon-phone-plus"></span>
+                                    @svg('fas-phone', 'text-white')
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt5')</h6>
@@ -24,7 +24,7 @@
                             </li>
                             <li>
                                 <div class="icon">
-                                    <span class="lnr-icon-envelope1"></span>
+                                    @svg('far-envelope', 'text-white')
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt6')</h6>
@@ -34,7 +34,7 @@
                             </li>
                             <li>
                                 <div class="icon">
-                                    <span class="lnr-icon-location"></span>
+                                    @svg('fas-map-marked-alt', 'text-white')
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt7')</h6>

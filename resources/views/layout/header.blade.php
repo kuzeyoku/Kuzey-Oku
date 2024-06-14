@@ -68,7 +68,6 @@
                         <i class="icon">@svg('far-envelope', 'text-white')</i>
                         <span>@lang('front/header.txt1')</span>
                     </a>
-
                     <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
                 </div>
             </div>
@@ -85,14 +84,14 @@
             <ul class="contact-list-one">
                 <li>
                     <div class="contact-info-box">
-                        <i class="icon lnr-icon-phone-handset"></i>
+                        @svg('fas-phone-alt', 'icon')
                         <span class="title">@lang('front/header.txt2')</span>
                         <a href="tel:{{ settings('contact.phone') }}">{{ settings('contact.phone') }}</a>
                     </div>
                 </li>
                 <li>
                     <div class="contact-info-box">
-                        <span class="icon lnr-icon-envelope1"></span>
+                        @svg('far-envelope', 'icon')
                         <span class="title">@lang('front/header.txt3')</span>
                         <a href="mailto:{{ settings('contact.phone') }}"><span
                                 class="__cf_email__">{{ settings('contact.email') }}</span></a>
@@ -100,7 +99,7 @@
                 </li>
                 <li>
                     <div class="contact-info-box">
-                        <span class="icon lnr-icon-map"></span>
+                        @svg('fas-map-marked-alt', 'icon')
                         <span class="title">@lang('front/header.txt4')</span>
                         {{ settings('contact.address') }}
                     </div>
@@ -124,13 +123,13 @@
         <div class="auto-container">
             <div class="inner-container">
                 <div class="logo">
-                    <a href="{{ route('home') }}" title="">
+                    <a href="{{ route('home') }}">
                         <img src="{{ themeAsset('front', 'images/logo-2.png') }}"
                             alt="{{ settings('general.title', env('APP_NAME')) }}">
                     </a>
                 </div>
                 <div class="nav-outer">
-                    <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                    <div class="mobile-nav-toggler">@svg('fas-bars', 'icon')</span></div>
                 </div>
             </div>
         </div>

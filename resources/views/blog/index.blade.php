@@ -18,7 +18,7 @@
                                 <span class="post-info"><i class="fa fa-user-circle"></i>{{ $post->user->name }}</span>
                                 <h5 class="title"><a href="{{ $post->url }}">{{ $post->title }}</a></h5>
                                 <div class="text">{{ $post->short_description }}</div>
-                                <a href="{{ $post->url }}" class="read-more"><i class="fa fa-long-arrow-alt-right"></i>
+                                <a href="{{ $post->url }}" class="read-more"><i>@svg('fas-long-arrow-alt-right')</i>
                                     @lang('front/blog.txt3')</a>
                             </div>
                         </div>

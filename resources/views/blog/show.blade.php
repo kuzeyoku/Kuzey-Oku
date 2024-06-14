@@ -19,13 +19,13 @@
                         <ul class="blog-details__meta">
                             <li>
                                 <a href="javascript:void(0);">
-                                    <i class="fas fa-sitemap"></i>
+                                    @svg('fas-sitemap', 'icon-space')
                                     {{ $post->category->title ?? __('front/general.uncategorized') }}
                                 </a>
                             </li>
-                            <li><a><i class="fas fa-user-circle"></i>{{ $post->user->name }}</a>
+                            <li><a>@svg('fas-user-circle', 'icon-space')</i>{{ $post->user->name }}</a>
                             </li>
-                            <li><a><i class="fas fa-eye"></i>{{ $post->view_count }} @lang('front/blog.txt4')</a>
+                            <li><a>@svg('fas-eye', 'icon-space'){{ $post->view_count }} @lang('front/blog.txt4')</a>
                             </li>
                         </ul>
                         <div class="blog-details__content">
@@ -40,14 +40,6 @@
                                     <a href="javascript:void(0);" class="mb-2">{{ $tag }}</a>
                                 @endforeach
                             </p>
-                            @if (config('setting.social'))
-                                <div class="blog-details__social-list">
-                                    @foreach (config('setting.social', []) as $key => $value)
-                                        <a href="{{ config('setting.social.' . $key) }}"><i
-                                                class="fab fa-{{ $key }}"></i></a>
-                                    @endforeach
-                                </div>
-                            @endif
                         </div>
                         <div class="nav-links">
                             @if ($post->previous)
@@ -93,7 +85,7 @@
                             @foreach ($comments as $comment)
                                 <div class="comment-one__single">
                                     <div class="comment-one__image">
-                                        <img src="{{ $comment->gravatar_url }}" alt="">
+                                        <img src="{{ $comment->gravatar_url }}" alt="avatar">
                                     </div>
                                     <div class="comment-one__content">
                                         <div class="d-flex justify-content-between">
@@ -119,9 +111,9 @@
                                                 alt="{{ $post->title }}">
                                         </div>
                                         <div class="sidebar__post-content">
-                                            <h3> <span class="sidebar__post-content-meta"><i
-                                                        class="fas fa-user-circle"></i>{{ $item->user->name }}</span> <a
-                                                    href="{{ $item->url }}">{{ $item->title }}</a>
+                                            <h3> <span
+                                                    class="sidebar__post-content-meta">@svg('fas-user-circle', 'icon-space'){{ $item->user->name }}</span>
+                                                <a href="{{ $item->url }}">{{ $item->title }}</a>
                                             </h3>
                                         </div>
                                     </li>
@@ -134,9 +126,7 @@
                                 <ul class="sidebar__category-list list-unstyled">
                                     @foreach ($categories as $category)
                                         <li>
-                                            <a href="{{ $category->url }}">{{ $category->title }}
-                                                <span class="icon-right-arrow"></span>
-                                            </a>
+                                            <a href="{{ $category->url }}">@svg('fas-arrow-right', 'icon-space'){{ $category->title }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
