@@ -14,8 +14,7 @@
                             <a href="{{ $service->url }}">{{ $service->title }}</a>
                         </h5>
                         <div class="text">{{ $service->short_description }}</div>
-                        <a href="{{ $service->url }}" class="read-more"><i
-                                class="fa fa-long-arrow-alt-right"></i>@lang('front/service.txt3')</a>
+                        <a href="{{ $service->url }}" class="read-more">@svg('fas-long-arrow-alt-right', 'text-white')</i>@lang('front/service.txt3')</a>
                     </div>
                 </div>
             @endforeach

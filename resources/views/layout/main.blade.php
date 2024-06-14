@@ -13,7 +13,6 @@
     <link href="{{ themeAsset('front', 'css/jquery.fancybox.min.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/linear.css') }}" rel="stylesheet">
     <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
-        href="{{ themeAsset('front', 'css/fontawesome.css') }}">
     <link href="{{ themeAsset('front', 'css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/tm-bs-mp.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/tm-utility-classes.css') }}" rel="stylesheet">
@@ -37,7 +36,7 @@
         @include('layout.footer')
         @include('layout.cookie_alert')
     </div>
-    <div class="scroll-to-top scroll-to-target" data-target="html"><span class="fa fa-angle-up"></span></div>
+    <div class="scroll-to-top scroll-to-target" data-target="html">@svg('fas-angle-up', 'text-white')</div>
     <script src="{{ themeAsset('front', 'js/jquery.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/popper.min.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/bootstrap.min.js') }}"></script>

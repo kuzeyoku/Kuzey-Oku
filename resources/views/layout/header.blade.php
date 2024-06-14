@@ -4,12 +4,12 @@
             <div class="top-left">
                 <ul class="list-style-one">
                     <li>
-                        <i class="far fa-envelope"></i>
+                        @svg('far-envelope', 'icon-space')
                         <a href="mailto:{{ settings('contact.mail') }}">
                             <span class="__cf_email__">{{ settings('contact.email') }}</span>
                         </a>
                     </li>
-                    <li><i class="far fa-map-marker"></i>{{ settings('contact.address') }}</li>
+                    <li>@svg('fas-map-marker-alt', 'icon-space'){{ settings('contact.address') }}</li>
                 </ul>
             </div>
             <div class="top-right">
@@ -19,9 +19,12 @@
                     {{ html()->form()->close() }}
                 @endif
                 <ul class="social-icon-one">
-                    @foreach (settings('social', []) as $key => $value)
+                    <?php
+                    $social = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
+                    ?>
+                    @foreach ($social as $key => $value)
                         @if ($value)
-                            <li><a href="{{ $value }}"><span class="fab fa-{{ $key }}"></span></a></li>
+                            <a href="{{ settings("social.{$key}") }}">@svg('fab-' . $value, 'text-white icon-space')</a>
                         @endif
                     @endforeach
                 </ul>
@@ -59,7 +62,7 @@
                 </div>
                 <div class="outer-box">
                     <a href="{{ route('contact.index') }}" class="info-btn">
-                        <i class="icon far fa-envelope"></i>
+                        <i class="icon">@svg('far-envelope', 'text-white')</i>
                         <span>@lang('front/header.txt1')</span>
                     </a>
 
@@ -101,11 +104,11 @@
                 </li>
             </ul>
             <ul class="social-links">
-                @foreach (settings('social', []) as $key => $value)
-                    @if ($value)
+                @foreach ($social as $item)
+                    @if (settings("social.{$item}"))
                         <li>
-                            <a href="{{ $value }}">
-                                <i class="fab fa-{{ $key }}"></i>
+                            <a href="{{ settings('social.' . $item) }}">
+                                @svg('fab-' . $item)
                             </a>
                         </li>
                     @endif

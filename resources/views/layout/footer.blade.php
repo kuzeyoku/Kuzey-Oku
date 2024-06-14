@@ -10,10 +10,13 @@
                         </div>
                         <div class="text">{{ settings('general.description') }}</div>
                         <ul class="social-icon-two">
-                            @foreach (settings('social', []) as $key => $value)
-                                @if ($value)
+                            <?php
+                            $social = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
+                            ?>
+                            @foreach ($social as $item)
+                                @if (settings("social.{$item}"))
                                     <li>
-                                        <a href="{{ $value }}"><i class="fab fa-{{ $key }}"></i></a>
+                                        <a href="{{ settings("social.{$item}") }}">@svg("fab-{$item}", 'text-white')</a>
                                     </li>
                                 @endif
                             @endforeach
@@ -56,13 +59,13 @@
                         <div class="text">{{ settings('contact.address') }}</div>
                         <ul class="contact-info">
                             <li>
-                                <i class="fa fa-envelope"></i>
+                                @svg('fas-envelope', 'icon-space')
                                 <a href="mailto:{{ settings('contact.email') }}">
                                     <span class="__cf_email__">{{ settings('contact.email') }}</span>
                                 </a>
                             </li>
                             <li>
-                                <i class="fa fa-phone-square"></i>
+                                @svg('fas-phone-square', 'icon-space')
                                 <a href="tel:{{ settings('contact.phone') }}">
                                     {{ settings('contact.phone') }}
                                 </a>

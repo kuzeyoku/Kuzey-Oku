@@ -13,11 +13,10 @@
                             <div class="image-box">
                                 <figure class="image"><a href="{{ $project->url }}"><img loading="lazy"
                                             src="{{ $project->getFirstMediaUrl('cover', 'thumbnail') }}"
-                                            alt=""></a>
+                                            alt="{{ $project->title }}"></a>
                                 </figure>
                                 <div class="info-box">
-                                    <a href="{{ $project->url }}" class="read-more"><i
-                                            class="fa fa-long-arrow-alt-right"></i></a>
+                                    <a href="{{ $project->url }}" class="read-more">@svg('fas-long-arrow-alt-right', 'text-white')</a>
                                     {{-- <span class="cat">Graphics</span> --}}
                                     <h6 class="title"><a href="{{ $project->url }}">{{ $project->title }}</a>
                                     </h6>
