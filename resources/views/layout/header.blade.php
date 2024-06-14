@@ -24,7 +24,9 @@
                     ?>
                     @foreach ($social as $key => $value)
                         @if ($value)
-                            <a href="{{ settings("social.{$key}") }}">@svg('fab-' . $value, 'text-white icon-space')</a>
+                            <li>
+                                <a href="{{ settings("social.{$key}") }}">@svg('fab-' . $value, 'text-white')</a>
+                            </li>
                         @endif
                     @endforeach
                 </ul>

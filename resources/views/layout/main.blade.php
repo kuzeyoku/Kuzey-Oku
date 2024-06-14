@@ -12,7 +12,6 @@
     <link href="{{ themeAsset('front', 'css/owl.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/jquery.fancybox.min.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/linear.css') }}" rel="stylesheet">
-    <link rel="preload" as="style" onload="this.onload=null;this.rel='stylesheet'"
     <link href="{{ themeAsset('front', 'css/flaticon.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/tm-bs-mp.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/tm-utility-classes.css') }}" rel="stylesheet">
