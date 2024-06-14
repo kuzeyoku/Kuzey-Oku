@@ -16,7 +16,8 @@
                             @foreach ($social as $item)
                                 @if (settings("social.{$item}"))
                                     <li>
-                                        <a href="{{ settings("social.{$item}") }}">@svg("fab-{$item}", 'text-white')</a>
+                                        <a aria-label="{{ $item }}"
+                                            href="{{ settings("social.{$item}") }}">@svg("fab-{$item}", 'text-white')</a>
                                     </li>
                                 @endif
                             @endforeach
