@@ -100,13 +100,11 @@
         </div>
     </section>
 @endsection
-@section('script')
+@push('script')
+    <script src="{{ themeAsset('front', 'js/sweetalert2.all.min.js') }}"></script>
     <script>
         function onSubmit(token) {
             document.getElementById("contact-form").submit();
         }
     </script>
-@endsection
-@push('script')
-    <script src="{{ themeAsset('front', 'js/sweetalert2.all.min.js') }}"></script>
 @endpush

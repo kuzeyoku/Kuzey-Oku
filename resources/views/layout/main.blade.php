@@ -43,8 +43,8 @@
     <script src="{{ themeAsset('front', 'js/select2.min.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/owl.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/script.js') }}"></script>
-    @include('layout.alert')
     @stack('script')
+    @include('layout.alert')
 </body>
 
 </html>
