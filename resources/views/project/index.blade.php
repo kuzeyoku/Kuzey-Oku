@@ -18,7 +18,7 @@
                                     <div class="info-box">
                                         <a href="{{ route('project.show', [$project->id, $project->slug]) }}"
                                             class="read-more">
-                                            <i class="fa fa-long-arrow-alt-right"></i>
+                                            @svg('fas-long-arrow-alt-right', 'text-white')
                                         </a>
                                         <h6 class="title">
                                             <a

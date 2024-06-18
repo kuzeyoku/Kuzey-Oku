@@ -10,7 +10,7 @@
                 <div class="col-xl-12">
                     <div class="project-details__top">
                         <div class="project-details__img">
-                            <img src="{{ $project->getFirstMediaUrl('cover') }}" alt="">
+                            {{ $project->getFirstMedia('cover') }}
                         </div>
                     </div>
                 </div>
@@ -34,16 +34,6 @@
                                             <h4 class="project-details__name">{{ $value }}</h4>
                                         </li>
                                     @endforeach
-                                    @if (config('setting.social'))
-                                        <li>
-                                            <div class="project-details__social">
-                                                @foreach (config('setting.social', []) as $key => $value)
-                                                    <a href="{{ config('setting.social.' . $key) }}"><i
-                                                            class="fab fa-{{ $key }}"></i></a>
-                                                @endforeach
-                                            </div>
-                                        </li>
-                                    @endif
                                 </ul>
                             </div>
                         </div>
@@ -62,7 +52,7 @@
                                     <div class="content">{{ $project->previous->title }}</div>
                                     <div class="icon">
                                         <a href="{{ $project->previous->url }}" aria-label="Previous">
-                                            <i class="lnr lnr-icon-arrow-right"></i>
+                                            <i>@svg('fas-arrow-right')</i>
                                         </a>
                                     </div>
                                 </li>
@@ -75,7 +65,7 @@
                                 <li class="next">
                                     <div class="icon">
                                         <a href="{{ $project->next->url }}" aria-label="next">
-                                            <i class="lnr lnr-icon-arrow-left"></i>
+                                            <i>@svg('fas-arrow-left')</i>
                                         </a>
                                     </div>
                                     <div class="content">{{ $project->next->title }}</div>
@@ -102,12 +92,13 @@
                                     <div class="image-box">
                                         <figure class="image">
                                             <a href="{{ $item->url }}">
-                                                <img src="{{ $item->image_url }}" alt="">
+                                                <img src="{{ $item->getFirstMediaUrl('cover') }}"
+                                                    alt="{{ $item->title }}">
                                             </a>
                                         </figure>
                                         <div class="info-box">
                                             <a href="{{ $item->url }}" class="read-more">
-                                                <i class="fa fa-long-arrow-alt-right"></i>
+                                                @svg('fas-long-arrow-alt-right', 'text-white')
                                             </a>
                                             <h6 class="title">
                                                 <a href="{{ $item->url }}">{{ $item->title }}</a>

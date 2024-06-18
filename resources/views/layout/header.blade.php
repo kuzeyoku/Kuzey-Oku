@@ -68,7 +68,7 @@
                         <i class="icon">@svg('far-envelope', 'text-white')</i>
                         <span>@lang('front/header.txt1')</span>
                     </a>
-                    <div class="mobile-nav-toggler"><span class="icon lnr-icon-bars"></span></div>
+                    <div class="mobile-nav-toggler"><span class="icon">@svg('fas-bars', 'text-white')</span></div>
                 </div>
             </div>
         </div>

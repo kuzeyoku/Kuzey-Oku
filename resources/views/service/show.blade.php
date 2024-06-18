@@ -15,8 +15,10 @@
                                 <div class="sidebar-service-list">
                                     <ul>
                                         @foreach ($otherServices as $item)
-                                            <li><a href="{{ $item->url }}" class="current"><i
-                                                        class="fas fa-angle-right"></i><span>{{ $item->title }}</span></a>
+                                            <li>
+                                                <a href="{{ $item->url }}" class="current">@svg('fas-angle-right')
+                                                    <span>{{ $item->title }}</span>
+                                                </a>
                                             </li>
                                         @endforeach
 
@@ -28,7 +30,7 @@
                                 <div class="help-shape-2"></div>
                                 <h4 class="help-title">@lang('front/service.txt6')</h4>
                                 <div class="help-icon">
-                                    <span class=" lnr-icon-phone-handset"></span>
+                                    @svg('fas-phone-alt')
                                 </div>
                                 <div class="help-contact">
                                     <p>@lang('front/service.txt7')</p>
