@@ -20,9 +20,9 @@
                     <td>{{ $item->subject }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    @include(themeView('admin', 'layout.status'))
+                    <td>{!! $item->status_view !!}</td>
                     @include(themeView('admin', 'layout.action'), [
-                        'show' => route("admin.{$route}.show", $item),
+                        'show' => route("admin.$route.show", $item),
                         'delete' => '',
                     ])
                 </tr>

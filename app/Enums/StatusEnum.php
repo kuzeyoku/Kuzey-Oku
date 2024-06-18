@@ -28,9 +28,9 @@ enum StatusEnum: string
             self::Passive => "danger",
             self::Draft => "warning",
             self::Pending => "secondary",
-            self::Read => "success",
-            self::Unread => "danger",
-            self::Answered => "info",
+            self::Read => "linesuccess",
+            self::Unread => "linedanger",
+            self::Answered => "lineinfo",
         };
     }
 
@@ -98,6 +98,15 @@ enum StatusEnum: string
             StatusEnum::Passive->value => StatusEnum::Passive->title(),
             StatusEnum::Draft->value => StatusEnum::Draft->title(),
             StatusEnum::Pending->value => StatusEnum::Pending->title(),
+        ];
+    }
+
+    public static function getMessageStatusSelectArray()
+    {
+        return [
+            StatusEnum::Read->value => StatusEnum::Read->title(),
+            StatusEnum::Unread->value => StatusEnum::Unread->title(),
+            StatusEnum::Answered->value => StatusEnum::Answered->title(),
         ];
     }
 

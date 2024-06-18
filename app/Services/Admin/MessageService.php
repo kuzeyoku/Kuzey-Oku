@@ -17,7 +17,7 @@ class MessageService extends BaseService
         parent::__construct($message, ModuleEnum::Message);
     }
 
-    public function statusUpdate(Model $message)
+    public function messageRead(Model $message)
     {
         $message->status = StatusEnum::Read->value;
         return $message->save();
@@ -25,12 +25,8 @@ class MessageService extends BaseService
 
     public function sendReply($request, Model $message)
     {
-        try {
-            Mail::to($message->email)->send(new ReplyMessage($request, $message));
-            $message->status = StatusEnum::Answered->value;
-            return $message->save();
-        } catch (\Exception $e) {
-            Log::channel('custom_errors')->error($e->getMessage());
-        }
+        Mail::to($message->email)->send(new ReplyMessage($request, $message));
+        $message->status = StatusEnum::Answered->value;
+        return $message->save();
     }
 }

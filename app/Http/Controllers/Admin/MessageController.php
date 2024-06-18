@@ -28,7 +28,7 @@ class MessageController extends Controller
 
     public function show(Message $message)
     {
-        $this->service->statusUpdate($message);
+        $this->service->messageRead($message);
         return view(themeView("admin", "{$this->service->folder()}.show"), compact("message"));
     }
 
