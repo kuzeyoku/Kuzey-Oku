@@ -13,7 +13,7 @@
                                     <a href="{{ $post->url }}">{{ $post->getFirstMedia('cover') }}</a>
                                 </figure>
                             </div>
-                            <div class="content-box">
+                            <div class="content-box border">
                                 <span class="date">{{ $post->created_at->translatedFormat('d M Y') }}</span>
                                 <span class="post-info">@svg('fas-user-circle', 'icon-space'){{ $post->user->name }}</span>
                                 <h5 class="title"><a href="{{ $post->url }}">{{ $post->title }}</a></h5>
