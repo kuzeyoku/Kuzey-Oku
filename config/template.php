@@ -2,7 +2,6 @@
 
 return [
     "front" => [
-        "view" => "front",
         "asset" => "theme",
     ],
     "admin" => [
