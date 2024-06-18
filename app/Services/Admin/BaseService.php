@@ -114,8 +114,8 @@ class BaseService
     {
         $currentpage = Paginator::resolveCurrentPage() ?: 1;
         for ($i = 1; $i <= $currentpage; $i++) {
-            if (Cache::has($this->module->value . '_' . $i)) {
-                Cache::forget($this->module->value . '_' . $i);
+            if (Cache::has($this->module->value . '_' . $i . "_" . app()->getLocale() . "_admin")) {
+                Cache::forget($this->module->value . '_' . $i . "_" . app()->getLocale() . "_admin");
             }
         }
         if (Cache::has(($this->module ? $this->module->value . "_" : "all_") . "categories")) {

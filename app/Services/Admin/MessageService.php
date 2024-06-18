@@ -6,7 +6,6 @@ use App\Models\Message;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use App\Mail\Admin\ReplyMessage;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Database\Eloquent\Model;
 
