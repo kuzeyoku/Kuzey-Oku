@@ -127,9 +127,25 @@
                         <img src="{{ themeAsset('front', 'images/logo-2.png') }}"
                             alt="{{ settings('general.title', env('APP_NAME')) }}">
                     </a>
+
                 </div>
                 <div class="nav-outer">
-                    <div class="mobile-nav-toggler">@svg('fas-bars', 'icon')</span></div>
+                    <nav class="nav main-menu">
+                        <ul class="navigation">
+                            @foreach ($headerMenu as $menu)
+                                @if ($menu->parent_id === 0)
+                                    @if ($menu->subMenu->count() > 0)
+                                        @include('layout.menu', ['menu' => $menu])
+                                    @else
+                                        <li class="{{ $menu->subMenu->count() > 0 ? 'dropdown' : '' }}">
+                                            <a href="{{ $menu->url }}">{{ $menu->title }}</a>
+                                        </li>
+                                    @endif
+                                @endif
+                            @endforeach
+                        </ul>
+                    </nav>
+                    <div class="mobile-nav-toggler">@svg('fas-bars', 'text-dark')</span></div>
                 </div>
             </div>
         </div>
