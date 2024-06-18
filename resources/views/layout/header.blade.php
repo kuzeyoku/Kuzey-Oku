@@ -4,12 +4,12 @@
             <div class="top-left">
                 <ul class="list-style-one">
                     <li>
-                        @svg('far-envelope', 'icon-space')
+                        @svg('fas-envelope', 'icon-space')
                         <a href="mailto:{{ settings('contact.mail') }}">
                             <span class="__cf_email__">{{ settings('contact.email') }}</span>
                         </a>
                     </li>
-                    <li>@svg('fas-map-marker-alt', 'icon-space'){{ settings('contact.address') }}</li>
+                    <li>@svg('fas-map-marker', 'icon-space'){{ settings('contact.address') }}</li>
                 </ul>
             </div>
             <div class="top-right">
@@ -127,22 +127,10 @@
                         <img src="{{ themeAsset('front', 'images/logo-2.png') }}"
                             alt="{{ settings('general.title', env('APP_NAME')) }}">
                     </a>
-
                 </div>
                 <div class="nav-outer">
                     <nav class="nav main-menu">
                         <ul class="navigation">
-                            @foreach ($headerMenu as $menu)
-                                @if ($menu->parent_id === 0)
-                                    @if ($menu->subMenu->count() > 0)
-                                        @include('layout.menu', ['menu' => $menu])
-                                    @else
-                                        <li class="{{ $menu->subMenu->count() > 0 ? 'dropdown' : '' }}">
-                                            <a href="{{ $menu->url }}">{{ $menu->title }}</a>
-                                        </li>
-                                    @endif
-                                @endif
-                            @endforeach
                         </ul>
                     </nav>
                     <div class="mobile-nav-toggler">@svg('fas-bars', 'text-dark')</span></div>
