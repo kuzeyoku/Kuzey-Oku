@@ -24995,6 +24995,39 @@ body.mini-sidebar.expand-menu .sidebar .sidebar-menu>ul>li.submenu-open ul li a 
     font-size: 14px
 }
 
+.badge-linewarning {
+    color: #f90;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #f90;
+    font-size: 14px
+}
+
+.badge-linesecondary {
+    color: #67748e;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #67748e;
+    font-size: 14px
+
+}
+
+.badge-lineinfo {
+    color: #2aa4f4;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #2aa4f4;
+    font-size: 14px
+}
+
+.badge-lineprimary {
+    color: #7367f0;
+    padding: 5px 10px;
+    border-radius: 8px;
+    border: 1px solid #7367f0;
+    font-size: 14px
+}
+
 span.badge.badges-warning {
     padding: 5px 10px
 }

@@ -24,15 +24,28 @@ enum StatusEnum: string
     public function color(): string
     {
         return match ($this) {
-            self::Active => "linesuccess",
-            self::Passive => "lineerror",
-            self::Draft => "secondary",
-            self::Pending => "info",
-            self::Read => "secondary",
-            self::Unread => "warning",
-            self::Answered => "lightgrey",
+            self::Active => "success",
+            self::Passive => "danger",
+            self::Draft => "warning",
+            self::Pending => "secondary",
+            self::Read => "success",
+            self::Unread => "danger",
+            self::Answered => "info",
         };
     }
+
+    // public function color(): string
+    // {
+    //     return match ($this) {
+    //         self::Active => "linesuccess",
+    //         self::Passive => "linedanger",
+    //         self::Draft => "linewarning",
+    //         self::Pending => "linesecondary",
+    //         self::Read => "linesuccess",
+    //         self::Unread => "linedanger",
+    //         self::Answered => "lineinfo",
+    //     };
+    // }
 
     public function icon(): string
     {

@@ -18,7 +18,7 @@
                     <td><img class="table-image" src="{{ $item->getFirstMediaUrl("image") }}"></td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{!! $item->status_view !!}</td>
+                    @include(themeView('admin', 'layout.status'))
                     @include(themeView('admin', 'layout.action'), ['edit' => '', 'delete' => ''])
                 </tr>
             @empty

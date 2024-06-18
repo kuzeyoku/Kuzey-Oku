@@ -63,6 +63,13 @@ class BaseService
         return $item->update($request->all());
     }
 
+    public function statusUpdate(Request $request, int $itemID)
+    {
+        $this->cacheClear();
+        $item = $this->model->find($itemID);
+        return $item->update($request->only("status"));
+    }
+
     public function delete(Model $item)
     {
         $this->cacheClear();

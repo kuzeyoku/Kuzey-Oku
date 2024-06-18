@@ -34,13 +34,11 @@ class MessageController extends Controller
 
     public function reply(Message $message)
     {
-        $this->authorize(Message::class, "reply");
         return view(themeView("admin", "{$this->service->folder()}.reply"), compact("message"));
     }
 
     public function sendReply(ReplyMessageRequest $request, Message $message)
     {
-        $this->authorize(Message::class, "reply");
         try {
             $this->service->sendReply($request, $message);
             return redirect()

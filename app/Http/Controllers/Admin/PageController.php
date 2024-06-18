@@ -7,6 +7,7 @@ use App\Models\Page;
 use App\Services\Admin\PageService;
 use App\Http\Requests\Page\StorePageRequest;
 use App\Http\Requests\Page\UpdatePageRequest;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
@@ -66,6 +67,19 @@ class PageController extends Controller
             return back()
                 ->withInput()
                 ->withError(__("admin/{$this->service->folder()}.update_error"));
+        }
+    }
+
+    public function statusUpdate(Request $request, int $page)
+    {
+        $request->validate(["status" => "required"]);
+        try {
+            $this->service->statusUpdate($request, $page);
+            return back();
+        } catch (Throwable $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()
+                ->withError(__("admin/{$this->service->folder()}.status_error"));
         }
     }
 

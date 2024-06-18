@@ -93,6 +93,19 @@ class LanguageController extends Controller
         }
     }
 
+    public function statusUpdate(Request $request, int $page)
+    {
+        $request->validate(["status" => "required"]);
+        try {
+            $this->service->statusUpdate($request, $page);
+            return back();
+        } catch (Throwable $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()
+                ->withError(__("admin/{$this->service->folder()}.status_error"));
+        }
+    }
+
     public function destroy(Language $language)
     {
         try {

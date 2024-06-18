@@ -1,7 +1,7 @@
 <td class="table-action">
     <div class="data-action-button">
         @isset($show)
-            <a class="me-2 p-2" target="_blank" href="{{ $item->url }}">
+            <a class="me-2 p-2" onclick="return!window.open(this.href);" href="{{ $show ?: $item->url }}">
                 <i data-feather="eye" class="feather-icon"></i>
             </a>
         @endisset

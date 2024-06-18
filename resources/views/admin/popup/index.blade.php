@@ -20,7 +20,7 @@
                     <td>{{ $item->titles[config('app.fallback_locale')] }}</td>
                     <td>{{ $item->created_at->diffForHumans() }}</td>
                     <td>{{ $item->updated_at->diffForHumans() }}</td>
-                    <td>{!! $item->status_view !!}</td>
+                    @include(themeView('admin', 'layout.status'))
                     @include(themeView('admin', 'layout.action'), ['edit' => '', 'delete' => ''])
                 </tr>
             @empty

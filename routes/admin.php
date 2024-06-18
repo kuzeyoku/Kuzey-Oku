@@ -18,6 +18,13 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
 
         Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('index');
 
+        foreach (App\Enums\ModuleEnum::cases() as $module) {
+            if ($module->status()) {
+                Route::resource($module->route(), $module->controller())->names($module->route());
+                Route::put("/{$module->route()}/{id}/status-update", $module->controller() . "@statusUpdate")->name($module->route() . ".status_update");
+            }
+        }
+
         Route::prefix("notification")->name("notification.")->group(function () {
             Route::get("{notification}/read", function ($notification) {
                 $notification = auth()->user()->notifications->find($notification)->markAsRead();
@@ -93,10 +100,5 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
             Route::controller(App\Http\Controllers\Admin\MediaController::class)->prefix("media")->group(function () {
                 Route::delete("/{id}/delete", "destroy")->name(ModuleEnum::Media->route() . ".destroy");
             });
-
-        foreach (App\Enums\ModuleEnum::cases() as $module) {
-            if ($module->status())
-                Route::resource($module->route(), $module->controller())->names($module->route());
-        }
     });
 });

@@ -6,6 +6,7 @@ use Throwable;
 use App\Models\Blog;
 use App\Enums\StatusEnum;
 use App\Models\BlogComment;
+use Illuminate\Http\Request;
 use App\Services\Admin\BlogService;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
@@ -70,6 +71,19 @@ class BlogController extends Controller
             return back()
                 ->withInput()
                 ->withError(__("admin/{$this->service->folder()}.update_error"));
+        }
+    }
+
+    public function statusUpdate(Request $request, int $page)
+    {
+        $request->validate(["status" => "required"]);
+        try {
+            $this->service->statusUpdate($request, $page);
+            return back();
+        } catch (Throwable $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()
+                ->withError(__("admin/{$this->service->folder()}.status_error"));
         }
     }
 

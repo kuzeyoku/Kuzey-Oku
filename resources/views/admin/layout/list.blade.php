@@ -1,5 +1,4 @@
 @extends(themeView('admin', 'layout.main'))
-@section('pageTitle', __("admin/{$folder}.list"))
 @section('content')
     <div class="content">
         <div class="page-header">

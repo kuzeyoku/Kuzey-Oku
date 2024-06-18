@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Throwable;
 use App\Models\Category;
 use App\Enums\ModuleEnum;
+use Illuminate\Http\Request;
 use App\Services\Admin\CategoryService;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
@@ -71,6 +72,19 @@ class CategoryController extends Controller
             return back()
                 ->withInput()
                 ->withError(__("admin/{$this->service->folder()}.update_error"));
+        }
+    }
+
+    public function statusUpdate(Request $request, int $page)
+    {
+        $request->validate(["status" => "required"]);
+        try {
+            $this->service->statusUpdate($request, $page);
+            return back();
+        } catch (Throwable $e) {
+            LogController::logger("error", $e->getMessage());
+            return back()
+                ->withError(__("admin/{$this->service->folder()}.status_error"));
         }
     }
 

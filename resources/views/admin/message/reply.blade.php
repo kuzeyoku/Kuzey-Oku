@@ -1,12 +1,11 @@
 @extends(themeView('admin', 'layout.main'))
-@section('pageTitle', __("admin/{$folder}.reply"))
 @section('content')
     <div class="content">
         <div class="page-header">
             <div class="add-item d-flex">
                 <div class="page-title">
-                    <h4>@lang("admin/{$folder}.show_title")</h4>
-                    <h6>@lang("admin/{$folder}.show_description")</h6>
+                    <h4>@lang("admin/{$folder}.reply_title")</h4>
+                    <h6>@lang("admin/{$folder}.reply_description")</h6>
                 </div>
             </div>
             <div class="page-btn">
@@ -16,16 +15,16 @@
         </div>
         <div class="card">
             <div class="card-body">
-                {{ Form::open(['url' => route("admin.{$route}.sendReply", $message), 'method' => 'post']) }}
-                {{ Form::hidden('message_id', $message->id) }}
-                {{ Form::label('email', __("admin/{$folder}.form_customer")) }}
-                {{ Form::text('email', $message->email, ['class' => 'form-control', 'readonly' => '']) }}
-                {{ Form::label('subject', __("admin/{$folder}.form_subject")) }}
-                {{ Form::text('subject', 're:' . $message->subject, ['class' => 'form-control']) }}
-                {{ Form::label('message', __("admin/{$folder}.form_content")) }}
-                {{ Form::textarea('message', null, ['class' => 'form-control']) }}
-                {{ Form::submit(__("admin/{$folder}.form_send"), ['class' => 'btn btn-primary']) }}
-                {{ Form::close() }}
+                {{ html()->form()->route("admin.{$route}.sendReply", $message)->open() }}
+                {{ html()->hidden('message_id', $message->id) }}
+                {{ html()->label(__("admin/{$folder}.form_customer")) }}
+                {{ html()->text('email', $message->email)->class('form-control')->attribute('readonly', '') }}
+                {{ html()->label(__("admin/{$folder}.form_subject")) }}
+                {{ html()->text('subject', 're:' . $message->subject)->class('form-control') }}
+                {{ html()->label(__("admin/{$folder}.form_content")) }}
+                {{ html()->textarea('message', null)->class('form-control') }}
+                {{ html()->submit(__("admin/{$folder}.form_send"))->class('btn btn-primary') }}
+                {{ html()->form()->close() }}
             </div>
         </div>
     </div>
