@@ -11,10 +11,7 @@
     <link href="{{ themeAsset('front', 'css/animate.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/owl.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/jquery.fancybox.min.css') }}" rel="stylesheet">
-    <link href="{{ themeAsset('front', 'css/linear.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/flaticon.css') }}" rel="stylesheet">
-    <link href="{{ themeAsset('front', 'css/tm-bs-mp.css') }}" rel="stylesheet">
-    <link href="{{ themeAsset('front', 'css/tm-utility-classes.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/style.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/responsive.css') }}" rel="stylesheet">
     @stack('style')
@@ -46,7 +43,6 @@
     <script src="{{ themeAsset('front', 'js/select2.min.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/owl.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/script.js') }}"></script>
-    <script src="{{ themeAsset('front', 'js/sweetalert2.all.min.js') }}"></script>
     @include('layout.alert')
     @stack('script')
 </body>

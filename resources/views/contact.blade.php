@@ -107,3 +107,6 @@
         }
     </script>
 @endsection
+@push('script')
+    <script src="{{ themeAsset('front', 'js/sweetalert2.all.min.js') }}"></script>
+@endpush
