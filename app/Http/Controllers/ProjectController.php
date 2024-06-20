@@ -17,7 +17,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        $otherProjects = Project::whereNotIn("id", [$project->id])->get();
+        $otherProjects = Project::whereKeyNot($project->id)->get();
         return view('project.show', compact('project', "otherProjects"));
     }
 }

@@ -14,13 +14,12 @@ class SitemapController extends Controller
 {
     public function index()
     {
-        $pages = Page::whereStatus(StatusEnum::Active->value)->get();
-        $posts = Blog::whereStatus(StatusEnum::Active->value)->get();
-        $categories = Category::whereStatus(StatusEnum::Active->value)->get();
-        $services = Service::whereStatus(StatusEnum::Active->value)->get();
-        $projects = Project::whereStatus(StatusEnum::Active->value)->get();
-        $products = Product::whereStatus(StatusEnum::Active->value)->get();
-        $view = view("sitemap", compact("pages", "posts", "categories", "services", "projects", "products"))->render();
+        $pages = Page::active()->get();
+        $posts = Blog::active()->get();
+        $categories = Category::active()->get();
+        $services = Service::active()->get();
+        $projects = Project::active()->get();
+        $view = view("sitemap", compact("pages", "posts", "categories", "services", "projects"))->render();
         return response($view)->header("Content-Type", "text/xml");
     }
 }
