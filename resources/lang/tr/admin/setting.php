@@ -108,7 +108,7 @@ return [
     "sitemap_static_pages" => "Statik Sayfalar",
     "sitemap_blog" => "Blog",
     "sitemap_blog_category" => "Blog Kategori Sayfaları",
-    "sitemap_blog_post" => "Blog Yazıları",
+    "sitemap_blog_detail" => "Blog Yazıları",
     "sitemap_service" => "Hizmetler",
     "sitemap_service_category" => "Hizmetler Kategori Sayfaları",
     "sitemap_service_detail" => "Hizmet Detay",
