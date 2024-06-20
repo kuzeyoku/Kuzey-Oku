@@ -39,7 +39,7 @@ class Blog extends Model implements HasMedia
 
     public function scopeOrder($query)
     {
-        return $query->orderBy("order", "DESC");
+        return $query->orderBy("order", "asc")->orderBy("id", "desc");
     }
 
     public function scopeViewOrder($query)
