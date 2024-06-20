@@ -1,6 +1,7 @@
 @extends('layout.main')
 @section('title', $service->title)
 @section('description', $service->short_description)
+@section('ogimage', $service->getFirstMediaUrl('cover'))
 @section('parent_url', route('service.index'))
 @section('parent_title', __('front/service.txt2'))
 @section('content')
@@ -34,7 +35,8 @@
                                 </div>
                                 <div class="help-contact">
                                     <p>@lang('front/service.txt7')</p>
-                                    <a href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
+                                    <a
+                                        href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
                                 </div>
                             </div>
                         </div>

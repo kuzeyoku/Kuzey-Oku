@@ -1,5 +1,7 @@
 @extends('layout.main')
 @section('title', $project->title)
+@section('description', $project->short_description)
+@section('ogimage', $project->getFirstMediaUrl('cover'))
 @section('parent_url', route('project.index'))
 @section('parent_title', __('front/project.txt1'))
 @section('content')
