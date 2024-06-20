@@ -30,7 +30,10 @@ class SettingService
         }
         $except = $request->except("_token", "_method", "category");
         if ($request->category == "social") {
-            settings()->set("social.platforms", array_keys($except));
+            $platforms = array_filter($except, function ($value) {
+                return $value;
+            });
+            settings()->set("social.platforms", array_keys($platforms));
         }
         $settings = array_reduce(array_keys($except), function ($result, $key) use ($except, $request) {
             $result[$request->category . "." . $key] = $except[$key];
