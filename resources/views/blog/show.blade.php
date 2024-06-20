@@ -1,5 +1,6 @@
 @extends('layout.main')
 @section('title', $post->title)
+@section('description', $post->short_description)
 @section('parent_url', route('blog.index'))
 @section('parent_title', __('front/blog.txt1'))
 @section('content')
