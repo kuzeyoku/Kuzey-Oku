@@ -11,6 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
+        dd(settings("social.platforms"));
         $modules = [
             ModuleEnum::Slider,
             ModuleEnum::Product,
