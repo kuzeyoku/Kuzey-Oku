@@ -35,7 +35,7 @@ enum ModuleEnum: string
             self::Service => true,
             self::Brand => true,
             self::Reference => true,
-            self::Product => true,
+            self::Product => false,
             self::Project => true,
             self::Slider => true,
             self::Testimonial => true,
