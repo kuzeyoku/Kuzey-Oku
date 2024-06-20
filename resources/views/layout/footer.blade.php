@@ -13,7 +13,7 @@
                             @foreach (settings('social.platforms') as $item)
                                 @if (settings()->has("social.{$item}"))
                                     <li>
-                                        <a aria-label="{{ $item }}"
+                                        <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
                                             href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
                                     </li>
                                 @endif

@@ -36,7 +36,7 @@ class HomeController extends Controller
         }
 
         if (settings("information.about_page", false)) {
-            $data["about"] = Cache::remember("about_home", settings("caching.time", 3600), function () {
+            $data["about"] = Cache::remember("about_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
                 return Page::findOrFail(settings("information.about_page"));
             });
         }
