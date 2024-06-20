@@ -19,11 +19,8 @@
                     {{ html()->form()->close() }}
                 @endif
                 <ul class="social-icon-one">
-                    <?php
-                    $social = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
-                    ?>
-                    @foreach ($social as $item)
-                        @if ($item)
+                    @foreach (settings('social.platforms') as $item)
+                        @if (settings()->has("social.{$item}"))
                             <li>
                                 <a aria-label="{{ $item }}"
                                     href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
@@ -106,12 +103,11 @@
                 </li>
             </ul>
             <ul class="social-links">
-                @foreach ($social as $item)
-                    @if (settings("social.{$item}"))
+                @foreach (settings('social.platforms') as $item)
+                    @if (settings()->has("social.{$item}"))
                         <li>
-                            <a aria-label="{{ $item }}" href="{{ settings('social.' . $item) }}">
-                                @svg('fab-' . $item)
-                            </a>
+                            <a aria-label="{{ $item }}"
+                                href="{{ settings("social.{$item}") }}">@svg('fab-' . $item)</a>
                         </li>
                     @endif
                 @endforeach

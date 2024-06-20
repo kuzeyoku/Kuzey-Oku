@@ -10,14 +10,11 @@
                         </div>
                         <div class="text">{{ settings('general.description') }}</div>
                         <ul class="social-icon-two">
-                            <?php
-                            $social = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
-                            ?>
-                            @foreach ($social as $item)
-                                @if (settings("social.{$item}"))
+                            @foreach (settings('social.platforms') as $item)
+                                @if (settings()->has("social.{$item}"))
                                     <li>
                                         <a aria-label="{{ $item }}"
-                                            href="{{ settings("social.{$item}") }}">@svg("fab-{$item}", 'text-white')</a>
+                                            href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
                                     </li>
                                 @endif
                             @endforeach

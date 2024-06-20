@@ -32,14 +32,15 @@
                 "telephone": "{{ settings("contact.phone") }}",
                 "contactType": "customer service"
             }],
-            <?php $socials = ["facebook","twitter","instagram","youtube","linkedin"] ?>
+    @if(settings()->has("social.platforms"))
     "sameAs": [
-    @foreach ($socials as $social)
-        @if(settings("social.$social"))
+    @foreach (settings("social.platforms") as $social)
+        @if(settings()->has("social.$social"))
             "{{ settings("social.$social") }}",
         @endif
     @endforeach
     ]
+    @endif
     }
     </script>
 @endif
