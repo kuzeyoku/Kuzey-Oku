@@ -11,12 +11,10 @@
                         <div class="text">{{ settings('general.description') }}</div>
                         <ul class="social-icon-two">
                             @foreach (settings('social.platforms') as $item)
-                                @if (settings()->has("social.{$item}"))
-                                    <li>
-                                        <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
-                                            href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
-                                    </li>
-                                @endif
+                                <li>
+                                    <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
+                                        href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
