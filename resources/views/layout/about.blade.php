@@ -14,7 +14,7 @@
                     <div class="btn-box">
                         <a href="#"
                             class="play-now-two lightbox-image"><i>@svg('fas-play', 'text-white')</i>@lang('front/about.txt5')</a>
-                        <a href="{{ $about ? $about->url : '#' }}" class="theme-btn btn-style-one"><span
+                        <a href="{{ isset($about) ? $about->url : '#' }}" class="theme-btn btn-style-one"><span
                                 class="btn-title">@lang('front/about.txt6')</span></a>
                     </div>
                 </div>
