@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-lg-8">
+            <div class="col-xl-8">
                 <div class="card">
                     <div class="card-header d-flex justify-content-between">
                         <h5 class="card-title">@lang('admin/home.visits')</h5>
@@ -59,7 +59,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4">
+            <div class="col-xl-4">
                 <div class="card">
                     <div class="card-header">
                         <h5 class="card-title">@lang('admin/home.popular_posts')</h5>
