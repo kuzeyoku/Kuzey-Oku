@@ -128,14 +128,14 @@
     </div>
 @endsection
 @push('script')
-    <script src="{{ themeAsset('admin', 'plugins/apexchart/apexcharts.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/apexcharts.min.js') }}"></script>
     <script>
         'use strict';
         $(document).ready(function() {
             if ($('#s-line-area').length > 0) {
                 var sLineArea = {
                     chart: {
-                        height: 400,
+                        height: 300,
                         type: 'area',
                     },
                     dataLabels: {
