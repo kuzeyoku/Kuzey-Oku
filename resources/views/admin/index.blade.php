@@ -71,9 +71,15 @@
                                         <tr>
                                             <td><a href="{{ $post->url }}">{{ Str::limit($post->title, 50, '...') }}</a>
                                             </td>
-                                            <td>{{ $post->views }}</td>
+                                            <td>{{ $post->view_count }}</td>
                                         </tr>
                                     @endforeach
+                                    <tr>
+                                        1
+                                    </tr>
+                                    <tr>
+                                        2
+                                    </tr>
                                 </tbody>
                             </table>
                         </div>
