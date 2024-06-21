@@ -16,7 +16,7 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das1">
                     <div class="dash-counts">
-                        <h4>{{ $visits->todaySingleVisits }}</h4>
+                        <h4>{{ $visits['todaySingleVisits'] }}</h4>
                         <h5>@lang('admin/home.today_visits')</h5>
                     </div>
                     <div class="dash-imgs">
@@ -27,7 +27,7 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das2">
                     <div class="dash-counts">
-                        <h4>{{ $visits->totalSingleVisits }}</h4>
+                        <h4>{{ $visits['totalSingleVisits'] }}</h4>
                         <h5>@lang('admin/home.total_visits')</h5>
                     </div>
                     <div class="dash-imgs">
@@ -38,7 +38,7 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das3">
                     <div class="dash-counts">
-                        <h4>{{ $visits->totalPageViews }}</h4>
+                        <h4>{{ $visits['totalPageViews'] }}</h4>
                         <h5>@lang('admin/home.total_page_views')</h5>
                     </div>
                     <div class="dash-imgs">
@@ -138,21 +138,21 @@
             if ($('#s-line-area').length > 0) {
                 var sLineArea = {
                     chart: {
-                        height: 300,
+                        height: 260,
                         type: 'area',
                     },
                     dataLabels: {
-                        enabled: true
+                        enabled: true,
                     },
                     series: [{
                         name: "{{ __('admin/home.single_visits') }}",
-                        data: {{ json_encode($visits->chartSingleVisits) }}
+                        data: {{ json_encode($visits['chart']['singleVisits']) }}
                     }, {
                         name: "{{ __('admin/home.unique_visits') }}",
-                        data: {{ json_encode($visits->chartUniqueVisits) }}
+                        data: {{ json_encode($visits['chart']['uniqueVisits']) }}
                     }, {
                         name: "{{ __('admin/home.page_views') }}",
-                        data: {{ json_encode($visits->chartPageViews) }}
+                        data: {{ json_encode($visits['chart']['pageViews']) }}
                     }],
                     xaxis: {
                         labels: {
@@ -160,7 +160,7 @@
                             format: 'dd/MM/yyyy'
                         },
                         type: 'datetime',
-                        categories: {{ json_encode($visits->chartDates) }},
+                        categories: {{ json_encode($visits['chart']['dates']) }},
                     },
                     tooltip: {
                         x: {
