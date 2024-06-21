@@ -76,7 +76,7 @@
                                                     {{ Str::limit($post->title, 50, '...') }}
                                                 </a>
                                             </td>
-                                            <td>{{ $post->view_count }}</td>
+                                            <td>{{ $post->view_count }} @lang('admin/home.view')</td>
                                         </tr>
                                     @endforeach
                                 </tbody>

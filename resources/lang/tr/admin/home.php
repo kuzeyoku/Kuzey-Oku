@@ -32,4 +32,5 @@ return [
     "unique_visits" => "Yeni Ziyaretçiler",
     "page_views" => "Sayfa Görüntülemeleri",
     "popular_posts" => "En Çok Okunan Yazılar",
+    "view" => "Görüntüleme",
 ];
