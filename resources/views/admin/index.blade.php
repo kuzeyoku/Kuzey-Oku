@@ -69,17 +69,14 @@
                                 <tbody>
                                     @foreach ($popularPosts as $post)
                                         <tr>
-                                            <td><a href="{{ $post->url }}">{{ Str::limit($post->title, 50, '...') }}</a>
+                                            <td>
+                                                <a onclick="return!window.open(this.href);" href="{{ $post->url }}">
+                                                    {{ Str::limit($post->title, 50, '...') }}
+                                                </a>
                                             </td>
                                             <td>{{ $post->view_count }}</td>
                                         </tr>
                                     @endforeach
-                                    <tr>
-                                        1
-                                    </tr>
-                                    <tr>
-                                        2
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>
