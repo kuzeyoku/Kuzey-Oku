@@ -27,6 +27,7 @@ return [
     "visitor_counter_clear_success" => "Tüm Ziyaretçi Kayıtları Başarıyla Temizlendi",
     "visitor_counter_clear_error" => "Ziyaretçi Sayacı Temizlenirken Bir Hata Oluştu",
     "visits" => "Ziyaretçiler",
+    "visits_chart_info" => "Kayıtlar 10 Dakikada Bir Güncellenir.",
     "single_visits" => "Tekil Ziyaretler",
     "unique_visits" => "Yeni Ziyaretçiler",
     "page_views" => "Sayfa Görüntülemeleri",

@@ -23,7 +23,7 @@
         </script>
     @endif
 @endif
-@if (session("error"))
+@if (session('error'))
     @if (is_array(session('error')))
         <script>
             Swal.fire({
@@ -62,6 +62,22 @@
         }).then((result) => {
             if (result.isConfirmed) {
                 $(this).closest('form').submit();
+            }
+        });
+    });
+    $(".clear-log").on("click", function() {
+        Swal.fire({
+            title: "{{ __('admin/general.are_you_sure') }}",
+            text: "{{ __('admin/general.this_action_cannot_be_undone') }}",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: "{{ __('admin/general.yes_clear_it') }}",
+            cancelButtonText: "{{ __('admin/general.cancel') }}",
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = $(this).data("url");
             }
         });
     });

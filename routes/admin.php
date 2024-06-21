@@ -43,7 +43,7 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
 
         Route::post("editor/upload", [App\Http\Controllers\Admin\EditorController::class, "store"])->name("editor.upload");
         Route::get("cache-clear", [App\Http\Controllers\Admin\HomeController::class, "cacheClear"])->name("cache_clear");
-        Route::post("log-clean", [App\Http\Controllers\Admin\HomeController::class, "logClean"])->name("logclean");
+        Route::get("log-clear/{file}", [App\Http\Controllers\Admin\LogController::class, "clear"])->name("log_clear");
         Route::post("clear-visitor-counter", [App\Http\Controllers\Admin\HomeController::class, "clearVisitorCounter"])->name("clearvisitorcounter");
         Route::get("update-visitor-counter", function () {
             \Illuminate\Support\Facades\Cache::forget("visits");

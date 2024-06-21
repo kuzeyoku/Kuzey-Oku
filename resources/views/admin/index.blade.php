@@ -50,8 +50,9 @@
         <div class="row">
             <div class="col-lg-8">
                 <div class="card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h5 class="card-title">@lang('admin/home.visits')</h5>
+                        <div class="badge badge-lineinfo">@lang('admin/home.visits_chart_info')</div>
                     </div>
                     <div class="card-body">
                         <div id="s-line-area" class="chart-set"></div>
@@ -87,8 +88,10 @@
         <div class="row">
             <div class="col-xl-6">
                 <div class="card mb-4 log-card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h4 class="card-title mb-0">@lang('admin/home.info_logs')</h4>
+                        <button data-url="{{ route('admin.log_clear', 'info') }}"
+                            class="clear-log btn btn-danger btn-sm">@lang('admin/home.clear')</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -108,8 +111,10 @@
             </div>
             <div class="col-xl-6">
                 <div class="card mb-4 log-card">
-                    <div class="card-header">
+                    <div class="card-header d-flex justify-content-between">
                         <h4 class="card-title mb-0">@lang('admin/home.error_logs')</h4>
+                        <button data-url="{{ route('admin.log_clear', 'errors') }}"
+                            class="clear-log btn btn-danger btn-sm">@lang('admin/home.clear')</button>
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

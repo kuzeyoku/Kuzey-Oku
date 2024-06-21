@@ -31,17 +31,6 @@ class HomeController extends Controller
         return redirect()->back()->withSuccess(__('admin/general.cache_clear_success'));
     }
 
-    public function logclean(Request $request)
-    {
-        $file = storage_path('logs/custom_' . $request->file . '.log');
-        try {
-            File::put($file, '');
-            return redirect()->back()->withSuccess(__('admin/home.log_clean_success', ['file' => $request->file]));
-        } catch (Exception $e) {
-            return redirect()->back()->withError(__('admin/home.log_clean_error', ['file' => $request->file]));
-        }
-    }
-
     public function clearVisitorCounter()
     {
         try {
