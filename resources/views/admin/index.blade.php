@@ -72,6 +72,7 @@
                                         <tr>
                                             <td>
                                                 <a onclick="return!window.open(this.href);" href="{{ $post->url }}">
+                                                    <i data-feather="file-text"></i>
                                                     {{ Str::limit($post->title, 50, '...') }}
                                                 </a>
                                             </td>

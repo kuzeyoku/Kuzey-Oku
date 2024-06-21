@@ -19,7 +19,7 @@
                     {{ html()->form()->close() }}
                 @endif
                 <ul class="social-icon-one">
-                    @foreach (settings('social.platforms') as $item)
+                    @foreach (settings('social.platforms', []) as $item)
                         <li>
                             <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
                                 href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
@@ -101,7 +101,7 @@
                 </li>
             </ul>
             <ul class="social-links">
-                @foreach (settings('social.platforms') as $item)
+                @foreach (settings('social.platforms', []) as $item)
                     <li>
                         <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
                             href="{{ settings("social.{$item}") }}">@svg('fab-' . $item)</a>
