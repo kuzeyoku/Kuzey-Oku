@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use Exception;
+use Carbon\Carbon;
 use App\Models\Blog;
 use GuzzleHttp\Client;
 use App\Models\Visitor;
@@ -35,15 +36,32 @@ class HomeController extends Controller
         } else {
             $data["infoLogs"] = [];
         }
-        $data["visits"] = Cache::remember("visits", 300, function () {
-            return Visitor::all();
-        });
         $data["subscrip"] = Cache::remember("subscrip", 300, function () {
             return Subscrib::count();
         });
         $data["popularPosts"] = Cache::remember("popularPosts", 300, function () {
             return Blog::orderBy("view_count", "desc")->limit(5)->get();
         });
+
+        $visits = Cache::remember("visits", 300, function () {
+            return Visitor::all();
+        });
+        $data["visits"] = new \stdClass();
+        $data["visits"]->todaySingleVisits = $visits->where("updated_at", ">", today())->count();
+        $data["visits"]->totalSingleVisits = $visits->count();
+        $data["visits"]->totalPageViews = $visits->sum("visit_count");
+        $data["visits"]->chartSingleVisits = [];
+        $data["visits"]->chartUniqueVisits = [];
+        $data["visits"]->chartPageViews = [];
+        $data["visits"]->chartDates = [];
+        for ($i = 6; $i >= 0; $i--) {
+            $startDay = today()->subDays($i);
+            $endDay = today()->subDays($i - 1);
+            $data["visits"]->chartSingleVisits[] = $visits->where('updated_at', '>', $startDay)->where('updated_at', '<', $endDay)->count();
+            $data["visits"]->chartUniqueVisits[] = $visits->where('created_at', '>', $startDay)->where('created_at', '<', $endDay)->count();
+            $data["visits"]->chartPageViews[] = $visits->where("updated_at", '>', $startDay)->where("updated_at", "<", $endDay)->sum("visit_count");
+            $data["visits"]->chartDates[] = strtotime($startDay) * 1000;
+        }
         return view(themeView("admin", "index"), $data);
     }
 

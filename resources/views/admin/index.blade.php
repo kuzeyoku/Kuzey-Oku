@@ -16,7 +16,7 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das1">
                     <div class="dash-counts">
-                        <h4>{{ $visits->where('updated_at', '>', today())->count() }}</h4>
+                        <h4>{{ $visits->todaySingleVisits }}</h4>
                         <h5>@lang('admin/home.today_visits')</h5>
                     </div>
                     <div class="dash-imgs">
@@ -27,7 +27,7 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das2">
                     <div class="dash-counts">
-                        <h4>{{ $visits->count() }}</h4>
+                        <h4>{{ $visits->totalSingleVisits }}</h4>
                         <h5>@lang('admin/home.total_visits')</h5>
                     </div>
                     <div class="dash-imgs">
@@ -38,11 +38,45 @@
             <div class="col-xl-3 col-sm-6 col-12 d-flex">
                 <div class="dash-count das3">
                     <div class="dash-counts">
-                        <h4>{{ $visits->sum('visit_count') }}</h4>
+                        <h4>{{ $visits->totalPageViews }}</h4>
                         <h5>@lang('admin/home.total_page_views')</h5>
                     </div>
                     <div class="dash-imgs">
                         <i data-feather="eye"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">@lang('admin/home.visits')</h5>
+                    </div>
+                    <div class="card-body">
+                        <div id="s-line-area" class="chart-set"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">@lang('admin/home.popular_posts')</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    @foreach ($popularPosts as $post)
+                                        <tr>
+                                            <td><a href="{{ $post->url }}">{{ Str::limit($post->title, 50, '...') }}</a>
+                                            </td>
+                                            <td>{{ $post->views }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -93,3 +127,47 @@
         </div>
     </div>
 @endsection
+@push('script')
+    <script src="{{ themeAsset('admin', 'plugins/apexchart/apexcharts.min.js') }}"></script>
+    <script>
+        'use strict';
+        $(document).ready(function() {
+            if ($('#s-line-area').length > 0) {
+                var sLineArea = {
+                    chart: {
+                        height: 400,
+                        type: 'area',
+                    },
+                    dataLabels: {
+                        enabled: true
+                    },
+                    series: [{
+                        name: "{{ __('admin/home.single_visits') }}",
+                        data: {{ json_encode($visits->chartSingleVisits) }}
+                    }, {
+                        name: "{{ __('admin/home.unique_visits') }}",
+                        data: {{ json_encode($visits->chartUniqueVisits) }}
+                    }, {
+                        name: "{{ __('admin/home.page_views') }}",
+                        data: {{ json_encode($visits->chartPageViews) }}
+                    }],
+                    xaxis: {
+                        labels: {
+                            datetimeUTC: false,
+                            format: 'dd/MM/yyyy'
+                        },
+                        type: 'datetime',
+                        categories: {{ json_encode($visits->chartDates) }},
+                    },
+                    tooltip: {
+                        x: {
+                            format: 'dd/MM/yyyy'
+                        },
+                    }
+                }
+                var chart = new ApexCharts(document.querySelector("#s-line-area"), sLineArea);
+                chart.render();
+            }
+        });
+    </script>
+@endpush

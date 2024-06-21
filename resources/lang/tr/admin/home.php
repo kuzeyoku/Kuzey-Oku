@@ -26,4 +26,9 @@ return [
     "visitor_counter_clear" => "Ziyaretçi Sayacı Temizle",
     "visitor_counter_clear_success" => "Tüm Ziyaretçi Kayıtları Başarıyla Temizlendi",
     "visitor_counter_clear_error" => "Ziyaretçi Sayacı Temizlenirken Bir Hata Oluştu",
+    "visits" => "Ziyaretçiler",
+    "single_visits" => "Tekil Ziyaretler",
+    "unique_visits" => "Yeni Ziyaretçiler",
+    "page_views" => "Sayfa Görüntülemeleri",
+    "popular_posts" => "En Çok Okunan Yazılar",
 ];
