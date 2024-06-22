@@ -51,7 +51,7 @@ class MenuProvider extends ServiceProvider
 
         view()->composer("layout.header", function ($view) use ($cache, $cacheTime) {
             $headerMenu = $cache->remember("headerMenu_" . app()->getLocale(), $cacheTime, function () {
-                return Menu::whereType("header")->order()->get();
+                return Menu::order()->get();
             });
             $view->with(compact("headerMenu"));
         });
