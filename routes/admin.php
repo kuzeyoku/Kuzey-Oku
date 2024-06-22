@@ -45,10 +45,6 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
         Route::get("cache-clear", [App\Http\Controllers\Admin\HomeController::class, "cacheClear"])->name("cache_clear");
         Route::get("log-clear/{file}", [App\Http\Controllers\Admin\LogController::class, "clear"])->name("log_clear");
         Route::post("clear-visitor-counter", [App\Http\Controllers\Admin\HomeController::class, "clearVisitorCounter"])->name("clearvisitorcounter");
-        Route::get("update-visitor-counter", function () {
-            \Illuminate\Support\Facades\Cache::forget("visits");
-            return back()->withSuccess("Ziyaretçi Kayıtları Güncellendi");
-        })->name("updatevisitorcounter");
 
         Route::controller(App\Http\Controllers\Admin\LanguageController::class)->prefix("language")->group(function () {
             Route::match(["get", "post"], "/{language}/files", "files")->name("language.files");

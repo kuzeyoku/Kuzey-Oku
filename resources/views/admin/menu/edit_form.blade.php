@@ -1,6 +1,3 @@
-@php
-    unset($parentList[$menu->id]);
-@endphp
 {{ html()->form('PUT')->route("admin.{$route}.update", $menu)->open() }}
 <div class="tab-content">
     @foreach (languageList() as $key => $lang)
@@ -15,12 +12,11 @@
 {{ html()->label(__("admin/{$folder}.form_order")) }}
 {{ html()->number('order', $menu->order)->placeholder(__("admin/{$folder}.form_order_placeholder"))->class('form-control') }}
 {{ html()->label(__("admin/{$folder}.form_parent")) }}
-{{ html()->select('parent_id', $parentList, $menu->parent_id)->placeholder(__("admin/general.select"))->class('form-control') }}
+{{ html()->select('parent_id', $parentList, $menu->parent_id)->placeholder(__('admin/general.select'))->class('form-control') }}
 <label class="inputcheck">
     {{ html()->label(__("admin/{$folder}.form_blank")) }}
     {{ html()->checkbox('blank', true, $menu->blank) }}
     <span class="checkmark"></span>
 </label>
-{{ html()->hidden('type', $type) }}
 {{ html()->submit(__('admin/general.save'))->class('btn btn-primary') }}
 {{ html()->form()->close() }}

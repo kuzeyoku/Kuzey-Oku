@@ -23,7 +23,6 @@ class MenuService extends BaseService
     {
         $data = new Request([
             "url" => $request->urlSelect ?? $request->url,
-            "type" => $request->type,
             "parent_id" => $request->parent_id ?? 0,
             "order" => $request->order,
             "blank" => $request->blank ?? false,
@@ -42,7 +41,6 @@ class MenuService extends BaseService
     {
         $data = new Request([
             "url" => $request->urlSelect ?? $request->url,
-            "type" => $request->type,
             "parent_id" => $request->parent_id ?? 0,
             "order" => $request->order,
             "blank" => $request->blank ?? false,

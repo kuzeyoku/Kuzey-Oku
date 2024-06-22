@@ -11,7 +11,6 @@ class Menu extends Model
 
     protected $fillable = [
         "url",
-        "type",
         "parent_id",
         "order",
         "blank",
@@ -41,7 +40,7 @@ class Menu extends Model
 
     public function scopeOrder($query)
     {
-        return $query->orderBy("order", "asc");
+        return $query->orderBy("order");
     }
 
     public function getTitlesAttribute()
@@ -53,10 +52,4 @@ class Menu extends Model
     {
         return $this->translate->where("lang", $this->locale)->pluck('title')->first();
     }
-
-    public static function toSelectArray($type)
-    {
-        return Menu::whereType($type)->get()->pluck("titles." . app()->getLocale(), "id")->toArray();
-    }
-
 }

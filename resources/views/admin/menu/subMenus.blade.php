@@ -8,7 +8,7 @@
                 <a href="{{ route("admin.{$folder}.edit", $subMenu) }}" class="btn btn-sm btn-primary">
                     {{ __('admin/general.edit') }}
                 </a>
-                {{ html()->form('DELETE')->route(route("admin.{$route}.destroy", $subMenu))->open() }}
+                {{ html()->form('DELETE')->route("admin.{$route}.destroy", $subMenu)->class('d-inline')->open() }}
                 <a href="javascript:void(0);" class="btn btn-sm btn-danger destroy-btn">
                     {{ __('admin/general.delete') }}
                 </a>

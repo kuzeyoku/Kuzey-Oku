@@ -22,32 +22,28 @@ class MenuController extends Controller
         ]);
     }
 
-    public function header($type = "header", $menu = null)
+    public function index()
     {
-        return $this->renderMenuView($type, $menu);
-    }
-
-    public function footer($type = "footer", $menu = null)
-    {
-        return $this->renderMenuView($type, $menu);
-    }
-
-    public function renderMenuView($type, $menu)
-    {
-        $menus = Menu::whereType($type)->order()->get();
-        $parentList = Menu::toSelectArray($type);
-        $urlList = $this->service->getUrlList();
-        return view(themeView("admin", "{$this->service->folder()}.index"), compact('menus', 'type', "parentList", "urlList", "menu"));
+        $data = $this->getData();
+        $data["menu"] = null;
+        return view(themeView("admin", "{$this->service->folder()}.index"), $data);
     }
 
     public function edit(Menu $menu)
     {
-        if ($menu->type == "header")
-            return $this->header($menu->type, $menu);
-        elseif ($menu->type == "footer")
-            return $this->footer($menu->type, $menu);
-        else
-            return back()->withError(__("admin/{$this->service->folder()}.edit_error"));
+        $data = $this->getData($menu);
+        $data["menu"] = $menu;
+        return view(themeView("admin", "{$this->service->folder()}.index"), $data);
+    }
+
+    private function getData($menu = null)
+    {
+        $getMenuData = Menu::order()->get();
+        $parents = $getMenuData->whereNotIn("id", [optional($menu)->id] ?? []);
+        $data["menus"] = $getMenuData;
+        $data["parentList"] = $parents->pluck("title", "id");
+        $data["urlList"] = $this->service->getUrlList();
+        return $data;
     }
 
     public function store(StoreMenuRequest $request)
@@ -56,7 +52,7 @@ class MenuController extends Controller
             $this->service->create($request);
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
-                ->route("admin.{$this->service->route()}.$request->type")
+                ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
         } catch (Exception $e) {
             LogController::logger("error", $e->getMessage());
@@ -72,7 +68,7 @@ class MenuController extends Controller
             $this->service->update($request, $menu);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $menu->title]));
             return redirect()
-                ->route("admin.{$this->service->route()}.$request->type")
+                ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
         } catch (Exception $e) {
             LogController::logger("error", $e->getMessage());
@@ -88,7 +84,7 @@ class MenuController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $menu->title]));
             $this->service->delete($menu);
             return redirect()
-                ->route("admin.{$this->service->route()}.$menu->type")
+                ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
         } catch (Exception $e) {
             LogController::logger("error", $e->getMessage());

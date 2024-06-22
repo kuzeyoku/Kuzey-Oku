@@ -21,6 +21,5 @@
     {{ html()->checkbox('blank', false, true) }}
     <span class="checkmark"></span>
 </label>
-{{ html()->hidden('type', $type) }}
 {{ html()->submit(__('admin/general.save'))->class('btn btn-primary') }}
 {{ html()->form()->close() }}

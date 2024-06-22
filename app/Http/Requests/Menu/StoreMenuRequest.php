@@ -26,7 +26,6 @@ class StoreMenuRequest extends FormRequest
             "title.*" => "",
             "url" => "nullable",
             "urlSelect" => "nullable",
-            "type" => "required|in:header,footer",
             "parent_id" => "numeric|min:0|nullable",
             "order" => "required|numeric|min:0",
             "blank" => "nullable|boolean",
@@ -38,7 +37,6 @@ class StoreMenuRequest extends FormRequest
         return [
             "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
             "title.*" => __("admin/{$this->folder}.form_title"),
-            "type" => __("admin/{$this->folder}.form_type"),
             "parent_id" => __("admin/{$this->folder}.form_parent"),
             "order" => __("admin/general.order"),
             "blank" => __("admin/{$this->folder}.form_blank"),
