@@ -178,8 +178,7 @@ enum ModuleEnum: string
                 "index" => __("admin/$this->value.list"),
             ],
             self::Menu => [
-                "header" => __("admin/$this->value.header_title"),
-                "footer" => __("admin/$this->value.footer_title"),
+                "index" => __("admin/$this->value.index"),
             ],
             self::Page => [
                 "create" => __("admin/$this->value.create"),
