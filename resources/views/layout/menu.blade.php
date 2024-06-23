@@ -1,8 +1,8 @@
-<li class="{{ $menu->subMenu->count() > 0 :? 'dropdown' }}">
-    <a href="{{ $menu->url ?? '#' }}">{{ $menu->title }}</a>
+<li class="{{ $menu->subMenu->isNotEmpty() ? 'dropdown' : '' }}">
+    <a href="{{ $menu->url ?? '#' }}">{{ $menu->title }}@svg('fas-chevron-down')</a>
     <ul class="sub-menu">
         @foreach ($menu->subMenu as $subMenu)
-            @if ($subMenu->subMenu->count() > 0)
+            @if ($subMenu->subMenu->isNotEmpty())
                 @include('layout.menu', ['menu' => $subMenu])
             @else
                 <li><a href="{{ $subMenu->url }}">{{ $subMenu->title }}</a></li>
