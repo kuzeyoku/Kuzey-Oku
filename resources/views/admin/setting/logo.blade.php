@@ -15,3 +15,10 @@
         </div>
     </div>
 @endsection
+@push('style')
+    <link rel="stylesheet" href="{{ themeAsset('admin', 'css/dropify.min.css') }}">
+@endpush
+@push('script')
+    <script src="{{ themeAsset('admin', 'js/dropzone.min.js') }}"></script>
+    <script src="{{ themeAsset('admin', 'js/dropify.min.js') }}"></script>
+@endpush
