@@ -21,6 +21,8 @@ class SettingService
     public function update(Request $request)
     {
         if ($request->category == "logo") {
+            if (!Storage::exists("public/logo"))
+                Storage::makeDirectory("public/logo");
             if ($request->hasFile("header-logo") && $request->{'header-logo'}->isValid())
                 Storage::putFileAs("public/logo", $request->file("header-logo"), "header-logo.png");
             if ($request->hasFile("footer-logo") && $request->{'footer-logo'}->isValid())
