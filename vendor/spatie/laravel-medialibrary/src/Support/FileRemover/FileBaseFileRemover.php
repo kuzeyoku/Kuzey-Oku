@@ -8,13 +8,11 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class FileBaseFileRemover extends DefaultFileRemover implements FileRemover
 {
-    public function __construct(protected Filesystem $mediaFileSystem, protected Factory $filesystem)
-    {
-    }
+    public function __construct(protected Filesystem $mediaFileSystem, protected Factory $filesystem) {}
 
     public function removeAllFiles(Media $media): void
     {
-        $this->removeFile($this->mediaFileSystem->getMediaDirectory($media). $media->file_name, $media->disk);
+        $this->removeFile($this->mediaFileSystem->getMediaDirectory($media).$media->file_name, $media->disk);
 
         $this->removeConvertedImages($media);
     }

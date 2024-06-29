@@ -14,14 +14,10 @@ class MediaRepository
 {
     public function __construct(
         protected Media $model
-    ) {
-    }
+    ) {}
 
     /**
      * Get all media in the collection.
-     *
-     * @param array|callable $filter
-     *
      */
     public function getCollection(
         HasMedia $model,
@@ -33,11 +29,6 @@ class MediaRepository
 
     /**
      * Apply given filters on media.
-     *
-     * @param Collection $media
-     * @param array|callable $filter
-     *
-     * @return Collection
      */
     protected function applyFilterToMediaCollection(
         Collection $media,

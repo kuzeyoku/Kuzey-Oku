@@ -74,13 +74,6 @@ class FileAdder
         return $this;
     }
 
-    /*
-     * Set the file that needs to be imported.
-     *
-     * @param string|UploadedFile $file
-     *
-     * @return $this
-     */
     public function setFile($file): self
     {
         $this->file = $file;
@@ -244,7 +237,7 @@ class FileAdder
             throw FileIsTooBig::create($this->pathToFile, $storage->size($this->pathToFile));
         }
 
-        $mediaClass = config('media-library.media_model');
+        $mediaClass = $this->subject?->getMediaModel() ?? config('media-library.media_model');
         /** @var Media $media */
         $media = new $mediaClass();
 
@@ -307,7 +300,7 @@ class FileAdder
             throw FileIsTooBig::create($this->pathToFile);
         }
 
-        $mediaClass = config('media-library.media_model');
+        $mediaClass = $this->subject?->getMediaModel() ?? config('media-library.media_model');
         /** @var Media $media */
         $media = new $mediaClass();
 
@@ -387,7 +380,7 @@ class FileAdder
         return $originalsDiskName;
     }
 
-    protected function ensureDiskExists(string $diskName)
+    protected function ensureDiskExists(string $diskName): void
     {
         if (is_null(config("filesystems.disks.{$diskName}"))) {
             throw DiskDoesNotExist::create($diskName);
@@ -408,7 +401,7 @@ class FileAdder
         return $this;
     }
 
-    protected function attachMedia(Media $media)
+    protected function attachMedia(Media $media): void
     {
         if (! $this->subject->exists) {
             $this->subject->prepareToAttachMedia($media, $this);
@@ -427,7 +420,7 @@ class FileAdder
         $this->processMediaItem($this->subject, $media, $this);
     }
 
-    protected function processMediaItem(HasMedia $model, Media $media, self $fileAdder)
+    protected function processMediaItem(HasMedia $model, Media $media, self $fileAdder): void
     {
         $this->guardAgainstDisallowedFileAdditions($media);
 
@@ -494,7 +487,7 @@ class FileAdder
             ->first(fn (MediaCollection $collection) => $collection->name === $collectionName);
     }
 
-    protected function guardAgainstDisallowedFileAdditions(Media $media)
+    protected function guardAgainstDisallowedFileAdditions(Media $media): void
     {
         $file = PendingFile::createFromMedia($media);
 
@@ -511,7 +504,7 @@ class FileAdder
         }
     }
 
-    protected function checkGenerateResponsiveImages(Media $media)
+    protected function checkGenerateResponsiveImages(Media $media): void
     {
         $collection = optional($this->getMediaCollection($media->collection_name))->generateResponsiveImages;
 
@@ -545,7 +538,7 @@ class FileAdder
     protected function appendExtension(string $file, ?string $extension): string
     {
         return $extension
-            ? $file . '.' . $extension
+            ? $file.'.'.$extension
             : $file;
     }
 }

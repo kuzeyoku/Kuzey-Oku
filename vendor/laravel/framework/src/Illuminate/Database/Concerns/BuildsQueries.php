@@ -139,6 +139,8 @@ trait BuildsQueries
      * @param  string|null  $alias
      * @param  bool  $descending
      * @return bool
+     *
+     * @throws \RuntimeException
      */
     public function orderedChunkById($count, callable $callback, $column = null, $alias = null, $descending = false)
     {
@@ -538,7 +540,7 @@ trait BuildsQueries
     /**
      * Pass the query to a given callback.
      *
-     * @param  callable  $callback
+     * @param  callable($this): mixed  $callback
      * @return $this
      */
     public function tap($callback)
