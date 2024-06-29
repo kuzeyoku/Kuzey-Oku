@@ -39,7 +39,7 @@
                                 @foreach ($services as $service)
                                     <figure class="image">
                                         <a href="{{ $service->url }}">
-                                            <img src="{{ $service->getFirstMediaUrl('cover', 'thumbnail') }}"
+                                            <img src="{{ $service->getFirstMediaUrl('cover') }}"
                                                 alt="{{ $service->title }}">
                                         </a>
                                     </figure>

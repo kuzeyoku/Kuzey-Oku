@@ -2,16 +2,16 @@
 @section('setting_form')
     <div class="row">
         <div class="col-lg-3">
-            {{ html()->file('header-logo')->class('dropify-image')->attribute('data-default-file', asset('storage/logo/header-logo.png'))->accept('.png, .jpg, .jpeg, .gif') }}
+            {{ html()->file('header-logo')->class('dropify-image')->attribute('data-default-file', $service->getMedia('header-logo'))->accept('.png, .jpg, .jpeg, .gif') }}
         </div>
         <div class="col-lg-3">
-            {{ html()->file('footer-logo')->class('dropify-image')->attribute('data-default-file', asset('storage/logo/footer-logo.png'))->accept('.png, .jpg, .jpeg, .gif') }}
+            {{ html()->file('footer-logo')->class('dropify-image')->attribute('data-default-file', $service->getMedia('footer-logo'))->accept('.png, .jpg, .jpeg, .gif') }}
         </div>
         <div class="col-lg-3">
-            {{ html()->file('cover')->class('dropify-image')->attribute('data-default-file', asset('storage/logo/cover.png'))->accept('.png, .jpg, .jpeg, .gif') }}
+            {{ html()->file('cover')->class('dropify-image')->attribute('data-default-file', $service->getMedia('cover'))->accept('.png, .jpg, .jpeg, .gif') }}
         </div>
         <div class="col-lg-3">
-            {{ html()->file('favicon')->class('dropify-image')->attribute('data-default-file', asset('storage/logo/favicon.ico'))->accept('.png, .ico') }}
+            {{ html()->file('favicon')->class('dropify-image')->attribute('data-default-file', $service->getMedia('favicon'))->accept('.png, .ico') }}
         </div>
     </div>
 @endsection
