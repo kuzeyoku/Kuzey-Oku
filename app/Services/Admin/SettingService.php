@@ -2,9 +2,10 @@
 
 namespace App\Services\Admin;
 
+use App\Models\Setting;
 use App\Enums\ModuleEnum;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class SettingService
 {
@@ -21,14 +22,26 @@ class SettingService
     public function update(Request $request)
     {
         if ($request->category == "logo") {
-            if (!Storage::exists("public/logo"))
-                Storage::makeDirectory("public/logo");
-            if ($request->hasFile("header-logo") && $request->{'header-logo'}->isValid())
-                Storage::putFileAs("public/logo", $request->file("header-logo"), "header-logo.png");
-            if ($request->hasFile("footer-logo") && $request->{'footer-logo'}->isValid())
-                Storage::putFileAs("public/logo", $request->file("footer-logo"), "footer-logo.png");
-            if ($request->hasFile("cover") && $request->{'cover'}->isValid())
-                Storage::putFileAs("public/logo", $request->file("cover"), "cover.png");
+            $arr = ["header-logo", "footer-logo", "cover", "favicon"];
+            foreach ($arr as $key) {
+                if ($request->hasFile($key)) {
+                    $media = Media::create([
+                        "model_type" => Setting::class,
+                        "model_id" => 1,
+                        "collection_name" => $key,
+                        "name" => $key,
+                        "disk" => "media",
+                        "manipulations" => [],
+                        "custom_properties" => [],
+                        "responsive_images" => [],
+                        "generated_conversions" => [],
+                        "file_name" => $key,
+                        "mime_type" => "image/png",
+                        "size" => $request->file($key)->getSize(),
+                    ]);
+                    $media->copy($request->file($key)->getRealPath());
+                }
+            }
         }
         $except = $request->except("_token", "_method", "category");
         if ($request->category == "social") {
