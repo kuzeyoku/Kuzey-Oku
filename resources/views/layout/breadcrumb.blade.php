@@ -1,4 +1,4 @@
-<section class="page-title" style="background-image: url({{ themeAsset('front', 'images/page-title.jpg') }});">
+<section class="page-title" style="background-image: url({{ $themeAsset->breadcrumb }});">
     <div class="auto-container">
         <div class="title-outer">
             <h1 class="title">@yield('title')</h1>

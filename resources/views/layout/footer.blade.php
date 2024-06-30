@@ -1,11 +1,11 @@
 <footer class="main-footer">
+    <div class="bg bg-pattern-5"></div>
     <div class="widgets-section">
         <div class="auto-container">
             <div class="row">
                 <div class="footer-column col-xl-3 col-lg-12 col-md-12">
                     <div class="footer-widget about-widget">
-                        <div class="logo"><a href="{{ route('home') }}"><img
-                                    src="{{ themeAsset('front', 'images/logo.png') }}"
+                        <div class="logo"><a href="{{ route('home') }}"><img src="{{ $themeAsset->logo_light }}"
                                     alt="{{ settings('general.title') }}"></a>
                         </div>
                         <div class="text">{{ settings('general.description') }}</div>

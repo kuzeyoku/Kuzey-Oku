@@ -36,7 +36,7 @@
                 <div class="logo-box">
                     <div class="logo">
                         <a href="{{ route('home') }}">
-                            <img src="{{ themeAsset('front', 'images/logo.png') }}"
+                            <img src="{{ $themeAsset->logo_light }}"
                                 alt="{{ settings('general.title', env('APP_NAME')) }}">
                         </a>
                     </div>
@@ -72,8 +72,8 @@
         <div class="menu-backdrop"></div>
         <nav class="menu-box">
             <div class="upper-box">
-                <div class="nav-logo"><a href="{{ route('home') }}"><img
-                            src="{{ themeAsset('front', 'images/logo.png') }}"></a></div>
+                <div class="nav-logo"><a href="{{ route('home') }}"><img src="{{ $themeAsset->logo_light }}"></a>
+                </div>
                 <div class="close-btn"><i class="icon fa fa-times"></i></div>
             </div>
             <ul class="contact-list-one">
@@ -116,7 +116,7 @@
             <div class="inner-container">
                 <div class="logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ themeAsset('front', 'images/logo-2.png') }}"
+                        <img src="{{ $themeAsset->logo_dark }}"
                             alt="{{ settings('general.title', env('APP_NAME')) }}">
                     </a>
                 </div>

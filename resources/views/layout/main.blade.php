@@ -15,8 +15,8 @@
     <link href="{{ themeAsset('front', 'css/style.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/responsive.css') }}" rel="stylesheet">
     @stack('style')
-    <link rel="shortcut icon" href="{{ themeAsset('front', 'images/favicon.png') }}" type="image/x-icon">
-    <link rel="icon" href="{{ themeAsset('front', 'images/favicon.png') }}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
+    <link rel="icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
 
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
