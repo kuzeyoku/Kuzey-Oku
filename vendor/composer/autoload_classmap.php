@@ -149,6 +149,7 @@ return array(
     'App\\Providers\\MenuProvider' => $baseDir . '/app/Providers/MenuProvider.php',
     'App\\Providers\\PopupProvider' => $baseDir . '/app/Providers/PopupProvider.php',
     'App\\Providers\\RouteServiceProvider' => $baseDir . '/app/Providers/RouteServiceProvider.php',
+    'App\\Providers\\ThemeProvider' => $baseDir . '/app/Providers/ThemeProvider.php',
     'App\\Services\\Admin\\BaseService' => $baseDir . '/app/Services/Admin/BaseService.php',
     'App\\Services\\Admin\\BlogService' => $baseDir . '/app/Services/Admin/BlogService.php',
     'App\\Services\\Admin\\BrandService' => $baseDir . '/app/Services/Admin/BrandService.php',

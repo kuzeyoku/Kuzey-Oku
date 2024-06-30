@@ -849,6 +849,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Providers\\MenuProvider' => __DIR__ . '/../..' . '/app/Providers/MenuProvider.php',
         'App\\Providers\\PopupProvider' => __DIR__ . '/../..' . '/app/Providers/PopupProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
+        'App\\Providers\\ThemeProvider' => __DIR__ . '/../..' . '/app/Providers/ThemeProvider.php',
         'App\\Services\\Admin\\BaseService' => __DIR__ . '/../..' . '/app/Services/Admin/BaseService.php',
         'App\\Services\\Admin\\BlogService' => __DIR__ . '/../..' . '/app/Services/Admin/BlogService.php',
         'App\\Services\\Admin\\BrandService' => __DIR__ . '/../..' . '/app/Services/Admin/BrandService.php',
