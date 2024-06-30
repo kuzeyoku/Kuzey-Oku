@@ -38,6 +38,7 @@ class SettingService
                     }
                 }
             }
+            dd("aaaaa");
             return true;
         }
         $except = $request->except("_token", "_method", "category");
