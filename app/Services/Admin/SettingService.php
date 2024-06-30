@@ -21,7 +21,7 @@ class SettingService
 
     public function update(Request $request)
     {
-        if ($request->category == "logo") {
+        if ($request->category == "asset") {
             foreach ($request->files as $key => $file) {
                 if ($request->hasFile($key)) {
                     $asset = ThemeAsset::where("name", $key)->first();
@@ -38,8 +38,7 @@ class SettingService
                     }
                 }
             }
-            dd("aaaaa");
-            return true;
+            return;
         }
         $except = $request->except("_token", "_method", "category");
         $settings = array_reduce(array_keys($except), function ($result, $key) use ($except, $request) {
