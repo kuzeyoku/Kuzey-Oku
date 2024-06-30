@@ -47,18 +47,6 @@ Route::middleware(CountVisitors::class, Maintenance::class)->group(function () {
             Route::get("/{category}", "category")->name("project.category");
         });
     }
-
-    // if (ModuleEnum::Product->status()) {
-    //     Route::controller(App\Http\Controllers\ProductController::class)->prefix("product")->group(function () {
-    //         Route::get("/", "index")->name("product.index");
-    //         Route::get("/{product}/{slug}", "show")->name("product.show");
-    //         Route::get("/{category}", "category")->name("product.category");
-    //     });
-    // }
 });
 
 Route::get("maintenance", [App\Http\Controllers\MaintenanceController::class, "index"])->name("maintenance");
-
-// Route::get("/reference", [App\Http\Controllers\ReferenceController::class, "index"])->name("reference.index");
-
-//Route::get("/category/{category}/{slug}", [App\Http\Controllers\CategoryController::class, "show"])->name("category.show");
