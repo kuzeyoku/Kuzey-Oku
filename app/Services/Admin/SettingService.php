@@ -38,7 +38,7 @@ class SettingService
                     }
                 }
             }
-            return;
+            return true;
         }
         $except = $request->except("_token", "_method", "category");
         $settings = array_reduce(array_keys($except), function ($result, $key) use ($except, $request) {
