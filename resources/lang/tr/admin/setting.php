@@ -18,7 +18,7 @@ return [
     "category_sitemap" => "Site Haritası Ayarları",
     "category_seo" => "SEO Ayarları",
     "category_integration" => "Entegrasyon Ayarları",
-    "category_logo" => "Logo Ayarları",
+    "category_asset" => "Görsel Ayarları",
     "general_title" => "Site Başlığı",
     "general_title_placeholder" => "Site Başlığını Giriniz",
     "general_description" => "Site Açıklaması",
@@ -142,7 +142,5 @@ return [
     "google_analytics_status" => "Google Analytics Durumu",
     "google_analytics_code" => "Google Analytics Kodu",
     "google_analytics_code_placeholder" => "Google Analytics Kodunu Giriniz",
-    "logo_header" => "Header Logo",
-    "logo_footer" => "Footer Logo",
-    "logo_favicon" => "Favicon",
+    "asset_usage" => "Kullanım : :code",
 ];

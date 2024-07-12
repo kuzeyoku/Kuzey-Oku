@@ -5,6 +5,7 @@ namespace App\Services\Admin;
 use App\Enums\ModuleEnum;
 use App\Models\ThemeAsset;
 use Illuminate\Http\Request;
+use stdClass;
 
 class SettingService
 {
@@ -18,34 +19,20 @@ class SettingService
         return "setting";
     }
 
-    public function mediaKeys(): array
-    {
-        return ["header-logo", "footer-logo", "cover", "favicon"];
-    }
-
-    public function getMedia($key): ?string
-    {
-        $medias = cache()->remember("general_media", 60 * 60 * 24, function () {
-            return ThemeAsset::all();
-        });
-        $media = $medias->where("name", $key)->first();
-        return $media ? $media->getFirstMediaUrl($key) : null;
-    }
-
     public function update(Request $request)
     {
-        if ($request->category == "logo") {
+        if ($request->category == "asset") {
             foreach ($request->files as $key => $file) {
-                if (in_array($key, $this->mediaKeys()) && $request->hasFile($key)) {
-                    $media = ThemeAsset::where("name", $key)->first();
-                    if ($media) {
-                        $media->clearMediaCollection($key);
+                if ($request->hasFile($key)) {
+                    $asset = ThemeAsset::where("name", $key)->first();
+                    if ($asset) {
+                        $asset->clearMediaCollection($key);
                     } else {
-                        $media = ThemeAsset::create(["name" => $key]);
+                        $asset = ThemeAsset::create(["name" => $key]);
                     }
                     try {
-                        $media->addMediaFromRequest($key)->usingFileName($key . "." . $request->{$key}->extension())->toMediaCollection($key);
-                        cache()->forget("general_media");
+                        $asset->addMediaFromRequest($key)->usingFileName($key . "." . $request->{$key}->extension())->toMediaCollection($key);
+                        cache()->forget("theme_assets");
                     } catch (\Exception $e) {
                         //Exception
                     }
@@ -88,5 +75,21 @@ class SettingService
             "yearly" => __("admin/setting.sitemap_changefreq_yearly"),
             "never" => __("admin/setting.sitemap_changefreq_never"),
         ];
+    }
+
+    public static function getThemeAssets(): stdClass
+    {
+        $asset = new stdClass();
+        $asset->logo_light = null;
+        $asset->logo_dark = null;
+        $asset->favicon = null;
+        $asset->cover = null;
+        $asset->breadcrumb = null;
+        $asset->about1 = null;
+        $asset->about2 = null;
+        $asset->about3 = null;
+        $asset->why_us1 = null;
+        $asset->why_us2 = null;
+        return $asset;
     }
 }

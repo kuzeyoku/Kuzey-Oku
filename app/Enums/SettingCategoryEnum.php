@@ -17,7 +17,7 @@ enum SettingCategoryEnum: string
     case Sitemap = "sitemap";
     case Seo = "seo";
     case Integration = "integration";
-    case Logo = "logo";
+    case Asset = "asset";
 
     public function title(): string
     {
@@ -40,7 +40,7 @@ enum SettingCategoryEnum: string
             self::Sitemap => true,
             self::Seo => true,
             self::Integration => true,
-            self::Logo => false,
+            self::Asset => false,
         };
     }
 
