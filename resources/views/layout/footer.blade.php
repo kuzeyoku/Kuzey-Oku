@@ -24,7 +24,7 @@
                     <div class="footer-widget links-widget">
                         <h4 class="widget-title">@lang('front/footer.txt1')</h4>
                         <ul class="user-links">
-                            @foreach ($pages as $page)
+                            @foreach ($quickLinks as $page)
                                 <li><a href="{{ $page->url }}">{{ $page->title }}</a></li>
                             @endforeach
                         </ul>
@@ -36,7 +36,7 @@
                         <h4 class="widget-title">@lang('front/footer.txt2')</h4>
                         <div class="widget-content">
                             <div class="outer clearfix">
-                                @foreach ($services as $service)
+                                @foreach ($footer_services as $service)
                                     <figure class="image">
                                         <a href="{{ $service->url }}">
                                             <img src="{{ $service->getFirstMediaUrl('cover') }}"
