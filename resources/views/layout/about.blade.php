@@ -12,14 +12,17 @@
                     </div>
                     <blockquote class="blockquote-one">@lang('front/about.txt4')</blockquote>
                     <div class="btn-box">
-                        <a href="#"
-                            class="play-now-two lightbox-image"><i>@svg('fas-play', 'text-white')</i>@lang('front/about.txt5')</a>
-                        <a href="{{ isset($about) ? $about->url : '#' }}" class="theme-btn btn-style-one"><span
-                                class="btn-title">@lang('front/about.txt6')</span></a>
+                        @if (settings('general.video'))
+                            <a href="{{ settings('general.video') }}"
+                                class="play-now-two lightbox-image"><i>@svg('fas-play', 'text-white')</i>@lang('front/about.txt5')</a>
+                        @endif
+                        @if ($about)
+                            <a href="{{ $about->url }}" class="theme-btn btn-style-one"><span
+                                    class="btn-title">@lang('front/about.txt6')</span></a>
+                        @endif
                     </div>
                 </div>
             </div>
-
             <div class="image-column col-xl-6 col-lg-5 col-md-12 col-sm-12">
                 <div class="inner-column wow fadeInLeft">
                     <div class="image-box">

@@ -32,12 +32,13 @@ class ThemeProvider extends ServiceProvider
             });
             $view->with(compact("themeAsset"));
         });
-        View::composer("index", function ($view) {
+        View::composer("layout.about", function ($view) {
             $about = Cache::rememberForever('about_' . app()->getLocale(), function () {
                 if (settings("information.about_page")) {
                     return \App\Models\Page::find(settings("information.about_page"));
                 }
             });
+            $view->with(compact("about"));
         });
         View::composer("layout.header", function ($view) {
             $headerMenu = Cache::rememberForever("headerMenu_" . app()->getLocale(), function () {
