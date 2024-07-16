@@ -51,8 +51,6 @@
             </div>
         </div>
     </section>
-
-
     <section class="team-contact-form">
         <div class="container pb-100">
             <div class="sec-title text-center">
