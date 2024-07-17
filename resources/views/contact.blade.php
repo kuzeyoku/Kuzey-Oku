@@ -85,7 +85,7 @@
                     <div class="form-group mb-3">
                         {{ html()->textarea('message')->placeholder(__('front/contact.txt14'))->class('form-control') }}
                     </div>
-                    <button type="submit" class="theme-btn btn-style-one g-recaptcha"
+                    <button class="theme-btn btn-style-one g-recaptcha"
                         data-sitekey="{{ settings('integration.recaptcha_site_key') }}" data-callback='onSubmit'
                         data-action='submit'>
                         <span class="btn-title">@lang('front/contact.txt15')</span>
