@@ -16,10 +16,10 @@
             <div class="card-title-head">
                 <h6>@lang("admin/{$folder}.analytics")</h6>
             </div>
-            {{ html()->label(__("admin/{$folder}.google_analytics_status")) }}
-            {{ html()->select('analytics_status', App\Enums\StatusEnum::getOnOffSelectArray(), settings('integration.google_analytics.status'))->class('form-control') }}
-            {{ html()->label(__("admin/{$folder}.google_analytics_code")) }}
-            {{ html()->textarea('code', settings('integration.google_analytics.code'))->placeholder(__("admin/{$folder}.google_analytics_code_placeholder"))->class('form-control')->rows(3) }}
+            {{ html()->label(__("admin/{$folder}.analytics_status")) }}
+            {{ html()->select('analytics_status', App\Enums\StatusEnum::getOnOffSelectArray(), settings('integration.analytics_status'))->class('form-control') }}
+            {{ html()->label(__("admin/{$folder}.analytics_code")) }}
+            {{ html()->textarea('analytics_code', settings('integration.analytics_code'))->placeholder(__("admin/{$folder}.analytics_code_placeholder"))->class('form-control')->rows(3) }}
         </div>
     </div>
 @endsection

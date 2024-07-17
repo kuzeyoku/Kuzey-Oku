@@ -139,9 +139,9 @@ return [
     "recaptcha_site_key_placeholder" => "Site Anahtarı Giriniz",
     "recaptcha_secret_key" => "Gizli Anahtar",
     "recaptcha_secret_key_placeholder" => "Gizli Anahtar Giriniz",
-    "google_analytics" => "Google Analytics",
-    "google_analytics_status" => "Google Analytics Durumu",
-    "google_analytics_code" => "Google Analytics Kodu",
-    "google_analytics_code_placeholder" => "Google Analytics Kodunu Giriniz",
+    "analytics" => "Google Analytics",
+    "analytics_status" => "Google Analytics Durumu",
+    "analytics_code" => "Google Analytics Kodu",
+    "analytics_code_placeholder" => "Google Analytics Kodunu Giriniz",
     "asset_usage" => "Kullanım : :code",
 ];
