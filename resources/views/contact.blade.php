@@ -59,7 +59,7 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-lg-8">
-                    {{ html()->form()->route('contact.send')->open() }}
+                    {{ html()->form()->route('contact.send')->id('contact-form')->open() }}
                     <div class="row">
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
