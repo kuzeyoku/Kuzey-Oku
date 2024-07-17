@@ -64,26 +64,41 @@
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 {{ html()->text('name')->placeholder(__('front/contact.txt10'))->class('form-control') }}
+                                @if ($errors->has('name'))
+                                    <span class="text-danger">{{ $errors->first('name') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 {{ html()->email('email')->placeholder(__('front/contact.txt11'))->class('form-control') }}
+                                @if ($errors->has('email'))
+                                    <span class="text-danger">{{ $errors->first('email') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 {{ html()->text('phone')->placeholder(__('front/contact.txt12'))->class('form-control') }}
+                                @if ($errors->has('phone'))
+                                    <span class="text-danger">{{ $errors->first('phone') }}</span>
+                                @endif
                             </div>
                         </div>
                         <div class="col-lg-6 mb-3">
                             <div class="form-group">
                                 {{ html()->text('subject')->placeholder(__('front/contact.txt13'))->class('form-control') }}
+                                @if ($errors->has('subject'))
+                                    <span class="text-danger">{{ $errors->first('subject') }}</span>
+                                @endif
                             </div>
                         </div>
                     </div>
                     <div class="form-group mb-3">
                         {{ html()->textarea('message')->placeholder(__('front/contact.txt14'))->class('form-control') }}
+                        @if ($errors->has('message'))
+                            <span class="text-danger">{{ $errors->first('message') }}</span>
+                        @endif
                     </div>
                     <button class="theme-btn btn-style-one g-recaptcha"
                         data-sitekey="{{ settings('integration.recaptcha_site_key') }}" data-callback='onSubmit'

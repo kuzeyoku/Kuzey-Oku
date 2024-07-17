@@ -4827,7 +4827,7 @@ typeof navigator === "object" && (function (global, factory) {
     } else if (/(^img!|\.(png|gif|jpg|svg)$)/.test(path)) {
       // image
       e = doc.createElement('img');
-      e.src = pathStripped;    
+      e.src = pathStripped;
     } else {
       // javascript
       e = doc.createElement('script');

@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/style.css') }}">
 </head>
 
-<body class="account-page">
+<body>
     <div id="global-loader">
         <div class="whirly-loader"> </div>
     </div>
@@ -69,35 +69,11 @@
                         </div>
                         <div class="form-login">
                             {{ html()->submit(__('admin/auth.login'))->class('btn btn-login g-recaptcha')->attributes([
-                                    'data-sitekey' => config('setting.recaptcha.site_key'),
+                                    'data-sitekey' => settings('integration.recaptcha_site_key'),
                                     'data-callback' => 'onSubmit',
                                     'data-action' => 'submit',
                                 ]) }}
                         </div>
-                        {{-- <div class="form-setlogin or-text">
-                            <h4>&</h4>
-                        </div>
-                        <div class="form-sociallink">
-                            <ul class="d-flex">
-                                <li>
-                                    <a href="javascript:void(0);" class="facebook-logo">
-                                        <img src="{{ themeAsset('admin', 'img/icons/facebook-logo.svg') }}"
-                                            alt="Facebook">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);">
-                                        <img src="{{ themeAsset('admin', 'img/icons/google.png') }}" alt="Google">
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="javascript:void(0);" class="apple-logo">
-                                        <img src="{{ themeAsset('admin', 'img/icons/apple-logo.svg') }}"
-                                            alt="Apple">
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> --}}
                         <div class="my-4 d-flex justify-content-center align-items-center copyright-text">
                             <p>@lang("admin/{$folder}.copyright", ['year' => date('Y')])</p>
                         </div>
@@ -111,11 +87,10 @@
     <script src="{{ themeAsset('admin', 'js/jquery-3.7.1.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/feather.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'js/theme-script.js') }}"></script>
     <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
     @include(themeView('admin', 'layout.alert'))
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
-    @if (config('setting.recaptcha.status') == App\Enums\StatusEnum::Active->value)
+    @if (settings('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script>
             function onSubmit(token) {

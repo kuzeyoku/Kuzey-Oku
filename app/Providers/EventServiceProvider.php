@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Mail\Events\MessageSending;
+use App\Listeners\ChangeMailSettingsBeforeSending;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 
@@ -16,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        MessageSending::class => [
+            ChangeMailSettingsBeforeSending::class,
         ],
     ];
 

@@ -311,54 +311,6 @@ $(document).ready(function () {
         });
     }
 
-    // Summernote
-
-    if ($("#summernote").length > 0) {
-        $("#summernote").summernote({
-            height: 300, // set editor height
-            minHeight: null, // set minimum height of editor
-            maxHeight: null, // set maximum height of editor
-            focus: false, // set focus to editable area after initializing summernote
-        });
-    }
-
-    // Summernote
-
-    if ($("#summernote2").length > 0) {
-        $("#summernote2").summernote({
-            height: 300, // set editor height
-            minHeight: null, // set minimum height of editor
-            maxHeight: null, // set maximum height of editor
-            focus: true, // set focus to editable area after initializing summernote
-        });
-    }
-
-    if ($("#summernote3").length > 0) {
-        $("#summernote3").summernote({
-            placeholder: "Type your message",
-            height: 300, // set editor height
-            minHeight: null, // set minimum height of editor
-            maxHeight: null, // set maximum height of editor
-            focus: true, // set focus to editable area after initializing summernote
-        });
-    }
-    if ($("#summernote4").length > 0) {
-        $("#summernote4").summernote({
-            height: 300, // set editor height
-            minHeight: null, // set minimum height of editor
-            maxHeight: null, // set maximum height of editor
-            focus: true, // set focus to editable area after initializing summernote
-        });
-    }
-    if ($("#summernote5").length > 0) {
-        $("#summernote5").summernote({
-            height: 300, // set editor height
-            minHeight: null, // set minimum height of editor
-            maxHeight: null, // set maximum height of editor
-            focus: true, // set focus to editable area after initializing summernote
-        });
-    }
-
     // Sidebar Slimscroll
     if ($slimScrolls.length > 0) {
         $slimScrolls.slimScroll({
@@ -500,30 +452,6 @@ $(document).ready(function () {
         return false;
     });
 
-    //toggle_btn
-    // $(document).on('click', '#toggle_btn2', function() {
-    // 	if ($('body').hasClass('mini-sidebar')) {
-    // 		$('body').removeClass('mini-sidebar');
-    // 		$(this).addClass('active');
-    // 		$('.subdrop + ul');
-    // 		localStorage.setItem('screenModeNightTokenState', 'night');
-    // 		setTimeout(function() {
-    // 			$("body").removeClass("mini-sidebar");
-    // 			$(".header-left").addClass("active");
-    // 		}, 100);
-    // 	} else {
-    // 		$('body').addClass('mini-sidebar');
-    // 		$(this).removeClass('active');
-    // 		$('.subdrop + ul');
-    // 		localStorage.removeItem('screenModeNightTokenState', 'night');
-    // 		setTimeout(function() {
-    // 			$("body").addClass("mini-sidebar");
-    // 			$(".header-left").removeClass("active");
-    // 		}, 100);
-    // 	}
-    // 	return false;
-    // });
-
     if (localStorage.getItem("screenModeNightTokenState") == "night") {
         setTimeout(function () {
             $("body").removeClass("mini-sidebar");
@@ -537,54 +465,6 @@ $(document).ready(function () {
         $("body").addClass("sidebarrightmenu");
     });
 
-    $("#searchdiv").on("click", function () {
-        $(".searchinputs").addClass("show");
-    });
-    $(".search-addon span").on("click", function () {
-        $(".searchinputs").removeClass("show");
-    });
-    $(document).on("click", "#filter_search", function () {
-        $("#filter_inputs").slideToggle("slow");
-    });
-    $(document).on("click", "#filter_search1", function () {
-        $("#filter_inputs1").slideToggle("slow");
-    });
-    $(document).on("click", "#filter_search2", function () {
-        $("#filter_inputs2").slideToggle("slow");
-    });
-    $(document).on("click", "#filter_search3", function () {
-        $("#filter_inputs3").slideToggle("slow");
-    });
-    $(document).on("click", "#filter_search", function () {
-        $("#filter_search").toggleClass("setclose");
-    });
-    $(document).on("click", "#filter_search1", function () {
-        $("#filter_search1").toggleClass("setclose");
-    });
-    $(document).on("click", ".productset", function () {
-        $(this).toggleClass("active");
-    });
-    $(document).on("click", ".product-info", function () {
-        $(this).toggleClass("active");
-    });
-    $(document).on("click", ".layout-box", function () {
-        $(".layout-hide-box").toggleClass("layout-show-box");
-    });
-    $(document).on("click", ".select-option1", function () {
-        $(".select-color-add").addClass("selected-color-add");
-    });
-    $(".bank-box").on("click", function () {
-        $(".bank-box").removeClass("active");
-        $(this).addClass("active");
-    });
-    $(".theme-image").on("click", function () {
-        $(".theme-image").removeClass("active");
-        $(this).addClass("active");
-    });
-    $(".themecolorset").on("click", function () {
-        $(".themecolorset").removeClass("active");
-        $(this).addClass("active");
-    });
     //Increment Decrement value
     $(".inc.button").click(function () {
         var $this = $(this),
@@ -774,67 +654,6 @@ $(document).ready(function () {
         });
     }
 
-    var right_side_views =
-        '<div class="right-side-views d-none">' +
-        '<ul class="sticky-sidebar siderbar-view">' +
-        '<li class="sidebar-icons">' +
-        '<a class="toggle tipinfo open-layout open-siderbar" href="javascript:void(0);" data-toggle="tooltip" data-placement="left" data-bs-original-title="Tooltip on left">' +
-        '<div class="tooltip-five ">' +
-        '<img src="assets/img/icons/siderbar-icon2.svg" class="feather-five" alt="">' +
-        '<span class="tooltiptext">Check Layout</span>' +
-        "</div>" +
-        "</a>" +
-        "</li>" +
-        "</ul>" +
-        "</div>" +
-        '<div class="sidebar-layout">' +
-        '<div class="sidebar-content">' +
-        '<div class="sidebar-top">' +
-        '<div class="container-fluid">' +
-        '<div class="row align-items-center">' +
-        '<div class="col-xl-6 col-sm-6 col-12">' +
-        '<div class="sidebar-logo">' +
-        '<a href="index" class="logo">' +
-        '<img src="assets/img/logo.png" alt="Logo" class="img-flex">' +
-        "</a>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 col-sm-6 col-12">' +
-        '<a class="btn-closed" href="javascript:void(0);"><img class="img-fliud" src="assets/img/icons/sidebar-delete-icon.svg" alt="demo"></a>' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="container-fluid">' +
-        '<div class="row align-items-center">' +
-        '<h5 class="sidebar-title">Choose layout</h5>' +
-        '<div class="col-xl-12 col-sm-6 col-12">' +
-        '<div class="sidebar-image align-center">' +
-        '<img class="img-fliud" src="assets/img/demo-one.png" alt="demo">' +
-        "</div>" +
-        '<div class="row">' +
-        '<div class="col-lg-6 layout">' +
-        '<h5 class="layout-title">Dark Mode</h5>' +
-        "</div>" +
-        '<div class="col-lg-6 layout dark-mode">' +
-        '<label class="toggle-switch" for="notification_switch3">' +
-        "<span>" +
-        '<input type="checkbox" class="toggle-switch-input" id="notification_switch3">' +
-        '<span class="toggle-switch-label ms-auto">' +
-        '	<span class="toggle-switch-indicator"></span>' +
-        "</span>" +
-        "</span>" +
-        " </label>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        $("body").append(right_side_views);
-
-    // Sidebar Visible
 
     $(".open-layout").on("click", function (s) {
         s.preventDefault();
@@ -949,186 +768,6 @@ $(document).ready(function () {
             });
         }
     }, 1000);
-
-    '<div class="customizer-links">' +
-        '<ul class="sticky-sidebar">' +
-        '<li class="sidebar-icons">' +
-        '<a href="#" class="add-setting" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Tooltip on left">' +
-        '<img src="assets/img/icons/sidebar-icon-01.svg" class="feather-five" alt="">' +
-        "</a>" +
-        "</li>" +
-        '<li class="sidebar-icons">' +
-        '<a href="#" class="navigation-add" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Tooltip on left">' +
-        '<img src="assets/img/icons/sidebar-icon-02.svg" class="feather-five" alt="">' +
-        "</a>" +
-        "</li>" +
-        '<li class="sidebar-icons">' +
-        '<a href="https://themeforest.net/item/dreamspos-pos-inventory-management-admin-dashboard-template/38834413" target="_blank" data-bs-toggle="tooltip" data-bs-placement="left" data-bs-original-title="Tooltip on left">' +
-        '<img src="assets/img/icons/sidebar-icon-03.svg" class="feather-five" alt="">' +
-        "</a>" +
-        "</li>" +
-        "</ul>" +
-        "</div>" +
-        '<div class="sidebar-settings preview-toggle">' +
-        '<div class="sidebar-content sticky-sidebar-one">' +
-        '<div class="sidebar-header">' +
-        "<h5>Preview Settings</h5>" +
-        '<a class="sidebar-close" href="#"><img src="assets/img/icons/close-icon.svg" alt=""></a>' +
-        "</div>" +
-        '<div class="sidebar-body">' +
-        '<h6 class="theme-title">Choose Mode</h6>' +
-        '<div class="switch-wrapper">' +
-        '<div id="dark-mode-toggle">' +
-        '<span class="light-mode active"> <img src="assets/img/icons/sun-icon.svg" class="me-2" alt=""> Light</span>' +
-        '<span class="dark-mode"><i class="far fa-moon me-2"></i> Dark</span>' +
-        "</div>" +
-        "</div>" +
-        '<div class="row  ">' +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="1" class="check">' +
-        '<label for="1" class="checktoggle"><a  href="index.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">LTR</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-ltr.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="1" class="check">' +
-        '<label for="1" class="checktoggle"><a  href="../template-rtl/index.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">RTL</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-rtl.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="row  ">' +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="3" class="check">' +
-        '<label for="3" class="checktoggle"><a  href="index-three.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Boxed</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-04.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="3" class="check">' +
-        '<label for="3" class="checktoggle"><a  href="index-four.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Collapsed</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-01.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="sidebar-settings nav-toggle">' +
-        '<div class="sidebar-content sticky-sidebar-one">' +
-        '<div class="sidebar-header">' +
-        "<h5>Navigation Settings</h5>" +
-        '<a class="sidebar-close" href="#"><img src="assets/img/icons/close-icon.svg" alt=""></a>' +
-        "</div>" +
-        '<div class="sidebar-body">' +
-        '<h6 class="theme-title">Navigation Type</h6>' +
-        '<div class="row  ">' +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="1" class="check">' +
-        '<label for="1" class="checktoggle"><a  href="index.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Vertical</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-03.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="2" class="check">' +
-        '<label for="2" class="checktoggle"><a  href="index-one.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Horizontal</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-01.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="3" class="check">' +
-        '<label for="3" class="checktoggle"><a  href="index-four.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Collapsed</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-01.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="3" class="check">' +
-        '<label for="3" class="checktoggle"><a  href="index-three.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Modern</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-04.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        '<div class="col-xl-6 ere">' +
-        '<div class="layout-wrap">' +
-        '<div class="d-flex align-items-center">' +
-        '<div class="status-toggle d-flex align-items-center me-2">' +
-        '<input type="checkbox" id="3" class="check">' +
-        '<label for="3" class="checktoggle"><a  href="index-two.html"class="layout-link">checkbox</a> </label>' +
-        "</div>" +
-        '<span class="status-text">Boxed</span>' +
-        "</div>" +
-        '<div class="layout-img">' +
-        '<img class="img-fliud" src="assets/img/theme/layout-03.png" alt="layout">' +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>" +
-        "</div>";
 
     $(".add-setting").on("click", function (e) {
         e.preventDefault();
@@ -1248,13 +887,6 @@ $(document).ready(function () {
         });
     }
 
-    // ("#search-contact").on("keyup", function() {
-    // 	var value = $(this).val().toLowerCase();
-    // 	$("#chatsidebar ul li").filter(function() {
-    // 	  $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-    // 	});
-    // });
-
     $(".dream_profile_menu").on("click", function () {
         $(".right-side-contact").addClass("show-right-sidebar");
         $(".right-side-contact").removeClass("hide-right-sidebar");
@@ -1284,57 +916,6 @@ $(document).ready(function () {
             $(".chat").removeClass("hide-chatbar");
         }
     });
-
-    // jQuery(window).on('load resize', function () {
-
-    // 	// Variable Declarations
-
-    // 	var right_sidebar = $('.right-sidebar').width();
-    // 	var left_sidebar = $('.left-sidebar').width();
-    // 	var chat_bar = $('.chat').width();
-    // 	var win_width = $(window).width();
-
-    // 	$(".user-list-item:not(body.status-page .user-list-item, body.voice-call-page .user-list-item)").on('click', function () {
-    // 		if ($(window).width() < 992) {
-    // 			$('.left-sidebar').addClass('hide-left-sidebar');
-    // 			$('.chat').addClass('show-chatbar');
-    // 		}
-
-    // 	});
-
-    // 	$(".dream_profile_menu").on('click', function () {
-    // 		$('.right-side-contact').addClass('show-right-sidebar');
-    // 		$('.right-side-contact').removeClass('hide-right-sidebar');
-    // 		if ( $(window).width() > 991 && $(window).width() < 1201) {
-    // 			$(".chat:not(.right-side-contact .chat)").css('margin-left', - chat_bar);
-    // 			$(".chat:not(.right_side_star .chat)").css('margin-left', - chat_bar);
-    // 		}
-    // 		if ($(window).width() < 992) {
-    // 			$('.chat:not(.right-side-contact .chat)').addClass('hide-chatbar');
-    // 			$('.chat:not(.right_side_star .chat)').addClass('hide-chatbar');
-    // 		}
-    // 	});
-
-    // 	$(".close_profile").on('click', function () {
-    // 		$('.right-side-contact').addClass('hide-right-sidebar');
-    // 		$('.right-side-contact').removeClass('show-right-sidebar');
-    // 		if ( $(window).width() > 991 && $(window).width() < 1201) {
-    // 			$(".chat").css('margin-left', 0);
-    // 		}
-    // 		if ($(window).width() < 992) {
-    // 			$('.chat').removeClass('hide-chatbar');
-    // 		}
-    // 	});
-    // 	$(".nav-tabs a").on('click', function () {
-    // 		$(this).tab('show');
-    // 	});
-
-    // 	$(".chat-header .left_side i, .page-header .left_side i").on('click', function () {
-    // 		$('.left-sidebar').removeClass('hide-left-sidebar');
-    // 		$('.chat').removeClass('show-chatbar');
-    // 	});
-
-    // });
 
     if ($(".emoj-action").length > 0) {
         $(".emoj-action").on("click", function () {
