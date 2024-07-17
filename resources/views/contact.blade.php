@@ -98,11 +98,16 @@
         </div>
     </section>
 @endsection
+@if (settings('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
+    @push('script')
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script>
+            function onSubmit(token) {
+                document.getElementById("contact-form").submit();
+            }
+        </script>
+    @endpush
+@endif
 @push('script')
     <script src="{{ themeAsset('front', 'js/sweetalert2.all.min.js') }}"></script>
-    <script>
-        function onSubmit(token) {
-            document.getElementById("contact-form").submit();
-        }
-    </script>
 @endpush
