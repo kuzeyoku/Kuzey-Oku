@@ -99,8 +99,8 @@ return [
     */
 
     'from' => [
-        'address' => config("setting.smtp.from_address", env('MAIL_FROM_ADDRESS')),
-        'name' => config("setting.smtp.from_name", env('MAIL_FROM_NAME')),
+        'address' => env('MAIL_FROM_ADDRESS'),
+        'name' => env('MAIL_FROM_NAME'),
     ],
 
     /*

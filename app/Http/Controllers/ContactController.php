@@ -24,6 +24,15 @@ class ContactController extends Controller
                 ->withError(__("front/general.recaptcha_error"));
         }
         try {
+            config([
+                'mail.mailers.smtp.host' => settings("smtp.host"),
+                'mail.mailers.smtp.port' => settings("smtp.port"),
+                'mail.mailers.smtp.encryption' => settings("smtp.encryption"),
+                'mail.mailers.smtp.username' => settings("smtp.username"),
+                'mail.mailers.smtp.password' => settings("smtp.password"),
+                "mail.from.address" => settings("smtp.from_address"),
+                "mail.from.name" => settings("smtp.from_name"),
+            ]);
             Mail::to(settings("contact.email"))
                 ->send(new \App\Mail\Contact($request));
         } catch (\Exception $e) {
