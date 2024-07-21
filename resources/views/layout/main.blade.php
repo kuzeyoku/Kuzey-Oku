@@ -7,6 +7,9 @@
     <meta name="description" content="@yield('description', settings('general.description'))">
     <meta name="keywords" content="@yield('keywords', settings('general.keywords'))">
     @include('common.seo')
+    @if (settings('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
+        {!! settings('integration.tag_manager_head_code') !!}
+    @endif
     <link href="{{ themeAsset('front', 'css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/animate.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/owl.css') }}" rel="stylesheet">
@@ -17,7 +20,6 @@
     @stack('style')
     <link rel="shortcut icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
     <link rel="icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
-
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
@@ -25,6 +27,9 @@
 </head>
 
 <body>
+    @if (settings('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
+        {!! settings('integration.tag_manager_body_code') !!}
+    @endif
     <div class="page-wrapper">
         <div class="preloader"></div>
         @include('layout.header')
