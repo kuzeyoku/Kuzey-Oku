@@ -35,13 +35,20 @@ class ContactRequest extends FormRequest
     public function attributes()
     {
         return [
-            "name" => __("front/contact.txt13"),
-            "phone" => __("front/contact.txt14"),
-            "email" => __("front/contact.txt15"),
-            "subject" => __("front/contact.txt16"),
-            "message" => __("front/contact.txt17"),
+            "name" => __("front/contact.txt10"),
+            "phone" => __("front/contact.txt11"),
+            "email" => __("front/contact.txt12"),
+            "subject" => __("front/contact.txt13"),
+            "message" => __("front/contact.txt14"),
             //"terms" => __("front/contact.txt18"),
             "g-recaptcha-response" => __("front/contact.form_recaptcha"),
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            "required" => __("front/contact.required")
         ];
     }
 }
