@@ -4,11 +4,11 @@
 @endpush
 @section('form')
     {{ html()->label(__("admin/{$folder}.form_type")) }}
-    {{ html()->select('type', $popup->type)->options([
+    {{ html()->select('type')->options([
             'image' => __("admin/{$folder}.type_image"),
             'text' => __("admin/{$folder}.type_text"),
             'video' => __("admin/{$folder}.type_video"),
-        ])->placeholder(__('admin/general.select'))->class('form-control')->id('type') }}
+        ])->value($popup->type)->placeholder(__('admin/general.select'))->class('form-control')->id('type') }}
     <div id="image" style="display: none">
         {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default-file', $popup->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     </div>
@@ -24,7 +24,7 @@
     @endforeach
     <div id="video" style="display: none">
         {{ html()->label(__("admin/{$folder}.form_video")) }}
-        {{ html()->input('url', 'video')->placeholder(__("admin/{$folder}.form_video_placeholder"))->class('form-control') }}
+        {{ html()->input('url', 'video', $popup->video)->placeholder(__("admin/{$folder}.form_video_placeholder"))->class('form-control') }}
     </div>
     <div class="row">
         <div class="col-lg-4">

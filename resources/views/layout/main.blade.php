@@ -6,7 +6,7 @@
     <title>@yield('title', settings('general.title'))</title>
     <meta name="description" content="@yield('description', settings('general.description'))">
     <meta name="keywords" content="@yield('keywords', settings('general.keywords'))">
-    @include('layout.seo')
+    @include('common.seo')
     <link href="{{ themeAsset('front', 'css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/animate.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/owl.css') }}" rel="stylesheet">
@@ -30,7 +30,7 @@
         @include('layout.header')
         @yield('content')
         @include('layout.footer')
-        @include('layout.cookie_alert')
+        @include('common.cookie_alert')
     </div>
     <div class="scroll-to-top scroll-to-target" data-target="html">@svg('fas-angle-up', 'text-white')</div>
     <script src="{{ themeAsset('front', 'js/jquery.js') }}"></script>
@@ -43,8 +43,9 @@
     <script src="{{ themeAsset('front', 'js/select2.min.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/owl.js') }}"></script>
     <script src="{{ themeAsset('front', 'js/script.js') }}"></script>
+    <script src="{{ themeAsset('common', 'js/jquery.cookie.js') }}"></script>
+    @include('common.popup')
     @stack('script')
-    @include('layout.alert')
 </body>
 
 </html>

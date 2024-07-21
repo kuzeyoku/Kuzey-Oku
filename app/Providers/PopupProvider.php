@@ -21,7 +21,7 @@ class PopupProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        view()->composer("layout.popup", function ($view) {
+        view()->composer("common.popup", function ($view) {
             $popup = cache()->remember("popup", 60 * 60 * 24, function () {
                 return Popup::whereStatus(StatusEnum::Active->value)->first();
             });
