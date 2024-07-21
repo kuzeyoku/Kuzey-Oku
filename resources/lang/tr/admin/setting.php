@@ -143,5 +143,11 @@ return [
     "analytics_status" => "Google Analytics Durumu",
     "analytics_code" => "Google Analytics Kodu",
     "analytics_code_placeholder" => "Google Analytics Kodunu Giriniz",
+    "tag_manager" => "Google Tag Manager",
+    "tag_manager_status" => "Google Tag Manager Durumu",
+    "tag_manager_head_code" => "Google Tag Manager Head Kodu",
+    "tag_manager_head_code_placeholder" => "Google Tag Manager Head Kodunu Giriniz",
+    "tag_manager_body_code" => "Google Tag Manager Body Kodu",
+    "tag_manager_body_code_placeholder" => "Google Tag Manager Body Kodunu Giriniz",
     "asset_usage" => "Kullanım : :code",
 ];
