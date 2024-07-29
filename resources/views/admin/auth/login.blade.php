@@ -8,12 +8,10 @@
     <title>@lang("admin/{$folder}.login_title")</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ themeAsset('admin', 'img/favicon.png') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/fontawesome.min.css') }}">
-    <link rel="stylesheet" href="{{ themeAsset('admin', 'plugins/fontawesome/css/all.min.css') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/style.css') }}">
 </head>
 
-<body>
+<body class="account-page">
     <div id="global-loader">
         <div class="whirly-loader"> </div>
     </div>
@@ -47,7 +45,7 @@
                             {{ html()->label(__("admin/{$folder}.password")) }}
                             <div class="pass-group">
                                 {{ html()->password('password')->class('form-control pass-input mb-0')->placeholder(__("admin/{$folder}.password_placeholder")) }}
-                                <span class="fas toggle-password fa-eye-slash"></span>
+                                @svg('fas-eye-slash', 'fas toggle-password' )
                             </div>
                             @error('password')
                                 <span class="text-danger">{{ $message }}</span>
@@ -85,9 +83,8 @@
     </div>
 
     <script src="{{ themeAsset('admin', 'js/jquery-3.7.1.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'js/feather.min.js') }}"></script>
     <script src="{{ themeAsset('admin', 'js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ themeAsset('admin', 'plugins/sweetalert/sweetalert2.all.min.js') }}"></script>
+    <script src="{{ themeAsset('common', 'js/sweetalert.js') }}"></script>
     @include(themeView('admin', 'layout.alert'))
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
     @if (settings('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
