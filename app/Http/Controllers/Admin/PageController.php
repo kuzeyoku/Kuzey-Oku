@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Page;
-use Illuminate\View\View;
 use Illuminate\Http\Request;
 use App\Services\Admin\PageService;
+use Illuminate\Support\Facades\View;
 use App\Http\Requests\Page\StorePageRequest;
 use App\Http\Requests\Page\UpdatePageRequest;
 
