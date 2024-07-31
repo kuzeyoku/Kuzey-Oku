@@ -5,12 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\Page;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
+use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function index()
     {
+        SEOTools::setTitle(settings("settings.title", config("app.name")));
+        SEOTools::setDescription(settings("settings.description"));
+        SEOTools::setCanonical(url()->current());
+        SEOTools::opengraph()->setTitle(settings("general.title", config("app.name")));
+        SEOTools::opengraph()->setSiteName(settings("general.title", config("app.name")));
+        SEOTools::opengraph()->setDescription(settings("general.description"));
+        SEOTools::opengraph()->setUrl(url()->current());
+        SEOTools::opengraph()->addProperty('type', 'website');
+        SEOTools::twitter()->setTitle(settings("general.title", config("app.name")));
+        SEOTools::jsonLd()->setTitle(settings("general.title", config("app.name")));
+        SEOTools::jsonLd()->setDescription(settings("general.description"));
+        SEOTools::jsonLd()->setTitle(settings("general.title", config("app.name")));
+        SEOTools::jsonLd()->setDescription(settings("general.description"));
+        SEOTools::jsonLd()->setType('WebSite');
+
         $modules = [
             ModuleEnum::Slider,
             ModuleEnum::Product,

@@ -7,16 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <link rel="shortcut icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
     <link rel="icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
-    <title>
-        @hasSection('title')
-            @yield('title') | {{ settings('general.title') }}
-        @else
-            {{ settings('general.title') }}
-        @endif
-    </title>
-    <meta name="description" content="@yield('description', settings('general.description'))">
-    <meta name="keywords" content="@yield('keywords', settings('general.keywords'))">
-    @include('common.seo')
+    {!! SEO::generate() !!}
     @if (settings('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
         {!! settings('integration.tag_manager_head_code') !!}
     @endif

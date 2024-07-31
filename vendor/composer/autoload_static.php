@@ -290,6 +290,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         ),
         'A' => 
         array (
+            'Artesaos\\SEOTools\\' => 18,
             'App\\' => 4,
         ),
     );
@@ -698,6 +699,10 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         array (
             0 => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src',
         ),
+        'Artesaos\\SEOTools\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools',
+        ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
@@ -800,6 +805,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Http\\Requests\\User\\UserStoreRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/UserStoreRequest.php',
         'App\\Http\\Requests\\User\\UserUpdateRequest' => __DIR__ . '/../..' . '/app/Http/Requests/User/UserUpdateRequest.php',
         'App\\Jobs\\SendMessage' => __DIR__ . '/../..' . '/app/Jobs/SendMessage.php',
+        'App\\Listeners\\ChangeMailSettingsBeforeSending' => __DIR__ . '/../..' . '/app/Listeners/ChangeMailSettingsBeforeSending.php',
         'App\\Listeners\\SendEmailPasswordResetNotification' => __DIR__ . '/../..' . '/app/Listeners/SendEmailPasswordResetNotification.php',
         'App\\Mail\\Admin\\ForgotPassword' => __DIR__ . '/../..' . '/app/Mail/Admin/ForgotPassword.php',
         'App\\Mail\\Admin\\PasswordResetMail' => __DIR__ . '/../..' . '/app/Mail/Admin/PasswordResetMail.php',
@@ -845,8 +851,6 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Providers\\BroadcastServiceProvider' => __DIR__ . '/../..' . '/app/Providers/BroadcastServiceProvider.php',
         'App\\Providers\\CookieProvider' => __DIR__ . '/../..' . '/app/Providers/CookieProvider.php',
         'App\\Providers\\EventServiceProvider' => __DIR__ . '/../..' . '/app/Providers/EventServiceProvider.php',
-        'App\\Providers\\MailSettingProvider' => __DIR__ . '/../..' . '/app/Providers/MailSettingProvider.php',
-        'App\\Providers\\MenuProvider' => __DIR__ . '/../..' . '/app/Providers/MenuProvider.php',
         'App\\Providers\\PopupProvider' => __DIR__ . '/../..' . '/app/Providers/PopupProvider.php',
         'App\\Providers\\RouteServiceProvider' => __DIR__ . '/../..' . '/app/Providers/RouteServiceProvider.php',
         'App\\Providers\\ThemeProvider' => __DIR__ . '/../..' . '/app/Providers/ThemeProvider.php',
@@ -867,6 +871,27 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Services\\Admin\\SliderService' => __DIR__ . '/../..' . '/app/Services/Admin/SliderService.php',
         'App\\Services\\Admin\\TestimonialService' => __DIR__ . '/../..' . '/app/Services/Admin/TestimonialService.php',
         'App\\Services\\Admin\\UserService' => __DIR__ . '/../..' . '/app/Services/Admin/UserService.php',
+        'Artesaos\\SEOTools\\Contracts\\JsonLd' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/JsonLd.php',
+        'Artesaos\\SEOTools\\Contracts\\JsonLdMulti' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/JsonLdMulti.php',
+        'Artesaos\\SEOTools\\Contracts\\MetaTags' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/MetaTags.php',
+        'Artesaos\\SEOTools\\Contracts\\OpenGraph' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/OpenGraph.php',
+        'Artesaos\\SEOTools\\Contracts\\SEOFriendly' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/SEOFriendly.php',
+        'Artesaos\\SEOTools\\Contracts\\SEOTools' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/SEOTools.php',
+        'Artesaos\\SEOTools\\Contracts\\TwitterCards' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Contracts/TwitterCards.php',
+        'Artesaos\\SEOTools\\Facades\\JsonLd' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Facades/JsonLd.php',
+        'Artesaos\\SEOTools\\Facades\\JsonLdMulti' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Facades/JsonLdMulti.php',
+        'Artesaos\\SEOTools\\Facades\\OpenGraph' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Facades/OpenGraph.php',
+        'Artesaos\\SEOTools\\Facades\\SEOMeta' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Facades/SEOMeta.php',
+        'Artesaos\\SEOTools\\Facades\\SEOTools' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Facades/SEOTools.php',
+        'Artesaos\\SEOTools\\Facades\\TwitterCard' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Facades/TwitterCard.php',
+        'Artesaos\\SEOTools\\JsonLd' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/JsonLd.php',
+        'Artesaos\\SEOTools\\JsonLdMulti' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/JsonLdMulti.php',
+        'Artesaos\\SEOTools\\OpenGraph' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/OpenGraph.php',
+        'Artesaos\\SEOTools\\Providers\\SEOToolsServiceProvider' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Providers/SEOToolsServiceProvider.php',
+        'Artesaos\\SEOTools\\SEOMeta' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/SEOMeta.php',
+        'Artesaos\\SEOTools\\SEOTools' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/SEOTools.php',
+        'Artesaos\\SEOTools\\Traits\\SEOTools' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/Traits/SEOTools.php',
+        'Artesaos\\SEOTools\\TwitterCards' => __DIR__ . '/..' . '/artesaos/seotools/src/SEOTools/TwitterCards.php',
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Barryvdh\\Debugbar\\Console\\ClearCommand' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Console/ClearCommand.php',
         'Barryvdh\\Debugbar\\Controllers\\AssetController' => __DIR__ . '/..' . '/barryvdh/laravel-debugbar/src/Controllers/AssetController.php',

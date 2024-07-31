@@ -170,9 +170,11 @@ return [
         App\Providers\RouteServiceProvider::class,
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Html\HtmlServiceProvider::class,
+        Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
         App\Providers\PopupProvider::class,
         App\Providers\CookieProvider::class,
         App\Providers\ThemeProvider::class,
+
     ])->toArray(),
 
     /*
@@ -189,6 +191,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         // 'Example' => App\Facades\Example::class,
         "Html" => Spatie\Html\Facades\Html::class,
+        'SEO' => Artesaos\SEOTools\Facades\SEOTools::class,
     ])->toArray(),
 
 
