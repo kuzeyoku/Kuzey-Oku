@@ -58,6 +58,12 @@ class Page extends Model
         return $this->translate->where("lang", $this->locale)->pluck('description')->first();
     }
 
+    public function getMetaDescriptionAttribute()
+    {
+        $description = $this->translate->where("lang", app()->getFallbackLocale())->pluck('description')->first();
+        return Str::limit(strip_tags($description), 160);
+    }
+
     public function getUrlAttribute()
     {
         return route(ModuleEnum::Page->route() . ".show", [$this->id, $this->slug]);
