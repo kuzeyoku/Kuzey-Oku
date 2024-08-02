@@ -394,6 +394,7 @@ class GdDriver implements ImageDriver
         // even if background-color is set
         $transparent = imagecolorallocatealpha($canvas->image, 255, 255, 255, 127);
         imagealphablending($canvas->image, false); // do not blend / just overwrite
+        imagesavealpha($canvas->image, true); // save alpha channel
         imagefilledrectangle($canvas->image, $destinationX, $destinationY, $destinationX + $sourceWidth - 1, $destinationY + $sourceHeight - 1, $transparent);
 
         // copy image into new canvas
@@ -626,7 +627,7 @@ class GdDriver implements ImageDriver
     ): static {
         $this->ensureNumberBetween($alpha, 0, 100, 'alpha');
         if (is_string($otherImage)) {
-            $otherImage = (new self())->loadFile($otherImage);
+            $otherImage = (new self)->loadFile($otherImage);
         }
 
         $imageSize = $this->getSize()->align($position, $x, $y);
