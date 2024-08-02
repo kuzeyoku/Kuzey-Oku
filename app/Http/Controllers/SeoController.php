@@ -20,8 +20,8 @@ class SeoController extends Controller
             SEOTools::jsonLd()->setTitle($item->title);
             SEOTools::jsonLd()->setDescription($item->meta_description);
         } else {
-            SEOTools::setTitle(settings("settings.title", config("app.name")));
-            SEOTools::setDescription(settings("settings.description"));
+            SEOTools::setTitle(settings("general.title", config("app.name")));
+            SEOTools::setDescription(settings("general.description"));
             SEOTools::opengraph()->setTitle(settings("general.title", config("app.name")));
             SEOTools::opengraph()->setSiteName(settings("general.title", config("app.name")));
             SEOTools::opengraph()->setDescription(settings("general.description"));
