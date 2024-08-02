@@ -10,6 +10,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
+        SeoController::set();
         $projects = Project::active()->order()->get();
         $categories = Category::whereModule(ModuleEnum::Project->value)->active()->order()->get();
         return view('project.index', compact('projects', 'categories'));
@@ -17,6 +18,7 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
+        SeoController::set($project);
         $otherProjects = Project::whereKeyNot($project->id)->get();
         return view('project.show', compact('project', "otherProjects"));
     }

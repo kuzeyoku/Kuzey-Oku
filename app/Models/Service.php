@@ -77,6 +77,12 @@ class Service extends Model implements HasMedia
         return Str::limit(strip_tags($this->description), 100);
     }
 
+    public function getMetaDescriptionAttribute()
+    {
+        $description = $this->translate->where("lang", app()->getFallbackLocale())->pluck('description')->first();
+        return Str::limit(strip_tags($description), 160);
+    }
+
     public function getUrlAttribute()
     {
         return route(ModuleEnum::Service->route() . ".show", [$this, $this->slug]);

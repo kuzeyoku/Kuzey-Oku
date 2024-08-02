@@ -22,7 +22,6 @@ class SeoController extends Controller
         } else {
             SEOTools::setTitle(settings("settings.title", config("app.name")));
             SEOTools::setDescription(settings("settings.description"));
-            SEOTools::setKeywords(settings("settings.keywords"));
             SEOTools::opengraph()->setTitle(settings("general.title", config("app.name")));
             SEOTools::opengraph()->setSiteName(settings("general.title", config("app.name")));
             SEOTools::opengraph()->setDescription(settings("general.description"));

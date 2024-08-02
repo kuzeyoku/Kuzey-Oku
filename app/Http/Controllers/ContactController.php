@@ -14,6 +14,7 @@ class ContactController extends Controller
 
     public function index()
     {
+        SeoController::set();
         return view('contact');
     }
 
