@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\AlertEnum;
 use Throwable;
 use App\Models\Blog;
 use App\Enums\StatusEnum;
@@ -15,10 +16,12 @@ use App\Http\Requests\Blog\UpdateBlogRequest;
 class BlogController extends Controller
 {
     protected $service;
+    protected $alert;
 
     public function __construct(BlogService $service)
     {
         $this->service = $service;
+        $this->alert = new AlertEnum($this->service->module());
         View::share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
@@ -42,15 +45,15 @@ class BlogController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
+            LogController::logger("info", $this->alert->CreatedLog->message($request->title[app()->getFallbackLocale()]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->alert->CreatedSuccess->message());
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->alert->CreatedError->message());
         }
     }
 
@@ -66,12 +69,12 @@ class BlogController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $blog->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess(AlertEnum::UpdatedSuccess->getMessage($this->service->module()));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError(AlertEnum::UpdatedError->getMessage($this->service->module()));
         }
     }
 
@@ -91,15 +94,15 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $blog->title]));
+            LogController::logger("info", AlertEnum::DeletedLog->getMessage($this->service->module(), $blog->title));
             $this->service->delete($blog);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess(AlertEnum::DeletedSuccess->getMessage($this->service->module()));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError(AlertEnum::DeletedError->getMessage($this->service->module()));
         }
     }
 

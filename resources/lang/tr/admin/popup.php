@@ -8,14 +8,6 @@ return [
     "edit" => "Popup Düzenle",
     "edit_description" => "Popup bilgilerini düzenleyin",
     "list" => "Popup Listesi",
-    //alert
-    "create_success" => "Popup başarıyla eklendi.",
-    "create_error" => "Popup eklenirken bir hata oluştu.",
-    "update_success" => "Popup başarıyla güncellendi.",
-    "update_error" => "Popup güncellenirken bir hata oluştu.",
-    "delete_success" => "Popup başarıyla silindi.",
-    "delete_error" => "Popup silinirken bir hata oluştu.",
-    //form
     "form_image" => "Resim",
     "form_type" => "Popup Tipi",
     "form_title" => "Popup Başlığı",
@@ -37,15 +29,9 @@ return [
     "form_fullScreenButton" => "Tam Ekran Butonu Gösterilsin Mi?",
     "form_color" => "Popup Rengi",
     "form_color_placeholder" => "Popup Renk Kodu Giriniz - Varsayılan #88A0B9",
-    //Log
-    "create_log" => "Bir Popup Eklendi - :title",
-    "update_log" => "Bir Popup Güncellendi - :title",
-    "delete_log" => "Bir Popup Silindi - :title",
-    //type
     "type_image" => "Resim",
     "type_video" => "Video",
     "type_text" => "Metin",
-    //table
     "table_type" => "Popup Tipi",
     "table_title" => "Popup Başlığı",
     "info" => "Seçili popup tipine uygun alanlara girilen veriler kullanılacaktır."
