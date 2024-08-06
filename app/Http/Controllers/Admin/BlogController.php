@@ -69,12 +69,12 @@ class BlogController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $blog->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(AlertEnum::UpdatedSuccess->getMessage($this->service->module()));
+                ->withSuccess(AlertEnum::UpdatedSuccess->message($this->service->module()));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(AlertEnum::UpdatedError->getMessage($this->service->module()));
+                ->withError(AlertEnum::UpdatedError->message($this->service->module()));
         }
     }
 
@@ -94,15 +94,15 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         try {
-            LogController::logger("info", AlertEnum::DeletedLog->getMessage($this->service->module(), $blog->title));
+            LogController::logger("info", AlertEnum::DeletedLog->message($this->service->module(), $blog->title));
             $this->service->delete($blog);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(AlertEnum::DeletedSuccess->getMessage($this->service->module()));
+                ->withSuccess(AlertEnum::DeletedSuccess->message($this->service->module()));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(AlertEnum::DeletedError->getMessage($this->service->module()));
+                ->withError(AlertEnum::DeletedError->message($this->service->module()));
         }
     }
 
