@@ -4,19 +4,22 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Language;
-use App\Services\Admin\LanguageService;
-use App\Http\Requests\Language\StoreLanguageRequest;
-use App\Http\Requests\Language\UpdateLanguageRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Services\Admin\LanguageService;
+use App\Services\Admin\NotificationService;
+use App\Http\Requests\Language\StoreLanguageRequest;
+use App\Http\Requests\Language\UpdateLanguageRequest;
 
 class LanguageController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(LanguageService $languageService)
     {
         $this->service = $languageService;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             'route' => $this->service->route(),
             'folder' => $this->service->folder()
@@ -41,12 +44,12 @@ class LanguageController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -85,12 +88,12 @@ class LanguageController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -103,7 +106,7 @@ class LanguageController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.status_error"));
+                ->withError($this->notification->alert("default_error"));
         }
     }
 
@@ -114,11 +117,11 @@ class LanguageController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $language->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }

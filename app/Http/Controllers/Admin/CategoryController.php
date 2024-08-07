@@ -6,19 +6,22 @@ use Throwable;
 use App\Models\Category;
 use App\Enums\ModuleEnum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use App\Services\Admin\CategoryService;
+use App\Services\Admin\NotificationService;
 use App\Http\Requests\Category\StoreCategoryRequest;
 use App\Http\Requests\Category\UpdateCategoryRequest;
-use Illuminate\Support\Facades\View;
 
 class CategoryController extends Controller
 {
     protected $service;
     protected $modules;
+    protected $notification;
 
     public function __construct(CategoryService $service)
     {
         $this->service = $service;
+        $this->notification = new NotificationService($this->service->module());
         $this->modules = ModuleEnum::toSelectArray();
         View::share([
             "categories" => $this->service->getCategories(),
@@ -46,12 +49,12 @@ class CategoryController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -67,12 +70,12 @@ class CategoryController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $category->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -85,7 +88,7 @@ class CategoryController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.status_error"));
+                ->withError($this->notification->alert("default_error"));
         }
     }
 
@@ -96,11 +99,11 @@ class CategoryController extends Controller
             $this->service->delete($category);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\SettingCategoryEnum;
 use Throwable;
 use Illuminate\Http\Request;
-use App\Services\Admin\SettingService;
+use App\Enums\SettingCategoryEnum;
 use Illuminate\Support\Facades\View;
+use App\Services\Admin\SettingService;
 
 class SettingController extends Controller
 {
-    private $service;
+    protected $service;
 
     public function __construct(SettingService $service)
     {

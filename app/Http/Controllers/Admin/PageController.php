@@ -7,16 +7,19 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Services\Admin\PageService;
 use Illuminate\Support\Facades\View;
+use App\Services\Admin\NotificationService;
 use App\Http\Requests\Page\StorePageRequest;
 use App\Http\Requests\Page\UpdatePageRequest;
 
 class PageController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(PageService $service)
     {
         $this->service = $service;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             'route' => $this->service->route(),
             'folder' => $this->service->folder()
@@ -41,12 +44,12 @@ class PageController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -62,12 +65,12 @@ class PageController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $page->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -80,7 +83,7 @@ class PageController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.status_error"));
+                ->withError($this->notification->alert("default_error"));
         }
     }
 
@@ -91,11 +94,11 @@ class PageController extends Controller
             $this->service->delete($page);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }

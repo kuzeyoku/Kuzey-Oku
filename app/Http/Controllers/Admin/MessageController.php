@@ -4,17 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Message;
-use App\Services\Admin\MessageService;
-use App\Http\Requests\Message\ReplyMessageRequest;
 use Illuminate\Support\Facades\View;
+use App\Services\Admin\MessageService;
+use App\Services\Admin\NotificationService;
+use App\Http\Requests\Message\ReplyMessageRequest;
 
 class MessageController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(MessageService $messageService)
     {
         $this->service = $messageService;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             "route" => $this->service->route(),
             "folder" => $this->service->folder()
@@ -58,11 +61,11 @@ class MessageController extends Controller
             $this->service->delete($message);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }

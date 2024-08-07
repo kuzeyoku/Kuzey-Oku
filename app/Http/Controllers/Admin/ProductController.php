@@ -5,20 +5,23 @@ namespace App\Http\Controllers\Admin;
 use Throwable;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use App\Services\Admin\ProductService;
+use App\Services\Admin\NotificationService;
 use App\Http\Requests\Product\ImageProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
-use Illuminate\Support\Facades\View;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProductController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(ProductService $service)
     {
         $this->service = $service;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
@@ -50,12 +53,12 @@ class ProductController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -116,12 +119,12 @@ class ProductController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $product->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -134,7 +137,7 @@ class ProductController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.status_error"));
+                ->withError($this->notification->alert("default_error"));
         }
     }
 
@@ -145,11 +148,11 @@ class ProductController extends Controller
             $this->service->delete($product);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }

@@ -7,18 +7,21 @@ use App\Models\User;
 use App\Enums\UserRole;
 use App\Services\Admin\UserService;
 use App\Http\Controllers\Controller;
-use App\Http\Requests\User\UserStoreRequest;
-use App\Http\Requests\User\UserUpdateRequest;
-use App\Http\Controllers\Admin\LogController;
 use Illuminate\Support\Facades\View;
+use App\Services\Admin\NotificationService;
+use App\Http\Requests\User\UserStoreRequest;
+use App\Http\Controllers\Admin\LogController;
+use App\Http\Requests\User\UserUpdateRequest;
 
 class UserController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(UserService $service)
     {
         $this->service = $service;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             "route" => $this->service->route(),
             "folder" => $this->service->folder(),
@@ -44,12 +47,12 @@ class UserController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -65,12 +68,12 @@ class UserController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -91,11 +94,11 @@ class UserController extends Controller
                 LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $user->name]));
                 return redirect()
                     ->route("admin.{$this->service->route()}.index")
-                    ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                    ->withSuccess($this->notification->alert("deleted_success"));
             } catch (Throwable $e) {
                 LogController::logger("error", $e->getMessage());
                 return back()
-                    ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                    ->withError($this->notification->alert("deleted_error"));
             }
         }
     }

@@ -5,20 +5,23 @@ namespace App\Http\Controllers\Admin;
 use Throwable;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\View;
 use App\Services\Admin\ProjectService;
+use App\Services\Admin\NotificationService;
 use App\Http\Requests\Project\ImageProjectRequest;
 use App\Http\Requests\Project\StoreProjectRequest;
 use App\Http\Requests\Project\UpdateProjectRequest;
-use Illuminate\Support\Facades\View;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProjectController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(ProjectService $service)
     {
         $this->service = $service;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
@@ -89,12 +92,12 @@ class ProjectController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->with("success", __("admin/{$this->service->folder()}.create_success"));
+                ->with("success", $this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -110,12 +113,12 @@ class ProjectController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $project->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->with("success", __("admin/{$this->service->folder()}.update_success"));
+                ->with("success", $this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -128,7 +131,7 @@ class ProjectController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.status_error"));
+                ->withError($this->notification->alert("default_error"));
         }
     }
 
@@ -139,11 +142,11 @@ class ProjectController extends Controller
             $this->service->delete($project);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }

@@ -6,17 +6,20 @@ use Exception;
 use App\Models\Menu;
 use App\Services\Admin\MenuService;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\View;
+use App\Services\Admin\NotificationService;
 use App\Http\Requests\Menu\StoreMenuRequest;
 use App\Http\Requests\Menu\UpdateMenuRequest;
-use Illuminate\Support\Facades\View;
 
 class MenuController extends Controller
 {
     protected $service;
+    protected $notification;
 
     public function __construct(MenuService $service)
     {
         $this->service = $service;
+        $this->notification = new NotificationService($this->service->module());
         View::share([
             'route' => $this->service->route(),
             'folder' => $this->service->folder()
@@ -54,12 +57,12 @@ class MenuController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.create_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Exception $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.create_error"));
+                ->withError($this->notification->alert("created_error"));
         }
     }
 
@@ -70,12 +73,12 @@ class MenuController extends Controller
             LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $menu->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Exception $e) {
             LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError($this->notification->alert("updated_error"));
         }
     }
 
@@ -86,11 +89,11 @@ class MenuController extends Controller
             $this->service->delete($menu);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.delete_success"));
+                ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Exception $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.delete_error"));
+                ->withError($this->notification->alert("deleted_error"));
         }
     }
 }
