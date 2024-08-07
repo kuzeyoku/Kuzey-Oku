@@ -454,8 +454,8 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         ),
         'Spatie\\LaravelIgnition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/laravel-ignition',
+            1 => __DIR__ . '/..' . '/spatie/laravel-ignition/src',
         ),
         'Spatie\\Image\\' => 
         array (
@@ -467,8 +467,8 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         ),
         'Spatie\\Ignition\\' => 
         array (
-            0 => __DIR__ . '/..' . '/spatie/ignition/src',
-            1 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            0 => __DIR__ . '/..' . '/spatie/error-solutions/legacy/ignition',
+            1 => __DIR__ . '/..' . '/spatie/ignition/src',
         ),
         'Spatie\\Html\\' => 
         array (
@@ -862,6 +862,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'App\\Services\\Admin\\LanguageService' => __DIR__ . '/../..' . '/app/Services/Admin/LanguageService.php',
         'App\\Services\\Admin\\MenuService' => __DIR__ . '/../..' . '/app/Services/Admin/MenuService.php',
         'App\\Services\\Admin\\MessageService' => __DIR__ . '/../..' . '/app/Services/Admin/MessageService.php',
+        'App\\Services\\Admin\\NotificationService' => __DIR__ . '/../..' . '/app/Services/Admin/NotificationService.php',
         'App\\Services\\Admin\\PageService' => __DIR__ . '/../..' . '/app/Services/Admin/PageService.php',
         'App\\Services\\Admin\\PopupService' => __DIR__ . '/../..' . '/app/Services/Admin/PopupService.php',
         'App\\Services\\Admin\\ProductService' => __DIR__ . '/../..' . '/app/Services/Admin/ProductService.php',
@@ -2220,7 +2221,15 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Illuminate\\Console\\View\\Components\\Task' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/View/Components/Task.php',
         'Illuminate\\Console\\View\\Components\\TwoColumnDetail' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/View/Components/TwoColumnDetail.php',
         'Illuminate\\Console\\View\\Components\\Warn' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Console/View/Components/Warn.php',
+        'Illuminate\\Container\\Attributes\\Auth' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Auth.php',
+        'Illuminate\\Container\\Attributes\\Authenticated' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Authenticated.php',
+        'Illuminate\\Container\\Attributes\\Cache' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Cache.php',
         'Illuminate\\Container\\Attributes\\Config' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Config.php',
+        'Illuminate\\Container\\Attributes\\CurrentUser' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/CurrentUser.php',
+        'Illuminate\\Container\\Attributes\\DB' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/DB.php',
+        'Illuminate\\Container\\Attributes\\Database' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Database.php',
+        'Illuminate\\Container\\Attributes\\Log' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Log.php',
+        'Illuminate\\Container\\Attributes\\Storage' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Attributes/Storage.php',
         'Illuminate\\Container\\BoundMethod' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/BoundMethod.php',
         'Illuminate\\Container\\Container' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/Container.php',
         'Illuminate\\Container\\ContextualBindingBuilder' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Container/ContextualBindingBuilder.php',
@@ -2279,6 +2288,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Illuminate\\Contracts\\Database\\Query\\ConditionExpression' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Query/ConditionExpression.php',
         'Illuminate\\Contracts\\Database\\Query\\Expression' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Database/Query/Expression.php',
         'Illuminate\\Contracts\\Debug\\ExceptionHandler' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Debug/ExceptionHandler.php',
+        'Illuminate\\Contracts\\Debug\\ShouldntReport' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Debug/ShouldntReport.php',
         'Illuminate\\Contracts\\Encryption\\DecryptException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Encryption/DecryptException.php',
         'Illuminate\\Contracts\\Encryption\\EncryptException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Encryption/EncryptException.php',
         'Illuminate\\Contracts\\Encryption\\Encrypter' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Contracts/Encryption/Encrypter.php',
@@ -2719,6 +2729,7 @@ class ComposerStaticInita8a35a754cf2000a0499c05db90d4ebc
         'Illuminate\\Foundation\\Inspiring' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Inspiring.php',
         'Illuminate\\Foundation\\MaintenanceModeManager' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/MaintenanceModeManager.php',
         'Illuminate\\Foundation\\Mix' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Mix.php',
+        'Illuminate\\Foundation\\MixFileNotFoundException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/MixFileNotFoundException.php',
         'Illuminate\\Foundation\\MixManifestNotFoundException' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/MixManifestNotFoundException.php',
         'Illuminate\\Foundation\\PackageManifest' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/PackageManifest.php',
         'Illuminate\\Foundation\\Precognition' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/Precognition.php',
