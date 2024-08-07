@@ -41,7 +41,7 @@ class TestimonialController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log"));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -62,7 +62,7 @@ class TestimonialController extends Controller
     {
         try {
             $this->service->update($request, $testimonial);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log"));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -83,7 +83,7 @@ class TestimonialController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -91,7 +91,7 @@ class TestimonialController extends Controller
     {
         try {
             $this->service->delete($testimonial);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log"));
+            LogController::logger("info", $this->notification->log("deleted", ["title" => $testimonial->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));

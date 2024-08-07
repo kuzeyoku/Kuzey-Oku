@@ -47,11 +47,11 @@ class MessageController extends Controller
             $this->service->sendReply($request, $message);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess(__("admin/{$this->service->folder()}.send_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.send_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 

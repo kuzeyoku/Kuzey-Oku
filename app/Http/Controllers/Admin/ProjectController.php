@@ -45,11 +45,11 @@ class ProjectController extends Controller
     {
         if ($this->service->imageUpload($request, $project)) {
             return (object) [
-                "message" => __("admin/{$this->service->folder()}.image_success")
+                "message" => __("admin/alert.default_success")
             ];
         } else {
             return (object) [
-                "message" => __("admin/{$this->service->folder()}.image_error")
+                "message" => __("admin/alert.default_error")
             ];
         }
     }
@@ -59,11 +59,11 @@ class ProjectController extends Controller
         try {
             $this->service->imageDelete($image);
             return back()
-                ->withSuccess(__("admin/{$this->service->folder()}.image_delete_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.image_delete_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -72,11 +72,11 @@ class ProjectController extends Controller
         try {
             $this->service->imageAllDelete($project);
             return back()
-                ->withSuccess(__("admin/{$this->service->folder()}.image_delete_all_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.image_delete_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -89,10 +89,10 @@ class ProjectController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->with("success", $this->notification->alert("created_success"));
+                ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
@@ -110,10 +110,10 @@ class ProjectController extends Controller
     {
         try {
             $this->service->update($request, $project);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $project->title]));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $project->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->with("success", $this->notification->alert("updated_success"));
+                ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
@@ -131,14 +131,14 @@ class ProjectController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
     public function destroy(Project $project)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $project->title]));
+            LogController::logger("info", $this->notification->log("deleted", ["title" => $project->title]));
             $this->service->delete($project);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

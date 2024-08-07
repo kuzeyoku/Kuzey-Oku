@@ -62,7 +62,7 @@ class BrandController extends Controller
     {
         try {
             $this->service->update($request, $brand);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log"));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -83,14 +83,14 @@ class BrandController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
     public function destroy(Brand $brand)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $brand->title]));
+            LogController::logger("info", $this->notification->log("deleted", ["title" => $brand->title]));
             $this->service->delete($brand);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

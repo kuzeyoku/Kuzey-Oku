@@ -3,6 +3,7 @@ return [
     "title" => "Marka Yönetimi",
     "description" => "Markaları Yönetin",
     "single_title" => "Markalar",
+    "alert_title" => "Marka",
     "create" => "Marka Oluştur",
     "create_description" => "Yeni Marka Oluştur",
     "edit" => "Marka Düzenle",

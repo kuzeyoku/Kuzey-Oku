@@ -53,6 +53,11 @@ enum ModuleEnum: string
         return __("admin/$this->value.single_title");
     }
 
+    public function alertTitle(): string
+    {
+        return __("admin/$this->value.alert_title");
+    }
+
     public function icon(): string
     {
         return match ($this) {

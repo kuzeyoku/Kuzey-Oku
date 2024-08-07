@@ -1,7 +1,8 @@
 <?php
 return [
-    //general
     "title" => "Sabit Sayfalar",
+    "single_title" => "Sabit Sayfa",
+    "alert_title" => "Sabit Sayfa",
     "description" => "Sabit Sayfaları Yönetin",
     "create" => "Sabit Sayfa Oluştur",
     "create_description" => "Yeni Sabit Sayfa Detaylarını Oluşturun",

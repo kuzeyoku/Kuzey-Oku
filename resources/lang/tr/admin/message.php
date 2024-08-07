@@ -1,6 +1,7 @@
 <?php
 return [
     "title" => "Mesaj Yönetimi",
+    "alert_title" => "Mesaj",
     "description" => "Kullanıcılardan gelen mesajları yönetin ve yeni mesajlar gönderin.",
     "create" => "Yeni Mesaj Gönder",
     "list" => "Mesaj Listesi",
@@ -12,10 +13,6 @@ return [
     "ip" => "IP:",
     "phone" => "Tel:",
     "reply" => "Yanıtla",
-    "send_success" => "Mesajınız başarıyla gönderildi.",
-    "send_error" => "Mesajınız gönderilirken bir hata oluştu.",
-    "delete_success" => "Mesaj başarıyla silindi.",
-    "delete_error" => "Mesaj silinirken bir hata oluştu.",
     "form_send" => "Gönder",
     "form_customer" => "Alıcı",
     "form_subject" => "Konu",

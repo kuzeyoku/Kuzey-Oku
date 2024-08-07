@@ -42,7 +42,7 @@ class SliderController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -63,7 +63,7 @@ class SliderController extends Controller
     {
         try {
             $this->service->update($request, $slider);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $slider->title]));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -84,14 +84,14 @@ class SliderController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
     public function destroy(Slider $slider)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $slider->title]));
+            LogController::logger("info", $this->notification->log("deleted", ["title" => $slider->title]));
             $this->service->delete($slider);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

@@ -44,7 +44,7 @@ class UserController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->name]));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -65,7 +65,7 @@ class UserController extends Controller
     {
         try {
             $this->service->update($request, $user);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->name]));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $request->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -91,7 +91,7 @@ class UserController extends Controller
         } else {
             try {
                 $this->service->delete($user);
-                LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $user->name]));
+                LogController::logger("info", $this->notification->log("deleted", ["title" => $user->name]));
                 return redirect()
                     ->route("admin.{$this->service->route()}.index")
                     ->withSuccess($this->notification->alert("deleted_success"));

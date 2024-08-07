@@ -41,7 +41,7 @@ class LanguageController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title]));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -74,10 +74,10 @@ class LanguageController extends Controller
         try {
             $this->service->updateFileContent($language);
             LogController::logger("info", __("admin/{$this->service->folder()}.update_file_content_log", ["title" => $language->title]));
-            return back()->withSuccess(__("admin/{$this->service->folder()}.update_file_content_success"));
+            return back()->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
-            return back()->withError(__("admin/{$this->service->folder()}.update_file_content_error"));
+            return back()->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -85,7 +85,7 @@ class LanguageController extends Controller
     {
         try {
             $this->service->update($request, $language);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $request->title]));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $language->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -106,15 +106,15 @@ class LanguageController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
     public function destroy(Language $language)
     {
         try {
+            LogController::logger("info", $this->notification->log("deleted", ["title" => $language->title]));
             $this->service->delete($language);
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $language->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));

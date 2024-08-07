@@ -1,9 +1,9 @@
 <?php
 return [
-    //general
     "title" => "Proje Yönetimi",
     "description" => "Projeleri Yönetin",
     "single_title" => "Projeler",
+    "alert_title" => "Proje",
     "create" => "Proje Oluştur",
     "create_description" => "Yeni bir proje oluşturun",
     "edit" => "Proje Düzenle",
@@ -26,10 +26,6 @@ return [
     "form_image" => "Resim",
     "form_start_date" => "Başlangıç Tarihi",
     "form_end_date" => "Bitiş Tarihi",
-    "image_success" => "Resim Başarıyla Yüklendi",
-    "image_error" => "Resim Yüklenirken Bir Hata Oluştu",
-    "image_delete_success" => "Resim Başarıyla Silindi",
-    "image_delete_error" => "Resim Silinirken Bir Hata Oluştu",
     "table_title" => "Proje Başlığı",
     "table_category" => "Kategori",
 ];

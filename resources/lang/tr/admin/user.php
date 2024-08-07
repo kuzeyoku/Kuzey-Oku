@@ -4,6 +4,7 @@ return [
     "title" => "Kullanıcı Yönetimi",
     "description" => "Kullanıcıları Yönetin",
     "single_title" => "Editör",
+    "alert_title" => "Kullanıcı",
     "create" => "Kullanıcı Ekle",
     "create_description" => "Yeni bir kullanıcı oluşturun",
     "list" => "Kullanıcı Listesi",

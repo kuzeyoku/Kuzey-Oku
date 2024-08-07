@@ -1,6 +1,7 @@
 <?php
 return [
     "title" => "Menü Yönetimi",
+    "alert_title" => "Menü",
     "create" => "Menü Ekle",
     "edit" => "Menü Düzenle",
     "content" => "Menü İçeriği",

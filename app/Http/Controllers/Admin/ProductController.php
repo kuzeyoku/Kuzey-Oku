@@ -50,7 +50,7 @@ class ProductController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", __("admin/{$this->service->folder()}.create_log", ["title" => $request->title[app()->getFallbackLocale()]]));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -76,11 +76,11 @@ class ProductController extends Controller
     {
         if ($this->service->imageUpload($request, $product)) {
             return (object) [
-                "message" => __("admin/{$this->service->folder()}.image_success")
+                "message" => __("admin/alert.default_success")
             ];
         } else {
             return (object) [
-                "message" => __("admin/{$this->service->folder()}.image_error")
+                "message" => __("admin/alert.default_error")
             ];
         }
     }
@@ -90,12 +90,11 @@ class ProductController extends Controller
         try {
             $this->service->imageDelete($image);
             return back()
-                ->withSuccess(__("admin/{$this->service->folder()}.image_delete_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            dd($e->getMessage());
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.image_delete_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -104,11 +103,11 @@ class ProductController extends Controller
         try {
             $this->service->imageAllDelete($product);
             return back()
-                ->withSuccess(__("admin/{$this->service->folder()}.image_delete_all_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.image_delete_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -116,7 +115,7 @@ class ProductController extends Controller
     {
         try {
             $this->service->update($request, $product);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_log", ["title" => $product->title]));
+            LogController::logger("info", $this->notification->log("updated", ["title" => $product->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -137,14 +136,14 @@ class ProductController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
     public function destroy(Product $product)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.delete_log", ["title" => $product->title]));
+            LogController::logger("info", $this->notification->log("deleted", ["title" => $product->title]));
             $this->service->delete($product);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

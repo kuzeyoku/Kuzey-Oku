@@ -1,9 +1,9 @@
 <?php
 return [
-    //general
     "title" => "Ürün Yönetimi",
     "description" => "Ürünleri Yönetin",
     "single_title" => "Ürünler",
+    "alert_title" => "Ürün",
     "create" => "Ürün Oluştur",
     "create_description" => "Yeni bir ürün oluşturun",
     "edit" => "Ürün Düzenle",
@@ -24,11 +24,6 @@ return [
     "form_price_placeholder" => "Fiyat Giriniz",
     "form_currency" => "Para Birimi",
     "form_currency_placeholder" => "Para Birimi Giriniz [₺, $, €]",
-    "image_success" => "Resim Başarıyla Yüklendi",
-    "image_error" => "Resim Yüklenirken Bir Hata Oluştu",
-    "image_delete_success" => "Resim Başarıyla Silindi",
-    "image_delete_all_success" => "Tüm Resimler Başarıyla Silindi",
-    "image_delete_error" => "Resim Silinirken Bir Hata Oluştu",
     "table_title" => "Ürün Başlığı",
     "table_category" => "Kategori",
     "table_price" => "Ürün Fiyatı"

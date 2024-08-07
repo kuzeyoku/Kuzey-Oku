@@ -1,9 +1,9 @@
 <?php
 return [
-    //menu
     "title" => "Müşteri Yorumları",
     "description" => "Müşteri Yorumlarını Yönetin",
     "single_title" => "Müşteri Yorumları",
+    "alert_title" => "Müşteri Yorumu",
     "create" => "Yorum Ekle",
     "create_description" => "Yeni bir yorum oluşturun",
     "edit" => "Yorum Düzenle",

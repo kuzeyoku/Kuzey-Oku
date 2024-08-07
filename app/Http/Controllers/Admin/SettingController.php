@@ -37,11 +37,11 @@ class SettingController extends Controller
             $this->service->update($request);
             LogController::Logger("info", __("admin/{$this->service->folder()}.update_log", ["category" => __("admin/setting.category_" . $request->category)]));
             return back()
-                ->withSuccess(__("admin/{$this->service->folder()}.update_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             LogController::Logger("error", $e->getMessage());
             return back()
-                ->withError(__("admin/{$this->service->folder()}.update_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

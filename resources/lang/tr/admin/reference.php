@@ -1,9 +1,9 @@
 <?php
 return [
-    //menu
     "title" => "Referans Yönetimi",
     "description" => "Referansları Yönetin",
     "single_title" => "Referanslar",
+    "alert_title" => "Referans",
     "create" => "Referans Ekle",
     "create_description" => "Yeni Referans Ekle",
     "edit" => "Referans Düzenle",

@@ -87,7 +87,7 @@ class BlogController extends Controller
         } catch (Throwable $e) {
             LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("default_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -121,38 +121,35 @@ class BlogController extends Controller
     public function comment_approve(BlogComment $comment)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.comment_approve_log"));
             $comment->status = StatusEnum::Active->value;
             $comment->save();
-            return back()->withSuccess(__("admin/{$this->service->folder()}.comment_approve_success"));
+            return back()->withSuccess(__("admin/alert.default_success"));
         } catch (\Exception $e) {
             LogController::logger("error", $e->getMessage());
-            return back()->withError($this->notification->alert("default_error"));
+            return back()->withError(__("admin/alert.default_error"));
         }
     }
 
     public function comment_disapprove(BlogComment $comment)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.comment_disapprove_log"));
             $comment->status = StatusEnum::Passive->value;
             $comment->save();
-            return back()->withSuccess(__("admin/{$this->service->folder()}.comment_disapprove_success"));
+            return back()->withSuccess(__("admin/alert.default_success"));
         } catch (\Exception $e) {
             LogController::logger("error", $e->getMessage());
-            return back()->withError($this->notification->alert("default_error"));
+            return back()->withError(__("admin/alert.default_error"));
         }
     }
 
     public function comment_delete(BlogComment $comment)
     {
         try {
-            LogController::logger("info", __("admin/{$this->service->folder()}.comment_delete_log"));
             $comment->delete();
-            return back()->withSuccess(__("admin/{$this->service->folder()}.comment_delete_success"));
+            return back()->withSuccess(__("admin/alert.default_success"));
         } catch (\Exception $e) {
             LogController::logger("error", $e->getMessage());
-            return back()->withError($this->notification->alert("default_error"));
+            return back()->withError(__("admin/alert.default_error"));
         }
     }
 }

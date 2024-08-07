@@ -2,8 +2,6 @@
 return [
     "title" => "Site Ayarları",
     "description" => "Site Ayarları Menüsü",
-    "update_success" => "Ayarlar Başarıyla Güncellendi",
-    "update_error" => "Ayarlar Güncellenirken Bir Hata Oluştu",
     "update_log" => ":category Güncellendi",
     "category_general" => "Genel Ayarlar",
     "category_system" => "Sistem Ayarları",

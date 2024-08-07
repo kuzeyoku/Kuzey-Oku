@@ -3,6 +3,7 @@ return [
     "title" => "Kategori Yönetimi",
     "description" => "Kategorileri Yönetin",
     "single_title" => "Kategoriler",
+    "alert_title" => "Kategori",
     "create" => "Kategori Oluştur",
     "create_description" => "Yeni Kategori Oluştur",
     "edit" => "Kategori Düzenle",

@@ -1,9 +1,9 @@
 <?php
 return [
-    //general
     "title" => "Slider Yönetimi",
     "description" => "Sliderları Yönetin",
     "single_title" => "Slider",
+    "alert_title" => "Slider",
     "create" => "Slider Ekle",
     "create_description" => "Yeni bir slider oluşturun",
     "edit" => "Slider Düzenle",

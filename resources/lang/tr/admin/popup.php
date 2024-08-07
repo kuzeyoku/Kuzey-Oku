@@ -3,6 +3,7 @@ return [
     "title" => "Popup Yönetimi",
     "description" => "Popupları Yönetin",
     "single_title" => "Popup",
+    "alert_title" => "Popup",
     "create" => "Popup Ekle",
     "create_description" => "Yeni bir popup oluşturun",
     "edit" => "Popup Düzenle",
