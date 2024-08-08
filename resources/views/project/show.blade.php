@@ -41,9 +41,11 @@
                         </div>
                     </div>
                 </div>
-                <iframe title="{{ $project->title }}" width="100%" height="600" src="{{ $project->model3D }}"
-                    frameborder="0" allow="fullscreen" allowfullscreen="true" mozallowfullscreen="true"
-                    webkitallowfullscreen="true"></iframe>
+                @if ($project->model3D)
+                    <iframe title="{{ $project->title }}" width="100%" height="600" src="{{ $project->model3D }}"
+                        frameborder="0" allow="fullscreen" allowfullscreen="true" mozallowfullscreen="true"
+                        webkitallowfullscreen="true"></iframe>
+                @endif
             </div>
             <div class="row">
                 <div class="col-xl-12">
