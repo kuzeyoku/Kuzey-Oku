@@ -19,7 +19,7 @@ class ReferenceService extends BaseService
 
     public function create(Object $request)
     {
-        $query = parent::create(new Request($request->only("url", "order", "status")));
+        $query = parent::create(new Request($request->only("title", "url", "order", "status")));
 
         if ($query->id) {
             if (isset($request->image) && $request->image->isValid()) {
@@ -36,7 +36,7 @@ class ReferenceService extends BaseService
 
     public function update(Object $request, Model $reference)
     {
-        $query = parent::update(new Request($request->only("url", "order", "status")), $reference);
+        $query = parent::update(new Request($request->only("title", "url", "order", "status")), $reference);
 
         if ($query) {
             if (isset($request->imageDelete)) {
