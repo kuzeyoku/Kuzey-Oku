@@ -11,7 +11,6 @@
             {{ html()->label(__('admin/general.order')) }}
             {{ html()->number('order', $reference->order)->placeholder(__('admin/general.order_placeholder'))->class('form-control') }}
         </div>
-
         <div class="col-lg-6">
             {{ html()->label(__('admin/general.status')) }}
             {{ html()->select('status', statusList(), $reference->status)->class('form-control') }}
