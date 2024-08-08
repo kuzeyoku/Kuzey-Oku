@@ -1,5 +1,5 @@
 @extends(themeView('admin', 'layout.edit'), ['tab' => false, 'item' => $reference])
-@section('content')
+@section('form')
     {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default-file', $reference->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     <br>
     {{ html()->label(__("admin/{$folder}.form_title")) }}
