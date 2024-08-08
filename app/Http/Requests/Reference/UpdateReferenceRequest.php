@@ -23,6 +23,7 @@ class UpdateReferenceRequest extends FormRequest
     {
         return [
             "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
+            "title" => "required",
             "url" => "nullable|active_url",
             "order" => "required|numeric|min:0",
             "status" => "required",
@@ -34,6 +35,7 @@ class UpdateReferenceRequest extends FormRequest
     {
         return [
             "image" => __("admin/{$this->folder}.form_image"),
+            "title" => __("admin/{$this->folder}.form_title"),
             "url" => __("admin/{$this->folder}.form_url"),
             "order" => __("admin/general.order"),
             "status" => __("admin/general.status")

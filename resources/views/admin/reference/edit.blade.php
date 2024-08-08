@@ -2,6 +2,8 @@
 @section('content')
     {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->attribute('data-default-file', $reference->getFirstMediaUrl($module->COVER_COLLECTION()))->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
     <br>
+    {{ html()->label(__("admin/{$folder}.form_title")) }}
+    {{ html()->text('title', $reference->title)->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
     {{ html()->label(__("admin/{$folder}.form_url")) }}
     {{ html()->input('url', 'url', $reference->url)->placeholder(__("admin/{$folder}.form_url_placeholder"))->class('form-control') }}
     <div class="row">

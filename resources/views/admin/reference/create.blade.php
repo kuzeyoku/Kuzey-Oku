@@ -1,8 +1,9 @@
 @extends(themeView('admin', 'layout.create'), ['tab' => false])
 @section('form')
     {{ html()->file('image')->attribute('data-allowed-file-extensions', 'png jpg jpeg gif')->accept('.png, .jpg, .jpeg, .gif')->class('dropify-image') }}
-
     <br>
+    {{ html()->label(__("admin/{$folder}.form_title")) }}
+    {{ html()->text('title')->placeholder(__("admin/{$folder}.form_title_placeholder"))->class('form-control') }}
     {{ html()->label(__("admin/{$folder}.form_url")) }}
     {{ html()->input('url', 'url')->placeholder(__("admin/{$folder}.form_url_placeholder"))->class('form-control') }}
     <div class="row">

@@ -44,7 +44,7 @@ class ReferenceController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
+            LogController::logger("info", $this->notification->log("created", ["title" => $request->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));

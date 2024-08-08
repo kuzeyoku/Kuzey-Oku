@@ -15,6 +15,7 @@ class Reference extends Model implements HasMedia
 
     protected $fillable = [
         "url",
+        "title",
         "status",
         "order"
     ];
