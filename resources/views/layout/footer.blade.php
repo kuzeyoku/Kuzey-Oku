@@ -23,11 +23,13 @@
                 <div class="footer-column col-xl-3 col-lg-4 col-md-4">
                     <div class="footer-widget links-widget">
                         <h4 class="widget-title">@lang('front/footer.txt1')</h4>
-                        <ul class="user-links">
-                            @foreach ($quickLinks as $page)
-                                <li><a href="{{ $page->url }}">{{ $page->title }}</a></li>
-                            @endforeach
-                        </ul>
+                        <div class="widget-content">
+                            <ul class="user-links">
+                                @foreach ($quickLinks as $page)
+                                    <li><a href="{{ $page->url }}">{{ $page->title }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -35,16 +37,11 @@
                     <div class="footer-widget gallery-widget">
                         <h4 class="widget-title">@lang('front/footer.txt2')</h4>
                         <div class="widget-content">
-                            <div class="outer clearfix">
+                            <ul class="user-links">
                                 @foreach ($footer_services as $service)
-                                    <figure class="image">
-                                        <a href="{{ $service->url }}">
-                                            <img src="{{ $service->getFirstMediaUrl('cover') }}"
-                                                alt="{{ $service->title }}">
-                                        </a>
-                                    </figure>
+                                    <li><a href="{{ $service->url }}">{{ $service->title }}</a></li>
                                 @endforeach
-                            </div>
+                            </ul>
                         </div>
                     </div>
                 </div>
