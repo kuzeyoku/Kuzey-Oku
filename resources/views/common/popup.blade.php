@@ -1,4 +1,5 @@
 @if ($popup)
+@empty($_COOKIE['popup_view'])
     <div id="modal" style="display: none">
         @if ($popup->type == 'image')
             <a href="{{ $popup->url }}"><img class="w-100 img-fluid" src="{{ $popup->getFirstMediaUrl('cover') }}"></a>
@@ -42,4 +43,5 @@
             });
         </script>
     @endpush
+@endempty
 @endif

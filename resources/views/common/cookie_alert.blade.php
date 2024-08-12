@@ -1,5 +1,6 @@
 @if (settings('information.cookie_notification_status', App\Enums\StatusEnum::Passive->value) ==
         App\Enums\StatusEnum::Active->value)
+@empty($_COOKIE['cookie_notification'])
     <div class="cookie" id="cookie-notification" style="display:none">
         <img src="{{ themeAsset('common', 'images/cookie.svg') }}" alt="cookie">
         <div class="title">
@@ -15,9 +16,7 @@
     @push('script')
         <script>
             $(document).ready(function() {
-                if ($.cookie("cookie_notification") === undefined) {
-                    $("#cookie-notification").show("slow");
-                }
+                $("#cookie-notification").show("slow");
             });
 
             $(document).on("click", "#cookie-accept", function() {
@@ -29,4 +28,5 @@
             });
         </script>
     @endpush
+@endempty
 @endif
