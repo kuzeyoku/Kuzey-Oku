@@ -1,7 +1,5 @@
 @extends('layout.main')
 @section('title', $service->title)
-@section('description', $service->short_description)
-@section('ogimage', $service->getFirstMediaUrl('cover'))
 @section('parent_url', route('service.index'))
 @section('parent_title', __('front/service.txt2'))
 @section('content')

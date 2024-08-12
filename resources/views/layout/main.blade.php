@@ -49,6 +49,7 @@
     <script src="{{ themeAsset('common', 'js/jquery.cookie.js') }}"></script>
     @include('common.popup')
     @stack('script')
+    @include('common.maintenance')
 </body>
 
 </html>

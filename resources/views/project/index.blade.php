@@ -1,7 +1,8 @@
 @extends('layout.main')
+@section('title', __('front/project.txt1'))
 @section('content')
-    @include('layout.breadcrumb', ['title' => __('front/project.txt1')])
-    <section class="">
+    @include('layout.breadcrumb')
+    <section>
         <div class="container">
             <div class="row g-3">
                 @foreach ($projects as $project)
