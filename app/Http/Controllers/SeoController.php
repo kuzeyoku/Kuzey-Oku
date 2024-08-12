@@ -6,11 +6,11 @@ use Artesaos\SEOTools\Facades\SEOTools;
 
 class SeoController extends Controller
 {
-    public static function set($item = null)
+    public static function set(object|array|null $item = null)
     {
         SEOTools::setCanonical(url()->current());
         SEOTools::opengraph()->addProperty('type', 'website');
-        if ($item) {
+        if (is_object($item)) {
             SEOTools::setTitle($item->title);
             SEOTools::setDescription($item->meta_description);
             SEOTools::opengraph()->setTitle($item->title);
@@ -19,6 +19,15 @@ class SeoController extends Controller
             SEOTools::twitter()->setTitle($item->title);
             SEOTools::jsonLd()->setTitle($item->title);
             SEOTools::jsonLd()->setDescription($item->meta_description);
+        } elseif (is_array($item)) {
+            SEOTools::setTitle($item["title"]);
+            SEOTools::setDescription($item["description"]);
+            SEOTools::opengraph()->setTitle($item["title"]);
+            SEOTools::opengraph()->setDescription($item["description"]);
+            SEOTools::opengraph()->setUrl(url()->current());
+            SEOTools::twitter()->setTitle($item["title"]);
+            SEOTools::jsonLd()->setTitle($item["title"]);
+            SEOTools::jsonLd()->setDescription($item["description"]);
         } else {
             SEOTools::setTitle(settings("general.title", config("app.name")));
             SEOTools::setDescription(settings("general.description"));

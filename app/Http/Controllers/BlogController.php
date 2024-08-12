@@ -16,7 +16,7 @@ class BlogController extends Controller
 
     public function index()
     {
-        SeoController::set();
+        SeoController::set(["title" => __("front/blog.meta_title"), "description" => __("front/blog.meta_description")]);
         if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
             $cacheKey = ModuleEnum::Blog->value . "_list_" . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale();
             $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () {

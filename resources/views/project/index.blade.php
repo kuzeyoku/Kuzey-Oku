@@ -1,7 +1,6 @@
 @extends('layout.main')
-@section('title', __('front/project.txt1'))
 @section('content')
-    @include('layout.breadcrumb')
+    @include('layout.breadcrumb', ['title' => __('front/project.txt1')])
     <section class="">
         <div class="container">
             <div class="row g-3">

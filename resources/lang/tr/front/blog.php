@@ -1,5 +1,7 @@
 <?php
 return [
+    "meta_title" => "Blog & Haberler",
+    "meta_description" => "Blog & Haberler",
     "txt1" => "Blog & Haberler",
     "txt2" => "Blog Yazılarımız",
     "txt3" => "Devamı",
