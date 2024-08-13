@@ -5,10 +5,10 @@ namespace App\Models;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use Illuminate\Support\Str;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\MediaLibrary\HasMedia;
+use Illuminate\Database\Eloquent\Model;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Blog extends Model implements HasMedia
 {
@@ -22,15 +22,7 @@ class Blog extends Model implements HasMedia
         "order"
     ];
 
-    protected $locale;
-
     protected $with = ["category", "translate", "user", "comments"];
-
-    public function __construct()
-    {
-        parent::__construct();
-        $this->locale = session("locale");
-    }
 
     public function scopeActive($query)
     {
@@ -79,7 +71,7 @@ class Blog extends Model implements HasMedia
 
     public function getTitleAttribute()
     {
-        return $this->translate->where("lang", $this->locale)->pluck('title')->first();
+        return $this->translate->where("lang", app()->getLocale())->pluck('title')->first();
     }
 
     public function getTitlesAttribute()
@@ -89,7 +81,7 @@ class Blog extends Model implements HasMedia
 
     public function getDescriptionAttribute()
     {
-        return $this->translate->where("lang", $this->locale)->pluck('description')->first();
+        return $this->translate->where("lang", app()->getLocale())->pluck('description')->first();
     }
 
     public function getDescriptionsAttribute()
@@ -142,7 +134,7 @@ class Blog extends Model implements HasMedia
     {
         parent::boot();
         static::creating(function ($model) {
-            $model->user_id = auth()->id();
+            $model->user_id = \Illuminate\Support\Facades\Auth::id();
             $model->slug = Str::slug(request("title." . app()->getFallbackLocale()));
         });
     }

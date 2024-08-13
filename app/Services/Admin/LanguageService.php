@@ -20,22 +20,22 @@ class LanguageService extends BaseService
         parent::__construct($language, ModuleEnum::Language);
     }
 
-    public function create(Object $request)
-    {
-        $code = strtolower($request->code);
-        $from = resource_path("lang/" . $this->defaultLocale);
-        $to = resource_path("lang/{$code}");
-        if (!File::exists($to))
-            File::copyDirectory($from, $to);
-        else
-            throw new Exception(__("admin/language.code_exists"));
-        $data = new Request([
-            'title' => $request->title,
-            'code' => $code,
-            'status' => $request->status,
-        ]);
-        return parent::create($data);
-    }
+    // public function create(array $request)
+    // {
+    //     $code = strtolower($request->code);
+    //     $from = resource_path("lang/" . $this->defaultLocale);
+    //     $to = resource_path("lang/{$code}");
+    //     if (!File::exists($to))
+    //         File::copyDirectory($from, $to);
+    //     else
+    //         throw new Exception(__("admin/language.code_exists"));
+    //     $data = new Request([
+    //         'title' => $request->title,
+    //         'code' => $code,
+    //         'status' => $request->status,
+    //     ]);
+    //     return parent::create($data);
+    // }
 
     public function update(Object $request, Model $language)
     {

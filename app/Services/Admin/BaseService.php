@@ -12,18 +12,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class BaseService
 {
-    protected $defaultLocale;
-    protected $model;
-    protected $module;
-    protected $cacheStatus;
-    protected $cacheTime;
+    private $fileService;
 
-    public function __construct(Model $model, ModuleEnum $module = null)
+    public function __construct(private Model $model, private  ModuleEnum $module)
     {
-        $this->defaultLocale = app()->getFallbackLocale();
-        $this->model = $model;
-        $this->module = $module;
-        $this->cacheTime = settings("caching.time", 3600);
+        $this->fileService = new FileService($module);
     }
 
     public function folder()
@@ -44,7 +37,7 @@ class BaseService
     public function all()
     {
         if (settings("caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value)
-            return Cache::remember($this->module->value . '_' . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale() . "_admin", $this->cacheTime, function () {
+            return Cache::remember($this->module->value . '_' . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale() . "_admin", settings("caching.time", env("CACHE_TIME")), function () {
                 return $this->model->orderByDesc("id")->paginate(settings("pagination.admin", 15));
             });
         else
@@ -53,15 +46,50 @@ class BaseService
 
     public function create(Request $request)
     {
-        $this->cacheClear();
-        return $this->model->create($request->all());
+        try {
+            $item = $this->model->create($request->validated());
+            $this->translations($item, $request);
+            $this->fileService->upload($item, $request);
+            $this->cacheClear();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
 
     public function update(Request $request, Model $item)
     {
-        $this->cacheClear();
-        return $item->update($request->all());
+        try {
+            $item->update($request->validated());
+            $this->translations($item, $request);
+            $this->fileService->upload($item, $request);
+            $this->cacheClear();
+            return true;
+        } catch (\Exception $e) {
+            return false;
+        }
     }
+
+    public function translations($item, $request)
+    {
+        if (method_exists($item, 'translate')) {
+            languageList()->each(function ($lang) use ($item, $request) {
+                if ($item->translate()) {
+                    $item->translate()->updateOrCreate(
+                        [
+                            "lang" => $lang->code
+                        ],
+                        [
+                            "title" => $request->title[$lang->code] ?? null,
+                            "description" => $request->description[$lang->code] ?? null,
+                            "tags" => $request->tags[$lang->code] ?? null,
+                        ]
+                    );
+                }
+            });
+        }
+    }
+
 
     public function statusUpdate(Request $request, int $itemID)
     {
@@ -90,13 +118,13 @@ class BaseService
     {
         if (settings("caching.status", StatusEnum::Passive->value) ==  StatusEnum::Active->value) {
             $cacheKey = ($this->module ? $this->module->value . "_" : "all_") . "categories";
-            return Cache::remember($cacheKey, $this->cacheTime, function () {
+            return Cache::remember($cacheKey, settings("caching.time", env("CACHE_TIME")), function () {
                 $categories = Category::whereStatus(StatusEnum::Active->value)
                     ->when($this->module !== null, function ($query) {
                         return $query->where("module", $this->module);
                     })
                     ->get();
-                $titles = $categories->pluck("titles." . $this->defaultLocale, "id");
+                $titles = $categories->pluck("titles." . app()->getFallbackLocale(), "id");
                 return $titles->toArray();
             });
         } else {
@@ -105,7 +133,7 @@ class BaseService
                     return $query->where("module", $this->module);
                 })
                 ->get();
-            $titles = $categories->pluck("titles." . $this->defaultLocale, "id");
+            $titles = $categories->pluck("titles." . app()->getFallbackLocale(), "id");
             return $titles->toArray();
         }
     }
