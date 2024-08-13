@@ -22,14 +22,7 @@ class ThemeProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer(["layout.*", "contact", "admin.setting.asset"], function ($view) {
-            $themeAsset = Cache::rememberForever('theme_assets', function () {
-                $assetData = \App\Models\ThemeAsset::all();
-                $response = \App\Services\Admin\SettingService::getThemeAssets();
-                foreach ($assetData as $asset) {
-                    $response->{$asset->name} = $asset->getFirstMediaUrl($asset->name);
-                }
-                return $response;
-            });
+            $themeAsset = \App\Services\ThemeService::getThemeAssets();
             $view->with(compact("themeAsset"));
         });
         View::composer("layout.about", function ($view) {

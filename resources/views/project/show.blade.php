@@ -1,6 +1,9 @@
 @extends('layout.main')
+@section('title', $project->title)
+@section('parent_url', route('project.index'))
+@section('parent_title', __('front/project.txt1'))
 @section('content')
-    @include('layout.breadcrumb', ['title' => $project->title])
+    @include('layout.breadcrumb')
     <section class="project-details">
         <div class="container">
             <div class="row">
