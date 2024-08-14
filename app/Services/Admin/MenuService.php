@@ -5,8 +5,6 @@ namespace App\Services\Admin;
 use App\Models\Menu;
 use App\Models\Page;
 use App\Enums\ModuleEnum;
-use Illuminate\Http\Request;
-use App\Models\MenuTranslate;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Database\Eloquent\Model;
 
@@ -19,42 +17,6 @@ class MenuService extends BaseService
         parent::__construct($menu, ModuleEnum::Menu);
     }
 
-    public function create(Request $request)
-    {
-        $data = new Request([
-            "url" => $request->urlSelect ?? $request->url,
-            "parent_id" => $request->parent_id ?? 0,
-            "order" => $request->order,
-            "blank" => $request->blank ?? false,
-        ]);
-
-        $query = parent::create($data);
-
-        if ($query->id) {
-            $this->translations($query->id, $request);
-        }
-
-        return $query;
-    }
-
-    public function update(Request $request, Model $menu)
-    {
-        $data = new Request([
-            "url" => $request->urlSelect ?? $request->url,
-            "parent_id" => $request->parent_id ?? 0,
-            "order" => $request->order,
-            "blank" => $request->blank ?? false,
-        ]);
-
-        $query = parent::update($data, $menu);
-
-        if ($query) {
-            $this->translations($menu->id, $request);
-        }
-
-        return $query;
-    }
-
     public function delete(Model $menu)
     {
         $query = parent::delete($menu);
@@ -63,21 +25,6 @@ class MenuService extends BaseService
             Menu::whereParentId($menu->id)->delete();
         }
         return $query;
-    }
-
-    public function translations(int $menuId, Object $request)
-    {
-        languageList()->each(function ($item) use ($menuId, $request) {
-            MenuTranslate::updateOrCreate(
-                [
-                    "menu_id" => $menuId,
-                    "lang" => $item->code
-                ],
-                [
-                    "title" => $request->title[$item->code] ?? null,
-                ]
-            );
-        });
     }
 
     public function getUrlList(): array

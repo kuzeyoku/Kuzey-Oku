@@ -61,26 +61,4 @@ class CategoryService extends BaseService
 
         return $query;
     }
-
-    protected function translations(int $categoryId, Request $request)
-    {
-        languageList()->each(function ($lang) use ($categoryId, $request) {
-            CategoryTranslate::updateOrCreate(
-                [
-                    "category_id" => $categoryId,
-                    "lang" => $lang->code
-                ],
-                [
-                    "title" => $request->title[$lang->code],
-                    "description" => $request->description[$lang->code]
-                ]
-            );
-        });
-    }
-
-    public function delete(Model $category)
-    {
-        Category::where("parent_id", $category->id)->delete();
-        return parent::delete($category);
-    }
 }

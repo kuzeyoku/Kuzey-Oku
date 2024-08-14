@@ -2,17 +2,11 @@
 
 namespace App\Services\Admin;
 
-use App\Enums\ModuleEnum;
 use Illuminate\Support\Str;
 
 class FileService
 {
-    protected $module;
-
-    public function __construct(ModuleEnum $module)
-    {
-        $this->module = $module;
-    }
+    public function __construct(private string $collection) {}
 
     public function upload($item, $request)
     {
@@ -21,10 +15,10 @@ class FileService
                 $this->delete($item);
             }
             if (isset($request->image) && $request->image->isValid()) {
-                if ($item->hasMedia($this->module->COVER_COLLECTION())) {
+                if ($item->hasMedia($this->collection)) {
                     $this->delete($item);
                 }
-                $item->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->module->COVER_COLLECTION());
+                $item->addMediaFromRequest("image")->usingFileName(Str::random(8) . "." . $request->image->extension())->toMediaCollection($this->collection);
             }
         } catch (\Exception $e) {
             //Exception
@@ -34,7 +28,7 @@ class FileService
     public function delete($item)
     {
         try {
-            $item->clearMediaCollection($this->module->COVER_COLLECTION());
+            $item->clearMediaCollection($this->collection);
         } catch (\Exception $e) {
             //Exception
         }

@@ -52,4 +52,12 @@ class Menu extends Model
     {
         return $this->translate->where("lang", $this->locale)->pluck('title')->first();
     }
+
+    public static function boot()
+    {
+        parent::boot();
+        self::deleting(function ($model) {
+            $model->subMenu->delete();
+        });
+    }
 }

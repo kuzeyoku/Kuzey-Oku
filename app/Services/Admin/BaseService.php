@@ -2,8 +2,8 @@
 
 namespace App\Services\Admin;
 
-use App\Models\Category;
 use App\Enums\ModuleEnum;
+use App\Models\Category;
 use App\Enums\StatusEnum;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
@@ -14,9 +14,9 @@ class BaseService
 {
     private $fileService;
 
-    public function __construct(private Model $model, private  ModuleEnum $module)
+    public function __construct(private Model $model, private ModuleEnum $module)
     {
-        $this->fileService = new FileService($module);
+        $this->fileService = new FileService($module->COVER_COLLECTION());
     }
 
     public function folder()
@@ -44,10 +44,10 @@ class BaseService
             return $this->model->orderByDesc("id")->paginate(settings("pagination.admin", 15));
     }
 
-    public function create(Request $request)
+    public function create(array $request)
     {
         try {
-            $item = $this->model->create($request->validated());
+            $item = $this->model->create($request);
             $this->translations($item, $request);
             $this->fileService->upload($item, $request);
             $this->cacheClear();
@@ -57,10 +57,10 @@ class BaseService
         }
     }
 
-    public function update(Request $request, Model $item)
+    public function update(array $request, Model $item)
     {
         try {
-            $item->update($request->validated());
+            $item->update($request);
             $this->translations($item, $request);
             $this->fileService->upload($item, $request);
             $this->cacheClear();
@@ -80,9 +80,9 @@ class BaseService
                             "lang" => $lang->code
                         ],
                         [
-                            "title" => $request->title[$lang->code] ?? null,
-                            "description" => $request->description[$lang->code] ?? null,
-                            "tags" => $request->tags[$lang->code] ?? null,
+                            "title" => array_key_exists("title", $request) ? $request["title"][$lang->code] : null,
+                            "description" => array_key_exists("description", $request) ? $request["description"][$lang->code] : null,
+                            "tags" => array_key_exists("tags", $request) ? $request["tags"][$lang->code] : null,
                         ]
                     );
                 }

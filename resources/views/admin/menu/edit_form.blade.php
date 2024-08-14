@@ -15,7 +15,7 @@
 {{ html()->select('parent_id', $parentList, $menu->parent_id)->placeholder(__('admin/general.select'))->class('form-control') }}
 <label class="inputcheck">
     {{ html()->label(__("admin/{$folder}.form_blank")) }}
-    {{ html()->checkbox('blank', true, $menu->blank) }}
+    {{ html()->checkbox('blank', $menu->blank, true) }}
     <span class="checkmark"></span>
 </label>
 {{ html()->submit(__('admin/general.save'))->class('btn btn-primary') }}

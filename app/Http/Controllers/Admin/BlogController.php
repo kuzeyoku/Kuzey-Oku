@@ -12,8 +12,6 @@ use App\Services\Admin\NotificationService;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
-use Spatie\Activitylog\ActivityLogger;
-
 class BlogController extends Controller
 {
     protected $service;
@@ -46,7 +44,6 @@ class BlogController extends Controller
     {
         try {
             $this->service->create($request);
-            activity()->event("created")->log($this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -67,7 +64,6 @@ class BlogController extends Controller
     {
         try {
             $this->service->update($request, $blog);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $blog->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -95,7 +91,6 @@ class BlogController extends Controller
     public function destroy(Blog $blog)
     {
         try {
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $blog->title]));
             $this->service->delete($blog);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

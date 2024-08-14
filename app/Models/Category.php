@@ -38,6 +38,11 @@ class Category extends Model
         return $query->orderBy("order", "asc");
     }
 
+    public function subCategories()
+    {
+        return $this->hasMany(Category::class, "parent_id");
+    }
+
     public function translate()
     {
         return $this->hasMany(CategoryTranslate::class);
@@ -91,6 +96,7 @@ class Category extends Model
             $category->projects()->update(["category_id" => 0]);
             $category->services()->update(["category_id" => 0]);
             $category->blogs()->update(["category_id" => 0]);
+            $category->subCategories()->delete();
         });
     }
 

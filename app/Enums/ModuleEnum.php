@@ -21,28 +21,6 @@ enum ModuleEnum: string
     case Popup = "popup";
     case User = "user";
 
-    public function status(): bool
-    {
-        return match ($this) {
-            self::User => true,
-            self::Message => true,
-            self::Media => true,
-            self::Menu => true,
-            self::Page => true,
-            self::Language => true,
-            self::Blog => true,
-            self::Category => true,
-            self::Service => true,
-            self::Brand => true,
-            self::Reference => true,
-            self::Product => false,
-            self::Project => true,
-            self::Slider => true,
-            self::Testimonial => true,
-            self::Popup => true,
-        };
-    }
-
     public function title(): string
     {
         return __("admin/$this->value.title");
@@ -88,7 +66,7 @@ enum ModuleEnum: string
             self::Media => "media",
             self::Menu => "menu",
             self::Page => 'page',
-            self::Language => 'language',
+            self::Language => "language",
             self::Blog => "blog",
             self::Category => "category",
             self::Service => "service",
@@ -121,50 +99,6 @@ enum ModuleEnum: string
             self::Slider => "slider",
             self::Testimonial => "testimonial",
             self::Popup => "popup",
-        };
-    }
-
-    public function controller(): string
-    {
-        return match ($this) {
-            self::User => \App\Http\Controllers\Admin\UserController::class,
-            self::Message => \App\Http\Controllers\Admin\MessageController::class,
-            self::Media => \App\Http\Controllers\Admin\MediaController::class,
-            self::Menu => \App\Http\Controllers\Admin\MenuController::class,
-            self::Page => \App\Http\Controllers\Admin\PageController::class,
-            self::Language => \App\Http\Controllers\Admin\LanguageController::class,
-            self::Blog => \App\Http\Controllers\Admin\BlogController::class,
-            self::Category => \App\Http\Controllers\Admin\CategoryController::class,
-            self::Service => \App\Http\Controllers\Admin\ServiceController::class,
-            self::Brand => \App\Http\Controllers\Admin\BrandController::class,
-            self::Reference => \App\Http\Controllers\Admin\ReferenceController::class,
-            self::Product => \App\Http\Controllers\Admin\ProductController::class,
-            self::Project => \App\Http\Controllers\Admin\ProjectController::class,
-            self::Slider => \App\Http\Controllers\Admin\SliderController::class,
-            self::Testimonial => \App\Http\Controllers\Admin\TestimonialController::class,
-            self::Popup => \App\Http\Controllers\Admin\PopupController::class,
-        };
-    }
-
-    public function model(): string
-    {
-        return match ($this) {
-            self::User => \App\Models\User::class,
-            self::Message => \App\Models\Message::class,
-            self::Media => \Spatie\MediaLibrary\MediaCollections\Models\Media::class,
-            self::Menu => \App\Models\Menu::class,
-            self::Page => \App\Models\Page::class,
-            self::Language => \App\Models\Language::class,
-            self::Blog => \App\Models\Blog::class,
-            self::Category => \App\Models\Category::class,
-            self::Service => \App\Models\Service::class,
-            self::Brand => \App\Models\Brand::class,
-            self::Reference => \App\Models\Reference::class,
-            self::Product => \App\Models\Product::class,
-            self::Project => \App\Models\Project::class,
-            self::Slider => \App\Models\Slider::class,
-            self::Testimonial => \App\Models\Testimonial::class,
-            self::Popup => \App\Models\Popup::class,
         };
     }
 
@@ -247,36 +181,6 @@ enum ModuleEnum: string
         ];
     }
 
-    public function image(): array
-    {
-        return match ($this) {
-            self::Blog => ["image" => ["width" => 1080, "height" => 720]],
-            self::Service => ["image" => ["width" => 720, "height" => 480]],
-            self::Brand => ["image" => ["width" => 150, "height" => 150]],
-            self::Reference => ["image" => ["width" => 400, "height" => 400]],
-            self::Product => ["image" => ["width" => 1080, "height" => 400]],
-            self::Project => ["image" => ["width" => 1920, "height" => 1080]],
-            self::Slider => ["image" => ["width" => 1920, "height" => 1080]],
-            self::Testimonial => ["image" => ["width" => 300, "height" => 300]],
-            self::Popup => ["image" => ["width" => 800, "height" => 600]],
-        };
-    }
-
-    public function homeLimit()
-    {
-        return match ($this) {
-            self::Blog => 3,
-            self::Service => null,
-            self::Brand => null,
-            self::Reference => null,
-            self::Product => 3,
-            self::Project => null,
-            self::Slider => null,
-            self::Testimonial => null,
-            self::Popup => null,
-        };
-    }
-
     public function IMAGE_COLLECTION()
     {
         return match ($this) {
@@ -297,6 +201,7 @@ enum ModuleEnum: string
             self::Slider => "cover",
             self::Testimonial => "avatar",
             self::Popup => "cover",
+            self::Menu => "null",
         };
     }
 

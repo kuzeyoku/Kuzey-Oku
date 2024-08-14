@@ -37,14 +37,7 @@ class LanguageService extends BaseService
     //     return parent::create($data);
     // }
 
-    public function update(Object $request, Model $language)
-    {
-        $data = new Request([
-            'title' => $request->title,
-            'status' => $request->status,
-        ]);
-        return parent::update($data, $language);
-    }
+
 
     public function delete(Model $language)
     {

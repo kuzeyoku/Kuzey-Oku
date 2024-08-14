@@ -41,7 +41,6 @@ class PageController extends Controller
     {
         try {
             $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -62,7 +61,6 @@ class PageController extends Controller
     {
         try {
             $this->service->update($request, $page);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $page->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -90,7 +88,6 @@ class PageController extends Controller
     public function destroy(Page $page)
     {
         try {
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $page->title]));
             $this->service->delete($page);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

@@ -23,7 +23,7 @@ Route::middleware(CountVisitors::class, Maintenance::class)->group(function () {
 
     Route::get("/page/{page}/{slug}", [App\Http\Controllers\PageController::class, "show"])->name("page.show");
 
-    if (ModuleEnum::Blog->status()) {
+    if (config("module.blog.status")) {
         Route::controller(App\Http\Controllers\BlogController::class)->prefix("blog")->group(function () {
             Route::get("/", "index")->name("blog.index");
             Route::get("/{post}/{slug}", "show")->name("blog.show");
@@ -32,7 +32,7 @@ Route::middleware(CountVisitors::class, Maintenance::class)->group(function () {
         });
     }
 
-    if (ModuleEnum::Service->status()) {
+    if (config("module.service.status")) {
         Route::controller(App\Http\Controllers\ServiceController::class)->prefix("service")->group(function () {
             Route::get("/", "index")->name("service.index");
             Route::get("/{service}/{slug}", "show")->name("service.show");
@@ -40,7 +40,7 @@ Route::middleware(CountVisitors::class, Maintenance::class)->group(function () {
         });
     }
 
-    if (ModuleEnum::Project->status()) {
+    if (config("module.project.status")) {
         Route::controller(App\Http\Controllers\ProjectController::class)->prefix("project")->group(function () {
             Route::get("/", "index")->name("project.index");
             Route::get("/{project}/{slug}", "show")->name("project.show");

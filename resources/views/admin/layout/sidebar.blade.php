@@ -24,7 +24,7 @@
                             </ul>
                         </li>
                         @foreach (App\Enums\ModuleEnum::cases() as $module)
-                            @if ($module->status())
+                            @if (config("module.{$module->value}.status"))
                                 @if (count($module->menu()) == 1)
                                     <li>
                                         <a href="{{ route("admin.{$module->route()}.index") }}">

@@ -17,9 +17,6 @@
                     @forelse ($items as $item)
                         <div class="col-lg-2">
                             <div class="card">
-                                <div class="card-header">
-                                    {{ $item->model->module }}
-                                </div>
                                 <div class="card-body">
                                     <img class="card-img" style="height: 200px" src="{{ $item->getUrl() }}">
                                 </div>

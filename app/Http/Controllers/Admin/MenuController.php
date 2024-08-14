@@ -53,8 +53,7 @@ class MenuController extends Controller
     public function store(StoreMenuRequest $request)
     {
         try {
-            $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
@@ -69,8 +68,7 @@ class MenuController extends Controller
     public function update(UpdateMenuRequest $request, Menu $menu)
     {
         try {
-            $this->service->update($request, $menu);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $menu->title]));
+            $this->service->update($request->validated(), $menu);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
@@ -85,7 +83,6 @@ class MenuController extends Controller
     public function destroy(Menu $menu)
     {
         try {
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $menu->title]));
             $this->service->delete($menu);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")

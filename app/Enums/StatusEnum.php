@@ -34,19 +34,6 @@ enum StatusEnum: string
         };
     }
 
-    // public function color(): string
-    // {
-    //     return match ($this) {
-    //         self::Active => "linesuccess",
-    //         self::Passive => "linedanger",
-    //         self::Draft => "linewarning",
-    //         self::Pending => "linesecondary",
-    //         self::Read => "linesuccess",
-    //         self::Unread => "linedanger",
-    //         self::Answered => "lineinfo",
-    //     };
-    // }
-
     public function icon(): string
     {
         return match ($this) {
