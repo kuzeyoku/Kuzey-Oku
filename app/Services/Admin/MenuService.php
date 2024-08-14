@@ -6,7 +6,6 @@ use App\Models\Menu;
 use App\Models\Page;
 use App\Enums\ModuleEnum;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Database\Eloquent\Model;
 
 class MenuService extends BaseService
 {
@@ -15,16 +14,6 @@ class MenuService extends BaseService
     public function __construct(Menu $menu)
     {
         parent::__construct($menu, ModuleEnum::Menu);
-    }
-
-    public function delete(Model $menu)
-    {
-        $query = parent::delete($menu);
-
-        if ($query) {
-            Menu::whereParentId($menu->id)->delete();
-        }
-        return $query;
     }
 
     public function getUrlList(): array

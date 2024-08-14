@@ -7,7 +7,6 @@ use App\Models\Reference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\ReferenceService;
-use App\Services\Admin\NotificationService;
 use App\Http\Requests\Reference\StoreReferenceRequest;
 use App\Http\Requests\Reference\UpdateReferenceRequest;
 
@@ -20,7 +19,6 @@ class ReferenceController extends Controller
     public function __construct(ReferenceService $service)
     {
         $this->service = $service;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             'route' => $this->service->route(),
             'folder' => $this->service->folder(),
@@ -43,13 +41,11 @@ class ReferenceController extends Controller
     public function store(StoreReferenceRequest $request)
     {
         try {
-            $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->title]));
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("created_error"));
@@ -64,13 +60,11 @@ class ReferenceController extends Controller
     public function update(UpdateReferenceRequest $request, Reference $reference)
     {
         try {
-            $this->service->update($request, $reference);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $reference->title]));
+            $this->service->update($request->validated(), $reference);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("updated_error"));
@@ -84,7 +78,6 @@ class ReferenceController extends Controller
             $this->service->statusUpdate($request, $page);
             return back();
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -94,12 +87,10 @@ class ReferenceController extends Controller
     {
         try {
             $this->service->delete($reference);
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $reference->title]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError($this->notification->alert("deleted_error"));
         }

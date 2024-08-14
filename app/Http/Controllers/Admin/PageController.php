@@ -7,7 +7,6 @@ use App\Models\Page;
 use Illuminate\Http\Request;
 use App\Services\Admin\PageService;
 use Illuminate\Support\Facades\View;
-use App\Services\Admin\NotificationService;
 use App\Http\Requests\Page\StorePageRequest;
 use App\Http\Requests\Page\UpdatePageRequest;
 
@@ -19,7 +18,6 @@ class PageController extends Controller
     public function __construct(PageService $service)
     {
         $this->service = $service;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             'route' => $this->service->route(),
             'folder' => $this->service->folder()
@@ -40,12 +38,11 @@ class PageController extends Controller
     public function store(StorePageRequest $request)
     {
         try {
-            $this->service->create($request);
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("created_error"));
@@ -60,12 +57,11 @@ class PageController extends Controller
     public function update(UpdatePageRequest $request, Page $page)
     {
         try {
-            $this->service->update($request, $page);
+            $this->service->update($request->validated(), $page);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("updated_error"));
@@ -79,7 +75,6 @@ class PageController extends Controller
             $this->service->statusUpdate($request, $page);
             return back();
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -93,7 +88,6 @@ class PageController extends Controller
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError($this->notification->alert("deleted_error"));
         }

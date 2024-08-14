@@ -7,7 +7,6 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\ProductService;
-use App\Services\Admin\NotificationService;
 use App\Http\Requests\Product\ImageProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
@@ -21,7 +20,6 @@ class ProductController extends Controller
     public function __construct(ProductService $service)
     {
         $this->service = $service;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
@@ -49,13 +47,11 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
         try {
-            $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->title[app()->getFallbackLocale()]]));
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("created_error"));
@@ -92,7 +88,6 @@ class ProductController extends Controller
             return back()
                 ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -105,7 +100,6 @@ class ProductController extends Controller
             return back()
                 ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -114,13 +108,11 @@ class ProductController extends Controller
     public function update(UpdateProductRequest $request, Product $product)
     {
         try {
-            $this->service->update($request, $product);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $product->title]));
+            $this->service->update($request->validated(), $product);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("updated_error"));
@@ -134,7 +126,6 @@ class ProductController extends Controller
             $this->service->statusUpdate($request, $page);
             return back();
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -143,13 +134,11 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         try {
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $product->title]));
             $this->service->delete($product);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError($this->notification->alert("deleted_error"));
         }

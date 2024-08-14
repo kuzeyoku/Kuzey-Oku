@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\Page;
-use App\Enums\ModuleEnum;
-use App\Enums\StatusEnum;
-use Artesaos\SEOTools\Facades\SEOTools;
+use App\Models\Slider;
+use App\Models\Project;
+use App\Models\Reference;
+use App\Models\Service;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
@@ -13,29 +15,26 @@ class HomeController extends Controller
     public function index()
     {
         SeoController::set();
-        $modules = [
-            ModuleEnum::Slider,
-            ModuleEnum::Product,
-            ModuleEnum::Service,
-            ModuleEnum::Brand,
-            ModuleEnum::Project,
-            ModuleEnum::Testimonial,
-            ModuleEnum::Blog,
-            ModuleEnum::Reference,
-        ];
 
-        $data = [];
+        $data["slider"] = Cache::remember("slider_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+            return Slider::active()->order()->get();
+        });
 
-        foreach ($modules as $module) {
-            $model = $module->model();
-            if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-                $data[$module->value] = Cache::remember($module->value . "_home_" . app()->getLocale(), settings("caching.time", 3600), function () use ($module, $model) {
-                    return $model::active()->order()->limit($module->homeLimit())->get();
-                });
-            } else {
-                $data[$module->value] = $model::active()->order()->limit($module->homeLimit())->get();
-            };
-        }
+        $data["service"] = Cache::remember("service_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+            return Service::active()->order()->limit(6)->get();
+        });
+
+        $data["project"] = Cache::remember("project_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+            return Project::active()->order()->get();
+        });
+
+        $data["blog"] = Cache::remember("blog_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+            return Blog::active()->order()->limit(3)->get();
+        });
+
+        $data["reference"] = Cache::remember("reference_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+            return Reference::active()->order()->get();
+        });
 
         if (settings("information.about_page", false)) {
             $data["about"] = Cache::remember("about_home_" . app()->getLocale(), settings("caching.time", 3600), function () {

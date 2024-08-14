@@ -8,19 +8,17 @@ use App\Enums\StatusEnum;
 use App\Models\BlogComment;
 use Illuminate\Http\Request;
 use App\Services\Admin\BlogService;
-use App\Services\Admin\NotificationService;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
+
 class BlogController extends Controller
 {
     protected $service;
-    protected $notification;
 
     public function __construct(BlogService $service)
     {
         $this->service = $service;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             "categories" => $this->service->getCategories(),
             "route" => $this->service->route(),
@@ -43,15 +41,14 @@ class BlogController extends Controller
     public function store(StoreBlogRequest $request)
     {
         try {
-            $this->service->create($request);
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -63,15 +60,14 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
         try {
-            $this->service->update($request, $blog);
+            $this->service->update($request->validated(), $blog);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -82,7 +78,6 @@ class BlogController extends Controller
             $this->service->statusUpdate($request, $page);
             return back();
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -94,11 +89,10 @@ class BlogController extends Controller
             $this->service->delete($blog);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -121,7 +115,6 @@ class BlogController extends Controller
             $comment->save();
             return back()->withSuccess(__("admin/alert.default_success"));
         } catch (\Exception $e) {
-            LogController::logger("error", $e->getMessage());
             return back()->withError(__("admin/alert.default_error"));
         }
     }
@@ -133,7 +126,6 @@ class BlogController extends Controller
             $comment->save();
             return back()->withSuccess(__("admin/alert.default_success"));
         } catch (\Exception $e) {
-            LogController::logger("error", $e->getMessage());
             return back()->withError(__("admin/alert.default_error"));
         }
     }
@@ -144,7 +136,6 @@ class BlogController extends Controller
             $comment->delete();
             return back()->withSuccess(__("admin/alert.default_success"));
         } catch (\Exception $e) {
-            LogController::logger("error", $e->getMessage());
             return back()->withError(__("admin/alert.default_error"));
         }
     }

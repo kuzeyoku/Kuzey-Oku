@@ -5,7 +5,6 @@ namespace App\Services\Admin;
 use App\Models\Language;
 use App\Enums\ModuleEnum;
 use Exception;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Database\Eloquent\Model;
@@ -42,7 +41,7 @@ class LanguageService extends BaseService
     public function delete(Model $language)
     {
         $code = $language->code;
-        if ($code == $this->defaultLocale)
+        if ($code == app()->getLocale())
             throw new Exception(__("admin/language.default_delete_error"));
         $from = resource_path("lang/{$code}");
         if (File::exists($from))

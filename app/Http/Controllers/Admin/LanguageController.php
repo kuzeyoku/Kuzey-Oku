@@ -7,7 +7,6 @@ use App\Models\Language;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\LanguageService;
-use App\Services\Admin\NotificationService;
 use App\Http\Requests\Language\StoreLanguageRequest;
 use App\Http\Requests\Language\UpdateLanguageRequest;
 
@@ -19,7 +18,6 @@ class LanguageController extends Controller
     public function __construct(LanguageService $languageService)
     {
         $this->service = $languageService;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             'route' => $this->service->route(),
             'folder' => $this->service->folder()
@@ -40,13 +38,11 @@ class LanguageController extends Controller
     public function store(StoreLanguageRequest $request)
     {
         try {
-            $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->title]));
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("created_error"));
@@ -73,10 +69,8 @@ class LanguageController extends Controller
     {
         try {
             $this->service->updateFileContent($language);
-            LogController::logger("info", __("admin/{$this->service->folder()}.update_file_content_log", ["title" => $language->title]));
             return back()->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()->withError(__("admin/alert.default_error"));
         }
     }
@@ -84,13 +78,11 @@ class LanguageController extends Controller
     public function update(UpdateLanguageRequest $request, Language $language)
     {
         try {
-            $this->service->update($request, $language);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $language->title]));
+            $this->service->update($request->validated(), $language);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("updated_error"));
@@ -104,7 +96,6 @@ class LanguageController extends Controller
             $this->service->statusUpdate($request, $page);
             return back();
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -113,13 +104,11 @@ class LanguageController extends Controller
     public function destroy(Language $language)
     {
         try {
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $language->title]));
             $this->service->delete($language);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError($this->notification->alert("deleted_error"));
         }

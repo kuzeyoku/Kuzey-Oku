@@ -56,11 +56,11 @@ class SettingService
     public static function getSitemapModuleList()
     {
         $arr = ["home"];
-        if (ModuleEnum::Page->status()) array_push($arr, "static_pages");
-        if (ModuleEnum::Blog->status()) array_push($arr, "blog", "blog_category", "blog_detail");
-        if (ModuleEnum::Service->status()) array_push($arr, "service", "service_category", "service_detail");
-        if (ModuleEnum::Product->status()) array_push($arr, "product", "product_category", "product_detail");
-        if (ModuleEnum::Project->status()) array_push($arr, "project", "project_category", "project_detail");
+        if (config("module.page.status")) array_push($arr, "static_pages");
+        if (config("module.blog.status")) array_push($arr, "blog", "blog_category", "blog_detail");
+        if (config("module.service.status")) array_push($arr, "service", "service_category", "service_detail");
+        if (config("module.product.status")) array_push($arr, "product", "product_category", "product_detail");
+        if (config("module.project.status")) array_push($arr, "project", "project_category", "project_detail");
         return $arr;
     }
 

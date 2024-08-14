@@ -7,7 +7,6 @@ use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\TestimonialService;
-use App\Services\Admin\NotificationService;
 use App\Http\Requests\Testimonial\StoreTestimonialRequest;
 use App\Http\Requests\Testimonial\UpdateTestimonialRequest;
 
@@ -19,7 +18,6 @@ class TestimonialController extends Controller
     public function __construct(TestimonialService $service)
     {
         $this->service = $service;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             "route" => $this->service->route(),
             "folder" => $this->service->folder()
@@ -40,13 +38,11 @@ class TestimonialController extends Controller
     public function store(StoreTestimonialRequest $request)
     {
         try {
-            $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->name]));
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("created_error"));
@@ -61,13 +57,11 @@ class TestimonialController extends Controller
     public function update(UpdateTestimonialRequest $request, Testimonial $testimonial)
     {
         try {
-            $this->service->update($request, $testimonial);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $request->name]));
+            $this->service->update($request->validated(), $testimonial);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("updated_error"));
@@ -81,7 +75,6 @@ class TestimonialController extends Controller
             $this->service->statusUpdate($request, $page);
             return back();
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -91,12 +84,10 @@ class TestimonialController extends Controller
     {
         try {
             $this->service->delete($testimonial);
-            LogController::logger("info", $this->notification->log("deleted", ["title" => $testimonial->name]));
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("deleted_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError($this->notification->alert("deleted_error"));
         }

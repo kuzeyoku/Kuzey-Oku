@@ -8,9 +8,7 @@ use App\Enums\UserRole;
 use App\Services\Admin\UserService;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\View;
-use App\Services\Admin\NotificationService;
 use App\Http\Requests\User\UserStoreRequest;
-use App\Http\Controllers\Admin\LogController;
 use App\Http\Requests\User\UserUpdateRequest;
 
 class UserController extends Controller
@@ -21,7 +19,6 @@ class UserController extends Controller
     public function __construct(UserService $service)
     {
         $this->service = $service;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
             "route" => $this->service->route(),
             "folder" => $this->service->folder(),
@@ -43,13 +40,11 @@ class UserController extends Controller
     public function store(UserStoreRequest $request)
     {
         try {
-            $this->service->create($request);
-            LogController::logger("info", $this->notification->log("created", ["title" => $request->name]));
+            $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("created_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("created_error"));
@@ -64,13 +59,11 @@ class UserController extends Controller
     public function update(UserUpdateRequest $request, User $user)
     {
         try {
-            $this->service->update($request, $user);
-            LogController::logger("info", $this->notification->log("updated", ["title" => $request->name]));
+            $this->service->update($request->validated(), $user);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess($this->notification->alert("updated_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError($this->notification->alert("updated_error"));
@@ -82,7 +75,7 @@ class UserController extends Controller
         if (User::count() == 1) {
             return back()
                 ->withError(__("admin/{$this->service->folder()}.delete_error_last"));
-        } else if ($user->id == auth()->user()->id) {
+        } else if ($user->id == \Illuminate\Support\Facades\Auth::user()->id) {
             return back()
                 ->withError(__("admin/{$this->service->folder()}.delete_error_self"));
         } else if (User::where("role", UserRole::ADMIN)->count() == 1) {
@@ -91,12 +84,10 @@ class UserController extends Controller
         } else {
             try {
                 $this->service->delete($user);
-                LogController::logger("info", $this->notification->log("deleted", ["title" => $user->name]));
                 return redirect()
                     ->route("admin.{$this->service->route()}.index")
                     ->withSuccess($this->notification->alert("deleted_success"));
             } catch (Throwable $e) {
-                LogController::logger("error", $e->getMessage());
                 return back()
                     ->withError($this->notification->alert("deleted_error"));
             }
