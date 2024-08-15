@@ -92,9 +92,7 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
         Route::controller(App\Http\Controllers\Admin\BlogController::class)->prefix("blog")->group(function () {
             Route::put("/{blog}/status-update", "statusUpdate")->name("blog.status_update");
             Route::get("/{blog}/comment", "comment")->name("blog.comment");
-            Route::get("/comments", "comments")->name("blog.comments");
-            Route::put("/comment/{comment}/approve", "comment_approve")->name("blog.comment_approve");
-            Route::put("/comment/{comment}/disapprove", "comment_disapprove")->name("blog.comment_disapprove");
+            Route::put("/blog/{comment}/commentStatusChange", "commentStatusChange")->name("blog.comment_status_change");
             Route::delete("/comment/{comment}/delete", "comment_delete")->name("blog.comment_delete");
         });
 

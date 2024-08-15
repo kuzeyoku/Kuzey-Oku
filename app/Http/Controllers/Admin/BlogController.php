@@ -105,24 +105,12 @@ class BlogController extends Controller
         return view(themeView("admin", "{$this->service->folder()}.comment"), compact("items"));
     }
 
-    public function comment_approve(BlogComment $comment)
+    public function commentStatusChange(GeneralStatusRequest $request, BlogComment $comment)
     {
         try {
-            $comment->status = StatusEnum::Active->value;
-            $comment->save();
+            $comment->update($request->validated());
             return back()->withSuccess(__("admin/alert.default_success"));
-        } catch (\Exception $e) {
-            return back()->withError(__("admin/alert.default_error"));
-        }
-    }
-
-    public function comment_disapprove(BlogComment $comment)
-    {
-        try {
-            $comment->status = StatusEnum::Passive->value;
-            $comment->save();
-            return back()->withSuccess(__("admin/alert.default_success"));
-        } catch (\Exception $e) {
+        } catch (Throwable $e) {
             return back()->withError(__("admin/alert.default_error"));
         }
     }

@@ -128,24 +128,22 @@
                     <ul class="notification-list">
                         @forelse ($comments as $comment)
                             <li class="notification-message">
-                                <a href="{{ route('admin.blog.comments') }}">
-                                    <div class="media d-flex">
-                                        <span class="avatar flex-shrink-0">
-                                            <img src="{{ themeAsset('admin', 'img/avatar.png') }}">
-                                        </span>
-                                        <div class="media-body flex-grow-1">
-                                            <p class="noti-details">
-                                                {{ $comment->name }}
-                                                <br>
-                                                <span class="noti-title">{{ $comment->blog->title }}</span>
-                                                @lang('admin/general.commented_on')
-                                            </p>
-                                            <p class="noti-time"><span
-                                                    class="notification-time">{{ $comment->created_at->diffForHumans() }}</span>
-                                            </p>
-                                        </div>
+                                <div class="media d-flex">
+                                    <span class="avatar flex-shrink-0">
+                                        <img src="{{ themeAsset('admin', 'img/avatar.png') }}">
+                                    </span>
+                                    <div class="media-body flex-grow-1">
+                                        <p class="noti-details">
+                                            {{ $comment->name }}
+                                            <br>
+                                            <span class="noti-title">{{ $comment->blog->title }}</span>
+                                            @lang('admin/general.commented_on')
+                                        </p>
+                                        <p class="noti-time"><span
+                                                class="notification-time">{{ $comment->created_at->diffForHumans() }}</span>
+                                        </p>
                                     </div>
-                                </a>
+                                </div>
                             </li>
                         @empty
                             <li class="notification-message">
@@ -153,9 +151,6 @@
                             </li>
                         @endforelse
                     </ul>
-                </div>
-                <div class="topnav-dropdown-footer">
-                    <a href="{{ route('admin.blog.comments') }}">@lang('admin/general.to_comments')</a>
                 </div>
             </div>
         </li>

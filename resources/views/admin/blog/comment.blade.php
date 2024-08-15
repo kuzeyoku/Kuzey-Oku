@@ -39,17 +39,12 @@
                                     <td>{{ $item->created_at }}</td>
                                     <td class="table-action">
                                         <div class="data-action-button">
-                                            @if ($item->status == App\Enums\StatusEnum::Active->value)
-                                                {{ html()->form('PUT')->route("admin.{$route}.comment_disapprove", $item)->open() }}
-                                                <button class="me-2 p-2" type="submit"><i data-feather="x-circle"
-                                                        class="feather-icon text-danger"></i></button>
-                                                {{ html()->form()->close() }}
-                                            @else
-                                                {{ html()->form('PUT')->route("admin.{$route}.comment_approve", $item)->open() }}
-                                                <button class="me-2 p-2" type="submit"><i data-feather="check-circle"
-                                                        class="feather-icon text-success"></i></button>
-                                                {{ html()->form()->close() }}
-                                            @endif
+                                            {{ html()->form('PUT')->route("admin.{$route}.comment_status_change", $item)->open() }}
+                                            {{ html()->hidden('status', $item->status == App\Enums\StatusEnum::Pending->value ? App\Enums\StatusEnum::Active->value : App\Enums\StatusEnum::Pending->value) }}
+                                            <button class="me-2 p-2" type="submit"><i
+                                                    data-feather="{{ $item->status == App\Enums\StatusEnum::Pending->value ? 'check-circle' : 'x-circle' }}"
+                                                    class="feather-icon {{ $item->status == App\Enums\StatusEnum::Pending->value ? 'text-success' : 'text-danger' }}"></i></button>
+                                            {{ html()->form()->close() }}
                                             <a class="me-2 p-2" data-bs-toggle="modal" href="javascript:void(0);"
                                                 data-bs-target="#{{ 'comment-' . $item->id }}">
                                                 <i data-feather="eye" class="feather-icon"></i>

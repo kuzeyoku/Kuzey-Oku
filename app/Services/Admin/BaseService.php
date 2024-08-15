@@ -35,16 +35,20 @@ class BaseService
     {
         $item = $this->model->create($request);
         $this->translations($item, $request);
-        $fileService = new FileService("image", $this->module->COVER_COLLECTION());
-        $fileService->upload($item, $request);
+        if (method_exists($item, 'hasMedia')) {
+            $fileService = new FileService("image", $this->module->COVER_COLLECTION());
+            $fileService->upload($item, $request);
+        }
     }
 
     public function update(array $request, Model $item)
     {
         $item->update($request);
         $this->translations($item, $request);
-        $fileService = new FileService("image", $this->module->COVER_COLLECTION());
-        $fileService->upload($item, $request);
+        if (method_exists($item, 'hasMedia')) {
+            $fileService = new FileService("image", $this->module->COVER_COLLECTION());
+            $fileService->upload($item, $request);
+        }
     }
 
     public function translations($item, $request)

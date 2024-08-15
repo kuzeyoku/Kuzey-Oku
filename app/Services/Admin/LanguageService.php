@@ -17,31 +17,23 @@ class LanguageService extends BaseService
         parent::__construct($language, ModuleEnum::Language);
     }
 
-    // public function create(array $request)
-    // {
-    //     $code = strtolower($request->code);
-    //     $from = resource_path("lang/" . $this->defaultLocale);
-    //     $to = resource_path("lang/{$code}");
-    //     if (!File::exists($to))
-    //         File::copyDirectory($from, $to);
-    //     else
-    //         throw new Exception(__("admin/language.code_exists"));
-    //     $data = new Request([
-    //         'title' => $request->title,
-    //         'code' => $code,
-    //         'status' => $request->status,
-    //     ]);
-    //     return parent::create($data);
-    // }
-
-
+    public function create(array $request)
+    {
+        $code = strtolower($request["code"]);
+        $default = resource_path("lang/" . app()->getFallbackLocale());
+        $new = resource_path("lang/{$code}");
+        if (!File::exists($new))
+            File::copyDirectory($default, $new);
+        else
+            throw new Exception(__("admin/language.code_exists"));
+        return parent::create($request);
+    }
 
     public function delete(Model $language)
     {
-        $code = $language->code;
-        if ($code == app()->getLocale())
+        if ($language->code == app()->getLocale())
             throw new Exception(__("admin/language.default_delete_error"));
-        $from = resource_path("lang/{$code}");
+        $from = resource_path("lang/{$language->code}");
         if (File::exists($from))
             File::deleteDirectory($from);
         return parent::delete($language);
@@ -49,8 +41,8 @@ class LanguageService extends BaseService
 
     static function toArray()
     {
-        return cache()->remember('languages', settings("cache.caching_time", 3600), function () {
-            return Language::active()->get();
+        return cache()->remember('languages', settings("caching.time", 3600), function () {
+            return Language::active()->pluck("name", "code")->toArray();
         });
     }
 
