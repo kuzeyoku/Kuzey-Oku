@@ -6,24 +6,21 @@ use Throwable;
 use App\Models\Blog;
 use App\Enums\StatusEnum;
 use App\Models\BlogComment;
-use Illuminate\Http\Request;
 use App\Services\Admin\BlogService;
 use Illuminate\Support\Facades\View;
 use App\Http\Requests\Blog\StoreBlogRequest;
 use App\Http\Requests\Blog\UpdateBlogRequest;
+use App\Http\Requests\GeneralStatusRequest;
 
 class BlogController extends Controller
 {
-    protected $service;
-
-    public function __construct(BlogService $service)
+    public function __construct(private BlogService $service)
     {
-        $this->service = $service;
         View::share([
-            "categories" => $this->service->getCategories(),
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder(),
-            "module" => $this->service->module()
+            "categories" => $service->getCategories(),
+            "route" => $service->route(),
+            "folder" => $service->folder(),
+            "module" => $service->module()
         ]);
     }
 
@@ -46,6 +43,7 @@ class BlogController extends Controller
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
+            dd($e->getMessage());
             return back()
                 ->withInput()
                 ->withError(__("admin/alert.default_error"));
@@ -71,12 +69,12 @@ class BlogController extends Controller
         }
     }
 
-    public function statusUpdate(Request $request, int $page)
+    public function statusUpdate(GeneralStatusRequest $request, Blog $blog)
     {
-        $request->validate(["status" => "required"]);
         try {
-            $this->service->statusUpdate($request, $page);
-            return back();
+            $this->service->statusUpdate($request->validated(), $blog);
+            return back()
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withError(__("admin/alert.default_error"));

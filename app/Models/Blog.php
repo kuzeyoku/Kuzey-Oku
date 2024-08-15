@@ -41,12 +41,12 @@ class Blog extends Model implements HasMedia
 
     public function translate()
     {
-        return $this->hasMany(BlogTranslate::class, 'post_id', 'id');
+        return $this->hasMany(BlogTranslate::class);
     }
 
     public function comments()
     {
-        return $this->hasMany(BlogComment::class, "post_id", "id")->orderBy("id", "DESC")->whereStatus(StatusEnum::Active->value);
+        return $this->hasMany(BlogComment::class);
     }
 
     public function category()

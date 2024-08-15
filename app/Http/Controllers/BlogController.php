@@ -36,32 +36,32 @@ class BlogController extends Controller
         return view(ModuleEnum::Blog->folder() . ".index", $data);
     }
 
-    public function show(Blog $post)
+    public function show(Blog $blog)
     {
-        SeoController::set($post);
-        $cacheKey = ModuleEnum::Blog->value . "_detail_" . $post->id . "_" . app()->getLocale();
-        $post->increment("view_count");
+        SeoController::set($blog);
+        $cacheKey = ModuleEnum::Blog->value . "_detail_" . $blog->id . "_" . app()->getLocale();
+        $blog->increment("view_count");
         if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-            $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () use ($post) {
+            $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () use ($blog) {
                 return [
-                    "post" => $post,
+                    "post" => $blog,
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
-                    "comments" => $post->comments()->paginate(5),
+                    "comments" => $blog->comments()->paginate(5),
                 ];
             });
         } else {
             $data = [
-                "post" => $post,
+                "blog" => $blog,
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
-                "comments" => $post->comments()->paginate(5),
+                "comments" => $blog->comments()->paginate(5),
             ];
         }
         return view(ModuleEnum::Blog->folder() . ".show", $data);
     }
 
-    public function comment_store(Request $request, Blog $post)
+    public function comment_store(Request $request, Blog $blog)
     {
         if (!recaptcha($request))
             return back()->withError(__("front/general.recaptcha_error"));
@@ -69,7 +69,7 @@ class BlogController extends Controller
             return back()->withError(__("front/blog.comment_ip_block"));
         try {
             BlogComment::create([
-                "post_id" => $post->id,
+                "blog_id" => $blog->id,
                 "name" => $request->name,
                 "email" => $request->email,
                 "comment" => $request->comment,

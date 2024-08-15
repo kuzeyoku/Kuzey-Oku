@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('blog_translates', function (Blueprint $table) {
             $table->id();
-            $table->foreignId("post_id")->constrained("blogs")->cascadeOnDelete();
+            $table->foreignId("blog_id")->constrained("blogs")->cascadeOnDelete();
             $table->string('lang', 10)->index();
             $table->foreign('lang')->references('code')->on('languages')->cascadeonDelete();
             $table->string('title', 255)->nullable();

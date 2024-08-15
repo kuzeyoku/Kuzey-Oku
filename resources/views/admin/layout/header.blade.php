@@ -137,7 +137,7 @@
                                             <p class="noti-details">
                                                 {{ $comment->name }}
                                                 <br>
-                                                <span class="noti-title">{{ $comment->post->title }}</span>
+                                                <span class="noti-title">{{ $comment->blog->title }}</span>
                                                 @lang('admin/general.commented_on')
                                             </p>
                                             <p class="noti-time"><span

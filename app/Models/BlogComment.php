@@ -11,7 +11,7 @@ class BlogComment extends Model
     use HasFactory;
 
     public $fillable = [
-        "post_id",
+        "blog_id",
         "name",
         "email",
         "comment",
@@ -19,9 +19,9 @@ class BlogComment extends Model
         "status"
     ];
 
-    public function post()
+    public function blog()
     {
-        return $this->belongsTo(Blog::class, 'post_id');
+        return $this->belongsTo(Blog::class);
     }
 
     public function scopePending($query)

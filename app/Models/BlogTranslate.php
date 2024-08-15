@@ -10,7 +10,7 @@ class BlogTranslate extends Model
     use HasFactory;
 
     protected $fillable = [
-        'post_id',
+        'blog_id',
         'lang',
         'title',
         'description',

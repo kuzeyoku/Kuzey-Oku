@@ -32,7 +32,7 @@
                             @forelse ($items as $item)
                                 <tr>
                                     <td>{{ $item->id }}</td>
-                                    <td>{{ $item->post->titles[config('app.fallback_locale')] }}</td>
+                                    <td>{{ $item->blog->title }}</td>
                                     <td>{{ Str::limit($item->name, 20) }}</td>
                                     <td>{{ $item->email }}</td>
                                     <td>{{ Str::limit($item->comment, 50) }}</td>

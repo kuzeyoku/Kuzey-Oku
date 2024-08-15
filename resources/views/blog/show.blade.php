@@ -1,5 +1,5 @@
 @extends('layout.main')
-@section('title', $post->title)
+@section('title', $blog->title)
 @section('parent_url', route('blog.index'))
 @section('parent_title', __('front/blog.txt1'))
 @section('content')
@@ -10,52 +10,52 @@
                 <div class="col-xl-8 col-lg-7">
                     <div class="blog-details__left">
                         <div class="blog-details__img">
-                            {{ $post->getFirstMedia('cover') }}
+                            {{ $blog->getFirstMedia('cover') }}
                             <div class="blog-details__date">
-                                <span class="day">{{ $post->created_at->translatedFormat('d') }}</span>
-                                <span class="month">{{ $post->created_at->translatedFormat('M') }}</span>
+                                <span class="day">{{ $blog->created_at->translatedFormat('d') }}</span>
+                                <span class="month">{{ $blog->created_at->translatedFormat('M') }}</span>
                             </div>
                         </div>
                         <ul class="blog-details__meta">
                             <li>
                                 <a href="javascript:void(0);">
                                     @svg('fas-sitemap', 'icon-space')
-                                    {{ $post->category->title ?? __('front/general.uncategorized') }}
+                                    {{ $blog->category->title ?? __('front/general.uncategorized') }}
                                 </a>
                             </li>
-                            <li><a>@svg('fas-user-circle', 'icon-space')</i>{{ $post->user->name }}</a>
+                            <li><a>@svg('fas-user-circle', 'icon-space')</i>{{ $blog->user->name }}</a>
                             </li>
-                            <li><a>@svg('fas-eye', 'icon-space'){{ $post->view_count }} @lang('front/blog.txt4')</a>
+                            <li><a>@svg('fas-eye', 'icon-space'){{ $blog->view_count }} @lang('front/blog.txt4')</a>
                             </li>
                         </ul>
                         <div class="blog-details__content">
 
-                            <h3 class="blog-details__title">{{ $post->title }}</h3>
-                            {!! $post->description !!}
+                            <h3 class="blog-details__title">{{ $blog->title }}</h3>
+                            {!! $blog->description !!}
                         </div>
                         <div class="blog-details__bottom">
                             <p class="blog-details__tags">
                                 <span>@lang('front/blog.txt5')</span>
-                                @foreach ($post->tagsToArray as $tag)
+                                @foreach ($blog->tagsToArray as $tag)
                                     <a href="javascript:void(0);" class="mb-2">{{ $tag }}</a>
                                 @endforeach
                             </p>
                         </div>
                         <div class="nav-links">
-                            @if ($post->previous)
+                            @if ($blog->previous)
                                 <div class="prev">
-                                    <a href="{{ $post->previous->url }}" rel="prev">{{ $post->previous->title }}</a>
+                                    <a href="{{ $blog->previous->url }}" rel="prev">{{ $blog->previous->title }}</a>
                                 </div>
                             @endif
-                            @if ($post->next)
+                            @if ($blog->next)
                                 <div class="next">
-                                    <a href="{{ $post->next->url }}" rel="next">{{ $post->next->title }}</a>
+                                    <a href="{{ $blog->next->url }}" rel="next">{{ $blog->next->title }}</a>
                                 </div>
                             @endif
                         </div>
                         <div class="comment-form mb-80">
                             <h4 class="comment-form__title">@lang('front/blog.txt6')</h4>
-                            {{ html()->form()->route('blog.comment_store', $post)->open() }}
+                            {{ html()->form()->route('blog.comment_store', $blog)->open() }}
                             <div class="row">
                                 <div class="col-sm-6">
                                     <div class="mb-3">
@@ -81,7 +81,7 @@
                             {{ html()->form()->close() }}
                         </div>
                         <div class="comment-one">
-                            <h4 class="comment-one__title">@lang('front/blog.txt11', ['num' => $post->comments->count()])</h4>
+                            <h4 class="comment-one__title">@lang('front/blog.txt11', ['num' => $blog->comments->count()])</h4>
                             @foreach ($comments as $comment)
                                 <div class="comment-one__single">
                                     <div class="comment-one__image">
@@ -108,7 +108,7 @@
                                 @foreach ($popularPost as $item)
                                     <li>
                                         <div class="sidebar__post-image"> <img src="{{ $item->getFirstMediaUrl('cover') }}"
-                                                alt="{{ $post->title }}">
+                                                alt="{{ $blog->title }}">
                                         </div>
                                         <div class="sidebar__post-content">
                                             <h3> <span
