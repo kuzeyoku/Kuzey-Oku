@@ -11,16 +11,12 @@ use App\Http\Requests\Message\ReplyMessageRequest;
 
 class MessageController extends Controller
 {
-    protected $service;
-    protected $notification;
 
-    public function __construct(MessageService $messageService)
+    public function __construct(private MessageService $service)
     {
-        $this->service = $messageService;
-        $this->notification = new NotificationService($this->service->module());
         View::share([
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder()
+            "route" => $service->route(),
+            "folder" => $service->folder()
         ]);
     }
 
@@ -49,7 +45,6 @@ class MessageController extends Controller
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withError(__("admin/alert.default_error"));
         }
@@ -61,11 +56,10 @@ class MessageController extends Controller
             $this->service->delete($message);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

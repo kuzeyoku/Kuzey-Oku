@@ -6,7 +6,6 @@ use Exception;
 use App\Models\Blog;
 use GuzzleHttp\Client;
 use App\Models\Visitor;
-use Artesaos\SEOTools\Facades\SEOTools;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Cache;

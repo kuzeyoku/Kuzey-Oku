@@ -7,7 +7,6 @@ use App\Enums\ModuleEnum;
 
 class BrandService extends BaseService
 {
-    protected $brand;
 
     public function __construct(Brand $brand)
     {

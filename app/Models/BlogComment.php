@@ -24,6 +24,11 @@ class BlogComment extends Model
         return $this->belongsTo(Blog::class);
     }
 
+    public function scopeApproved($query)
+    {
+        return $query->whereStatus(StatusEnum::Active->value);
+    }
+
     public function scopePending($query)
     {
         return $query->whereStatus(StatusEnum::Pending->value);
@@ -37,7 +42,10 @@ class BlogComment extends Model
     protected static function boot()
     {
         parent::boot();
-
+        self::creating(function ($model) {
+            $model->ip = request()->ip();
+            $model->status = StatusEnum::Pending->value;
+        });
         static::addGlobalScope('order', function ($builder) {
             $builder->orderByDesc('created_at');
         });

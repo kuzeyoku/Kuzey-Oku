@@ -7,8 +7,6 @@ use App\Models\Category;
 
 class CategoryService extends BaseService
 {
-    protected $category;
-
     public function __construct(Category $category)
     {
         parent::__construct($category, ModuleEnum::Category);

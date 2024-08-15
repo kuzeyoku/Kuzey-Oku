@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Cache;
 
 class MenuService extends BaseService
 {
-    protected $menu;
-
     public function __construct(Menu $menu)
     {
         parent::__construct($menu, ModuleEnum::Menu);

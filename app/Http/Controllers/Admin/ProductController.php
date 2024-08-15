@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Product;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\ProductService;
+use App\Http\Requests\GeneralStatusRequest;
 use App\Http\Requests\Product\ImageProductRequest;
 use App\Http\Requests\Product\StoreProductRequest;
 use App\Http\Requests\Product\UpdateProductRequest;
@@ -14,17 +14,14 @@ use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
 class ProductController extends Controller
 {
-    protected $service;
-    protected $notification;
 
-    public function __construct(ProductService $service)
+    public function __construct(private ProductService $service)
     {
-        $this->service = $service;
         View::share([
-            "categories" => $this->service->getCategories(),
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder(),
-            "module" => $this->service->module()
+            "categories" => $service->getCategories(),
+            "route" => $service->route(),
+            "folder" => $service->folder(),
+            "module" => $service->module()
         ]);
     }
 
@@ -50,11 +47,11 @@ class ProductController extends Controller
             $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -111,19 +108,18 @@ class ProductController extends Controller
             $this->service->update($request->validated(), $product);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
-    public function statusUpdate(Request $request, int $page)
+    public function statusUpdate(GeneralStatusRequest $request, Product $product)
     {
-        $request->validate(["status" => "required"]);
         try {
-            $this->service->statusUpdate($request, $page);
+            $this->service->statusUpdate($request->validated(), $product);
             return back();
         } catch (Throwable $e) {
             return back()
@@ -137,10 +133,10 @@ class ProductController extends Controller
             $this->service->delete($product);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

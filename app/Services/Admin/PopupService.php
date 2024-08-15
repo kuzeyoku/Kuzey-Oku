@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class PopupService extends BaseService
 {
-    protected $imageService;
-    protected $popup;
 
     public function __construct(Popup $popup)
     {

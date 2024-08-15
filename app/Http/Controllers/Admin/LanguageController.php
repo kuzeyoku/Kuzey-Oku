@@ -4,23 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Language;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\LanguageService;
+use App\Http\Requests\GeneralStatusRequest;
 use App\Http\Requests\Language\StoreLanguageRequest;
 use App\Http\Requests\Language\UpdateLanguageRequest;
 
 class LanguageController extends Controller
 {
-    protected $service;
-    protected $notification;
 
-    public function __construct(LanguageService $languageService)
+    public function __construct(private LanguageService $service)
     {
-        $this->service = $languageService;
         View::share([
-            'route' => $this->service->route(),
-            'folder' => $this->service->folder()
+            'route' => $service->route(),
+            'folder' => $service->folder()
         ]);
     }
 
@@ -41,11 +38,11 @@ class LanguageController extends Controller
             $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -65,7 +62,7 @@ class LanguageController extends Controller
         return view(themeView("admin", "{$this->service->folder()}.files"), compact('language', 'frontFiles', 'adminFiles', 'fileContent', 'filename', 'dir'));
     }
 
-    public function updateFileContent(Language $language, Request $request)
+    public function updateFileContent(Language $language)
     {
         try {
             $this->service->updateFileContent($language);
@@ -81,20 +78,20 @@ class LanguageController extends Controller
             $this->service->update($request->validated(), $language);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
-    public function statusUpdate(Request $request, int $page)
+    public function statusUpdate(GeneralStatusRequest $request, Language $language)
     {
-        $request->validate(["status" => "required"]);
         try {
-            $this->service->statusUpdate($request, $page);
-            return back();
+            $this->service->statusUpdate($request->validated(), $language);
+            return back()
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withError(__("admin/alert.default_error"));
@@ -107,10 +104,10 @@ class LanguageController extends Controller
             $this->service->delete($language);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

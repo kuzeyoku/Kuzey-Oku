@@ -7,21 +7,19 @@ use App\Models\Popup;
 use Illuminate\Http\Request;
 use App\Services\Admin\PopupService;
 use Illuminate\Support\Facades\View;
+use App\Http\Requests\GeneralStatusRequest;
 use App\Http\Requests\Popup\StorePopupRequest;
 use App\Http\Requests\Popup\UpdatePopupRequest;
 
 class PopupController extends Controller
 {
-    protected $service;
-    protected $notification;
 
-    public function __construct(PopupService $service)
+    public function __construct(private PopupService $service)
     {
-        $this->service = $service;
         View::share([
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder(),
-            "module" => $this->service->module()
+            "route" => $service->route(),
+            "folder" => $service->folder(),
+            "module" => $service->module()
         ]);
     }
 
@@ -42,11 +40,11 @@ class PopupController extends Controller
             $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -61,20 +59,20 @@ class PopupController extends Controller
             $this->service->update($request->validated(), $popup);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
-    public function statusUpdate(Request $request, int $page)
+    public function statusUpdate(GeneralStatusRequest $request, Popup $popup)
     {
-        $request->validate(["status" => "required"]);
         try {
-            $this->service->statusUpdate($request, $page);
-            return back();
+            $this->service->statusUpdate($request->validated(), $popup);
+            return back()
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withError(__("admin/alert.default_error"));
@@ -87,10 +85,10 @@ class PopupController extends Controller
             $this->service->delete($popup);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

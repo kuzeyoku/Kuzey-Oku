@@ -43,7 +43,6 @@ class BlogController extends Controller
                 ->route("admin.{$this->service->route()}.index")
                 ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
-            dd($e->getMessage());
             return back()
                 ->withInput()
                 ->withError(__("admin/alert.default_error"));
@@ -102,7 +101,7 @@ class BlogController extends Controller
 
     public function comments()
     {
-        $items = BlogComment::orderBy("id", "DESC")->paginate(settings("pagination.admin", 15));
+        $items = BlogComment::paginate(settings("pagination.admin", 15));
         return view(themeView("admin", "{$this->service->folder()}.comment"), compact("items"));
     }
 

@@ -57,7 +57,7 @@ class Menu extends Model
     {
         parent::boot();
         self::deleting(function ($model) {
-            $model->subMenu->delete();
+            $model->subMenu()->delete();
         });
     }
 }

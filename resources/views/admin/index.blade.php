@@ -91,8 +91,8 @@
                 <div class="card mb-4 log-card">
                     <div class="card-header d-flex justify-content-between">
                         <h4 class="card-title mb-0">@lang('admin/home.info_logs')</h4>
-                        <button data-url="{{ route('admin.log_clear', 'info') }}"
-                            class="clear-log btn btn-danger btn-sm">@lang('admin/home.clear')</button>
+                        {{-- <button data-url="{{ route('admin.log_clear', 'info') }}"
+                            class="clear-log btn btn-danger btn-sm">@lang('admin/home.clear')</button> --}}
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
@@ -114,8 +114,8 @@
                 <div class="card mb-4 log-card">
                     <div class="card-header d-flex justify-content-between">
                         <h4 class="card-title mb-0">@lang('admin/home.error_logs')</h4>
-                        <button data-url="{{ route('admin.log_clear', 'errors') }}"
-                            class="clear-log btn btn-danger btn-sm">@lang('admin/home.clear')</button>
+                        {{-- <button data-url="{{ route('admin.log_clear', 'errors') }}"
+                            class="clear-log btn btn-danger btn-sm">@lang('admin/home.clear')</button> --}}
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">

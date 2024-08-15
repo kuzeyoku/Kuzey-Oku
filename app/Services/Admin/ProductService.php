@@ -7,8 +7,6 @@ use App\Enums\ModuleEnum;
 
 class ProductService extends BaseService
 {
-    protected $product;
-
     public function __construct(Product $product)
     {
         parent::__construct($product, ModuleEnum::Product);

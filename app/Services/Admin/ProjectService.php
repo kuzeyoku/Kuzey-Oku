@@ -7,8 +7,6 @@ use App\Enums\ModuleEnum;
 
 class ProjectService extends BaseService
 {
-    protected $project;
-
     public function __construct(Project $project)
     {
         parent::__construct($project, ModuleEnum::Project);

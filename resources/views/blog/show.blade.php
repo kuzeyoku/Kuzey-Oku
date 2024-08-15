@@ -60,16 +60,25 @@
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         {{ html()->text('name')->placeholder(__('front/blog.txt7'))->class('form-control') }}
+                                        @error('name')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
                                     <div class="mb-3">
                                         {{ html()->email('email')->placeholder(__('front/blog.txt8'))->class('form-control') }}
+                                        @error('email')
+                                            <strong class="text-danger">{{ $message }}</strong>
+                                        @enderror
                                     </div>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 {{ html()->textarea('comment')->placeholder(__('front/blog.txt9'))->rows(5)->class('form-control') }}
+                                @error('comment')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
                             </div>
                             <div class="mb-3">
                                 {{ html()->submit(__('front/blog.txt10'))->class('theme-btn btn-style-one g-recaptcha')->attributes([
@@ -81,7 +90,9 @@
                             {{ html()->form()->close() }}
                         </div>
                         <div class="comment-one">
-                            <h4 class="comment-one__title">@lang('front/blog.txt11', ['num' => $blog->comments->count()])</h4>
+                            <h4 class="comment-one__title">@lang('front/blog.txt11', [
+                                'num' => $comments->count(),
+                            ])</h4>
                             @foreach ($comments as $comment)
                                 <div class="comment-one__single">
                                     <div class="comment-one__image">
@@ -138,3 +149,4 @@
         </div>
     </section>
 @endsection
+@include('common.alert')

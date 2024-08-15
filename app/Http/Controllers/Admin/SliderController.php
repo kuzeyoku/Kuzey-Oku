@@ -4,24 +4,21 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Slider;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\SliderService;
+use App\Http\Requests\GeneralStatusRequest;
 use App\Http\Requests\Slider\StoreSliderRequest;
 use App\Http\Requests\Slider\UpdateSliderRequest;
 
 class SliderController extends Controller
 {
-    protected $service;
-    protected $notification;
 
-    public function __construct(SliderService $service)
+    public function __construct(private SliderService $service)
     {
-        $this->service = $service;
         View::share([
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder(),
-            "module" => $this->service->module()
+            "route" => $service->route(),
+            "folder" => $service->folder(),
+            "module" => $service->module()
         ]);
     }
 
@@ -42,11 +39,11 @@ class SliderController extends Controller
             $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -61,20 +58,20 @@ class SliderController extends Controller
             $this->service->update($request->validated(), $slider);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
-    public function statusUpdate(Request $request, int $page)
+    public function statusUpdate(GeneralStatusRequest $request, Slider $slider)
     {
-        $request->validate(["status" => "required"]);
         try {
-            $this->service->statusUpdate($request, $page);
-            return back();
+            $this->service->statusUpdate($request->validated(), $slider);
+            return back()
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withError(__("admin/alert.default_error"));
@@ -87,10 +84,10 @@ class SliderController extends Controller
             $this->service->delete($slider);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

@@ -13,15 +13,12 @@ use App\Http\Requests\User\UserUpdateRequest;
 
 class UserController extends Controller
 {
-    protected $service;
-    protected $notification;
 
-    public function __construct(UserService $service)
+    public function __construct(private UserService $service)
     {
-        $this->service = $service;
         View::share([
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder(),
+            "route" => $service->route(),
+            "folder" => $service->folder(),
             "roles" => UserRole::getSelectArray(),
         ]);
     }
@@ -43,11 +40,11 @@ class UserController extends Controller
             $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -62,11 +59,11 @@ class UserController extends Controller
             $this->service->update($request->validated(), $user);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -86,10 +83,10 @@ class UserController extends Controller
                 $this->service->delete($user);
                 return redirect()
                     ->route("admin.{$this->service->route()}.index")
-                    ->withSuccess($this->notification->alert("deleted_success"));
+                    ->withSuccess(__("admin/alert.default_success"));
             } catch (Throwable $e) {
                 return back()
-                    ->withError($this->notification->alert("deleted_error"));
+                    ->withError(__("admin/alert.default_error"));
             }
         }
     }

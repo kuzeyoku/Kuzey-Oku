@@ -4,23 +4,19 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use App\Models\Page;
-use Illuminate\Http\Request;
 use App\Services\Admin\PageService;
 use Illuminate\Support\Facades\View;
+use App\Http\Requests\GeneralStatusRequest;
 use App\Http\Requests\Page\StorePageRequest;
 use App\Http\Requests\Page\UpdatePageRequest;
 
 class PageController extends Controller
 {
-    protected $service;
-    protected $notification;
-
-    public function __construct(PageService $service)
+    public function __construct(private PageService $service)
     {
-        $this->service = $service;
         View::share([
-            'route' => $this->service->route(),
-            'folder' => $this->service->folder()
+            'route' => $service->route(),
+            'folder' => $service->folder()
         ]);
     }
 
@@ -41,11 +37,11 @@ class PageController extends Controller
             $this->service->create($request->validated());
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("created_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("created_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
@@ -60,20 +56,20 @@ class PageController extends Controller
             $this->service->update($request->validated(), $page);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("updated_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withInput()
-                ->withError($this->notification->alert("updated_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 
-    public function statusUpdate(Request $request, int $page)
+    public function statusUpdate(GeneralStatusRequest $request, Page $page)
     {
-        $request->validate(["status" => "required"]);
         try {
-            $this->service->statusUpdate($request, $page);
-            return back();
+            $this->service->statusUpdate($request->validated(), $page);
+            return back()
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
                 ->withError(__("admin/alert.default_error"));
@@ -86,10 +82,10 @@ class PageController extends Controller
             $this->service->delete($page);
             return redirect()
                 ->route("admin.{$this->service->route()}.index")
-                ->withSuccess($this->notification->alert("deleted_success"));
+                ->withSuccess(__("admin/alert.default_success"));
         } catch (Throwable $e) {
             return back()
-                ->withError($this->notification->alert("deleted_error"));
+                ->withError(__("admin/alert.default_error"));
         }
     }
 }

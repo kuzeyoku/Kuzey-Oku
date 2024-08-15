@@ -12,8 +12,6 @@ use Illuminate\Support\Facades\Storage;
 
 class LanguageService extends BaseService
 {
-    protected $language;
-
     public function __construct(Language $language)
     {
         parent::__construct($language, ModuleEnum::Language);

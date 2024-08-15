@@ -6,8 +6,8 @@ use App\Models\Blog;
 use App\Models\Category;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
+use App\Http\Requests\CommentRequest;
 use App\Models\BlogComment;
-use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 
@@ -44,10 +44,10 @@ class BlogController extends Controller
         if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
             $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () use ($blog) {
                 return [
-                    "post" => $blog,
+                    "blog" => $blog,
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
-                    "comments" => $blog->comments()->paginate(5),
+                    "comments" => $blog->comments()->approved()->paginate(5),
                 ];
             });
         } else {
@@ -55,34 +55,27 @@ class BlogController extends Controller
                 "blog" => $blog,
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
-                "comments" => $blog->comments()->paginate(5),
+                "comments" => $blog->comments()->approved()->paginate(5),
             ];
         }
         return view(ModuleEnum::Blog->folder() . ".show", $data);
     }
 
-    public function comment_store(Request $request, Blog $blog)
+    public function comment_store(CommentRequest $request, Blog $blog)
     {
         if (!recaptcha($request))
             return back()->withError(__("front/general.recaptcha_error"));
         if (!$this->ipControl($request))
             return back()->withError(__("front/blog.comment_ip_block"));
         try {
-            BlogComment::create([
-                "blog_id" => $blog->id,
-                "name" => $request->name,
-                "email" => $request->email,
-                "comment" => $request->comment,
-                "ip" => $request->ip(),
-                "status" => StatusEnum::Pending->value,
-            ]);
+            $blog->comments()->create($request->validated());
             return back()->withSuccess(__("front/blog.comment_success"));
         } catch (\Exception $e) {
             return back()->withInput()->withError(__("front/blog.comment_error"));
         }
     }
 
-    private function ipControl(Request $request)
+    private function ipControl(CommentRequest $request)
     {
         $data = BlogComment::whereIp($request->ip())->orderBy("created_at", "DESC")->first();
         if ($data) {

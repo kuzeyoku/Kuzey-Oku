@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use App\Http\Middleware\Maintenance;
 use Illuminate\Support\Facades\Route;
