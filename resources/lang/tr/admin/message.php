@@ -1,7 +1,7 @@
 <?php
 return [
-    "title" => "Mesaj Yönetimi",
-    "alert_title" => "Mesaj",
+    "title" => "Mesajlar",
+    "menu_title" => "Mesaj Yönetimi",
     "description" => "Kullanıcılardan gelen mesajları yönetin ve yeni mesajlar gönderin.",
     "create" => "Yeni Mesaj Gönder",
     "list" => "Mesaj Listesi",

@@ -1,9 +1,8 @@
 <?php
 return [
-    "title" => "Hizmet Yönetimi",
+    "title" => "Hizmetler",
+    "menu_title" => "Hizmet Yönetimi",
     "description" => "Hizmetleri Yönetin",
-    "single_title" => "Hizmetler",
-    "alert_title" => "Hizmet",
     "create" => "Hizmet Oluştur",
     "create_description" => "Yeni bir hizmet oluşturun",
     "edit" => "Hizmet Düzenle",

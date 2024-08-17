@@ -3,8 +3,9 @@
 namespace App\Models;
 
 use App\Enums\StatusEnum;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Category extends Model
 {
@@ -91,6 +92,9 @@ class Category extends Model
     public static function boot()
     {
         parent::boot();
+        self::creating(function ($category) {
+            $category->slug = Str::slug(request("title." . app()->getFallbackLocale()));
+        });
         self::deleting(function ($category) {
             $category->products()->update(["category_id" => 0]);
             $category->projects()->update(["category_id" => 0]);

@@ -1,8 +1,7 @@
 <?php
 return [
     "title" => "Çeviriler",
-    "single_title" => "Çeviriler",
-    "alert_title" => "Çeviri",
+    "menu_title" => "Çeviri Yönetimi",
     "description" => "Çevirileri Yönetin",
     "create" => "Yeni Çeviri",
     "create_description" => "Yeni Çeviri Oluştur",

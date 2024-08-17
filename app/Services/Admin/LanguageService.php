@@ -42,7 +42,7 @@ class LanguageService extends BaseService
     static function toArray()
     {
         return cache()->remember('languages', settings("caching.time", 3600), function () {
-            return Language::active()->pluck("name", "code")->toArray();
+            return Language::active()->get();
         });
     }
 

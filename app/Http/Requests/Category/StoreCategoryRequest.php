@@ -27,7 +27,7 @@ class StoreCategoryRequest extends FormRequest
             "title.*" => "",
             "description.*" => "",
             "module" => [new Enum(ModuleEnum::class)],
-            "parent" => "numeric",
+            "parent" => "nullable|numeric",
             "order" => "required|numeric|min:0",
             "status" => "required",
         ];

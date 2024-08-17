@@ -1,9 +1,8 @@
 <?php
 return [
-    "title" => "Proje Yönetimi",
+    "title" => "Projeler",
+    "menu_title" => "Proje Yönetimi",
     "description" => "Projeleri Yönetin",
-    "single_title" => "Projeler",
-    "alert_title" => "Proje",
     "create" => "Proje Oluştur",
     "create_description" => "Yeni bir proje oluşturun",
     "edit" => "Proje Düzenle",

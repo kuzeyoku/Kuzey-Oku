@@ -29,14 +29,14 @@
                                     <li>
                                         <a href="{{ route("admin.{$module->route()}.index") }}">
                                             <i
-                                                data-feather="{{ $module->icon() }}"></i><span>{{ $module->title() }}</span>
+                                                data-feather="{{ $module->icon() }}"></i><span>{{ $module->menuTitle() }}</span>
                                         </a>
                                     </li>
                                 @else
                                     <li class="submenu">
                                         <a href="javascript:void(0);">
                                             <i
-                                                data-feather="{{ $module->icon() }}"></i><span>{{ $module->title() }}</span>
+                                                data-feather="{{ $module->icon() }}"></i><span>{{ $module->menuTitle() }}</span>
                                             <span class="menu-arrow"></span>
                                         </a>
                                         <ul>

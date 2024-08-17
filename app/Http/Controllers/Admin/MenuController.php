@@ -36,10 +36,10 @@ class MenuController extends Controller
 
     private function getData($menu = null)
     {
-        $getMenuData = Menu::order()->get();
-        $parents = $getMenuData->whereNotIn("id", [optional($menu)->id] ?? []);
-        $data["menus"] = $getMenuData;
-        $data["parentList"] = $parents->pluck("title", "id");
+        $mdata = Menu::order()->get();
+        $parents = $mdata->whereNotIn("id", [optional($menu)->id] ?: []);
+        $data["menus"] = $mdata;
+        $data["parents"] = $parents->pluck("title", "id");
         $data["urlList"] = $this->service->getUrlList();
         return $data;
     }

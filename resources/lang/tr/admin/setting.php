@@ -1,6 +1,7 @@
 <?php
 return [
     "title" => "Site Ayarları",
+    "menu_title" => "Site Ayarları",
     "description" => "Site Ayarları Menüsü",
     "update_log" => ":category Güncellendi",
     "category_general" => "Genel Ayarlar",

@@ -15,7 +15,7 @@
 {{ html()->label(__("admin/{$folder}.form_order")) }}
 {{ html()->number('order', 0)->placeholder(__("admin/{$folder}.form_order_placeholder"))->class('form-control') }}
 {{ html()->label(__("admin/{$folder}.form_parent")) }}
-{{ html()->select('parent_id', $parentList)->placeholder(__('admin/general.select'))->class('form-control') }}
+{{ html()->select('parent_id', $parents)->placeholder(__('admin/general.select'))->class('form-control') }}
 <label class="inputcheck">
     {{ html()->label(__("admin/{$folder}.form_blank")) }}
     {{ html()->checkbox('blank', false, true) }}

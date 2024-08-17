@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Middleware\Admin;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(function () {
@@ -53,12 +54,16 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
         //Language Routes
         Route::resource("language", App\Http\Controllers\Admin\LanguageController::class)->names('language');
         Route::controller(App\Http\Controllers\Admin\LanguageController::class)->prefix("language")->group(function () {
+            Route::put("/{language}/status-update", "statusUpdate")->name("language.status_update");
             Route::match(["get", "post"], "/{language}/files", "files")->name("language.files");
             Route::post("/{language}/getFileContent", "getFileContent")->name("language.getFileContent");
             Route::put("/{language}/updateFileContent", "updateFileContent")->name("language.updateFileContent");
         });
         //Category Routes
         Route::resource("category", App\Http\Controllers\Admin\CategoryController::class)->names('category');
+        Route::controller(App\Http\Controllers\Admin\CategoryController::class)->prefix("category")->group(function () {
+            Route::put("/{category}/status-update", "statusUpdate")->name("category.status_update");
+        });
         //Service routes
         Route::resource("service", App\Http\Controllers\Admin\ServiceController::class)->names('service');
         //Project Routes
@@ -99,11 +104,11 @@ Route::prefix(settings("system.admin_route", "admin"))->name('admin.')->group(fu
         //Notification Routes
         Route::prefix("notification")->name("notification.")->group(function () {
             Route::get("{notification}/read", function ($notification) {
-                $notification = auth()->user()->notifications->find($notification)->markAsRead();
+                $notification = Auth::user()->notifications->find($notification)->markAsRead();
                 return back();
             })->name("read");
             Route::get("mark-all-as-read", function () {
-                auth()->user()->unreadNotifications->markAsRead();
+                Auth::user()->unreadNotifications->markAsRead();
                 return back();
             })->name("mark_all_as_read");
         });

@@ -1,9 +1,8 @@
 <?php
 return [
-    'title' => 'Blog Yönetimi',
+    'title' => 'Blog',
+    "menu_title" => "Blog Yönetimi",
     "description" => "Blog içeriklerini yönetin.",
-    "single_title" => "Blog",
-    "alert_title" => "Blog Konusu",
     'create' => 'İçerik Oluştur',
     "create_description" => "Yeni bir blog içeriği oluşturun.",
     'edit' => 'İçerik Düzenle',

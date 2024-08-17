@@ -15,7 +15,7 @@
         </div>
         <div class="col-lg-6">
             {{ html()->label(__("admin/{$folder}.form_parent")) }}
-            {{ html()->select('parent', $categories)->class('form-control') }}
+            {{ html()->select('parent', $categories)->placeholder(__('admin/general.select'))->class('form-control') }}
         </div>
     </div>
     <div class="row">

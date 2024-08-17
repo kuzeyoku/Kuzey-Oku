@@ -26,14 +26,9 @@ enum ModuleEnum: string
         return __("admin/$this->value.title");
     }
 
-    public function singleTitle(): string
+    public function menuTitle(): string
     {
-        return __("admin/$this->value.single_title");
-    }
-
-    public function alertTitle(): string
-    {
-        return __("admin/$this->value.alert_title");
+        return __("admin/$this->value.menu_title");
     }
 
     public function icon(): string

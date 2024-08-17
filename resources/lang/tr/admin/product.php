@@ -1,9 +1,8 @@
 <?php
 return [
-    "title" => "Ürün Yönetimi",
+    "title" => "Ürünler",
+    "menu_title" => "Ürün Yönetimi",
     "description" => "Ürünleri Yönetin",
-    "single_title" => "Ürünler",
-    "alert_title" => "Ürün",
     "create" => "Ürün Oluştur",
     "create_description" => "Yeni bir ürün oluşturun",
     "edit" => "Ürün Düzenle",

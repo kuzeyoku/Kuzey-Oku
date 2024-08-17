@@ -1,8 +1,7 @@
 <?php
 return [
     "title" => "Sabit Sayfalar",
-    "single_title" => "Sabit Sayfa",
-    "alert_title" => "Sabit Sayfa",
+    "menu_title" => "Sabit Sayfa Yönetimi",
     "description" => "Sabit Sayfaları Yönetin",
     "create" => "Sabit Sayfa Oluştur",
     "create_description" => "Yeni Sabit Sayfa Detaylarını Oluşturun",

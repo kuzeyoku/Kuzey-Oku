@@ -119,7 +119,7 @@
                                 @foreach ($popularPost as $item)
                                     <li>
                                         <div class="sidebar__post-image"> <img src="{{ $item->getFirstMediaUrl('cover') }}"
-                                                alt="{{ $blog->title }}">
+                                                alt="{{ $item->title }}">
                                         </div>
                                         <div class="sidebar__post-content">
                                             <h3> <span
