@@ -39,7 +39,7 @@
                                                 data-feather="{{ $module->icon() }}"></i><span>{{ $module->menuTitle() }}</span>
                                             <span class="menu-arrow"></span>
                                         </a>
-                                        <ul>
+                                        <ul class="@if (request()->segment(2) == $module->route()) d-block @endif">
                                             @foreach ($module->menu() as $route => $title)
                                                 <li>
                                                     <a href="{{ route("admin.{$module->route()}.{$route}") }}">

@@ -2,9 +2,10 @@
 
 namespace App\Services\Admin;
 
-use App\Enums\ModuleEnum;
 use App\Models\Category;
+use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseService
@@ -39,6 +40,7 @@ class BaseService
             $fileService = new FileService("image", $this->module->COVER_COLLECTION());
             $fileService->upload($item, $request);
         }
+        // Log::channel("custom_info")->info(auth()->user()->name . " tarafından bir " . $this->module->name . " içeriği oluşturuldu. " . $item->title);
     }
 
     public function update(array $request, Model $item)
