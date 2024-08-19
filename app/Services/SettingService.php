@@ -2,14 +2,32 @@
 
 namespace App\Services;
 
+use App\Models\Setting;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Database\Eloquent\Collection;
+
 class SettingService
 {
     public function __construct() {}
 
-    public function getAll()
+    public static function getAll(): Collection
     {
-        return Cache::remember("settings", 60 * 60 * 24, function () {
-            return Setting::all()->pluck("value", "key");
+        return Cache::remember("settings", config("cache.time"), function () {
+            return Setting::get();
+        });
+    }
+
+    public static function get($key)
+    {
+        return Cache::remember("setting.{$key}", config("cache.time"), function () use ($key) {
+            return self::getAll()->where("key", $key)->first()->value ?: null;
+        });
+    }
+
+    public function getCacheTime()
+    {
+        return Cache::remember("setting.cache_time", config("cache.time"), function () {
+            return intval(Setting::where('key', 'cache_time')->first()->value ?: 60 * 60);
         });
     }
 }

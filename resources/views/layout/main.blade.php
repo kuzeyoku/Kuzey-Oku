@@ -8,6 +8,7 @@
     <link rel="shortcut icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
     <link rel="icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
     {!! SEO::generate() !!}
+    @setting("general.title")
     @if (settings('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
         {!! settings('integration.tag_manager_head_code') !!}
     @endif

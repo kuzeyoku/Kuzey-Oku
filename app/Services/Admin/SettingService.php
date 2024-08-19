@@ -2,6 +2,7 @@
 
 namespace App\Services\Admin;
 
+use App\Models\Setting;
 use App\Models\ThemeAsset;
 use Illuminate\Http\Request;
 use stdClass;
@@ -40,16 +41,10 @@ class SettingService
             return;
         }
         $except = $request->except("_token", "_method", "category");
-        $settings = array_reduce(array_keys($except), function ($result, $key) use ($except, $request) {
-            $result[$request->category . "." . $key] = $except[$key];
-            if ($request->category == "social") {
-                $result["social.platforms"] = array_keys(array_filter($except, function ($value) {
-                    return $value;
-                }));
-            }
-            return $result;
-        }, []);
-        return settings($settings);
+        $settings = array_map(function ($key, $value) use ($request) {
+            return ["key" => $key, "value" => $value, "category" => $request->category];
+        }, array_keys($except), $except);
+        return Setting::upsert($settings, ["key", "category"], ["value"]);
     }
 
     public static function getSitemapModuleList()
