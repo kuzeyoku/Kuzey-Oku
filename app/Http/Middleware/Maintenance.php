@@ -17,7 +17,7 @@ class Maintenance
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (settings("maintenance.status", StatusEnum::Passive->value) == StatusEnum::Active->value && !Auth::check()) {
+        if (config("maintenance.status", StatusEnum::Passive->value) == StatusEnum::Active->value && !Auth::check()) {
             return redirect()->route("maintenance");
         } else {
             return $next($request);

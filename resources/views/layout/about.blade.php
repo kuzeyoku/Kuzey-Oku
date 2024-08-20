@@ -12,8 +12,8 @@
                     </div>
                     <blockquote class="blockquote-one">@lang('front/about.txt4')</blockquote>
                     <div class="btn-box">
-                        @if (settings('general.video'))
-                            <a href="{{ settings('general.video') }}"
+                        @if (config('general.video'))
+                            <a href="{{ config('general.video') }}"
                                 class="play-now-two lightbox-image"><i>@svg('fas-play', 'text-white')</i>@lang('front/about.txt5')</a>
                         @endif
                         @if ($about)

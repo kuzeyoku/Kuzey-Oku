@@ -19,7 +19,7 @@ class AppServiceProvider extends ServiceProvider
     {
         \Illuminate\Support\Facades\Schema::defaultStringLength(191);
         Blade::directive('setting', function ($expression) {
-            return "<?php echo \App\Services\SettingService::get({$expression}); ?>";
+            return "<?php echo \App\Services\SettingService::get({$expression}) ?: null; ?>";
         });
     }
 }

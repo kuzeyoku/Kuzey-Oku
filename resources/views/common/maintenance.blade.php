@@ -1,4 +1,4 @@
-@if (settings('maintenance.status', App\Enums\StatusEnum::Passive->value) == App\Enums\StatusEnum::Active->value)
+@if (config('maintenance.status', App\Enums\StatusEnum::Passive->value) == App\Enums\StatusEnum::Active->value)
     {{-- Giriş yapmış kullanıcılar için buton --}}
     @auth
         <div class="maintenance-button">

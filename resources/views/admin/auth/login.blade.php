@@ -67,7 +67,7 @@
                         </div>
                         <div class="form-login">
                             {{ html()->submit(__('admin/auth.login'))->class('btn btn-login g-recaptcha')->attributes([
-                                    'data-sitekey' => settings('integration.recaptcha_site_key'),
+                                    'data-sitekey' => config('integration.recaptcha_site_key'),
                                     'data-callback' => 'onSubmit',
                                     'data-action' => 'submit',
                                 ]) }}
@@ -87,7 +87,7 @@
     <script src="{{ themeAsset('common', 'js/sweetalert.js') }}"></script>
     @include(themeView('admin', 'layout.alert'))
     <script src="{{ themeAsset('admin', 'js/script.js') }}"></script>
-    @if (settings('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
+    @if (config('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
         <script src="https://www.google.com/recaptcha/api.js"></script>
         <script>
             function onSubmit(token) {

@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <meta name="description" content="{{ settings('general.description') }}">
-    <meta name="keywords" content="{{ settings('general.keywords') }}">
+    <meta name="description" content="{{ config('general.description') }}">
+    <meta name="keywords" content="{{ config('general.keywords') }}">
     <meta name="robots" content="noindex, nofollow">
-    <title>{{ settings('general.title') }}</title>
+    <title>{{ config('general.title') }}</title>
     <link rel="shortcut icon" type="image/x-icon" href="{{ themeAsset('admin', 'img/favicon.png') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ themeAsset('admin', 'css/style.css') }}">
@@ -21,7 +21,7 @@
         <div class="comming-soon-pg w-100">
             <div class="coming-soon-box">
                 <h1>@lang('front/maintenance.txt1')</h1>
-                <p>{{ settings('maintenance.message') }}</p>
+                <p>{{ config('maintenance.message') }}</p>
                 <ul class="coming-soon-timer">
                     <li><span class="days"></span>@lang('front/maintenance.day')</li>
                     <li class="seperate-dot">:</li>

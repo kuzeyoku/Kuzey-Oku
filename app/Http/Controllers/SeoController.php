@@ -21,8 +21,8 @@ class SeoController extends Controller
             SEOTools::opengraph()->addImage($themeAsset->cover);
             SEOTools::twitter()->setImage($themeAsset->cover);
         } else {
-            SEOTools::setTitle(settings("general.title", config("app.name")));
-            SEOTools::setDescription(settings("general.description"));
+            SEOTools::setTitle(config("general.title", config("app.name")));
+            SEOTools::setDescription(config("general.description"));
             SEOTools::opengraph()->addImage($themeAsset->cover);
             SEOTools::twitter()->setImage($themeAsset->cover);
         }

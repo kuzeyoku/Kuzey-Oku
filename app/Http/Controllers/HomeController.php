@@ -16,29 +16,29 @@ class HomeController extends Controller
     {
         SeoController::set();
 
-        $data["slider"] = Cache::remember("slider_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+        $data["slider"] = Cache::remember("slider_home_" . app()->getLocale(), config("cache.time", 3600), function () {
             return Slider::active()->order()->get();
         });
 
-        $data["service"] = Cache::remember("service_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+        $data["service"] = Cache::remember("service_home_" . app()->getLocale(), config("cache.time", 3600), function () {
             return Service::active()->order()->limit(6)->get();
         });
 
-        $data["project"] = Cache::remember("project_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+        $data["project"] = Cache::remember("project_home_" . app()->getLocale(), config("cache.time", 3600), function () {
             return Project::active()->order()->get();
         });
 
-        $data["blog"] = Cache::remember("blog_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+        $data["blog"] = Cache::remember("blog_home_" . app()->getLocale(), config("cache.time", 3600), function () {
             return Blog::active()->order()->limit(3)->get();
         });
 
-        $data["reference"] = Cache::remember("reference_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
+        $data["reference"] = Cache::remember("reference_home_" . app()->getLocale(), config("cache.time", 3600), function () {
             return Reference::active()->order()->get();
         });
 
-        if (settings("information.about_page", false)) {
-            $data["about"] = Cache::remember("about_home_" . app()->getLocale(), settings("caching.time", 3600), function () {
-                return Page::findOrFail(settings("information.about_page"));
+        if (config("information.about_page", false)) {
+            $data["about"] = Cache::remember("about_home_" . app()->getLocale(), config("cache.time", 3600), function () {
+                return Page::findOrFail(config("information.about_page"));
             });
         }
         return view("index", $data);

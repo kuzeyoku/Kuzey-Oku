@@ -20,7 +20,7 @@ class SettingService
     public static function get($key)
     {
         return Cache::remember("setting.{$key}", config("cache.time"), function () use ($key) {
-            return self::getAll()->where("key", $key)->first()->value ?: null;
+            return self::getAll()->where("key", $key)->first()?->value;
         });
     }
 

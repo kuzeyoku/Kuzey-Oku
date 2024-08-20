@@ -34,7 +34,7 @@
                                 <div class="help-contact">
                                     <p>@lang('front/service.txt7')</p>
                                     <a
-                                        href="tel:{{ config('setting.contact.phone') }}">{{ config('setting.contact.phone') }}</a>
+                                        href="tel:{{ config('contact.phone') }}">{{ config('contact.phone') }}</a>
                                 </div>
                             </div>
                         </div>

@@ -7,10 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
     <link rel="shortcut icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
     <link rel="icon" href="{{ $themeAsset->favicon }}" type="image/x-icon">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
     {!! SEO::generate() !!}
     @setting("general.title")
-    @if (settings('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
-        {!! settings('integration.tag_manager_head_code') !!}
+    @if (config('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
+        {!! config('integration.tag_manager_head_code') !!}
     @endif
     <link href="{{ themeAsset('front', 'css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ themeAsset('front', 'css/animate.css') }}" rel="stylesheet">
@@ -26,8 +28,8 @@
 </head>
 
 <body>
-    @if (settings('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
-        {!! settings('integration.tag_manager_body_code') !!}
+    @if (config('integration.tag_manager_status') == App\Enums\StatusEnum::Active->value)
+        {!! config('integration.tag_manager_body_code') !!}
     @endif
     <div class="page-wrapper">
         <div class="preloader"></div>

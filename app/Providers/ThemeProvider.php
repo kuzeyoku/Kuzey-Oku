@@ -27,8 +27,8 @@ class ThemeProvider extends ServiceProvider
         });
         View::composer("layout.about", function ($view) {
             $about = Cache::rememberForever('about_' . app()->getLocale(), function () {
-                if (settings("information.about_page")) {
-                    return \App\Models\Page::find(settings("information.about_page"));
+                if (config("information.about_page")) {
+                    return \App\Models\Page::find(config("information.about_page"));
                 }
             });
             $view->with(compact("about"));

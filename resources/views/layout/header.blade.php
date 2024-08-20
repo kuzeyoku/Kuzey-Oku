@@ -5,24 +5,24 @@
                 <ul class="list-style-one">
                     <li>
                         @svg('fas-envelope', 'icon-space')
-                        <a href="mailto:{{ settings('contact.mail') }}">
-                            <span class="__cf_email__">{{ settings('contact.email') }}</span>
+                        <a href="mailto:{{ config('contact.mail') }}">
+                            <span class="__cf_email__">{{ config('contact.email') }}</span>
                         </a>
                     </li>
-                    <li>@svg('fas-map-marker', 'icon-space'){{ settings('contact.address') }}</li>
+                    <li>@svg('fas-map-marker', 'icon-space'){{ config('contact.address') }}</li>
                 </ul>
             </div>
             <div class="top-right">
-                @if (settings('system.multilanguage', App\Enums\Statusenum::Passive->value) == App\Enums\StatusEnum::Active->value)
+                @if (config('system.multilanguage', App\Enums\Statusenum::Passive->value) == App\Enums\StatusEnum::Active->value)
                     {{ html()->form()->route('language.set')->open() }}
                     {{ html()->select('locale', languageList()->pluck('title', 'code'), session()->get('locale'))->class('lang-select') }}
                     {{ html()->form()->close() }}
                 @endif
                 <ul class="social-icon-one">
-                    @foreach (settings('social.platforms', []) as $item)
+                    @foreach (config('social.platforms', []) as $item)
                         <li>
                             <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
-                                href="{{ settings("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
+                                href="{{ config("social.{$item}") }}">@svg('fab-' . $item, 'text-white')</a>
                         </li>
                     @endforeach
                 </ul>
@@ -37,7 +37,7 @@
                     <div class="logo">
                         <a href="{{ route('home') }}">
                             <img src="{{ $themeAsset->logo_light }}"
-                                alt="{{ settings('general.title', env('APP_NAME')) }}">
+                                alt="{{ config('general.title', env('APP_NAME')) }}">
                         </a>
                     </div>
                 </div>
@@ -81,30 +81,30 @@
                     <div class="contact-info-box">
                         @svg('fas-phone-alt', 'icon')
                         <span class="title">@lang('front/header.txt2')</span>
-                        <a href="tel:{{ settings('contact.phone') }}">{{ settings('contact.phone') }}</a>
+                        <a href="tel:{{ config('contact.phone') }}">{{ config('contact.phone') }}</a>
                     </div>
                 </li>
                 <li>
                     <div class="contact-info-box">
                         @svg('far-envelope', 'icon')
                         <span class="title">@lang('front/header.txt3')</span>
-                        <a href="mailto:{{ settings('contact.phone') }}"><span
-                                class="__cf_email__">{{ settings('contact.email') }}</span></a>
+                        <a href="mailto:{{ config('contact.phone') }}"><span
+                                class="__cf_email__">{{ config('contact.email') }}</span></a>
                     </div>
                 </li>
                 <li>
                     <div class="contact-info-box">
                         @svg('fas-map-marked-alt', 'icon')
                         <span class="title">@lang('front/header.txt4')</span>
-                        {{ settings('contact.address') }}
+                        {{ config('contact.address') }}
                     </div>
                 </li>
             </ul>
             <ul class="social-links">
-                @foreach (settings('social.platforms', []) as $item)
+                @foreach (config('social.platforms', []) as $item)
                     <li>
                         <a aria-label="{{ $item }}" onclick="return!window.open(this.href)"
-                            href="{{ settings("social.{$item}") }}">@svg('fab-' . $item)</a>
+                            href="{{ config("social.{$item}") }}">@svg('fab-' . $item)</a>
                     </li>
                 @endforeach
             </ul>
@@ -117,7 +117,7 @@
                 <div class="logo">
                     <a href="{{ route('home') }}">
                         <img src="{{ $themeAsset->logo_dark }}"
-                            alt="{{ settings('general.title', env('APP_NAME')) }}">
+                            alt="{{ config('general.title', env('APP_NAME')) }}">
                     </a>
                 </div>
                 <div class="nav-outer">

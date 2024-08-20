@@ -1,4 +1,4 @@
-@if (settings('information.cookie_notification_status', App\Enums\StatusEnum::Passive->value) ==
+@if (config('information.cookie_notification_status', App\Enums\StatusEnum::Passive->value) ==
         App\Enums\StatusEnum::Active->value)
 @empty($_COOKIE['cookie_notification'])
     <div class="cookie" id="cookie-notification" style="display:none">

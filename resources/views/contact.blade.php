@@ -19,7 +19,7 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt5')</h6>
-                                    <a href="tel:{{ settings('contact.phone') }}">{{ settings('contact.phone') }}</a>
+                                    <a href="tel:{{ config('contact.phone') }}">{{ config('contact.phone') }}</a>
                                 </div>
                             </li>
                             <li>
@@ -28,8 +28,8 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt6')</h6>
-                                    <a href="mailto:{{ settings('contact.email') }}"><span
-                                            class="__cf_email__">{{ settings('contact.email') }}</span></a>
+                                    <a href="mailto:{{ config('contact.email') }}"><span
+                                            class="__cf_email__">{{ config('contact.email') }}</span></a>
                                 </div>
                             </li>
                             <li>
@@ -38,14 +38,14 @@
                                 </div>
                                 <div class="text">
                                     <h6>@lang('front/contact.txt7')</h6>
-                                    <span>{{ settings('contact.address') }}</span>
+                                    <span>{{ config('contact.address') }}</span>
                                 </div>
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-xl-7 col-lg-6">
-                    <iframe src="{{ settings('contact.map') }}" width="100%" height="550" frameborder="0"
+                    <iframe src="{{ config('contact.map') }}" width="100%" height="550" frameborder="0"
                         allowfullscreen=""></iframe>
                 </div>
             </div>
@@ -101,7 +101,7 @@
                         @endif
                     </div>
                     <button class="theme-btn btn-style-one g-recaptcha"
-                        data-sitekey="{{ settings('integration.recaptcha_site_key') }}" data-callback='onSubmit'
+                        data-sitekey="{{ config('integration.recaptcha_site_key') }}" data-callback='onSubmit'
                         data-action='submit'>
                         <span class="btn-title">@lang('front/contact.txt15')</span>
                     </button>
@@ -114,7 +114,7 @@
     </section>
 @endsection
 @include('common.alert')
-@if (settings('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
+@if (config('integration.recaptcha_status') == App\Enums\StatusEnum::Active->value)
     @push('script')
         <script src="https://www.google.com/recaptcha/api.js" async defer></script>
         <script>
