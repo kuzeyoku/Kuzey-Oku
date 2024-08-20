@@ -9,7 +9,7 @@ enum SettingCategoryEnum: string
     case Pagination = "pagination";
     case Information = "information";
     case Social = "social";
-    case Caching = "caching";
+    case Cache = "cache";
     case Contact = "contact";
     case Smtp = "smtp";
     case Maintenance = "maintenance";
@@ -32,7 +32,7 @@ enum SettingCategoryEnum: string
             self::Pagination => true,
             self::Information => true,
             self::Social => true,
-            self::Caching => true,
+            self::Cache => true,
             self::Contact => true,
             self::Smtp => true,
             self::Maintenance => false,

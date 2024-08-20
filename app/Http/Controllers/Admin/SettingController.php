@@ -4,31 +4,24 @@ namespace App\Http\Controllers\Admin;
 
 use Throwable;
 use Illuminate\Http\Request;
-use App\Enums\SettingCategoryEnum;
 use Illuminate\Support\Facades\View;
 use App\Services\Admin\SettingService;
 
 class SettingController extends Controller
 {
-    protected $service;
-
-    public function __construct(SettingService $service)
+    public function __construct(private SettingService $service)
     {
-        $this->service = $service;
         View::share([
-            "route" => $this->service->route(),
-            "folder" => $this->service->folder(),
+            "route" => $service->route(),
+            "folder" => $service->folder(),
             "service" => $service
         ]);
     }
 
-    public function index()
+    public function index($category = null)
     {
-        if (SettingCategoryEnum::has(request("category"))) {
-            return view(themeView("admin", "setting." . request("category")));
-        } else {
-            abort("404");
-        }
+        $settings = $this->service->getCategory($category);
+        return view(themeView("admin", "setting." . $category), compact("settings"));
     }
 
     public function update(Request $request)

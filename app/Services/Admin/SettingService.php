@@ -47,6 +47,12 @@ class SettingService
         return Setting::upsert($settings, ["key", "category"], ["value"]);
     }
 
+    public function getCategory($category)
+    {
+        $settings = Setting::where("category", $category)->get();
+        return config()->set($category, $settings->pluck("value", "key"));
+    }
+
     public static function getSitemapModuleList()
     {
         $arr = ["home"];
@@ -90,13 +96,13 @@ class SettingService
     public static function setEmailSettings()
     {
         config([
-            'mail.mailers.smtp.host' => settings("smtp.host"),
-            'mail.mailers.smtp.port' => settings("smtp.port"),
-            'mail.mailers.smtp.encryption' => settings("smtp.encryption"),
-            'mail.mailers.smtp.username' => settings("smtp.username"),
-            'mail.mailers.smtp.password' => settings("smtp.password"),
-            "mail.from.address" => settings("smtp.from_address"),
-            "mail.from.name" => settings("smtp.from_name"),
+            'mail.mailers.smtp.host' => config("smtp.host"),
+            'mail.mailers.smtp.port' => config("smtp.port"),
+            'mail.mailers.smtp.encryption' => config("smtp.encryption"),
+            'mail.mailers.smtp.username' => config("smtp.username"),
+            'mail.mailers.smtp.password' => config("smtp.password"),
+            "mail.from.address" => config("smtp.from_address"),
+            "mail.from.name" => config("smtp.from_name"),
         ]);
     }
 }
