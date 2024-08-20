@@ -19,4 +19,38 @@ class ThemeService
             return $response;
         });
     }
+
+    public static function getPopup()
+    {
+        return Cache::remember('popup_' . app()->getLocale(), 3600, function () {
+            return \App\Models\Popup::active()->first();
+        });
+    }
+
+    public static function getAbout()
+    {
+        return Cache::rememberForever('about_' . app()->getLocale(), function () {
+            if (config('information.about_page')) {
+                return \App\Models\Page::find(config('information.about_page'));
+            }
+        });
+    }
+
+    public static function getMenu()
+    {
+        return Cache::rememberForever('menu_' . app()->getLocale(), function () {
+            return \App\Models\Menu::order()->get();
+        });
+    }
+
+    public static function getFooter()
+    {
+        $footer["quickLinks"] = Cache::rememberForever("footer_quick_links_" . app()->getLocale(), function () {
+            return \App\Models\Page::active()->where("quick_link", \App\Enums\StatusEnum::Yes->value)->get();
+        });
+        $footer["services"] = Cache::rememberForever("footer_services_" . app()->getLocale(), function () {
+            return \App\Models\Service::whereStatus(\App\Enums\StatusEnum::Active->value)->limit(5)->get();
+        });
+        return $footer;
+    }
 }

@@ -25,28 +25,25 @@ class ThemeProvider extends ServiceProvider
             $themeAsset = \App\Services\ThemeService::getThemeAssets();
             $view->with(compact("themeAsset"));
         });
+
+        View::composer(["common.popup"], function ($view) {
+            $popup = \App\Services\ThemeService::getPopup();
+            $view->with(compact("popup"));
+        });
+
         View::composer("layout.about", function ($view) {
-            $about = Cache::rememberForever('about_' . app()->getLocale(), function () {
-                if (config("information.about_page")) {
-                    return \App\Models\Page::find(config("information.about_page"));
-                }
-            });
+            $about = \App\Services\ThemeService::getAbout();
             $view->with(compact("about"));
         });
+
         View::composer("layout.header", function ($view) {
-            $headerMenu = Cache::rememberForever("headerMenu_" . app()->getLocale(), function () {
-                return \App\Models\Menu::order()->get();
-            });
-            $view->with(compact("headerMenu"));
+            $menu = \App\Services\ThemeService::getMenu();
+            $view->with(compact("menu"));
         });
+
         View::composer('layout.footer', function ($view) {
-            $quickLinks = Cache::rememberForever("quick_links", function () {
-                return \App\Models\Page::where(["status" => \App\Enums\StatusEnum::Active->value, "quick_link" => \App\Enums\StatusEnum::Yes->value])->get();
-            });
-            $footer_services = Cache::rememberForever("footer_services", function () {
-                return \App\Models\Service::whereStatus(\App\Enums\StatusEnum::Active->value)->limit(5)->get();
-            });
-            $view->with(compact("quickLinks", "footer_services"));
+            $footer = \App\Services\ThemeService::getFooter();
+            $view->with(compact("footer"));
         });
     }
 }

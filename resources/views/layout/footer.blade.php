@@ -25,7 +25,7 @@
                         <h4 class="widget-title">@lang('front/footer.txt1')</h4>
                         <div class="widget-content">
                             <ul class="user-links">
-                                @foreach ($quickLinks as $page)
+                                @foreach ($footer["quickLinks"] as $page)
                                     <li><a href="{{ $page->url }}">{{ $page->title }}</a></li>
                                 @endforeach
                             </ul>
@@ -38,7 +38,7 @@
                         <h4 class="widget-title">@lang('front/footer.txt2')</h4>
                         <div class="widget-content">
                             <ul class="user-links">
-                                @foreach ($footer_services as $service)
+                                @foreach ($footer["services"] as $service)
                                     <li><a href="{{ $service->url }}">{{ $service->title }}</a></li>
                                 @endforeach
                             </ul>

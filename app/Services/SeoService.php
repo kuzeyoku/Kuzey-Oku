@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Services;
+
 use Artesaos\SEOTools\Facades\SEOTools;
 
-class SeoController extends Controller
+class SeoService
 {
     public static function set(object|array|null $item = null)
     {
-        $themeAsset = \App\Services\ThemeService::getThemeAssets();
-        SEOTools::setCanonical(url()->current());
+        $themeAsset = ThemeService::getThemeAssets();
         SEOTools::opengraph()->addProperty('type', 'website');
         if (is_object($item)) {
             SEOTools::setTitle($item->title);
@@ -23,8 +23,6 @@ class SeoController extends Controller
         } else {
             SEOTools::setTitle(config("general.title", config("app.name")));
             SEOTools::setDescription(config("general.description"));
-            SEOTools::opengraph()->addImage($themeAsset->cover);
-            SEOTools::twitter()->setImage($themeAsset->cover);
         }
     }
 }

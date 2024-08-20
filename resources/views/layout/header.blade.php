@@ -44,7 +44,7 @@
                 <div class="nav-outer">
                     <nav class="nav main-menu">
                         <ul class="navigation">
-                            @foreach ($headerMenu as $menu)
+                            @foreach ($menu as $menu)
                                 @if ($menu->parent_id === 0)
                                     @if ($menu->subMenu->count() > 0)
                                         @include('layout.menu', ['menu' => $menu])
@@ -116,8 +116,7 @@
             <div class="inner-container">
                 <div class="logo">
                     <a href="{{ route('home') }}">
-                        <img src="{{ $themeAsset->logo_dark }}"
-                            alt="{{ config('general.title', env('APP_NAME')) }}">
+                        <img src="{{ $themeAsset->logo_dark }}" alt="{{ config('general.title', env('APP_NAME')) }}">
                     </a>
                 </div>
                 <div class="nav-outer">

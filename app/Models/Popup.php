@@ -37,6 +37,11 @@ class Popup extends Model implements HasMedia
         return $this->hasMany(PopupTranslate::class);
     }
 
+    public function scopeActive($query)
+    {
+        return $query->where("status", \App\Enums\StatusEnum::Active->value);
+    }
+
     public function getTitlesAttribute()
     {
         return $this->translate->pluck("title", "lang")->all();
@@ -64,7 +69,6 @@ class Popup extends Model implements HasMedia
 
     public function getModuleAttribute()
     {
-        return ModuleEnum::Popup->singleTitle();
+        return ModuleEnum::Popup->title();
     }
-
 }

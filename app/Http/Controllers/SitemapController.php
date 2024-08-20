@@ -2,31 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Enums\ModuleEnum;
 use App\Models\Blog;
 use App\Models\Page;
 use App\Models\Product;
 use App\Models\Project;
 use App\Models\Service;
 use App\Models\Category;
-use App\Enums\StatusEnum;
 
 class SitemapController extends Controller
 {
     public function index()
     {
         $data = array();
-        if (ModuleEnum::Page->status())
+        if (config("module.page.status"))
             $data["pages"] = Page::active()->get();
-        if (ModuleEnum::Blog->status())
+        if (config("module.blog.status"))
             $data["posts"] = Blog::active()->get();
-        if (ModuleEnum::Category->status())
+        if (config("module.category.status"))
             $data["categories"] = Category::active()->get();
-        if (ModuleEnum::Service->status())
+        if (config("module.service.status"))
             $data["services"] = Service::active()->get();
-        if (ModuleEnum::Project->status())
+        if (config("module.project.status"))
             $data["projects"] = Project::active()->get();
-        if (ModuleEnum::Product->status())
+        if (config("module.product.status"))
             $data["products"] = Product::active()->get();
         $view = view("sitemap", $data)->render();
         return response($view)->header("Content-Type", "text/xml");

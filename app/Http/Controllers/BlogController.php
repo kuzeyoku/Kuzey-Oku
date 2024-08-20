@@ -8,6 +8,7 @@ use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
 use App\Http\Requests\CommentRequest;
 use App\Models\BlogComment;
+use App\Services\SeoService;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Cache;
 
@@ -16,19 +17,19 @@ class BlogController extends Controller
 
     public function index()
     {
-        SeoController::set(["title" => __("front/blog.meta_title"), "description" => __("front/blog.meta_description")]);
-        if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
+        SeoService::set(["title" => __("front/blog.meta_title"), "description" => __("front/blog.meta_description")]);
+        if (config("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
             $cacheKey = ModuleEnum::Blog->value . "_list_" . (Paginator::resolveCurrentPage() ?: 1) . "_" . app()->getLocale();
-            $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () {
+            $data = Cache::remember($cacheKey, config("caching.time", 3600), function () {
                 return [
-                    "posts" => Blog::active()->order()->paginate(settings("pagination.front", 10)),
+                    "posts" => Blog::active()->order()->paginate(config("pagination.front", 10)),
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                     "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
                 ];
             });
         } else {
             $data = [
-                "posts" => Blog::active()->order()->paginate(settings("pagination.front", 10))->onEachSide(1),
+                "posts" => Blog::active()->order()->paginate(config("pagination.front", 10))->onEachSide(1),
                 "popularPost" => Blog::active()->viewOrder()->take(5)->get(),
                 "categories" => Category::active()->whereModule(ModuleEnum::Blog->value)->get(),
             ];
@@ -38,11 +39,11 @@ class BlogController extends Controller
 
     public function show(Blog $blog)
     {
-        SeoController::set($blog);
+        SeoService::set($blog);
         $cacheKey = ModuleEnum::Blog->value . "_detail_" . $blog->id . "_" . app()->getLocale();
         $blog->increment("view_count");
-        if (settings("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
-            $data = Cache::remember($cacheKey, settings("caching.time", 3600), function () use ($blog) {
+        if (config("caching.status", StatusEnum::Passive->value) == StatusEnum::Active->value) {
+            $data = Cache::remember($cacheKey, config("caching.time", 3600), function () use ($blog) {
                 return [
                     "blog" => $blog,
                     "popularPost" => Blog::active()->viewOrder()->take(5)->get(),

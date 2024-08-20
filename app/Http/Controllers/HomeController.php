@@ -8,13 +8,14 @@ use App\Models\Slider;
 use App\Models\Project;
 use App\Models\Reference;
 use App\Models\Service;
+use App\Services\SeoService;
 use Illuminate\Support\Facades\Cache;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        SeoController::set();
+        SeoService::set();
 
         $data["slider"] = Cache::remember("slider_home_" . app()->getLocale(), config("cache.time", 3600), function () {
             return Slider::active()->order()->get();

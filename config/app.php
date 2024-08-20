@@ -171,7 +171,6 @@ return [
         Barryvdh\Debugbar\ServiceProvider::class,
         Spatie\Html\HtmlServiceProvider::class,
         Artesaos\SEOTools\Providers\SEOToolsServiceProvider::class,
-        App\Providers\PopupProvider::class,
         App\Providers\CookieProvider::class,
         App\Providers\ThemeProvider::class,
 

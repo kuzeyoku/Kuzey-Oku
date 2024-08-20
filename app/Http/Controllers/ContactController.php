@@ -4,17 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Message;
 use App\Enums\StatusEnum;
-use App\Http\Controllers\Admin\LogController;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Requests\ContactRequest;
 use App\Services\Admin\SettingService;
+use App\Services\SeoService;
 
 class ContactController extends Controller
 {
 
     public function index()
     {
-        SeoController::set();
+        SeoService::set();
         return view('contact');
     }
 
@@ -40,17 +40,15 @@ class ContactController extends Controller
             return back()
                 ->withSuccess(__("front/contact.send_success"));
         } catch (\Exception $e) {
-            LogController::logger("error", $e->getMessage());
             return back()
                 ->withInput()
                 ->withError(__("front/contact.send_error"));
         } finally {
             try {
                 SettingService::setEmailSettings();
-                Mail::to(settings("contact.email"))
+                Mail::to(config("contact.email"))
                     ->send(new \App\Mail\Contact($request));
             } catch (\Exception $e) {
-                LogController::logger("error", $e->getMessage());
             }
         }
     }
