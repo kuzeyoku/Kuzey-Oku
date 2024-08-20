@@ -22,7 +22,7 @@ class UpdateBrandRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
+            "image" => "image|mimes:jpeg,png,jpg,gif",
             "url" => "nullable|active_url",
             "title" => "nullable",
             "order" => "required|numeric|min:0",

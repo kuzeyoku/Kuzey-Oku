@@ -22,7 +22,7 @@ class UpdateReferenceRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
+            "image" => "image|mimes:jpeg,png,jpg,gif",
             "title" => "required",
             "url" => "nullable|active_url",
             "order" => "required|numeric|min:0",

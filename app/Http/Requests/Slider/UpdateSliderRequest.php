@@ -26,7 +26,7 @@ class UpdateSliderRequest extends FormRequest
             "description.*" => "",
             "order" => "required|numeric|min:0",
             "status" => "",
-            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096),
+            "image" => "image|mimes:jpeg,png,jpg,gif",
             "button" => "",
             "video" => "",
             "imageDelete" => "",

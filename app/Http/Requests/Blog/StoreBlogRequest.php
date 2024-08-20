@@ -22,21 +22,21 @@ class StoreBlogRequest extends FormRequest
     public function rules(): array
     {
         return [
-            "title." . app()->getLocale() => "required",
+            "title." . app()->getFallbackLocale() => "required",
             "title.*" => "",
             "description.*" => "",
             "tags.*" => "",
             "order" => "required|numeric|min:0",
             "status" => "required",
             "category_id" => "",
-            "image" => "image|mimes:jpeg,png,jpg,gif|max:" . settings("image.max_size", 4096)
+            "image" => "image|mimes:jpeg,png,jpg,gif"
         ];
     }
 
     public function attributes(): array
     {
         return [
-            "title." . app()->getLocale() => __("admin/{$this->folder}.form_title"),
+            "title." . app()->getFallbackLocale() => __("admin/{$this->folder}.form_title"),
             "description.*" => __("admin/{$this->folder}.form_description"),
             "tags.*" => __("admin/{$this->folder}.form_tags"),
             "category_id" => __("admin/{$this->folder}.form_category"),

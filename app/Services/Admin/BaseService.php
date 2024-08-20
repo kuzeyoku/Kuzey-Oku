@@ -5,7 +5,6 @@ namespace App\Services\Admin;
 use App\Models\Category;
 use App\Enums\ModuleEnum;
 use App\Enums\StatusEnum;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Database\Eloquent\Model;
 
 class BaseService
@@ -29,7 +28,7 @@ class BaseService
 
     public function all()
     {
-        return $this->model->orderByDesc("id")->paginate(settings("pagination.admin", 15));
+        return $this->model->orderByDesc("id")->paginate(config("pagination.admin", 15));
     }
 
     public function create(array $request)

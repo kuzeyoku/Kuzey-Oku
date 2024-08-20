@@ -13,7 +13,6 @@ enum SettingCategoryEnum: string
     case Contact = "contact";
     case Smtp = "smtp";
     case Maintenance = "maintenance";
-    case Image = "image";
     case Sitemap = "sitemap";
     case Seo = "seo";
     case Integration = "integration";
@@ -36,7 +35,6 @@ enum SettingCategoryEnum: string
             self::Contact => true,
             self::Smtp => true,
             self::Maintenance => false,
-            self::Image => true,
             self::Sitemap => true,
             self::Seo => true,
             self::Integration => true,

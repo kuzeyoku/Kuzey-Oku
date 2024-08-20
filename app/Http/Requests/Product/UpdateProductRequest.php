@@ -31,7 +31,7 @@ class UpdateProductRequest extends FormRequest
             "order" => "required|numeric|min:0",
             "status" => "required",
             "category_id" => "nullable",
-            "image" => "image|mimes:png,jpeg,jpg,gif|max:" . settings("image.max_size", 4096),
+            "image" => "image|mimes:png,jpeg,jpg,gif",
             "imageDelete" => "nullable",
             "video" => "nullable|active_url"
         ];
