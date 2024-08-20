@@ -47,7 +47,7 @@ class SettingService
         return Setting::upsert($settings, ["key", "category"], ["value"]);
     }
 
-    public function getCategory($category)
+    public function get($category)
     {
         $settings = Setting::where("category", $category)->get();
         return config()->set($category, $settings->pluck("value", "key"));

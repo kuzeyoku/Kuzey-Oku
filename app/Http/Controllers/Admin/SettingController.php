@@ -20,7 +20,7 @@ class SettingController extends Controller
 
     public function index($category = null)
     {
-        $settings = $this->service->getCategory($category);
+        $settings = $this->service->get($category);
         return view(themeView("admin", "setting." . $category), compact("settings"));
     }
 
