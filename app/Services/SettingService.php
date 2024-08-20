@@ -17,6 +17,16 @@ class SettingService
         });
     }
 
+    public static function toArray()
+    {
+        $settings = self::getAll();
+        $config = [];
+        $settings->each(function ($item) use (&$config) {
+            $config[$item->category][$item->key] = $item->value;
+        });
+        return $config;
+    }
+
     public static function get($key)
     {
         return Cache::remember("setting.{$key}", config("cache.time"), function () use ($key) {
