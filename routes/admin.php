@@ -66,6 +66,9 @@ Route::prefix(config("system.admin", "admin"))->name('admin.')->group(function (
         });
         //Service routes
         Route::resource("service", App\Http\Controllers\Admin\ServiceController::class)->names('service');
+        Route::controller(App\Http\Controllers\Admin\ServiceController::class)->prefix("service")->group(function () {
+            Route::put("/{service}/status-update", "statusUpdate")->name("service.status_update");
+        });
         //Project Routes
         Route::resource("project", App\Http\Controllers\Admin\ProjectController::class)->names('project');
         Route::controller(App\Http\Controllers\Admin\ProjectController::class)->prefix("project")->group(function () {
@@ -84,14 +87,29 @@ Route::prefix(config("system.admin", "admin"))->name('admin.')->group(function (
         });
         //Slider Routes
         Route::resource("slider", App\Http\Controllers\Admin\SliderController::class)->names('slider');
+        Route::controller(App\Http\Controllers\Admin\SliderController::class)->prefix("slider")->group(function () {
+            Route::put("/{slider}/status-update", "statusUpdate")->name("slider.status_update");
+        });
         //Brand Routes
         Route::resource("brand", App\Http\Controllers\Admin\BrandController::class)->names('brand');
+        Route::controller(App\Http\Controllers\Admin\BrandController::class)->prefix("brand")->group(function () {
+            Route::put("/{brand}/status-update", "statusUpdate")->name("brand.status_update");
+        });
         //Reference Routes
         Route::resource("reference", App\Http\Controllers\Admin\ReferenceController::class)->names('reference');
+        Route::controller(App\Http\Controllers\Admin\ReferenceController::class)->prefix("reference")->group(function () {
+            Route::put("/{reference}/status-update", "statusUpdate")->name("reference.status_update");
+        });
         //Testimonial Routes
         Route::resource("testimonial", App\Http\Controllers\Admin\TestimonialController::class)->names('testimonial');
+        Route::controller(App\Http\Controllers\Admin\TestimonialController::class)->prefix("testimonial")->group(function () {
+            Route::put("/{testimonial}/status-update", "statusUpdate")->name("testimonial.status_update");
+        });
         //Popup Routes
         Route::resource("popup", App\Http\Controllers\Admin\PopupController::class)->names('popup');
+        Route::controller(App\Http\Controllers\Admin\PopupController::class)->prefix("popup")->group(function () {
+            Route::put("/{popup}/status-update", "statusUpdate")->name("popup.status_update");
+        });
         //Blog Routes
         Route::resource('blog', App\Http\Controllers\Admin\BlogController::class)->names('blog');
         Route::controller(App\Http\Controllers\Admin\BlogController::class)->prefix("blog")->group(function () {
